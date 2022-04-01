@@ -1,9 +1,9 @@
 # Individuell reflektion LVX - NAMN
 ## Vad vill jag lära mig eller förstå bättre?
-SRIV HÄR
+Jag vill lära mig mer om Unity och API:er. Tycker det ska bli kul att lära mig SCRUM frameworket
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
-SRIV HÄR
+Vara aktiv på möten och svara på folks frågor
 ## Vad är mitt bidrag till teamets användning av Scrum?
-SRIV HÄR
+Försöka upprätthålla att vi håller oss till SCRUM och inte avviker i våra metodval
 ## Vad är mitt bidrag till teamets inlämningar/arbete?
-SRIV HÄR
+Att jag deltar i form av möten men också skapar delar av det som ska lämnas in
