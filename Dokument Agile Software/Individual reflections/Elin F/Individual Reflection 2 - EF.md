@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV2 - Elin Forsberg
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill lära mig mer om hur man kan effektivt skapa 2D spel i Unity
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
