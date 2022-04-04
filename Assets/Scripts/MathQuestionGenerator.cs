@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class MathQuestionGenerator : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textInput;
+    [SerializeField] private TextMeshProUGUI operatorText;
+    [SerializeField] private Sprite[] apples;
+    [SerializeField] private Image imageHolder1;
+    [SerializeField] private Image imageHolder2;
     private int x;
     private int y;
     private string[] operators;
@@ -39,6 +44,9 @@ public class MathQuestionGenerator : MonoBehaviour
         }
         else{
             textInput.text = x + " " + op + " " + y + " = " + result;
+            operatorText.text = op;
+            imageHolder1.sprite = apples[x];
+            imageHolder2.sprite = apples[y];
         }
             
         
