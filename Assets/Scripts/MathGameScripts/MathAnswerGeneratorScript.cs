@@ -29,7 +29,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             secondWrong = generateRandomNumber(rightAnswer);
         } while (secondWrong == firstWrong);
 
-
+        // Writes the generated numbers to random answer boxes
         switch (Random.Range(0, 3)) {
             case 0:
                 answer1txt.text = "= " + rightAnswer;
@@ -49,6 +49,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         }
     }
 
+    // Generates a new random number that is non negative and not the same as "rightAnswer" 
     private int generateRandomNumber(int rightAnswer) {
         int bonus;
         do {
