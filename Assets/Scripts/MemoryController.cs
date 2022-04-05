@@ -43,25 +43,53 @@ public class MemoryController : MonoBehaviour
         GetButtons();
         AddListeners();
         AddGamePuzzles();
-        Shuffle(gamePuzzles); 
+        Shuffle(gamePuzzles);
+        OrderSounds();
+        AddSound();
+
+
         gameGuesses = gamePuzzles.Count / 2;
     }
 
     void GetButtons(){
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
-        //GameObject[] audioObjects = new GameObject[20];
         AudioSource audioSource;
         for (int i = 0; i < objects.Length; i++){
 
             btns.Add(objects[i].GetComponent<Button>());
             btns[i].image.sprite = bgImage;
-
             audioSource = objects[i].AddComponent<AudioSource>();
-            audioSource.clip = sounds[i % 10];
             
 
 
         }
+    }
+    void AddSound()
+    {
+        for (int i = 0; i < btns.Count; i++)
+        {
+            Debug.Log("H");
+            btns[i].GetComponent<AudioSource>().clip = sounds[i];
+            
+        }
+
+    }
+
+
+    void OrderSounds() {
+        AudioClip[] soundsOrdered = new AudioClip[gamePuzzles.Count];
+        for (int i = 0; i < gamePuzzles.Count; i++) {
+            Sprite sprite = gamePuzzles[i];
+            foreach (AudioClip clip in sounds) {
+                if (clip.name == sprite.name) {
+                    soundsOrdered[i] = clip;
+                }
+            }
+            if (soundsOrdered[i] == null) {
+                Debug.Log(sprite.name + ": Fanns ej som ljud");
+            }
+        }
+        sounds = soundsOrdered;
     }
 
     HashSet<int> RandomRange(int elements, int ceiling){
@@ -86,7 +114,13 @@ public class MemoryController : MonoBehaviour
             btn.onClick.AddListener(() => PickAPuzzle());
         }
     }
+    IEnumerator SoundStop(int index)
+    {
+        btns[index].GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(1f);
+        btns[index].GetComponent<AudioSource>().Stop();
 
+    }
     public void PickAPuzzle(){
         if (!firstGuess){
             firstGuess = true;
@@ -95,16 +129,18 @@ public class MemoryController : MonoBehaviour
             firstGuessPuzzle = gamePuzzles[firstGuessIndex].name;
 
             btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
-            btns[firstGuessIndex].GetComponent<AudioSource>().Play();
+            StartCoroutine(SoundStop(firstGuessIndex));
+            
 
-        } else if (!secondGuess){
+        }
+        else if (!secondGuess){
             secondGuess = true;
             secondGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
             secondGuessPuzzle = gamePuzzles[secondGuessIndex].name; 
 
             btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
-            btns[secondGuessIndex].GetComponent<AudioSource>().Play();
+            StartCoroutine(SoundStop(secondGuessIndex));
 
             countGuesses++;
 
