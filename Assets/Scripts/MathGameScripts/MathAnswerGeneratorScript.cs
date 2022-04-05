@@ -40,16 +40,25 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 answer1txt.text = "= " + rightAnswer;
                 answer2txt.text = "= " + firstWrong;
                 answer3txt.text = "= " + secondWrong;
+                imgHolder1.sprite = apples[rightAnswer];
+                imgHolder2.sprite = apples[firstWrong];
+                imgHolder3.sprite = apples[secondWrong];
                 break;
             case 1:
                 answer1txt.text = "= " + firstWrong;
                 answer2txt.text = "= " + rightAnswer;
                 answer3txt.text = "= " + secondWrong;
+                imgHolder1.sprite = apples[firstWrong];
+                imgHolder2.sprite = apples[rightAnswer];
+                imgHolder3.sprite = apples[secondWrong];
                 break;
             default:
                 answer1txt.text = "= " + firstWrong;
                 answer2txt.text = "= " + secondWrong;
                 answer3txt.text = "= " + rightAnswer;
+                imgHolder1.sprite = apples[firstWrong];
+                imgHolder2.sprite = apples[secondWrong];
+                imgHolder3.sprite = apples[rightAnswer];
                 break;
         }
     }
