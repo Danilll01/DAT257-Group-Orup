@@ -15,6 +15,9 @@ public class MemoryController : MonoBehaviour
 
     public List<Button> btns = new List<Button>();
 
+    public AudioClip[] sounds;
+
+
     private bool firstGuess;
     private bool secondGuess;
 
@@ -31,6 +34,7 @@ public class MemoryController : MonoBehaviour
 
     void Awake(){
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
+        sounds = Resources.LoadAll<AudioClip>("Animal_sounds");
     }
 
     
@@ -43,10 +47,18 @@ public class MemoryController : MonoBehaviour
 
     void GetButtons(){
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
-
+        //GameObject[] audioObjects = new GameObject[20];
+        AudioSource audioSource;
         for (int i = 0; i < objects.Length; i++){
+
             btns.Add(objects[i].GetComponent<Button>());
             btns[i].image.sprite = bgImage;
+
+            audioSource = objects[i].AddComponent<AudioSource>();
+            audioSource.clip = sounds[i % 10];
+            
+
+
         }
     }
 
@@ -75,13 +87,16 @@ public class MemoryController : MonoBehaviour
             firstGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
            
             btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
+            btns[firstGuessIndex].GetComponent<AudioSource>().Play();
 
         } else if (!secondGuess){
             secondGuess = true;
             secondGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
             btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
+            btns[secondGuessIndex].GetComponent<AudioSource>().Play();
 
         }
+
     }
 }
