@@ -11,6 +11,11 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI answer2txt;
     [SerializeField] private TextMeshProUGUI answer3txt;
 
+    [SerializeField] private Sprite[] apples;
+    [SerializeField] private Image imgHolder1;
+    [SerializeField] private Image imgHolder2;
+    [SerializeField] private Image imgHolder3;
+
     [SerializeField] private int rangeFromCorrectAnswer = 5;
 
     // Start is called before the first frame update
