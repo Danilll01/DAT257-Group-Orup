@@ -85,12 +85,15 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
     // Method to call when a answer is pressed
     public void AnswerPressed(int answerNumber) {
-        if (answerNumber == correctAnswerHolder) {
+        if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
+            // If so, make all card holders blue again
             foreach (Image  img in cardHolders) {
                 img.color = new Color(0, 166f / 255f, 1);
             }
+            // And randomize a new question
             questionGenerator.randomizeProblem();
         } else {
+            // Make the selected card red to show that it is wrong
             cardHolders[answerNumber - 1].color = new Color(1, 40f/255f, 0);
         }
     }
