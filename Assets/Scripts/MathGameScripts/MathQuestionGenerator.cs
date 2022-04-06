@@ -21,6 +21,7 @@ public class MathQuestionGenerator : MonoBehaviour
     private void Start() {
         // Setup valid operators
         operators = new string[]{"+","-"};
+        randomizeProblem();
     }
 
     public void randomizeProblem(){
