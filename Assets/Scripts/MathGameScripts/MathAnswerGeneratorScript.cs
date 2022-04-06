@@ -6,6 +6,7 @@ using TMPro;
 
 public class MathAnswerGeneratorScript : MonoBehaviour
 {
+    [SerializeField] private MathQuestionGenerator questionGenerator;
 
     [SerializeField] private TextMeshProUGUI answer1txt;
     [SerializeField] private TextMeshProUGUI answer2txt;
@@ -17,6 +18,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     [SerializeField] private Image imgHolder3;
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
+    private int correctAnswerHolder; 
+
 
     // Start is called before the first frame update
     void Start() {}
@@ -43,6 +46,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 imgHolder1.sprite = apples[rightAnswer];
                 imgHolder2.sprite = apples[firstWrong];
                 imgHolder3.sprite = apples[secondWrong];
+                correctAnswerHolder = 1;
                 break;
             case 1:
                 answer1txt.text = "= " + firstWrong;
@@ -51,6 +55,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 imgHolder1.sprite = apples[firstWrong];
                 imgHolder2.sprite = apples[rightAnswer];
                 imgHolder3.sprite = apples[secondWrong];
+                correctAnswerHolder = 2;
                 break;
             default:
                 answer1txt.text = "= " + firstWrong;
@@ -59,6 +64,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 imgHolder1.sprite = apples[firstWrong];
                 imgHolder2.sprite = apples[secondWrong];
                 imgHolder3.sprite = apples[rightAnswer];
+                correctAnswerHolder = 3;
                 break;
         }
     }
@@ -73,5 +79,15 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
         // Returns the new wrong answer
         return rightAnswer + bonus; 
+    }
+
+    // Method to call when a answer is pressed
+    public void AnswerPressed(int answerNumber) {
+        if (answerNumber == correctAnswerHolder) {
+            Debug.Log("AnswerPressed");
+            questionGenerator.randomizeProblem();
+        } else {
+
+        }
     }
 }

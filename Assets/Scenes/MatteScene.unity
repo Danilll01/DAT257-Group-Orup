@@ -438,14 +438,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1876462416}
-        m_TargetAssemblyTypeName: MathQuestionGenerator, Assembly-CSharp
-        m_MethodName: randomizeProblem
-        m_Mode: 1
+      - m_Target: {fileID: 605710844}
+        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
+        m_MethodName: AnswerPressed
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -950,6 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624263a3c2abeb748b564464b95cdae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questionGenerator: {fileID: 1876462416}
   answer1txt: {fileID: 2020156419}
   answer2txt: {fileID: 1164762241}
   answer3txt: {fileID: 605374153}
@@ -1620,14 +1621,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1876462416}
-        m_TargetAssemblyTypeName: MathQuestionGenerator, Assembly-CSharp
-        m_MethodName: randomizeProblem
-        m_Mode: 1
+      - m_Target: {fileID: 605710844}
+        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
+        m_MethodName: AnswerPressed
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1755,14 +1756,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1876462416}
-        m_TargetAssemblyTypeName: MathQuestionGenerator, Assembly-CSharp
-        m_MethodName: randomizeProblem
-        m_Mode: 1
+      - m_Target: {fileID: 605710844}
+        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
+        m_MethodName: AnswerPressed
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
