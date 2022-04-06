@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MatteScene.unity
     guid: 3ab778e5bb463a846b49dfe6ab8a3daa
+  - enabled: 1
+    path: Assets/Scenes/Temp.unity
+    guid: f07431bd51976f0429397725cef06bae
   m_configObjects: {}
