@@ -46,11 +46,12 @@ public class DragAndDrop : MonoBehaviour {
                     }
                     break;
 
-                // While the touch is moving and still on the object, update the object position
+                // While the touch is moving and is allowed to move, update the object position
                 // to the touchs position
                 case TouchPhase.Moved:
-                    if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos) && moveAllowed)
+                    if (moveAllowed){
                         transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                    }
                     break;
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
