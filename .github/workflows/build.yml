@@ -92,7 +92,7 @@ jobs:
         targetPlatform:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           - iOS
-          #- Android
+          - Android
           - StandaloneOSX
     steps:
       - uses: actions/checkout@v2
