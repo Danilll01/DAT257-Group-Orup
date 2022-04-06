@@ -9,6 +9,12 @@ public class DragAndDrop : MonoBehaviour {
     private bool mouseMoveAllowed = false;
     [SerializeField] private GameObject[] snapPoints;
 
+
+    public enum weather{snow, sunny,rainy};
+    public weather chosenWeather;
+
+    public enum clothing{jacket, pants, hat, shoes};
+    public clothing chosenClothing;
  
     // Update is called once per frame
     void Update () {
@@ -81,6 +87,7 @@ public class DragAndDrop : MonoBehaviour {
             // If the object is close to the snapPoint, set the objects position to that point
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1)){
                 transform.position = snapPos;
+                transform.SetParent(snapPoint.transform);
             }
         }
 
