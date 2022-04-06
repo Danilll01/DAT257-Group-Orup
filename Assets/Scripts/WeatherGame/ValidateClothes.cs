@@ -23,6 +23,7 @@ public class ValidateClothes : MonoBehaviour
                     if(script.chosenWeather != tempWeather){
               
                         validClothing = false;
+                        break;
                     }
                 }
                 clothesCounter++;

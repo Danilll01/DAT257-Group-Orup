@@ -17,6 +17,8 @@ public class DragAndDrop : MonoBehaviour {
     public enum clothing{jacket, pants, hat, shoes};
     public clothing chosenClothing;
 
+
+    // Setup the original position
     void Start(){
         originalPos = transform.position;
     }
@@ -86,18 +88,44 @@ public class DragAndDrop : MonoBehaviour {
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector3 position){
-        // Check for each point if the object is close to it
+        
         bool snapped = false;
+        string neededMatch = "";
+
+        // Get what body part this clothing goes on
+        switch (chosenClothing){
+            case clothing.jacket:
+                neededMatch = "Chest";
+                break;
+            case clothing.pants:
+                neededMatch = "Legs";
+                break;
+            case clothing.hat:
+                neededMatch = "Head";
+                break;
+            case clothing.shoes:
+                neededMatch = "Feet";
+                break;
+            default:
+                Debug.Log("Not a valid clothing");
+                break;
+        
+        }
+
+        // Check for each point if the object is close to it
         foreach(GameObject snapPoint in snapPoints){
             Vector3 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint, set the objects position to that point
+            // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
-                transform.position = snapPos;
-                transform.SetParent(snapPoint.transform);
-                snapped = true;
+                if(snapPoint.name == neededMatch){
+                    transform.position = snapPos;
+                    transform.SetParent(snapPoint.transform);
+                    snapped = true;
+                }
             }
         }
 
+        // If we did not snap to anything, return the object to the original position
         if(!snapped){
             transform.SetParent(null);
             transform.position = originalPos;
