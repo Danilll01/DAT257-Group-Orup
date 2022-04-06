@@ -32,10 +32,10 @@ jobs:
         uses: montudor/action-zip@v1
         with:
           args: zip -qq -r build/iOS.zip build/iOS
-      #- name: Zipping Android
-        #uses: montudor/action-zip@v1
-        #with:
-          #args: zip -qq -r build/Android.zip build/Android
+      - name: Zipping Android
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build/Android.zip build/Android
       - name: Zipping macOS
         uses: montudor/action-zip@v1
         with:
@@ -62,16 +62,16 @@ jobs:
           asset_path: build/iOS.zip
           asset_name: iOS-v0.${{ github.run_number }}.zip
           asset_content_type: application/zip
-      #- name: Upload asset Android
-        #id: upload-release-asset-android 
-        #uses: actions/upload-release-asset@v1
-        #env:
-          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #with:
-          #upload_url: ${{ steps.create_release.outputs.upload_url }}
-          #asset_path: build/Android.zip
-          #asset_name: Android-v${{ github.run_number }}.zip
-          #asset_content_type: application/zip
+      - name: Upload asset Android
+        id: upload-release-asset-android 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/Android.zip
+          asset_name: Android-v0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
       - name: Upload asset macOS
         id: upload-release-asset-macOS
         uses: actions/upload-release-asset@v1
