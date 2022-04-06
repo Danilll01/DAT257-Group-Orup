@@ -7,8 +7,21 @@ public class DragAndDrop : MonoBehaviour {
     private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
+    private Vector3 originalPos;
     [SerializeField] private GameObject[] snapPoints;
 
+
+    public enum weather{snow, sunny,rainy};
+    public weather chosenWeather;
+
+    public enum clothing{jacket, pants, hat, shoes};
+    public clothing chosenClothing;
+
+
+    // Setup the original position
+    void Start(){
+        originalPos = transform.position;
+    }
  
     // Update is called once per frame
     void Update () {
@@ -33,11 +46,12 @@ public class DragAndDrop : MonoBehaviour {
                     }
                     break;
 
-                // While the touch is moving and still on the object, update the object position
+                // While the touch is moving and is allowed to move, update the object position
                 // to the touchs position
                 case TouchPhase.Moved:
-                    if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos) && moveAllowed)
+                    if (moveAllowed){
                         transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                    }
                     break;
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
@@ -75,13 +89,47 @@ public class DragAndDrop : MonoBehaviour {
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector3 position){
+        
+        bool snapped = false;
+        string neededMatch = "";
+
+        // Get what body part this clothing goes on
+        switch (chosenClothing){
+            case clothing.jacket:
+                neededMatch = "Chest";
+                break;
+            case clothing.pants:
+                neededMatch = "Legs";
+                break;
+            case clothing.hat:
+                neededMatch = "Head";
+                break;
+            case clothing.shoes:
+                neededMatch = "Feet";
+                break;
+            default:
+                Debug.Log("Not a valid clothing");
+                break;
+        
+        }
+
         // Check for each point if the object is close to it
         foreach(GameObject snapPoint in snapPoints){
             Vector3 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint, set the objects position to that point
-            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1)){
-                transform.position = snapPos;
+            // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
+            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
+                if(snapPoint.name == neededMatch){
+                    transform.position = snapPos;
+                    transform.SetParent(snapPoint.transform);
+                    snapped = true;
+                }
             }
+        }
+
+        // If we did not snap to anything, return the object to the original position
+        if(!snapped){
+            transform.SetParent(null);
+            transform.position = originalPos;
         }
 
     }
