@@ -86,10 +86,12 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     // Method to call when a answer is pressed
     public void AnswerPressed(int answerNumber) {
         if (answerNumber == correctAnswerHolder) {
-            Debug.Log("AnswerPressed");
+            foreach (Image  img in cardHolders) {
+                img.color = new Color(0, 166f / 255f, 1);
+            }
             questionGenerator.randomizeProblem();
         } else {
-            cardHolders[answerNumber - 1].color = new Color(1, 0, 0);
+            cardHolders[answerNumber - 1].color = new Color(1, 40f/255f, 0);
         }
     }
 }
