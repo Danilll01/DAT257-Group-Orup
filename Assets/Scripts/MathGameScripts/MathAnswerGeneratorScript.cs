@@ -17,8 +17,10 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     [SerializeField] private Image imgHolder2;
     [SerializeField] private Image imgHolder3;
 
+    [SerializeField] private Image[] cardHolders;
+
     [SerializeField] private int rangeFromCorrectAnswer = 5;
-    private int correctAnswerHolder; 
+    private int correctAnswerHolder;
 
 
     // Start is called before the first frame update
@@ -87,7 +89,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             Debug.Log("AnswerPressed");
             questionGenerator.randomizeProblem();
         } else {
-
+            cardHolders[answerNumber - 1].color = new Color(1, 0, 0);
         }
     }
 }

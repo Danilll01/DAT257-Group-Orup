@@ -977,6 +977,10 @@ MonoBehaviour:
   imgHolder1: {fileID: 762152990}
   imgHolder2: {fileID: 885859167}
   imgHolder3: {fileID: 685200872}
+  cardHolders:
+  - {fileID: 1488724939}
+  - {fileID: 1417260431}
+  - {fileID: 417775779}
   rangeFromCorrectAnswer: 5
 --- !u!1 &685200871
 GameObject:
