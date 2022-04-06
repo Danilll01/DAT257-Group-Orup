@@ -13,19 +13,19 @@ public class WeatherController : MonoBehaviour
 
     public void OnTodayClick ()
     {
-        gameMode.text = "Todays weather";
+        gameMode.text = "Dagens väder";
         Debug.Log("Todays weather");
     }
 
     public void OnTomorrowClick()
     {
-        gameMode.text = "Tomorrows weather";
+        gameMode.text = "Morgondagens väder";
         Debug.Log("Tomorrows weather");
     }
 
     public void OnRandomClick()
     {
-        gameMode.text = "Random Weather";
+        gameMode.text = "Slumpmässigt väder";
         Debug.Log("Random weather");
     }
     // Start is called before the first frame update
