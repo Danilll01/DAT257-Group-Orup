@@ -11,20 +11,27 @@ public class MathQuestionGenerator : MonoBehaviour
     [SerializeField] private Sprite[] apples;
     [SerializeField] private Image imageHolder1;
     [SerializeField] private Image imageHolder2;
+    [SerializeField] private MathAnswerGeneratorScript answerGenerator;
+
     private int x;
     private int y;
     private string[] operators;
     private string op;
     
     private void Start() {
+        // Setup valid operators
         operators = new string[]{"+","-"};
     }
 
     public void randomizeProblem(){
+        // Randomizes two numbers
         x = Random.Range(0,10);
         y = Random.Range(0,10);
 
+        // Randomizes a operator from the operator list
         op = operators[Random.Range(0,operators.Length)];
+
+        // Calculates answer
         int result = 0;
         switch (op){
             case "+": 
@@ -40,13 +47,15 @@ public class MathQuestionGenerator : MonoBehaviour
         }
 
         if(result < 0){
-            randomizeProblem();
+            randomizeProblem(); // Redo if under zero
         }
-        else{
+        else { // Otherwise show the result and call to generate 3 answers
             textInput.text = x + " " + op + " " + y + " = " + result;
             operatorText.text = op;
             imageHolder1.sprite = apples[x];
             imageHolder2.sprite = apples[y];
+
+            answerGenerator.GenerateAnswers(result);
         }
             
         
