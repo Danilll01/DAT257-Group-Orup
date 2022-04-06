@@ -7,6 +7,7 @@ public class DragAndDrop : MonoBehaviour {
     private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
+    private Vector3 originalPos;
     [SerializeField] private GameObject[] snapPoints;
 
 
@@ -15,6 +16,10 @@ public class DragAndDrop : MonoBehaviour {
 
     public enum clothing{jacket, pants, hat, shoes};
     public clothing chosenClothing;
+
+    void Start(){
+        originalPos = transform.position;
+    }
  
     // Update is called once per frame
     void Update () {
@@ -82,13 +87,20 @@ public class DragAndDrop : MonoBehaviour {
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector3 position){
         // Check for each point if the object is close to it
+        bool snapped = false;
         foreach(GameObject snapPoint in snapPoints){
             Vector3 snapPos = snapPoint.transform.position;
             // If the object is close to the snapPoint, set the objects position to that point
-            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1)){
+            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
                 transform.position = snapPos;
                 transform.SetParent(snapPoint.transform);
+                snapped = true;
             }
+        }
+
+        if(!snapped){
+            transform.SetParent(null);
+            transform.position = originalPos;
         }
 
     }
