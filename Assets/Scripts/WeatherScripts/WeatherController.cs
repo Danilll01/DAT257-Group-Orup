@@ -9,25 +9,17 @@ public class WeatherController : MonoBehaviour
 
     // textfield showing current game mode
     public TextMeshProUGUI gameMode;
+
+    // Different "scenes" for different weather
+    public GameObject sunnyObject;
+    public GameObject cloudyObject;
+    public GameObject rainyObject;
+
     
+    private enum WeatherTypes {Sun, Cloud, Rain};
+    private enum WindSpeed {None, Slow, Fast};
+    private SpriteRenderer weatherIconSprite;
 
-    public void OnTodayClick ()
-    {
-        gameMode.text = "Dagens väder";
-        Debug.Log("Todays weather");
-    }
-
-    public void OnTomorrowClick()
-    {
-        gameMode.text = "Morgondagens väder";
-        Debug.Log("Tomorrows weather");
-    }
-
-    public void OnRandomClick()
-    {
-        gameMode.text = "Slumpmässigt väder";
-        Debug.Log("Random weather");
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +30,37 @@ public class WeatherController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnTodayClick ()
+    {
+        gameMode.text = "Dagens vï¿½der";
+        Debug.Log("Todays weather");
+    }
+
+    public void OnTomorrowClick()
+    {
+        gameMode.text = "Morgondagens vï¿½der";
+        Debug.Log("Tomorrows weather");
+    }
+
+    public void OnRandomClick()
+    {
+        gameMode.text = "Slumpmï¿½ssigt vï¿½der";
+        Debug.Log("Random weather");
+    }
+    
+
+    private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
+    {
+        switch (weather) 
+        {
+            case WeatherTypes.Sun:
+                Debug.Log("Sunny");
+                break;
+            default:
+                Debug.Log("No work");
+                break;
+        }
     }
 }
