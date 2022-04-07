@@ -23,7 +23,7 @@ public class WeatherController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        HideAllWeather();
     }
 
     // Update is called once per frame
@@ -35,6 +35,9 @@ public class WeatherController : MonoBehaviour
     public void OnTodayClick ()
     {
         gameMode.text = "Dagens v�der";
+
+        SetWeather(WeatherTypes.Sun, WindSpeed.None);
+
         Debug.Log("Todays weather");
     }
 
@@ -56,11 +59,25 @@ public class WeatherController : MonoBehaviour
         switch (weather) 
         {
             case WeatherTypes.Sun:
+                HideAllWeather();
+                sunnyObject.SetActive(true);
                 Debug.Log("Sunny");
+                break;
+            case WeatherTypes.Cloud:
+                HideAllWeather();
+                cloudyObject.SetActive(true);
+                Debug.Log("Cloudy");
                 break;
             default:
                 Debug.Log("No work");
                 break;
         }
+    }
+
+    private void HideAllWeather()
+    {
+        sunnyObject.SetActive(false);
+        cloudyObject.SetActive(false);
+        rainyObject.SetActive(false);
     }
 }

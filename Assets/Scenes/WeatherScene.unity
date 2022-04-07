@@ -1438,7 +1438,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301485542}
-  - component: {fileID: 1301485543}
   m_Layer: 5
   m_Name: ButtonManager
   m_TagString: Untagged
@@ -1466,22 +1465,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.000015258789}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1301485543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301485541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bdd41cfbb065d346a1a683cf4eb6b7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameMode: {fileID: 403844625}
-  sunnyObject: {fileID: 0}
-  cloudyObject: {fileID: 0}
-  rainyObject: {fileID: 0}
 --- !u!1 &1533899856
 GameObject:
   m_ObjectHideFlags: 0
