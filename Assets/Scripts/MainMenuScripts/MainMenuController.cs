@@ -6,16 +6,10 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() {}
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 
     public void OnMathGameClick() {
         // This changes scene to be the math game. In file -> build settings you can find what number you should load for the corresponing scene
@@ -24,7 +18,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnWeatherGameClick() {
         // Needs to be added
-        // SceneManager.LoadScene();
+        SceneManager.LoadScene(2);
     }
 
     public void OnMemoryGameClick() {

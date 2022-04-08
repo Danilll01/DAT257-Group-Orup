@@ -1,0 +1,117 @@
+name: Build project
+
+on: 
+  pull_request:
+    types: [closed]
+  workflow_dispatch:
+
+jobs:
+  release-project:
+    name: Release game builds
+    runs-on: ubuntu-latest
+    needs: buildForAllSupportedPlatforms
+    steps: 
+      - name: Get files
+        uses: actions/download-artifact@v3
+        with:
+          path: build
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.${{ github.run_number }}
+          release_name: Release V0.${{ github.run_number }}
+          
+      - name: Zipping win
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build/StandaloneWindows64.zip build/StandaloneWindows64
+      - name: Zipping iOS
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build/iOS.zip build/iOS
+      - name: Zipping Android
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build/Android.zip build/Android
+      - name: Zipping macOS
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r build/StandaloneOSX.zip build/StandaloneOSX
+          
+          
+      - name: Upload asset windows
+        id: upload-release-asset-win
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/StandaloneWindows64.zip
+          asset_name: Win64-v0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+      - name: Upload asset iOS
+        id: upload-release-asset-iOS 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/iOS.zip
+          asset_name: iOS-v0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+      - name: Upload asset Android
+        id: upload-release-asset-android 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/Android.zip
+          asset_name: Android-v0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+      - name: Upload asset macOS
+        id: upload-release-asset-macOS
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/StandaloneOSX.zip
+          asset_name: macOS-v0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+
+  buildForAllSupportedPlatforms:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - iOS
+          - Android
+          - StandaloneOSX
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}
+          restore-keys: Library-
+      - uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.targetPlatform }}
+          path: build
+      
