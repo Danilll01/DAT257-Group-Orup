@@ -23,7 +23,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnMemoryGameClick() {
         // Needs to be added
-        // SceneManager.LoadScene();
+        SceneManager.LoadScene(4);
     }
 
     public void OnLearnWordGameClick() {
