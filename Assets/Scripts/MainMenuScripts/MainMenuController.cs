@@ -18,7 +18,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnWeatherGameClick() {
         // Needs to be added
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void OnMemoryGameClick() {
