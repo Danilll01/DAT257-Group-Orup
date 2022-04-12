@@ -92,7 +92,7 @@ public class GPSLocation : MonoBehaviour
             latitudeValue = Input.location.lastData.latitude;
             longitudeValue = Input.location.lastData.longitude;
 
-            latitudeTextField.text = latitudeTextField.ToString();
+            latitudeTextField.text = latitudeValue.ToString();
             longitudeTextField.text = longitudeValue.ToString();
 
         } else
