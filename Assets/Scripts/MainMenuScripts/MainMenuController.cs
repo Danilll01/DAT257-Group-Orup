@@ -28,7 +28,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnLearnWordGameClick() {
         // Needs to be added
-        // SceneManager.LoadScene();
+        SceneManager.LoadScene(5);
     }
 
     public void OnMusicGameClick() {
