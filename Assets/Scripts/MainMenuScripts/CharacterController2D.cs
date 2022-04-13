@@ -32,7 +32,6 @@ public class CharacterController2D : MonoBehaviour {
 	private bool m_wasCrouching = false;
 
 	private bool haveJumped = false;
-	private bool isThrowingPlayer = true;
 
 	private void Awake() {
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -45,25 +44,24 @@ public class CharacterController2D : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-		if (!isThrowingPlayer) {
-			bool wasGrounded = m_Grounded;
-			m_Grounded = false;
+		bool wasGrounded = m_Grounded;
+		m_Grounded = false;
 
-			// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-			// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-			Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-			for (int i = 0; i < colliders.Length; i++) {
-				if (colliders[i].gameObject != gameObject) {
-					m_Grounded = true;
-					if (!wasGrounded && !haveJumped) {
-						OnLandEvent.Invoke();
-						haveJumped = false;
-					} else {
-						haveJumped = false;
-					}
+		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
+		for (int i = 0; i < colliders.Length; i++) {
+			if (colliders[i].gameObject != gameObject) {
+				m_Grounded = true;
+				if (!wasGrounded && !haveJumped) {
+					OnLandEvent.Invoke();
+					haveJumped = false;
+				} else {
+					haveJumped = false;
 				}
 			}
 		}
+		
 	}
 
 

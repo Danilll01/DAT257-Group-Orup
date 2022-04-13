@@ -522,7 +522,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 10e15b1dbc1e5024cb614bb2d104bb9c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616213042}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6471fcff376197546bf9c4faf39bc3ef, type: 3}
   m_Name: 
@@ -634,7 +634,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616213042}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f316670b33995e479a31edba524423d, type: 3}
   m_Name: 
@@ -701,6 +701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwBonus: 20
   throwAirDrag: 20
+  disableMovment: {fileID: 616213048}
+  disableCharacterController: {fileID: 616213049}
 --- !u!1 &627237382
 GameObject:
   m_ObjectHideFlags: 0

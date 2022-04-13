@@ -5,11 +5,12 @@ using UnityEngine;
 public class ThrowPlayer : MonoBehaviour {
 
     private Rigidbody2D rigidBody;
-    private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     [SerializeField] private float throwBonus = 20;
     [SerializeField] private float throwAirDrag = 5;
+    [SerializeField] private PlayerMovement disableMovment;
+    [SerializeField] private CharacterController2D disableCharacterController;
 
 
     // Setup the original position
@@ -35,8 +36,6 @@ public class ThrowPlayer : MonoBehaviour {
                 // If the touch was on the object, set moveAllowed to true
                 case TouchPhase.Began:
                     if (GetComponent<BoxCollider2D>() == Physics2D.OverlapPoint(touchPos) || GetComponent<CircleCollider2D>() == Physics2D.OverlapPoint(touchPos)) {
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
@@ -107,7 +106,19 @@ public class ThrowPlayer : MonoBehaviour {
                 }
             }
         }
-
+        updateOtherMovmentScripts();
      } 
+
+    private void updateOtherMovmentScripts() {
+        
+        if (mouseMoveAllowed || moveAllowed) {
+            disableMovment.enabled = false;
+            disableCharacterController.enabled = false;
+        } else if (!mouseMoveAllowed && !moveAllowed && rigidBody.velocity == Vector2.zero) {
+            disableMovment.enabled = true;
+            disableCharacterController.enabled = true;
+        }
+      
+    }
 
 }
