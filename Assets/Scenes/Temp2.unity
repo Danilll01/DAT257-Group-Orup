@@ -449,8 +449,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521035694}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.09, y: -3.94, z: 0}
-  m_LocalScale: {x: 1.9074924, y: 0.3908639, z: 1}
+  m_LocalPosition: {x: 3.09, y: -3.844, z: 0}
+  m_LocalScale: {x: 1.9074924, y: 0.3470134, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -520,7 +520,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 10e15b1dbc1e5024cb614bb2d104bb9c, type: 2}
   m_Interpolate: 0
@@ -701,8 +701,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   throwBonus: 20
   throwAirDrag: 20
+  enableRagdollRotation: 1
   disableMovment: {fileID: 616213048}
   disableCharacterController: {fileID: 616213049}
+  animator: {fileID: 616213050}
 --- !u!1 &627237382
 GameObject:
   m_ObjectHideFlags: 0

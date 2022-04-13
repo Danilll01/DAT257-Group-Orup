@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         
+        // Direction of player movment
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
+        // Sets variables based on which actions are done. Also changes animator variables
         if (Input.GetKeyDown(KeyCode.Space)) {
             jump = true;
             animator.SetBool("IsJumping", true);
@@ -37,13 +39,14 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
+    // Calls move method in bigger controller script
     private void FixedUpdate() {
-  
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
 
     }
 
+    // Changes animation when landing
     public void OnLandingEvent() {
         animator.SetBool("IsJumping", false);
     }

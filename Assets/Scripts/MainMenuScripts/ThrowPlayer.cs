@@ -8,15 +8,17 @@ public class ThrowPlayer : MonoBehaviour {
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     [SerializeField] private float throwBonus = 20;
-    [SerializeField] private float throwAirDrag = 5;
+    [SerializeField] private float throwAirDrag = 20;
+    [SerializeField] private bool enableRagdollRotation = true;
     [SerializeField] private PlayerMovement disableMovment;
     [SerializeField] private CharacterController2D disableCharacterController;
+    [SerializeField] private Animator animator;
 
 
     // Setup the original position
     void Start() {
 
-        rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>(); // Gets ridgid body connected to this gameobject
 
     }
 
@@ -39,8 +41,7 @@ public class ThrowPlayer : MonoBehaviour {
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
-                        rigidBody.gravityScale = 0;
-                        rigidBody.drag = throwAirDrag;
+                        setUpRidgidbody();
                     }
                     break;
 
@@ -48,29 +49,23 @@ public class ThrowPlayer : MonoBehaviour {
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed) {
-                        Vector2 forceVector = (touchPos - transform.position) * throwBonus;
-                        rigidBody.AddForce(forceVector);
-                        //transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        addForceToRigidbody(touchPos);
                     }
                     break;
 
                 case TouchPhase.Stationary:
                     if (moveAllowed) {
-                        Vector2 forceVector = (touchPos - transform.position) * throwBonus;
-                        rigidBody.AddForce(forceVector);
-                        //transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        addForceToRigidbody(touchPos);
                     }
                     break;
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    //Touch Dropped !!!!!!!!!!!!!!!!!!!
-
+                    
+                    // Reset
                     if (moveAllowed) {
                         moveAllowed = false;
-
-                        rigidBody.gravityScale = 3;
-                        rigidBody.drag = 0;
+                        resetRidgidbody();
                     }
 
                     break;
@@ -86,22 +81,17 @@ public class ThrowPlayer : MonoBehaviour {
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && (GetComponent<BoxCollider2D>() == Physics2D.OverlapPoint(mousePosition) || GetComponent<CircleCollider2D>() == Physics2D.OverlapPoint(mousePosition))) {
                 mouseMoveAllowed = true;
-                rigidBody.gravityScale = 0;
-                rigidBody.drag = throwAirDrag;
+                setUpRidgidbody();
             }
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if (mouseMoveAllowed) {
-                mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
 
-                //transform.position = mousePosition;
+                addForceToRigidbody(mousePosition);
 
-                Vector2 forceVector = (mousePosition - transform.position) * throwBonus;
-                rigidBody.AddForce(forceVector);
-
+                // Reset gravity and drag when mouse is not pressed
                 if (Input.GetMouseButtonUp(0)) {
-                    rigidBody.gravityScale = 3;
-                    rigidBody.drag = 0;
+                    resetRidgidbody();
                     mouseMoveAllowed = false;
                 }
             }
@@ -109,14 +99,42 @@ public class ThrowPlayer : MonoBehaviour {
         updateOtherMovmentScripts();
      } 
 
+    // Sets the ridgidbody up for beeing draged
+    private void setUpRidgidbody() {
+        rigidBody.gravityScale = 0;
+        rigidBody.drag = throwAirDrag;
+        if (enableRagdollRotation) { rigidBody.freezeRotation = false; }
+    }
+
+    // Resets the ridgidbody to it's initial state
+    private void resetRidgidbody() {
+        rigidBody.gravityScale = 3;
+        rigidBody.drag = 0;
+    }
+
+
+    // Adds force to the player ridgidbody to move towards finger/cursor
+    private void addForceToRigidbody(Vector3 toPosition) {
+        Vector2 forceVector = (toPosition - transform.position) * throwBonus;
+        rigidBody.AddForce(forceVector);
+    }
+
+    // Enables / disables other scripts based on if this is currently active and doing stuff
     private void updateOtherMovmentScripts() {
         
         if (mouseMoveAllowed || moveAllowed) {
             disableMovment.enabled = false;
             disableCharacterController.enabled = false;
+            animator.SetBool("IsDraging", true);
         } else if (!mouseMoveAllowed && !moveAllowed && rigidBody.velocity == Vector2.zero) {
             disableMovment.enabled = true;
             disableCharacterController.enabled = true;
+            animator.SetBool("IsDraging", false);
+
+            if (enableRagdollRotation) {
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+                rigidBody.freezeRotation = true;
+            }
         }
       
     }
