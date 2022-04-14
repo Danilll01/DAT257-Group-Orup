@@ -9432,6 +9432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1388211852}
+  - component: {fileID: 1388211853}
   m_Layer: 5
   m_Name: GameHandler
   m_TagString: Untagged
@@ -9459,6 +9460,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1388211853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388211851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834c36ba49583f444b57d58bff44314a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgController: {fileID: 1682987501}
+  letterController: {fileID: 2142850464}
 --- !u!1 &1388356719
 GameObject:
   m_ObjectHideFlags: 0

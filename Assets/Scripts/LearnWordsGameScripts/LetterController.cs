@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LetterController : MonoBehaviour
 {
@@ -36,5 +37,16 @@ public class LetterController : MonoBehaviour
             selectedLetter = letterObject;
             selectedLetter.GetComponent<Image>().color = new Color(0, 1, 100f / 255f);
         }
+    }
+
+    // Returns the selected card info to the main game controller
+    public string getSelectedLetterCardInfo() {
+        return selectedLetter != null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
+    }
+
+    // Make sure the selected card now have the right color
+    public void haveMatched() {
+        selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+        selectedLetter = null;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThrowPlayer : MonoBehaviour {
 
-    private Rigidbody2D rigidBody;
+    private Rigidbody2D ridgidBody;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     [SerializeField] private float throwBonus = 20;
@@ -18,7 +18,7 @@ public class ThrowPlayer : MonoBehaviour {
     // Setup the original position
     void Start() {
 
-        rigidBody = GetComponent<Rigidbody2D>(); // Gets ridgid body connected to this gameobject
+        ridgidBody = GetComponent<Rigidbody2D>(); // Gets ridgid body connected to this gameobject
 
     }
 
@@ -53,6 +53,8 @@ public class ThrowPlayer : MonoBehaviour {
                     }
                     break;
 
+                // While the touch is stationary and is allowed to move, update the object position
+                // to the touchs position
                 case TouchPhase.Stationary:
                     if (moveAllowed) {
                         addForceToRigidbody(touchPos);
@@ -101,22 +103,22 @@ public class ThrowPlayer : MonoBehaviour {
 
     // Sets the ridgidbody up for beeing draged
     private void setUpRidgidbody() {
-        rigidBody.gravityScale = 0;
-        rigidBody.drag = throwAirDrag;
-        if (enableRagdollRotation) { rigidBody.freezeRotation = false; }
+        ridgidBody.gravityScale = 0;
+        ridgidBody.drag = throwAirDrag;
+        if (enableRagdollRotation) { ridgidBody.freezeRotation = false; }
     }
 
     // Resets the ridgidbody to it's initial state
     private void resetRidgidbody() {
-        rigidBody.gravityScale = 3;
-        rigidBody.drag = 0;
+        ridgidBody.gravityScale = 3;
+        ridgidBody.drag = 0;
     }
 
 
     // Adds force to the player ridgidbody to move towards finger/cursor
     private void addForceToRigidbody(Vector3 toPosition) {
         Vector2 forceVector = (toPosition - transform.position) * throwBonus;
-        rigidBody.AddForce(forceVector);
+        ridgidBody.AddForce(forceVector);
     }
 
     // Enables / disables other scripts based on if this is currently active and doing stuff
@@ -126,14 +128,14 @@ public class ThrowPlayer : MonoBehaviour {
             disableMovment.enabled = false;
             disableCharacterController.enabled = false;
             animator.SetBool("IsDraging", true);
-        } else if (!mouseMoveAllowed && !moveAllowed && rigidBody.velocity == Vector2.zero) {
+        } else if (!mouseMoveAllowed && !moveAllowed && ridgidBody.velocity == Vector2.zero) {
             disableMovment.enabled = true;
             disableCharacterController.enabled = true;
             animator.SetBool("IsDraging", false);
 
             if (enableRagdollRotation) {
                 transform.rotation = Quaternion.Euler(Vector3.zero);
-                rigidBody.freezeRotation = true;
+                ridgidBody.freezeRotation = true;
             }
         }
       
