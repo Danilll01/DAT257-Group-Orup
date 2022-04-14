@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class ImageController : MonoBehaviour
 {
     private GameObject selectedImgCard = null;
+    [SerializeField] private GameObject[] cards;
 
     // Start is called before the first frame update
     void Start() {
@@ -20,7 +22,18 @@ public class ImageController : MonoBehaviour
 
 
     // Will need to be able to randomize new cards with more code here later
+    public int getCardAmount() { return cards.Length; }
 
+    public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList) {
+
+        for (int i = 0; i < cards.Length; i++) {
+            cards[i].GetComponent<Image>().color = new Color(0, 166f / 255f, 1); // Make blue
+
+            cards[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardInfoList[i].Item1; // Set new image
+            cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set new "hidden" text
+        }
+
+    }
 
 
     // When a letter is clicked this method is called. The parameter is the clicked object
