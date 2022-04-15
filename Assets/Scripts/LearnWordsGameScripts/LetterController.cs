@@ -10,16 +10,10 @@ public class LetterController : MonoBehaviour
     private GameObject selectedLetter = null;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() {}
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 
     // When a letter is clicked this method is called. The parameter is the clicked object
     public void LetterClicked(GameObject letterObject) {

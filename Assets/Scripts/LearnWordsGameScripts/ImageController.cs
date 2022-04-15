@@ -21,9 +21,10 @@ public class ImageController : MonoBehaviour
     }
 
 
-    // Will need to be able to randomize new cards with more code here later
+    // Returns the amount of cards that exist
     public int getCardAmount() { return cards.Length; }
 
+    // Places given information in each card
     public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList) {
 
         for (int i = 0; i < cards.Length; i++) {
@@ -65,7 +66,7 @@ public class ImageController : MonoBehaviour
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0);
+        selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
         selectedImgCard = null;
     }
 }
