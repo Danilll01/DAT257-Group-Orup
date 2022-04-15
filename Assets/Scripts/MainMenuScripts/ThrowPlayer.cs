@@ -7,7 +7,7 @@ public class ThrowPlayer : MonoBehaviour {
     private Rigidbody2D ridgidBody;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
-    [SerializeField] private float throwBonus = 20;
+    [SerializeField] private float throwBonus = 10;
     [SerializeField] private float throwAirDrag = 20;
     [SerializeField] private bool enableRagdollRotation = true;
     [SerializeField] private PlayerMovement disableMovment;
@@ -117,7 +117,7 @@ public class ThrowPlayer : MonoBehaviour {
 
     // Adds force to the player ridgidbody to move towards finger/cursor
     private void addForceToRigidbody(Vector3 toPosition) {
-        Vector2 forceVector = (toPosition - transform.position) * throwBonus;
+        Vector2 forceVector = (toPosition - transform.position) * throwBonus * (Time.deltaTime * 1000);
         ridgidBody.AddForce(forceVector);
     }
 

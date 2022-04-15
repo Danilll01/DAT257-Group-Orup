@@ -243,7 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ebea9d05c8eaac418e4557280cb6b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwBonus: 20
+  throwBonus: 10
   throwAirDrag: 20
   enableRagdollRotation: 1
   disableMovment: {fileID: 6786419267889624039}

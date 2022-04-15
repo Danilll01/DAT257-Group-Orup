@@ -1102,6 +1102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6786419267889624036, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: throwBonus
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6786419267889624040, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
       propertyPath: m_RootOrder
       value: 8
