@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 
 
-// GPSLocation tries to find device location.
-// If access is enabled by user and connection is succesful, it will continously update location data.
+// GPSLocation can fetch and display location data of a hand held devide. The device must have enabled location service.
+// If access is enabled by user and connection is succesful, it will update the text fields with the latest fetched location data.
 // Latitude and longitude values are stored in the attributes latitudeValue and longitudeValue. 
+// OBS! Måste lägga till Location Usage Description i Player Settings
 
 public class GPSLocation : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class GPSLocation : MonoBehaviour
     void Start()
     {
 
-        StartCoroutine(StartGPSLocation());
+        
 
     }
 
@@ -36,6 +37,23 @@ public class GPSLocation : MonoBehaviour
 
     }
 
+    // Fetches location data if possible and updates the associated attributes with the new values
+    public void OnUpdateLocationClick()
+    {
+        StartCoroutine(StartGPSLocation());
+    }
+
+    // Clears all text fields and stops calling UpdateGPSData
+    public void ClearLocationData()
+    {
+        CancelInvoke("UpdateGPSData"); // Cancel GPS update
+        GPSStatus.text = "";
+        latitudeTextField.text = "";
+        longitudeTextField.text = "";
+        
+    }
+
+    // Tries to fetch location data
     IEnumerator StartGPSLocation()
     {
         // Check if user has enabled location service for this application
@@ -81,25 +99,28 @@ public class GPSLocation : MonoBehaviour
 
     }
 
+    // Saves the latest latitude and longitude data from service in latitudeValue and longitudeValue and updates the associated text fields
+    // Stops service after data has been collected
     private void UpdateGPSData ()
     {
         if (Input.location.status == LocationServiceStatus.Running)
         {
             // Access granted to GPS values and it has been initialized
-            GPSStatus.text = "Söker plats...";
+            GPSStatus.text = "Visar väder för platsen";
 
             // Get values from service 
             latitudeValue = Input.location.lastData.latitude;
             longitudeValue = Input.location.lastData.longitude;
 
-            latitudeTextField.text = latitudeValue.ToString();
-            longitudeTextField.text = longitudeValue.ToString();
+            latitudeTextField.text = "Latitude: " + latitudeValue.ToString();
+            longitudeTextField.text = "Longitude: " + longitudeValue.ToString();
 
         } else
         {
             // Service has stopped 
-            GPSStatus.text = "Slutar söka plats";
         }
+
+        Input.location.Stop();
     }
 
     
