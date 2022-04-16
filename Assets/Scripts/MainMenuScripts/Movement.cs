@@ -48,6 +48,9 @@ public class Movement : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             target = cam.ScreenToWorldPoint(touch.position);      
         }
+        else if(Input.GetMouseButtonDown(0)){
+            target = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
 
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x,transform.position.y), speed);
         if(target.x > transform.position.x){
