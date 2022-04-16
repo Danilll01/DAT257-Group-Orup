@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
 
 	[SerializeField]
 	float moveSpeed = 3f;
+    float dirX;
 
 	Rigidbody2D rb;
 
@@ -17,6 +18,8 @@ public class Movement : MonoBehaviour
 
     Camera cam ;
 
+    
+
 
 	Vector3 localScale;
 
@@ -25,10 +28,15 @@ public class Movement : MonoBehaviour
 		localScale = transform.localScale;
 		rb = GetComponent<Rigidbody2D> ();
         target = transform.position;
+        dirX = 1f;
 
         cam = Camera.main;
 
 	}
+
+    void LateUpdate() {
+        CheckWhereToFace();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,21 +49,44 @@ public class Movement : MonoBehaviour
             target = cam.ScreenToWorldPoint(touch.position);      
         }
 
-        //transform.Translate(target * Time.deltaTime, Space.World);
-
-        transform.position = Vector2.MoveTowards(transform.position, target, speed);
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(target.x,transform.position.y), speed);
+        if(target.x > transform.position.x){
+            dirX = 1f;
+        }
+        else if(target.x < transform.position.x){
+            dirX = -1f;
+        }
         
+	}
+
+    void CheckWhereToFace()
+	{
+		if (dirX > 0)
+			facingRight = true;
+		else if (dirX < 0)
+			facingRight = false;
+
+		if (((facingRight) && (localScale.x < 0)) || ((!facingRight) && (localScale.x > 0)))
+			localScale.x *= -1;
+
+		transform.localScale = localScale;
 	}
 
 
 	void OnTriggerEnter2D (Collider2D col)
 	{
-		switch (col.tag) {
+  
+        if((target.y - transform.position.y) > 1){
 
-		case "Jump":
-			rb.AddForce (Vector2.up * 600f);
-			break;
+            switch (col.tag) {
 
-		}	
+                case "Jump":
+                    rb.AddForce (Vector2.up * 250);
+                    break;
+
+            }
+
+        }
+			
 	}
 }
