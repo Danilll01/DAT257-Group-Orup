@@ -6,6 +6,9 @@ public class Movement : MonoBehaviour
 {
 	[SerializeField]
 	float moveSpeed = 3f;
+
+    [SerializeField]
+    float jumpForce = 250f;
     float dirX;
 
 	Rigidbody2D rb;
@@ -19,6 +22,8 @@ public class Movement : MonoBehaviour
     private Transform[] helperPoints;
 
     private bool helping;
+
+    RaycastHit hit;
 
     Camera cam ;
 
@@ -49,14 +54,17 @@ public class Movement : MonoBehaviour
         {
             // Get the touch position as a world position
             Touch touch = Input.GetTouch(0);
-            target = cam.ScreenToWorldPoint(touch.position);      
+            target = cam.ScreenToWorldPoint(touch.position);    
+            ShootRay();
+
+            
         }
         // If there were any mouse clicks
         else if(Input.GetMouseButtonDown(0)){
             // Get the click position as a world position
             target = cam.ScreenToWorldPoint(Input.mousePosition);
+            ShootRay();
         }
-
 
         // If the target y position is two floors up, set target to
         // first floor first, then go back to second floor
@@ -108,6 +116,12 @@ public class Movement : MonoBehaviour
 		transform.localScale = localScale;
 	}
 
+    void ShootRay(){
+        // Sends a ray down to get point on an object
+        RaycastHit2D hit = Physics2D.Raycast(target, -Vector2.up);  
+        target = hit.point;
+    }
+
 
     // Called when object enters a collider trigger
 	void OnTriggerEnter2D (Collider2D col)
@@ -122,7 +136,7 @@ public class Movement : MonoBehaviour
                 // if tag on the collider is "Jump", add an upwards force to object
                 // a.k.a jump
                 case "Jump":
-                    rb.AddForce (Vector2.up * 250);
+                    rb.AddForce (Vector2.up * jumpForce);
                     break;
 
                 }
