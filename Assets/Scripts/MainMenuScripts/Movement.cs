@@ -25,7 +25,9 @@ public class Movement : MonoBehaviour
 
     RaycastHit hit;
 
-    Camera cam ;
+    Camera cam;
+
+    [SerializeField] private Animator animator;
 
 
 	Vector3 localScale;
@@ -141,6 +143,7 @@ public class Movement : MonoBehaviour
                 // a.k.a jump
                 case "Jump":
                     rb.AddForce (Vector2.up * jumpForce);
+                    animator.SetBool("IsJumping", true);
                     break;
 
                 }
@@ -150,4 +153,8 @@ public class Movement : MonoBehaviour
         }
 			
 	}
+
+    public void OnLandingEvent() {
+        animator.SetBool("IsJumping", false);
+    }
 }

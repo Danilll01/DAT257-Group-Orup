@@ -852,6 +852,12 @@ MonoBehaviour:
   helperPoints:
   - {fileID: 1674526879}
   - {fileID: 1343339798}
+  animator: {fileID: 1637008899}
+--- !u!95 &1637008899 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6786419267889624037, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+  m_PrefabInstance: {fileID: 6786419267292617183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674526878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1443,23 @@ PrefabInstance:
       objectReference: {fileID: 1637008897}
     - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: m_AirControl
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1637008897}
+    - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLandingEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Movement, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6786419267889624039, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
       propertyPath: m_Enabled
@@ -1492,6 +1514,5 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
     - {fileID: 6786419267889624039, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
