@@ -765,7 +765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343339797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.91, y: -3.1, z: -0.032119587}
+  m_LocalPosition: {x: 3.524, y: -3.1, z: -0.032119587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -848,6 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  jumpForce: 350
   helperPoints:
   - {fileID: 1674526879}
   - {fileID: 1343339798}
@@ -875,7 +876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674526878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.09, y: -3.1, z: -0.032119587}
+  m_LocalPosition: {x: -3.43, y: -3.1, z: -0.032119587}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1430,6 +1431,10 @@ PrefabInstance:
       propertyPath: throwBonus
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6786419267889624036, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+      propertyPath: disableMovment
+      value: 
+      objectReference: {fileID: 1637008897}
     - target: {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1486,5 +1491,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6786419267889624038, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
+    - {fileID: 6786419267889624039, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d6ef32c7bc12c084f9989b59cd0dbd99, type: 3}

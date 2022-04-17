@@ -10,7 +10,7 @@ public class ThrowPlayer : MonoBehaviour {
     [SerializeField] private float throwBonus = 10;
     [SerializeField] private float throwAirDrag = 20;
     [SerializeField] private bool enableRagdollRotation = true;
-    [SerializeField] private PlayerMovement disableMovment;
+    [SerializeField] private Movement disableMovment;
     [SerializeField] private CharacterController2D disableCharacterController;
     [SerializeField] private Animator animator;
 

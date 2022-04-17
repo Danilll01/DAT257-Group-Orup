@@ -43,6 +43,10 @@ public class Movement : MonoBehaviour
     void LateUpdate() {
         CheckWhereToFace();
     }
+
+    void OnEnable(){
+        target = transform.position;
+    }
 	
 	// Update is called once per frame
 	void Update () {
