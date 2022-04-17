@@ -13,6 +13,12 @@ public class Movement : MonoBehaviour
 	bool facingRight = false;
 
     private Vector2 target;
+    private Vector2 storedPoint;
+
+    [SerializeField]
+    private Transform[] helperPoints;
+
+    private bool helping;
 
     Camera cam ;
 
@@ -25,6 +31,7 @@ public class Movement : MonoBehaviour
 		rb = GetComponent<Rigidbody2D> ();
         target = transform.position;
         dirX = 1f;
+        helping = false;
         cam = Camera.main;
 	}
 
@@ -48,6 +55,30 @@ public class Movement : MonoBehaviour
         else if(Input.GetMouseButtonDown(0)){
             // Get the click position as a world position
             target = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+
+        // If the target y position is two floors up, set target to
+        // first floor first, then go back to second floor
+        if(target.y - transform.position.y > 3){
+            storedPoint = target;
+            helping = true;
+
+            Transform closest = helperPoints[0];
+            foreach (Transform point in helperPoints)
+            {
+                float diffClosest = Mathf.Abs(closest.position.x - transform.position.x);
+                float diffPoint = Mathf.Abs(point.position.x - transform.position.x);
+                if(diffPoint < diffClosest){
+                    closest = point;
+                }
+            }
+            target = closest.transform.position;
+        }
+
+        if(helping && transform.position.x == target.x){
+            target = storedPoint;
+            helping = false;
         }
 
         // Move the object towards the target position on the x axis.
@@ -81,14 +112,20 @@ public class Movement : MonoBehaviour
     // Called when object enters a collider trigger
 	void OnTriggerEnter2D (Collider2D col)
 	{
-        // If target y position is higher than objects position
-        if((target.y - transform.position.y) > 1){
-
-            switch (col.tag) {
+        float diff = target.x - transform.position.x;
+        // If target y position is higher than objects position and the target
+        // position is close
+        if((target.y - transform.position.y) > 1 && Mathf.Abs(diff) < 3){
+            // if we are going in the right direction
+            if((facingRight && diff > 0) || (!facingRight && diff < 0)){
+                switch (col.tag) {
                 // if tag on the collider is "Jump", add an upwards force to object
+                // a.k.a jump
                 case "Jump":
                     rb.AddForce (Vector2.up * 250);
                     break;
+
+                }
 
             }
 
