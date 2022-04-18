@@ -18,21 +18,21 @@ public class MainMenuController : MonoBehaviour
 
     public void OnWeatherGameClick() {
         // Needs to be added
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
     }
 
     public void OnMemoryGameClick() {
         // Needs to be added
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
     }
 
     public void OnLearnWordGameClick() {
         // Needs to be added
-        // SceneManager.LoadScene();
+        SceneManager.LoadScene(4);
     }
 
     public void OnMusicGameClick() {
         // Needs to be added
-        // SceneManager.LoadScene();
+        SceneManager.LoadScene(6); // This is wrong for now, CHANGE THIS LATER!!!
     }
 }
