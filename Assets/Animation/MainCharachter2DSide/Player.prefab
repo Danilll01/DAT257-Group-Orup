@@ -246,7 +246,7 @@ MonoBehaviour:
   throwBonus: 10
   throwAirDrag: 20
   enableRagdollRotation: 1
-  disableMovment: {fileID: 6786419267889624039}
+  disableMovment: {fileID: 0}
   disableCharacterController: {fileID: 6786419267889624038}
   animator: {fileID: 6786419267889624037}
 --- !u!1 &6786419268383525961
