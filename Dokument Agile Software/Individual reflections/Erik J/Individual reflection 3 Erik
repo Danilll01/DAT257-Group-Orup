@@ -1,0 +1,19 @@
+# Individual reflection LV3 - Erik Juliusson
+## What do I want to learn or understand better?
+I want to learn more about programming games in Unity and APIs. I also want to 
+understand and work with SCRUM better.
+
+## How can I help someone else, or the entire team, to learn something new?
+I have gotten some understanding of unity and how different objects work regarding UI 
+and coroutines, which I’ve helped others use to implement sounds in our memory game
+
+## What is my contribution towards the team’s use of Scrum?
+I am active in meetings and try to focus on what can be done better during reviews and 
+retrospectives. Furthermore, I’ve tried to do what I can regarding effort estimation 
+during our planning, but since I don’t have that much experience it’s hard to estimate 
+the workload. 
+
+## What is my contribution towards the team’s deliveries?
+I’ve continued working with user stories, making our memory game pretty much fully 
+functional regarding game logic. Sounds have begun to be implemented and the code for 
+playing audioclips is in place. 
