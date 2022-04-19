@@ -39,6 +39,9 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             secondWrong = generateRandomNumber(rightAnswer);
         } while (secondWrong == firstWrong);
 
+        Debug.Log(firstWrong);
+        Debug.Log(secondWrong);
+
         // Writes the generated numbers to random answer boxes
         switch (Random.Range(0, 3)) {
             case 0:
@@ -77,7 +80,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         do {
             // Randomize a number between -5 to 5
             bonus = Random.Range(0 - rangeFromCorrectAnswer, 1 + rangeFromCorrectAnswer);
-        } while (rightAnswer + bonus < 0 || bonus == 0 || rightAnswer > 18); // Ensures that the new generated answer is non negative and is not the same as the answer
+        } while (rightAnswer + bonus < 0 || bonus == 0 || rightAnswer + bonus > 18); // Ensures that the new generated answer is non negative and is not the same as the answer
 
         // Returns the new wrong answer
         return rightAnswer + bonus; 
