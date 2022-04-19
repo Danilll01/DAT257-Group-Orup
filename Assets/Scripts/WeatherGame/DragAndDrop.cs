@@ -130,7 +130,6 @@ public class DragAndDrop : MonoBehaviour {
             // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
                 if(snapPoint.name == neededMatch){
-                    //transform.position = snapPos;
                     targetPosition = snapPos;
                     transform.SetParent(snapPoint.transform);
                     snapped = true;
@@ -141,7 +140,7 @@ public class DragAndDrop : MonoBehaviour {
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
             transform.SetParent(null);
-            transform.position = position;
+            transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
         }
 
