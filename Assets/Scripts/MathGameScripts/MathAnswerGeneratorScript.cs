@@ -39,9 +39,6 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             secondWrong = generateRandomNumber(rightAnswer);
         } while (secondWrong == firstWrong);
 
-        Debug.Log(firstWrong);
-        Debug.Log(secondWrong);
-
         // Writes the generated numbers to random answer boxes
         switch (Random.Range(0, 3)) {
             case 0:
