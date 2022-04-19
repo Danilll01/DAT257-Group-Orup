@@ -24,9 +24,13 @@ public class DragAndDrop : MonoBehaviour {
     // Setup the original position
     void Start(){
         originalPos = transform.position;
+        targetPosition = originalPos;
 
         ridgidBody = GetComponent<Rigidbody2D>();
-        
+
+        // Dissables collision between clothes objects 
+        Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
+
     }
  
     // Update is called once per frame
@@ -90,12 +94,12 @@ public class DragAndDrop : MonoBehaviour {
             
         }
 
-        addForceToRigidbody();
+        addForceToRidgidbody();
     }
 
 
     // Method for snapping to object to a point close to it
-    private void snapToPoint(Vector3 position){
+    private void snapToPoint(Vector2 position){
         
         bool snapped = false;
         string neededMatch = "";
@@ -137,15 +141,15 @@ public class DragAndDrop : MonoBehaviour {
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
             transform.SetParent(null);
-            //transform.position = originalPos;
+            transform.position = position;
             targetPosition = originalPos;
         }
 
     }
 
-    // Adds force to the player ridgidbody to move towards finger/cursor
-    private void addForceToRigidbody() {
-        if (mouseMoveAllowed || moveAllowed) {
+    // Adds force to the player ridgidbody to move towards the target point
+    private void addForceToRidgidbody() {
+        if (!mouseMoveAllowed && !moveAllowed) {
             Vector2 forceVector = (targetPosition - transform.position) * 15 * (Time.deltaTime * 1000);
             ridgidBody.AddForce(forceVector);
         }
