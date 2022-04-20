@@ -11,7 +11,15 @@ public class DragAndDropNote : MonoBehaviour
     private Vector3 targetPosition;
     private Rigidbody2D ridgidBody;
 
+    // Temporary audio source for playing the note sound
+    private AudioSource tempAudioSource;
+
     [SerializeField] private GameObject[] snapPoints;
+
+    // All instruments that can be played
+    private enum Instrument { Piano, Ukulele, Trombone };
+    // Which instrument the note is
+    [SerializeField] private Instrument instrument;
 
     void Start()
     {
@@ -21,6 +29,9 @@ public class DragAndDropNote : MonoBehaviour
 
         ridgidBody = GetComponent<Rigidbody2D>();
 
+        // Temporary audio source
+        tempAudioSource = GetComponent<AudioSource>();
+
         // Dissables collision between note objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Notes needs to be on layer 6
 
@@ -29,7 +40,6 @@ public class DragAndDropNote : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // If there were any touches on the screen
         if (Input.touchCount > 0)
         {
@@ -64,7 +74,7 @@ public class DragAndDropNote : MonoBehaviour
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    snapToPoint(touchPos);
+                    SnapToPoint(touchPos);
                     moveAllowed = false;
                     break;
 
@@ -89,21 +99,20 @@ public class DragAndDropNote : MonoBehaviour
                 transform.position = mousePosition;
                 if (Input.GetMouseButtonUp(0))
                 {
-                    snapToPoint(mousePosition);
+                    SnapToPoint(mousePosition);
                     mouseMoveAllowed = false;
                 }
             }
 
         }
 
-        addForceToRidgidbody();
+        AddForceToRidgidbody();
     }
 
 
     // Method for snapping to object to a point close to it
-    private void snapToPoint(Vector2 position)
+    private void SnapToPoint(Vector2 position)
     {
-
         bool snapped = false;
 
         // Check for each point if the object is close to it
@@ -117,6 +126,9 @@ public class DragAndDropNote : MonoBehaviour
                 targetPosition = snapPos;
                 transform.SetParent(snapPoint.transform);
                 snapped = true;
+
+                // Temporarily play note E3
+                tempAudioSource.Play();
             }
         }
 
@@ -131,7 +143,7 @@ public class DragAndDropNote : MonoBehaviour
     }
 
     // Adds force to the player ridgidbody to move towards the target point
-    private void addForceToRidgidbody()
+    private void AddForceToRidgidbody()
     {
         if (!mouseMoveAllowed && !moveAllowed)
         {
