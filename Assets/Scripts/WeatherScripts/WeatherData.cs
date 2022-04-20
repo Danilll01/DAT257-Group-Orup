@@ -41,22 +41,33 @@ public class WeatherData : MonoBehaviour {
 
 	// Returns the weather
 	public string GetWeather(bool getTomorrow){
-		if(getTomorrow){
+		if(Info.list.Count > 1){
+			if(getTomorrow){
 			return Info.list[8].weather[0].main;
 		}
-		else{
-			return Info.list[0].weather[0].main;
+			else{
+				return Info.list[0].weather[0].main;
+			}
 		}
-		
+
+		else{
+			return "error";
+		}
 	}
 
 	// Returns the temperature
 	public float GetTemp(bool getTomorrow){
-		if(getTomorrow){
-			return Info.list[8].main.temp;
+		if(Info.list.Count > 1){
+			if(getTomorrow){
+				return Info.list[8].main.temp;
+			}
+			else{
+				return Info.list[0].main.temp;
+			}
 		}
+
 		else{
-			return Info.list[0].main.temp;
+			return -1f;
 		}
 	}
 

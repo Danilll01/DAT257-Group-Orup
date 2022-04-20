@@ -50,11 +50,10 @@ public class WeatherController : MonoBehaviour
 	    // Clear, Rain, ThunderStorm, Drizzle, Snow, Clouds
         string currentWeather = weatherData.GetWeather(false);
         float currentTemp = weatherData.GetTemp(false);
-        CheckWeather(currentWeather,currentTemp);
-        
-        
 
+        CheckWeather(currentWeather,currentTemp);
         Debug.Log("Todays weather");
+        
     }
 
     public void OnTomorrowClick()
@@ -63,9 +62,10 @@ public class WeatherController : MonoBehaviour
 
         string tomorrowWeather = weatherData.GetWeather(true);
         float tomorrowTemp = weatherData.GetTemp(true);
+      
         CheckWeather(tomorrowWeather,tomorrowTemp);
-
         Debug.Log("Tomorrows weather");
+        
     }
 
     public void OnRandomClick()
@@ -85,8 +85,12 @@ public class WeatherController : MonoBehaviour
 
     // Sets the weather depending on what we got from API
     private void CheckWeather(string weather, float temp){
-        switch (weather)
-        {
+
+        if(weather == "error" || temp == -1f){
+            OnRandomClick();
+        }
+        else{
+            switch (weather){
             case "Clear":
                 SetWeather(WeatherTypes.Sun, WindSpeed.None);
                 break;
@@ -103,10 +107,12 @@ public class WeatherController : MonoBehaviour
             default:
                 SetWeather(WeatherTypes.Cloud, WindSpeed.None);
                 break;
-        }
+            }
 
-        currentWeatherText.text = "WeatherAPI: " + weather;
-		currentTemperatureText.text = "TemperatureAPI: " + temp;
+            currentWeatherText.text = "WeatherAPI: " + weather;
+            currentTemperatureText.text = "TemperatureAPI: " + temp;
+        }
+        
     }
     
     // Switches to the correct weather object based on inputted weather.
