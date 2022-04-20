@@ -66,8 +66,10 @@ public class DragAndDrop : MonoBehaviour {
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    snapToPoint(touchPos);
-                    moveAllowed = false;
+                    if (moveAllowed) {
+                        snapToPoint(touchPos);
+                        moveAllowed = false;
+                    }
                     break;
 
                 }
