@@ -8,6 +8,9 @@ public class DragAndDrop : MonoBehaviour {
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
+    private Vector3 targetPosition;
+    private Rigidbody2D ridgidBody;
+
     [SerializeField] private GameObject[] snapPoints;
 
 
@@ -21,6 +24,13 @@ public class DragAndDrop : MonoBehaviour {
     // Setup the original position
     void Start(){
         originalPos = transform.position;
+        targetPosition = originalPos;
+
+        ridgidBody = GetComponent<Rigidbody2D>();
+
+        // Dissables collision between clothes objects 
+        Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
+
     }
  
     // Update is called once per frame
@@ -66,7 +76,7 @@ public class DragAndDrop : MonoBehaviour {
         // For mouse controls
         else{
             // Get the mouse position
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if(Input.GetMouseButtonDown(0) && GetComponent<Collider2D> () == Physics2D.OverlapPoint(mousePosition)){
@@ -75,7 +85,6 @@ public class DragAndDrop : MonoBehaviour {
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if(mouseMoveAllowed){
-                mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
                 transform.position = mousePosition;
                 if(Input.GetMouseButtonUp(0)){
                     snapToPoint(mousePosition);
@@ -84,11 +93,13 @@ public class DragAndDrop : MonoBehaviour {
             }
             
         }
+
+        addForceToRidgidbody();
     }
 
 
     // Method for snapping to object to a point close to it
-    private void snapToPoint(Vector3 position){
+    private void snapToPoint(Vector2 position){
         
         bool snapped = false;
         string neededMatch = "";
@@ -119,7 +130,7 @@ public class DragAndDrop : MonoBehaviour {
             // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
                 if(snapPoint.name == neededMatch){
-                    transform.position = snapPos;
+                    targetPosition = snapPos;
                     transform.SetParent(snapPoint.transform);
                     snapped = true;
                 }
@@ -129,9 +140,18 @@ public class DragAndDrop : MonoBehaviour {
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
             transform.SetParent(null);
-            transform.position = originalPos;
+            transform.position = position; // This is to have the right coordinates
+            targetPosition = originalPos;
         }
 
+    }
+
+    // Adds force to the player ridgidbody to move towards the target point
+    private void addForceToRidgidbody() {
+        if (!mouseMoveAllowed && !moveAllowed) {
+            Vector2 forceVector = (targetPosition - transform.position) * 15 * (Time.deltaTime * 1000);
+            ridgidBody.AddForce(forceVector);
+        }
     }
 
 }

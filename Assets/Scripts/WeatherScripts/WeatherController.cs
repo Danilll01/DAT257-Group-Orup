@@ -9,12 +9,13 @@ public class WeatherController : MonoBehaviour
 {
 
     // textfield showing current game mode
-    public TextMeshProUGUI gameMode;
+    [SerializeField] private TextMeshProUGUI gameMode;
+    [SerializeField] private TextMeshProUGUI temporaryTempText;
 
     // Different "scenes" for different weather
-    public GameObject sunnyObject;
-    public GameObject cloudyObject;
-    public GameObject rainyObject;
+    [SerializeField] private GameObject sunnyObject;
+    [SerializeField] private GameObject cloudyObject;
+    [SerializeField] private GameObject rainyObject;
 
     // A type for different weather types
     private enum WeatherTypes {Sun, Cloud, Rain};
@@ -67,22 +68,26 @@ public class WeatherController : MonoBehaviour
     // Switches to the correct weather object based on inputted weather.
     private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
     {
+
+        HideAllWeather();
+
         // Displays the diffenent weather objects in a mutual exclusive way
         switch (weather) 
         {
+
             case WeatherTypes.Sun:
-                HideAllWeather();
                 sunnyObject.SetActive(true);
+                temporaryTempText.text = "Temprature: 25°";
                 Debug.Log("Sunny");
                 break;
             case WeatherTypes.Cloud:
-                HideAllWeather();
                 cloudyObject.SetActive(true);
+                temporaryTempText.text = "Temprature: 15°";
                 Debug.Log("Cloudy");
                 break;
             case WeatherTypes.Rain:
-                HideAllWeather();
                 rainyObject.SetActive(true);
+                temporaryTempText.text = "Temprature: 7°";
                 Debug.Log("Rainy");
                 break;
             default:
