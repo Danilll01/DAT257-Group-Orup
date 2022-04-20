@@ -8,16 +8,15 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 {
     [SerializeField] private MathQuestionGenerator questionGenerator;
 
-    [SerializeField] private TextMeshProUGUI answer1txt;
-    [SerializeField] private TextMeshProUGUI answer2txt;
-    [SerializeField] private TextMeshProUGUI answer3txt;
-
+    [SerializeField] private TextMeshProUGUI[] answerTxts;
+    
     [SerializeField] private Sprite[] apples;
-    [SerializeField] private Image imgHolder1;
-    [SerializeField] private Image imgHolder2;
-    [SerializeField] private Image imgHolder3;
+    [SerializeField] private Image[] imgHolders;
 
-    [SerializeField] private Image[] cardHolders;
+    [SerializeField] private GameObject[] cardHolders;
+    [SerializeField] private Camera[] cams;
+    // [SerializeField] private Transform[] spawnLocations; This can wait for now
+
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
     private int correctAnswerHolder;
@@ -39,35 +38,47 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             secondWrong = generateRandomNumber(rightAnswer);
         } while (secondWrong == firstWrong);
 
-        // Writes the generated numbers to random answer boxes
+        
+
+        // Calls fillAnswer function with a different position for the right answer
         switch (Random.Range(0, 3)) {
             case 0:
-                answer1txt.text = "= " + rightAnswer;
-                answer2txt.text = "= " + firstWrong;
-                answer3txt.text = "= " + secondWrong;
-                imgHolder1.sprite = apples[rightAnswer];
-                imgHolder2.sprite = apples[firstWrong];
-                imgHolder3.sprite = apples[secondWrong];
-                correctAnswerHolder = 1;
+
+                int[] answers = { rightAnswer, firstWrong, secondWrong };
+                fillAnswers(answers, rightAnswer);
+
                 break;
             case 1:
-                answer1txt.text = "= " + firstWrong;
-                answer2txt.text = "= " + rightAnswer;
-                answer3txt.text = "= " + secondWrong;
-                imgHolder1.sprite = apples[firstWrong];
-                imgHolder2.sprite = apples[rightAnswer];
-                imgHolder3.sprite = apples[secondWrong];
-                correctAnswerHolder = 2;
+
+                int[] answers2 = { firstWrong, rightAnswer, secondWrong };
+                fillAnswers(answers2, rightAnswer);
+
                 break;
             default:
-                answer1txt.text = "= " + firstWrong;
-                answer2txt.text = "= " + secondWrong;
-                answer3txt.text = "= " + rightAnswer;
-                imgHolder1.sprite = apples[firstWrong];
-                imgHolder2.sprite = apples[secondWrong];
-                imgHolder3.sprite = apples[rightAnswer];
-                correctAnswerHolder = 3;
+
+                int[] answers3 = { firstWrong, secondWrong, rightAnswer };
+                fillAnswers(answers3, rightAnswer);
+
                 break;
+        }
+    }
+
+    // Fills active cardHolders with the given answers
+    private void fillAnswers(int[] answers, int correctAnswer) {
+        
+        int answerCounter = 0; // Help count what answer to set
+
+        for (int i = 0; i < cardHolders.Length; i++) {
+            if (cardHolders[i].activeSelf && answerCounter < 3) { // Skips the inactive card
+                int currentWriting = answers[answerCounter];
+                answerTxts[i].text = "= " + currentWriting;
+                imgHolders[i].sprite = apples[currentWriting];
+                answerCounter++;
+
+                if (currentWriting == correctAnswer) {
+                    correctAnswerHolder = i + 1;
+                }
+            }
         }
     }
 
@@ -86,15 +97,25 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     // Method to call when a answer is pressed
     public void AnswerPressed(int answerNumber) {
         if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
-            // If so, make all card holders blue again
-            foreach (Image  img in cardHolders) {
-                img.color = new Color(0, 166f / 255f, 1);
+            // If so, make all card holders active and blue again
+            foreach (GameObject card in cardHolders) {
+                card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+                card.SetActive(true);
             }
+
+            // Dissables the card straight over from the pressed answer
+            cardHolders[(answerNumber + 1) % cardHolders.Length].SetActive(false);
+
             // And randomize a new question
             questionGenerator.randomizeProblem();
         } else {
             // Make the selected card red to show that it is wrong
-            cardHolders[answerNumber - 1].color = new Color(1, 40f/255f, 0);
+            cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
+            Debug.Log(correctAnswerHolder);
         }
     }
+
+    private void changeActiveCard(int answerNumber) {
+        cardHolders[(answerNumber + 1) % cardHolders.Length].SetActive(false);
+    } 
 }
