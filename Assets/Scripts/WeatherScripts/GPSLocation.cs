@@ -17,19 +17,24 @@ public class GPSLocation : MonoBehaviour
     public float longitudeValue;
 
     // Textfield showing status of GPS Service
-    public TextMeshProUGUI GPSStatus;
+    [SerializeField]
+    private TextMeshProUGUI GPSStatus;
     // Textfield showing current latitude value 
-    public TextMeshProUGUI latitudeTextField;
+    [SerializeField]
+    private TextMeshProUGUI latitudeTextField;
     // Textfield showing current longitude value
-    public TextMeshProUGUI longitudeTextField;
+    [SerializeField]
+    private TextMeshProUGUI longitudeTextField;
 
-    public WeatherData weatherData;
+    [SerializeField]
+    private WeatherData weatherData;
 
     // Start is called before the first frame update
     void Start()
     {
         // Values for testing weather accuracy when on desktop
-    
+        // Preset coordinates for gothenburg
+
         if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             latitudeValue = 57.686433f;
