@@ -74,7 +74,11 @@ public class DragAndDropNote : MonoBehaviour
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    SnapToPoint(touchPos);
+                    // Only move object if it should be moved
+                    if (moveAllowed)
+                    {
+                        SnapToPoint(touchPos);
+                    }
                     moveAllowed = false;
                     break;
 
