@@ -7,16 +7,20 @@ using System.Collections.Generic;
 
 public class WeatherData : MonoBehaviour {
 	private float timer;
-	public float minutesBetweenUpdate;
+	[SerializeField]
+	private float minutesBetweenUpdate;
 	[SerializeField]
 	private WeatherInfo Info;
-	public string API_key;
+	[SerializeField]
+	private string API_key;
 	private float latitude;
 	private float longitude;
 	private bool locationInitialized;
 
-	public GPSLocation getLocation;
+	[SerializeField]
+	private GPSLocation getLocation;
 
+	// Called when GPSLocation has found users location
 	public void Begin() {
 		latitude = getLocation.latitudeValue;
 		longitude = getLocation.longitudeValue;
@@ -24,6 +28,7 @@ public class WeatherData : MonoBehaviour {
 		timer = 0;
 	}
 	void Update() {
+		//If location found, start coroutine of API request
 		if (locationInitialized) {
 			if (timer <= 0) {
 				StartCoroutine (GetWeatherInfo ());
@@ -34,6 +39,7 @@ public class WeatherData : MonoBehaviour {
 		}
 	}
 
+	// Returns the weather
 	public string GetWeather(bool getTomorrow){
 		if(getTomorrow){
 			return Info.list[8].weather[0].main;
@@ -44,6 +50,7 @@ public class WeatherData : MonoBehaviour {
 		
 	}
 
+	// Returns the temperature
 	public float GetTemp(bool getTomorrow){
 		if(getTomorrow){
 			return Info.list[8].main.temp;
@@ -53,7 +60,7 @@ public class WeatherData : MonoBehaviour {
 		}
 	}
 
-	
+	// Coroutine for requesting weather data
 	private IEnumerator GetWeatherInfo()
 	{
 		var www = new UnityWebRequest("https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_key + "&units=metric")
@@ -70,24 +77,16 @@ public class WeatherData : MonoBehaviour {
 			
 		}
 
+		// Our weather data is stored here
 		Info = JsonUtility.FromJson<WeatherInfo>(www.downloadHandler.text);
 		
 	}
 }
+
+// Classes for reading the Json file
 [Serializable]
 public class WeatherInfo
 {
-	//public Coord coord;
-	//public List<Weather> weather;
-	//public Main main;
-	//public int visibility;
-	//public Wind wind;
-	//public Clouds clouds;
-	//public int dt;
-	//public Sys sys;
-	//public int timezone;
-	//public int id;
-	//public string name;
 	public int cod;
 	public float message;
 	public int cnt;
@@ -116,13 +115,6 @@ public class APIList
 [Serializable]
 public class Sys
 {
-	/*
-	public int type;
-	public int id;
-	public string country;
-	public int sunrise;
-	public int sunset;
-	*/
 	public string pod;
 }
 
