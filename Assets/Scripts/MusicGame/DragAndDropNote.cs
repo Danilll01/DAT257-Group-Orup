@@ -74,7 +74,11 @@ public class DragAndDropNote : MonoBehaviour
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    SnapToPoint(touchPos);
+                    // Only move object if it should be moved
+                    if (moveAllowed)
+                    {
+                        SnapToPoint(touchPos);
+                    }
                     moveAllowed = false;
                     break;
 
@@ -114,23 +118,38 @@ public class DragAndDropNote : MonoBehaviour
     private void SnapToPoint(Vector2 position)
     {
         bool snapped = false;
+        
+        // Start values for shortest snap point
+        GameObject shortestSnapPoint = snapPoints[0];
+        float shortestSnapPointDistance = float.MaxValue;
 
-        // Check for each point if the object is close to it
+        // Loops through all snap points and keeps track of the snap point closest to the object.
         foreach (GameObject snapPoint in snapPoints)
         {
-            Vector3 snapPos = snapPoint.transform.position;
-
-            // If the object is close to the snapPoint, set the objects position to that point
-            if (GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped)
+            Vector2 snapPos = snapPoint.transform.position;
+            // Calculates the distance from the object to each snap point
+            float distToSnapPos = Vector2.Distance(transform.position, snapPoint.transform.position);
+            
+            // If we found a snappoint with smaller distance update shortest snap point
+            if (distToSnapPos < shortestSnapPointDistance)
             {
-                targetPosition = snapPos;
-                transform.SetParent(snapPoint.transform);
-                snapped = true;
-
-                // Temporarily play note E3
-                tempAudioSource.Play();
+                shortestSnapPoint = snapPoint;
+                shortestSnapPointDistance = distToSnapPos;
             }
+
         }
+
+        // If the object is close to the snapPoint, set the objects position to that point
+        if (shortestSnapPointDistance < 0.5f && !snapped)
+        {
+            targetPosition = shortestSnapPoint.transform.position;
+            transform.SetParent(shortestSnapPoint.transform);
+            snapped = true;
+
+            // Temporarily play note E3
+            tempAudioSource.Play();
+        }
+
 
         // If we did not snap to anything, return the object to the original position
         if (!snapped)
