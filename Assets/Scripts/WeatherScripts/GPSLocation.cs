@@ -7,7 +7,7 @@ using TMPro;
 // GPSLocation can fetch and display location data of a hand held devide. The device must have enabled location service.
 // If access is enabled by user and connection is succesful, it will update the text fields with the latest fetched location data.
 // Latitude and longitude values are stored in the attributes latitudeValue and longitudeValue. 
-// OBS! Måste lägga till Location Usage Description i Player Settings
+// OBS! Mï¿½ste lï¿½gga till Location Usage Description i Player Settings
 
 public class GPSLocation : MonoBehaviour
 {
@@ -17,18 +17,33 @@ public class GPSLocation : MonoBehaviour
     public float longitudeValue;
 
     // Textfield showing status of GPS Service
-    public TextMeshProUGUI GPSStatus;
+    [SerializeField]
+    private TextMeshProUGUI GPSStatus;
     // Textfield showing current latitude value 
-    public TextMeshProUGUI latitudeTextField;
+    [SerializeField]
+    private TextMeshProUGUI latitudeTextField;
     // Textfield showing current longitude value
-    public TextMeshProUGUI longitudeTextField;
+    [SerializeField]
+    private TextMeshProUGUI longitudeTextField;
+
+    [SerializeField]
+    private WeatherData weatherData;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Values for testing weather accuracy when on desktop
+        // Preset coordinates for gothenburg
+
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            latitudeValue = 57.686433f;
+            longitudeValue = 11.966388f;
+
+            weatherData.Begin();
+        }
 
         
-
     }
 
     // Update is called once per frame
@@ -59,7 +74,7 @@ public class GPSLocation : MonoBehaviour
         // Check if user has enabled location service for this application
         if (!Input.location.isEnabledByUser)
         {
-            GPSStatus.text = "Applikationen har ej åtkomst till platsdata";
+            GPSStatus.text = "Applikationen har ej ï¿½tkomst till platsdata";
             yield break;
         }
 
@@ -77,7 +92,7 @@ public class GPSLocation : MonoBehaviour
         // The service did not initialize within 20 seconds, break
         if (maxWait < 1)
         {
-            GPSStatus.text = "Service connection tog för lång tid";
+            GPSStatus.text = "Service connection tog fï¿½r lï¿½ng tid";
             yield break;
         }
 
@@ -90,7 +105,7 @@ public class GPSLocation : MonoBehaviour
         } else
         {
             // Access granted
-            GPSStatus.text = "Söker plats...";
+            GPSStatus.text = "Sï¿½ker plats...";
 
             // Continiously collect location data
             InvokeRepeating("UpdateGPSData", 0.5f, 1f); 
@@ -106,7 +121,7 @@ public class GPSLocation : MonoBehaviour
         if (Input.location.status == LocationServiceStatus.Running)
         {
             // Access granted to GPS values and it has been initialized
-            GPSStatus.text = "Visar väder för platsen";
+            GPSStatus.text = "Visar vï¿½der fï¿½r platsen";
 
             // Get values from service 
             latitudeValue = Input.location.lastData.latitude;
@@ -114,6 +129,8 @@ public class GPSLocation : MonoBehaviour
 
             latitudeTextField.text = "Latitude: " + latitudeValue.ToString();
             longitudeTextField.text = "Longitude: " + longitudeValue.ToString();
+
+            weatherData.Begin();
 
         } else
         {
