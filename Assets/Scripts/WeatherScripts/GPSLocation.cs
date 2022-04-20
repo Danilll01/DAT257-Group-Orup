@@ -38,6 +38,7 @@ public class GPSLocation : MonoBehaviour
             weatherData.Begin();
         }
 
+        
     }
 
     // Update is called once per frame

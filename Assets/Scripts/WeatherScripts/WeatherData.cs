@@ -8,13 +8,13 @@ using System.Collections.Generic;
 public class WeatherData : MonoBehaviour {
 	private float timer;
 	public float minutesBetweenUpdate;
+	[SerializeField]
 	private WeatherInfo Info;
 	public string API_key;
 	private float latitude;
 	private float longitude;
 	private bool locationInitialized;
-	public Text currentWeatherText;
-	public Text currentTemperatureText;
+
 	public GPSLocation getLocation;
 
 	public void Begin() {
@@ -33,9 +33,30 @@ public class WeatherData : MonoBehaviour {
 			}
 		}
 	}
+
+	public string GetWeather(bool getTomorrow){
+		if(getTomorrow){
+			return Info.list[8].weather[0].main;
+		}
+		else{
+			return Info.list[0].weather[0].main;
+		}
+		
+	}
+
+	public float GetTemp(bool getTomorrow){
+		if(getTomorrow){
+			return Info.list[8].main.temp;
+		}
+		else{
+			return Info.list[0].main.temp;
+		}
+	}
+
+	
 	private IEnumerator GetWeatherInfo()
 	{
-		var www = new UnityWebRequest("https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_key + "&units=metric")
+		var www = new UnityWebRequest("https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + API_key + "&units=metric")
 		{
 			downloadHandler = new DownloadHandlerBuffer()
 		};
@@ -46,38 +67,71 @@ public class WeatherData : MonoBehaviour {
 		{
 			//error
 			yield break;
+			
 		}
 
 		Info = JsonUtility.FromJson<WeatherInfo>(www.downloadHandler.text);
-		currentWeatherText.text = "Weather: " + Info.weather[0].main;
-		currentTemperatureText.text = "TemperatureAPI: " + Info.main.temp;
+		
 	}
 }
 [Serializable]
 public class WeatherInfo
 {
-	public Coord coord;
-	public List<Weather> weather;
-	public Main main;
-	public int visibility;
-	public Wind wind;
-	public Clouds clouds;
-	public int dt;
-	public Sys sys;
-	public int timezone;
-	public int id;
-	public string name;
+	//public Coord coord;
+	//public List<Weather> weather;
+	//public Main main;
+	//public int visibility;
+	//public Wind wind;
+	//public Clouds clouds;
+	//public int dt;
+	//public Sys sys;
+	//public int timezone;
+	//public int id;
+	//public string name;
 	public int cod;
+	public float message;
+	public int cnt;
+	public List<APIList> list;
+	public City city;
+	public string country;
+	public int timezone;
+	public int sunrise;
+	public int sunset;
+}
+
+[Serializable]
+public class APIList
+{
+	public int dt;
+	public Main main;
+	public List<Weather> weather;
+	public Clouds clouds;
+	public Wind wind;
+	public int visibility;
+	public float pop;
+	public Sys sys;
+	public string dt_txt;
 }
 
 [Serializable]
 public class Sys
 {
+	/*
 	public int type;
 	public int id;
 	public string country;
 	public int sunrise;
 	public int sunset;
+	*/
+	public string pod;
+}
+
+[Serializable]
+public class City
+{
+	public int id;
+	public string name;
+	public Coord coord;
 }
 
 [Serializable]
@@ -97,8 +151,8 @@ public class Wind
 [Serializable]
 public class Coord
 {
-	public int lon;
 	public int lat;
+	public int lon;
 }
 
 [Serializable]
@@ -109,7 +163,10 @@ public class Main
 	public float temp_min;
 	public float temp_max;
 	public int pressure;
+	public int sea_level;
+	public int grnd_level;
 	public int humidity;
+	public int temp_kf;
 }
 
 [Serializable]

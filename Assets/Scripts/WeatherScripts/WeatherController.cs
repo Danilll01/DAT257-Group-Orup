@@ -16,9 +16,15 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private GameObject sunnyObject;
     [SerializeField] private GameObject cloudyObject;
     [SerializeField] private GameObject rainyObject;
+    [SerializeField] private GameObject snowyObject;
+
+    public Text currentWeatherText;
+	public Text currentTemperatureText;
+
+    public WeatherData weatherData;
 
     // A type for different weather types
-    private enum WeatherTypes {Sun, Cloud, Rain};
+    private enum WeatherTypes {Sun, Cloud, Rain, Snow};
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
@@ -40,7 +46,13 @@ public class WeatherController : MonoBehaviour
     {
         gameMode.text = "Dagens väder";
 
-        SetWeather(WeatherTypes.Sun, WindSpeed.None);
+        // Returns the following:
+	    // Clear, Rain, ThunderStorm, Drizzle, Snow, Clouds
+        string currentWeather = weatherData.GetWeather(false);
+        float currentTemp = weatherData.GetTemp(false);
+        CheckWeather(currentWeather,currentTemp);
+        
+        
 
         Debug.Log("Todays weather");
     }
@@ -48,6 +60,11 @@ public class WeatherController : MonoBehaviour
     public void OnTomorrowClick()
     {
         gameMode.text = "Morgondagens väder";
+
+        string tomorrowWeather = weatherData.GetWeather(true);
+        float tomorrowTemp = weatherData.GetTemp(true);
+        CheckWeather(tomorrowWeather,tomorrowTemp);
+
         Debug.Log("Tomorrows weather");
     }
 
@@ -64,6 +81,33 @@ public class WeatherController : MonoBehaviour
         SetWeather(randomWeather, WindSpeed.None);
         Debug.Log("Random weather");
     }
+
+
+    // Sets the weather depending on what we got from API
+    private void CheckWeather(string weather, float temp){
+        switch (weather)
+        {
+            case "Clear":
+                SetWeather(WeatherTypes.Sun, WindSpeed.None);
+                break;
+            case "Rain": case "ThunderStorm": case "Drizzle":
+                SetWeather(WeatherTypes.Rain, WindSpeed.None);
+                break;
+            case "Snow":
+                SetWeather(WeatherTypes.Snow, WindSpeed.None);
+                break;
+            case "Clouds":
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                break;
+            
+            default:
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                break;
+        }
+
+        currentWeatherText.text = "WeatherAPI: " + weather;
+		currentTemperatureText.text = "TemperatureAPI: " + temp;
+    }
     
     // Switches to the correct weather object based on inputted weather.
     private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
@@ -77,18 +121,23 @@ public class WeatherController : MonoBehaviour
 
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
-                temporaryTempText.text = "Temprature: 25°";
+                temporaryTempText.text = "Temperature: 25°";
                 Debug.Log("Sunny");
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
-                temporaryTempText.text = "Temprature: 15°";
+                temporaryTempText.text = "Temperature: 15°";
                 Debug.Log("Cloudy");
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
-                temporaryTempText.text = "Temprature: 7°";
+                temporaryTempText.text = "Temperature: 7°";
                 Debug.Log("Rainy");
+                break;
+            case WeatherTypes.Snow:
+                snowyObject.SetActive(true);
+                temporaryTempText.text = "Temperature: -5°";
+                Debug.Log("Snowy");
                 break;
             default:
                 Debug.Log("No work");
@@ -102,5 +151,6 @@ public class WeatherController : MonoBehaviour
         sunnyObject.SetActive(false);
         cloudyObject.SetActive(false);
         rainyObject.SetActive(false);
+        snowyObject.SetActive(false);
     }
 }

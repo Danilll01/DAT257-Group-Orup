@@ -1389,6 +1389,9 @@ MonoBehaviour:
   sunnyObject: {fileID: 475642555}
   cloudyObject: {fileID: 1876208927}
   rainyObject: {fileID: 833965622}
+  currentWeatherText: {fileID: 15292431}
+  currentTemperatureText: {fileID: 659498885}
+  weatherData: {fileID: 636430305}
 --- !u!114 &636430305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,8 +1406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minutesBetweenUpdate: 10
   API_key: abe16adae042e9c306c6de308cbb0ef0
-  currentWeatherText: {fileID: 15292431}
-  currentTemperatureText: {fileID: 659498885}
   getLocation: {fileID: 1019347041}
 --- !u!1 &659498884
 GameObject:
