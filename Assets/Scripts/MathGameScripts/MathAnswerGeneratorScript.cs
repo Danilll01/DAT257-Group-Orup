@@ -15,6 +15,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
     [SerializeField] private GameObject[] cardHolders;
     [SerializeField] private Camera[] cams;
+    [SerializeField] private Transform playerCharachter;
+
     // [SerializeField] private Transform[] spawnLocations; This can wait for now
 
 
@@ -104,18 +106,40 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             }
 
             // Dissables the card straight over from the pressed answer
-            cardHolders[(answerNumber + 1) % cardHolders.Length].SetActive(false);
+            changeActiveCard(answerNumber);
 
             // And randomize a new question
             questionGenerator.randomizeProblem();
         } else {
             // Make the selected card red to show that it is wrong
             cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
-            Debug.Log(correctAnswerHolder);
         }
     }
 
+    // Changes what card is active and also teleports player charachter to that location
     private void changeActiveCard(int answerNumber) {
-        cardHolders[(answerNumber + 1) % cardHolders.Length].SetActive(false);
+        int dissableNumber = (answerNumber + 1) % cardHolders.Length;
+        cardHolders[dissableNumber].SetActive(false);
+
+        Vector2 runFromVector = Vector2.zero; // Temp value before switch
+
+        switch (dissableNumber + 1) {
+            case 1:
+                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(-10, cams[0].pixelHeight / 2));
+                break;
+            case 2:
+                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, cams[0].pixelHeight + 10));
+                break;
+            case 3:
+                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth + 10, cams[0].pixelHeight / 2));
+                break;
+            case 4:
+                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, -10));
+                break;
+            default: Debug.Log("This should never happen! If you see this report it!!");
+                break;
+        }
+
+        playerCharachter.position = runFromVector;
     } 
 }
