@@ -18,6 +18,8 @@ namespace Pathfinding {
 		public Transform target;
 		IAstarAI ai;
 
+		private bool canClick = true; 
+
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
 			// Update the destination right before searching for a path as well.
@@ -35,10 +37,14 @@ namespace Pathfinding {
 		/// <summary>Updates the AI's destination every frame</summary>
 		void Update() {
 
-			if (Input.GetMouseButtonDown(0)) { 
+			if (Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				if (target != null && ai != null) ai.destination = target.position;
 			}
 		}
+
+		public void canGetNewPos(bool input) {
+			canClick = input;
+        }
 	}
 }

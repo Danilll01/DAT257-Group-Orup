@@ -1123,6 +1123,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 578196294}
+        m_TargetAssemblyTypeName: Pathfinding.AIDestinationSetter, AstarPathfindingProject
+        m_MethodName: canGetNewPos
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &417775779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5559,6 +5571,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 578196294}
+        m_TargetAssemblyTypeName: Pathfinding.AIDestinationSetter, AstarPathfindingProject
+        m_MethodName: canGetNewPos
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1417260431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5867,6 +5891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatCollider: 4
   mathAnswerGenerator: {fileID: 605710844}
+  pathSetter: {fileID: 578196294}
 --- !u!50 &1456788975
 Rigidbody2D:
   serializedVersion: 4
@@ -5962,6 +5987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatCollider: 3
   mathAnswerGenerator: {fileID: 605710844}
+  pathSetter: {fileID: 578196294}
 --- !u!50 &1458631210
 Rigidbody2D:
   serializedVersion: 4
@@ -6102,6 +6128,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 578196294}
+        m_TargetAssemblyTypeName: Pathfinding.AIDestinationSetter, AstarPathfindingProject
+        m_MethodName: canGetNewPos
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -8237,6 +8275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatCollider: 1
   mathAnswerGenerator: {fileID: 605710844}
+  pathSetter: {fileID: 578196294}
 --- !u!50 &1932401434
 Rigidbody2D:
   serializedVersion: 4
@@ -8443,6 +8482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatCollider: 2
   mathAnswerGenerator: {fileID: 605710844}
+  pathSetter: {fileID: 578196294}
 --- !u!50 &1979410603
 Rigidbody2D:
   serializedVersion: 4
@@ -8843,6 +8883,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 578196294}
+        m_TargetAssemblyTypeName: Pathfinding.AIDestinationSetter, AstarPathfindingProject
+        m_MethodName: canGetNewPos
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

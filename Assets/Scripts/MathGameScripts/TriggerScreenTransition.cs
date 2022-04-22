@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class TriggerScreenTransition : MonoBehaviour
 {
 
     [SerializeField] private int whatCollider;
     [SerializeField] private MathAnswerGeneratorScript mathAnswerGenerator;
+    [SerializeField] private AIDestinationSetter pathSetter;
 
     // Start is called before the first frame update
     void Start() {}
@@ -15,9 +17,7 @@ public class TriggerScreenTransition : MonoBehaviour
     void Update() {}
 
 
-    // Låt nuvarande knapp aktivera colliderns så att den kan kalla på rätt metod
-    // I samma veva, disabla så man inte kan göra annat val samt sätt location så karaktären springer
-    // utanför skärmen.
+    //  samt sätt location så karaktären springer utanför skärmen.
     // Glöm ej en transition till allt mellan
 
 
@@ -28,8 +28,8 @@ public class TriggerScreenTransition : MonoBehaviour
 
     // This will be called when the players enter the collider
     void OnTriggerEnter2D(Collider2D col) {
-        Debug.Log("HEJ!!!!!!");
         gameObject.SetActive(false);
+        pathSetter.canGetNewPos(true);
         mathAnswerGenerator.AnswerPressed(whatCollider);        
     }
 }
