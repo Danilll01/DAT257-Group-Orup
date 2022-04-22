@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DragAndDrop : MonoBehaviour {
 
     private float deltaX, deltaY;
@@ -9,13 +10,14 @@ public class DragAndDrop : MonoBehaviour {
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
     private Vector3 targetPosition;
+
+    private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
 
     [SerializeField] private GameObject[] snapPoints;
 
 
-    public enum weather{snow, sunny,rainy};
-    public weather chosenWeather;
+    public WeatherController.WeatherTypes chosenWeather;
 
     public enum clothing{jacket, pants, hat, shoes};
     public clothing chosenClothing;
@@ -32,6 +34,8 @@ public class DragAndDrop : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
 
     }
+
+   
  
     // Update is called once per frame
     void Update () {
@@ -99,6 +103,13 @@ public class DragAndDrop : MonoBehaviour {
         addForceToRidgidbody();
     }
 
+    // Remove the object from the snapPoint
+    public void removeFromSnapPoint(){
+        transform.SetParent(null);
+        transform.position = lastPosition;
+        targetPosition = originalPos;
+    }
+
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector2 position){
@@ -152,6 +163,7 @@ public class DragAndDrop : MonoBehaviour {
                     targetPosition = shortestSnapPoint.transform.position;
                     transform.SetParent(shortestSnapPoint.transform);
                     snapped = true;
+                    lastPosition = position;
         }
 
         // If we did not snap to anything, return the object to the original position
