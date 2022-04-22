@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class MemoryController : MonoBehaviour
-{
+public class MemoryController : MonoBehaviour {
     // Field for choosing the background image of the cards
     [SerializeField]
     private Sprite bgImage;
@@ -48,17 +48,21 @@ public class MemoryController : MonoBehaviour
     // Name of the picture for the second guess
     private string secondGuessPuzzle;
 
+    // Meny som är inaktiv vid start men som aktiveras när spelet är vunnet
+    [SerializeField]
+    private GameObject finishMenu;
 
-    
+
+
     // Runs at start. Loads all pictures and sounds
-    void Awake(){
+    void Awake() {
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
         sounds = Resources.LoadAll<AudioClip>("Animal_sounds");
     }
 
-    
+
     // Start is called before the first frame update
-    void Start(){
+    void Start() {
         GetButtons();
         AddListeners();
         AddGamePuzzles();
@@ -66,19 +70,21 @@ public class MemoryController : MonoBehaviour
         OrderSounds();
         AddSound();
 
+        finishMenu.SetActive(false);
+
         // Number of guesses in the game is equal to half the cards
         gameGuesses = gamePuzzles.Count / 2;
     }
 
     // Gets buttons added by AddButtons-script and adds to btns-list. Attaches background picture and soundcomponent
-    void GetButtons(){
+    void GetButtons() {
 
         // Finds buttons 
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
         AudioSource audioSource;
 
-        
-        for (int i = 0; i < objects.Length; i++){
+
+        for (int i = 0; i < objects.Length; i++) {
 
             // Adds buttons to button-list
             btns.Add(objects[i].GetComponent<Button>());
@@ -91,14 +97,14 @@ public class MemoryController : MonoBehaviour
     }
 
     // Adds AudioClip to the button's audio component for each button
-    void AddSound(){
+    void AddSound() {
         for (int i = 0; i < btns.Count; i++) {
-            btns[i].GetComponent<AudioSource>().clip = sounds[i];   
+            btns[i].GetComponent<AudioSource>().clip = sounds[i];
         }
     }
 
     // Matches the sound to the correct animal
-    void OrderSounds(){
+    void OrderSounds() {
         AudioClip[] soundsOrdered = new AudioClip[gamePuzzles.Count];
 
         // Loops through each puzzle in the game
@@ -122,13 +128,13 @@ public class MemoryController : MonoBehaviour
     }
 
     // Gives random indexes for choosing puzzle pictures
-    HashSet<int> RandomRange(int elements, int ceiling){
+    HashSet<int> RandomRange(int elements, int ceiling) {
 
         // Create set of only possible of containing unique values
         HashSet<int> indexSet = new HashSet<int>();
 
         // Fills set with indexes until it matches number of cards
-        while(indexSet.Count < elements){
+        while (indexSet.Count < elements) {
 
             // Gets random number between index 0 and and max number
             int rand = Random.Range(0, ceiling);
@@ -138,25 +144,33 @@ public class MemoryController : MonoBehaviour
     }
 
     // Adds puzzles to the current game from the available puzzles
-    void AddGamePuzzles(){
+    void AddGamePuzzles() {
 
         // Gets indexes of pictures for half the number of cards since there shoud be two of each
         // Max index value is final index if the puzzles available
-        foreach (int a in RandomRange(btns.Count / 2, puzzles.Length)){
+        foreach (int a in RandomRange(btns.Count / 2, puzzles.Length)) {
             gamePuzzles.Add(puzzles[a]);
             gamePuzzles.Add(puzzles[a]);
         }
     }
 
     // Adds listeners for button presses
-    void AddListeners(){
-        foreach (Button btn in btns){
+    void AddListeners() {
+        foreach (Button btn in btns) {
             btn.onClick.AddListener(() => PickAPuzzle());
         }
     }
 
+    public void HomeMenu() {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void PlayAgain() {
+        SceneManager.LoadScene("MemoryGame");
+    }
+
     // Coroutine for deciding how long sounds should play
-    IEnumerator SoundStop(int index){
+    IEnumerator SoundStop(int index) {
         btns[index].GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(1f);
         btns[index].GetComponent<AudioSource>().Stop();
@@ -167,10 +181,10 @@ public class MemoryController : MonoBehaviour
     // Changes picture from backside to animal
     // Plays sound bu using coroutine
     // Starts coroutine for checking if guesses match
-    public void PickAPuzzle(){
+    public void PickAPuzzle() {
 
         // If first guess hasn't been made 
-        if (!firstGuess){
+        if (!firstGuess) {
             firstGuess = true;
 
             // Sets index for first guess as name of the card chosen
@@ -187,12 +201,12 @@ public class MemoryController : MonoBehaviour
         }
 
         // Same as if-clause but with second
-        else if (!secondGuess){
+        else if (!secondGuess) {
             secondGuess = true;
- 
+
             secondGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
-            secondGuessPuzzle = gamePuzzles[secondGuessIndex].name; 
+            secondGuessPuzzle = gamePuzzles[secondGuessIndex].name;
 
             btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
             StartCoroutine(SoundStop(secondGuessIndex));
@@ -208,18 +222,17 @@ public class MemoryController : MonoBehaviour
     // Checks if puzzles match by checking the filename of picture
     // Makes sure they are different cards through second condition
     // Makes matching cards uninteractable and greyed out
-    IEnumerator CheckIfPuzzlesMatch(){
+    IEnumerator CheckIfPuzzlesMatch() {
         yield return new WaitForSeconds(1f);
 
         // Makes sure images are the same, but the cards are different
-        if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex){
-            
+        if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex) {
+
             yield return new WaitForSeconds(0.25f);
 
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
-
 
             /*  Om korten ska försvinna efter man har valt rätt 
             btns[firstGuessIndex].image.color = new Color(0,0,0,0);
@@ -240,20 +253,27 @@ public class MemoryController : MonoBehaviour
 
         // Restarts guessing process
         firstGuess = false;
-        secondGuess = false; 
+        secondGuess = false;
 
     }
 
     // To be made. Checks if correctGuesses is equal to gameGuesses
-    void CheckIfTheGameIsFinished(){
-       
+    void CheckIfTheGameIsFinished() {
+
+        // Increments number of correct guesses
+        countCorrectGuesses++;
+
+        // Activates the menu if game is finished
+        if (countCorrectGuesses == gameGuesses) {
+            finishMenu.SetActive(true);
+        }
     }
 
     // Shuffles cards
-    void Shuffle(List<Sprite> list){
+    void Shuffle(List<Sprite> list) {
 
         // For every sprite in given list
-        for (int i = 0; i < list.Count; i++){
+        for (int i = 0; i < list.Count; i++) {
 
             // Make temporary sprite
             Sprite temp = list[i];
