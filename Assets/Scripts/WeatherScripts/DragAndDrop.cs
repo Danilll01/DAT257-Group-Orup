@@ -106,6 +106,10 @@ public class DragAndDrop : MonoBehaviour {
         bool snapped = false;
         string neededMatch = "";
 
+        // Start values for shortest snap point
+        GameObject shortestSnapPoint = snapPoints[0];
+        float shortestSnapPointDistance = float.MaxValue;
+
         // Get what body part this clothing goes on
         switch (chosenClothing){
             case clothing.jacket:
@@ -128,15 +132,26 @@ public class DragAndDrop : MonoBehaviour {
 
         // Check for each point if the object is close to it
         foreach(GameObject snapPoint in snapPoints){
-            Vector3 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
+            Vector2 snapPos = snapPoint.transform.position;
+            // If the object is close to the snapPoint is not already snapped
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
-                if(snapPoint.name == neededMatch){
-                    targetPosition = snapPos;
-                    transform.SetParent(snapPoint.transform);
-                    snapped = true;
+                float distToSnapPos = Vector2.Distance(transform.position,snapPos);
+            
+                // If we found a snappoint with smaller distance update shortest snap point
+                if (distToSnapPos < shortestSnapPointDistance)
+                {
+                    shortestSnapPoint = snapPoint;
+                    shortestSnapPointDistance = distToSnapPos;
                 }
+                
             }
+        }
+
+        // Check if the snapoint match the clothing type
+        if(shortestSnapPoint.name == neededMatch){
+                    targetPosition = shortestSnapPoint.transform.position;
+                    transform.SetParent(shortestSnapPoint.transform);
+                    snapped = true;
         }
 
         // If we did not snap to anything, return the object to the original position
