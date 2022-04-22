@@ -166,7 +166,6 @@ public class MemoryController : MonoBehaviour {
     }
 
     public void PlayAgain() {
-        Debug.Log("test");
         SceneManager.LoadScene("MemoryGame");
     }
 
