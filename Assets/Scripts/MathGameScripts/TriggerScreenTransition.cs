@@ -20,9 +20,16 @@ public class TriggerScreenTransition : MonoBehaviour
     // utanför skärmen.
     // Glöm ej en transition till allt mellan
 
+
+
+    public void activateCollider() {
+        gameObject.SetActive(true);
+    }
+
     // This will be called when the players enter the collider
     void OnTriggerEnter2D(Collider2D col) {
         Debug.Log("HEJ!!!!!!");
+        gameObject.SetActive(false);
         mathAnswerGenerator.AnswerPressed(whatCollider);        
     }
 }

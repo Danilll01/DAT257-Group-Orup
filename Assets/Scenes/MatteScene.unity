@@ -1111,10 +1111,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605710844}
-        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
-        m_MethodName: AnswerPressed
-        m_Mode: 3
+      - m_Target: {fileID: 1458631209}
+        m_TargetAssemblyTypeName: TriggerScreenTransition, Assembly-CSharp
+        m_MethodName: activateCollider
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1122,7 +1122,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &417775779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5547,10 +5547,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605710844}
-        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
-        m_MethodName: AnswerPressed
-        m_Mode: 3
+      - m_Target: {fileID: 1979410602}
+        m_TargetAssemblyTypeName: TriggerScreenTransition, Assembly-CSharp
+        m_MethodName: activateCollider
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5558,7 +5558,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &1417260431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5837,7 +5837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1456788973
 Transform:
   m_ObjectHideFlags: 0
@@ -5901,7 +5901,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0060880184, y: 0.44034922}
+  m_Offset: {x: 0.0060881376, y: 0.44034922}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5912,7 +5912,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.095357, y: 2.062988}
+  m_Size: {x: 2.0146735, y: 2.062988}
   m_EdgeRadius: 0
 --- !u!1 &1458631207
 GameObject:
@@ -5932,7 +5932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1458631208
 Transform:
   m_ObjectHideFlags: 0
@@ -5996,7 +5996,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01844716, y: -0.0035777092}
+  m_Offset: {x: -0.01844716, y: 0.019341946}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6007,7 +6007,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9855514, y: 2.023233}
+  m_Size: {x: 1.9855514, y: 1.9468343}
   m_EdgeRadius: 0
 --- !u!1 &1488724936
 GameObject:
@@ -6094,10 +6094,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605710844}
-        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
-        m_MethodName: AnswerPressed
-        m_Mode: 3
+      - m_Target: {fileID: 1932401433}
+        m_TargetAssemblyTypeName: TriggerScreenTransition, Assembly-CSharp
+        m_MethodName: activateCollider
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6105,7 +6105,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!114 &1488724939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8207,7 +8207,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1932401432
 Transform:
   m_ObjectHideFlags: 0
@@ -8271,7 +8271,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6222849, y: -0.0035777092}
+  m_Offset: {x: 0.6222849, y: -0.012682676}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8282,7 +8282,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4001427, y: 2.023233}
+  m_Size: {x: 2.4001427, y: 1.9321828}
   m_EdgeRadius: 0
 --- !u!1 &1948772783
 GameObject:
@@ -8413,7 +8413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1979410601
 Transform:
   m_ObjectHideFlags: 0
@@ -8477,7 +8477,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0060880184, y: 0.44034922}
+  m_Offset: {x: -0.002762258, y: 0.44034922}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8488,7 +8488,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.095357, y: 2.062988}
+  m_Size: {x: 1.9714531, y: 2.062988}
   m_EdgeRadius: 0
 --- !u!1 &1981957419
 GameObject:
@@ -8835,10 +8835,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 605710844}
-        m_TargetAssemblyTypeName: MathAnswerGeneratorScript, Assembly-CSharp
-        m_MethodName: AnswerPressed
-        m_Mode: 3
+      - m_Target: {fileID: 1456788974}
+        m_TargetAssemblyTypeName: TriggerScreenTransition, Assembly-CSharp
+        m_MethodName: activateCollider
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8846,7 +8846,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
 --- !u!222 &2004141468
 CanvasRenderer:
   m_ObjectHideFlags: 0
