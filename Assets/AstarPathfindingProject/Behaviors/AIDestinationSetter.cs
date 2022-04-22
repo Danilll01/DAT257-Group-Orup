@@ -46,5 +46,10 @@ namespace Pathfinding {
 		public void canGetNewPos(bool input) {
 			canClick = input;
         }
+
+		public void setNewPath(Vector2 newPosVector) {
+			target.position = newPosVector;
+			if (target != null && ai != null) ai.destination = target.position;
+		}
 	}
 }

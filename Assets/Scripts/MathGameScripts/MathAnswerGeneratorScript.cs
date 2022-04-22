@@ -118,12 +118,12 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
     // Changes what card is active and also teleports player charachter to that location
     private void changeActiveCard(int answerNumber) {
-        int dissableNumber = (answerNumber + 1) % cardHolders.Length;
-        cardHolders[dissableNumber].SetActive(false);
+        int disableNumber = (answerNumber + 1) % cardHolders.Length;
+        cardHolders[disableNumber].SetActive(false);
 
         Vector2 runFromVector = Vector2.zero; // Temp value before switch
 
-        switch (dissableNumber + 1) {
+        switch (disableNumber + 1) {
             case 1:
                 runFromVector = cams[0].ScreenToWorldPoint(new Vector3(-10, cams[0].pixelHeight / 2));
                 break;

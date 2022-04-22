@@ -5889,6 +5889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6206d60e5eb58e2448da7a75e2638a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 1100881634}
   whatCollider: 4
   mathAnswerGenerator: {fileID: 605710844}
   pathSetter: {fileID: 578196294}
@@ -5985,6 +5986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6206d60e5eb58e2448da7a75e2638a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 1100881634}
   whatCollider: 3
   mathAnswerGenerator: {fileID: 605710844}
   pathSetter: {fileID: 578196294}
@@ -8273,6 +8275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6206d60e5eb58e2448da7a75e2638a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 1100881634}
   whatCollider: 1
   mathAnswerGenerator: {fileID: 605710844}
   pathSetter: {fileID: 578196294}
@@ -8480,6 +8483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6206d60e5eb58e2448da7a75e2638a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCam: {fileID: 1100881634}
   whatCollider: 2
   mathAnswerGenerator: {fileID: 605710844}
   pathSetter: {fileID: 578196294}
