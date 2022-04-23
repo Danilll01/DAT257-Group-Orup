@@ -10,6 +10,11 @@ public class TriggerScreenTransition : MonoBehaviour
     [SerializeField] private MathAnswerGeneratorScript mathAnswerGenerator;
     [SerializeField] private AIDestinationSetter pathSetter;
 
+    //[SerializeField] private Camera[] cams;                 
+    [SerializeField] private Camera mainCam;
+    [SerializeField] private Camera pathCam;
+    [SerializeField] private Transform playerCharachter;
+
 
     // Start is called before the first frame update
     void Start() {}
@@ -25,6 +30,22 @@ public class TriggerScreenTransition : MonoBehaviour
     // Se till att man inte kan gå utanför i gången till en annan skärm
 
 
+    // Changes what screen is currently active
+    private void changeCameraView() {
+
+        // If it is wrong path, switch screen
+        if (!mathAnswerGenerator.IsCorrectAnswer(whatCollider)) {
+            pathCam.enabled = true;
+            mainCam.enabled = false;
+        }
+        
+    }
+
+    public void SwitchBackToMainScreen() {
+        mainCam.enabled = true;
+        pathCam.enabled = false;
+        mathAnswerGenerator.ActivateCanvas();
+    }
 
     public void activateCollider() {
         gameObject.SetActive(true);
@@ -34,7 +55,9 @@ public class TriggerScreenTransition : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         gameObject.SetActive(false);
         pathSetter.canGetNewPos(true); // This maybe will change 
-        mathAnswerGenerator.AnswerPressed(whatCollider);        
+        changeCameraView();
+        mathAnswerGenerator.AnswerPressed(whatCollider);
+        
     }
 
   

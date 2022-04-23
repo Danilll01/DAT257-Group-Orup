@@ -16,10 +16,6 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     [SerializeField] private Image[] imgHolders;
 
     [SerializeField] private GameObject[] cardHolders;
-    [SerializeField] private Camera[] cams;                 // Cams[0] is main cam, the other represents the different answers
-    [SerializeField] private Transform playerCharachter;
-
-    // [SerializeField] private Transform[] spawnLocations; This can wait for now
 
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
@@ -117,7 +113,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             // Make the selected card red to show that it is wrong and dissable button
             cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
             cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
-            changeCameraView(answerNumber);
+            canvas.SetActive(false);
+            //changeCameraView(answerNumber);
         }
     }
 
@@ -125,6 +122,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     private void changeActiveCard(int answerNumber) {
         int disableNumber = (answerNumber + 1) % cardHolders.Length;
         cardHolders[disableNumber].SetActive(false);
+
+        /*
 
         Vector2 runFromVector = Vector2.zero; // Temp value before switch
 
@@ -149,12 +148,17 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         Debug.Log(playerCharachter.position);
         playerCharachter.position = runFromVector; // Sets new position of player
         Debug.Log(playerCharachter.position);
+
+        */
     } 
 
     // Changes what screen is currently active
-    private void changeCameraView(int answerNumber) {
-        cams[answerNumber].enabled = true;
-        cams[0].enabled = false;
-        canvas.SetActive(false);
+    public void ActivateCanvas() {
+        canvas.SetActive(true);
     } 
+
+    // Returns if its the right path
+    public bool IsCorrectAnswer(int whatPath) {
+        return whatPath == correctAnswerHolder;
+    }
 }
