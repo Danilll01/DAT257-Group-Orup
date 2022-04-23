@@ -19,6 +19,8 @@ public class DragAndDropClothing : MonoBehaviour {
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
     private BoxCollider2D[] colliders;
+    private Vector2 originalColliderOffset;
+    private Vector2 originalColliderSize;
 
     [SerializeField] private Sprite spriteToSwitchTo;
     private Sprite originalSprite;
@@ -51,6 +53,8 @@ public class DragAndDropClothing : MonoBehaviour {
         ridgidBody = GetComponent<Rigidbody2D>();
         spriteRen = GetComponent<SpriteRenderer>();
         colliders = GetComponents<BoxCollider2D>();
+        originalColliderOffset = colliders[0].offset;
+        originalColliderSize = colliders[0].size;
         originalSprite = spriteRen.sprite;
 
         // Dissables collision between clothes objects 
@@ -75,12 +79,27 @@ public class DragAndDropClothing : MonoBehaviour {
                 // At the moment the screen was touched, look if the touch is on the object.
                 // If the touch was on the object, set moveAllowed to true
                 case TouchPhase.Began:
-                    if (colliders[0] == Physics2D.OverlapPoint(touchPos)){
+                    if (colliders.Length > 1){
+                        if (colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos))
+                        {
                             deltaX = touchPos.x - transform.position.x;
                             deltaY = touchPos.y - transform.position.y;
                             spriteRen.sortingOrder++;
                             moveAllowed = true;
+                        }
+
                     }
+                    else
+                    {
+                        if (colliders[0] == Physics2D.OverlapPoint(touchPos))
+                        {
+                            deltaX = touchPos.x - transform.position.x;
+                            deltaY = touchPos.y - transform.position.y;
+                            spriteRen.sortingOrder++;
+                            moveAllowed = true;
+                        }
+                    }
+                    
                     break;
 
                 // While the touch is moving and is allowed to move, update the object position
@@ -108,11 +127,26 @@ public class DragAndDropClothing : MonoBehaviour {
             // Get the mouse position
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
-            if(Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition)){
-                mouseMoveAllowed = true;
-                spriteRen.sortingOrder++;
+            if (colliders.Length > 1)
+            {
+                // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
+                if (Input.GetMouseButtonDown(0) && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
+                {
+                    mouseMoveAllowed = true;
+                    spriteRen.sortingOrder++;
+                }
+
             }
+            else
+            {
+                if (Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition))
+                {
+                    mouseMoveAllowed = true;
+                    spriteRen.sortingOrder++;
+                }
+            }
+
+            
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if(mouseMoveAllowed){
@@ -132,6 +166,7 @@ public class DragAndDropClothing : MonoBehaviour {
     // Remove the object from the snapPoint
     public void removeFromSnapPoint(){
         transform.SetParent(originParent);
+        spriteRen.sprite = originalSprite;
         transform.position = lastPosition;
         targetPosition = originalPos;
     }
@@ -228,6 +263,9 @@ public class DragAndDropClothing : MonoBehaviour {
             transform.SetParent(originParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
+
+            colliders[0].offset = originalColliderOffset;
+            colliders[0].size = originalColliderSize;
         }
 
     }
@@ -247,6 +285,7 @@ public class DragAndDropClothing : MonoBehaviour {
         newCollider.size = new Vector2(1.537f, 1.208f);
 
     }
+
 
 
     private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped)
