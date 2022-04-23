@@ -114,7 +114,6 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
             cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
             canvas.SetActive(false);
-            //changeCameraView(answerNumber);
         }
     }
 
@@ -122,34 +121,6 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     private void changeActiveCard(int answerNumber) {
         int disableNumber = (answerNumber + 1) % cardHolders.Length;
         cardHolders[disableNumber].SetActive(false);
-
-        /*
-
-        Vector2 runFromVector = Vector2.zero; // Temp value before switch
-
-        switch (disableNumber + 1) {
-            case 1:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(-10, cams[0].pixelHeight / 2));
-                break;
-            case 2:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, cams[0].pixelHeight + 10));
-                break;
-            case 3:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth + 10, cams[0].pixelHeight / 2));
-                break;
-            case 4:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, -10));
-                break;
-            default: Debug.Log("This should never happen! If you see this report it!!");
-                break;
-        }
-
-        Debug.Log("PLayer Teleported!!!!");
-        Debug.Log(playerCharachter.position);
-        playerCharachter.position = runFromVector; // Sets new position of player
-        Debug.Log(playerCharachter.position);
-
-        */
     } 
 
     // Changes what screen is currently active
