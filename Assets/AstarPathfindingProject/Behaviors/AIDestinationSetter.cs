@@ -72,7 +72,7 @@ namespace Pathfinding {
 			setNewPath(runTo);
 		}
 
-		private void setNewPath(Vector2 newPosVector) {
+		public void setNewPath(Vector2 newPosVector) {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
 		}

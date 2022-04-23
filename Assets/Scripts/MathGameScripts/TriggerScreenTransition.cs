@@ -24,7 +24,7 @@ public class TriggerScreenTransition : MonoBehaviour
 
 
     // Fixa så den sätter rätt location för rätt svar när player springer utanför skärmen
-    // Gör så den byter tillbaka från fel svar + gör player animation
+    // Gör player animation i fel svar
     // Gör så att den bara ger tillbaka kontrollen efter transition
     // Glöm ej en transition till allt mellan
     // Se till att man inte kan gå utanför i gången till en annan skärm
@@ -60,5 +60,6 @@ public class TriggerScreenTransition : MonoBehaviour
         
     }
 
-  
+    
+
 }
