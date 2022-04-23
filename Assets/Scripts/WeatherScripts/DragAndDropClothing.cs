@@ -13,6 +13,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
+    private SpriteRenderer spriteRen;
 
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
@@ -38,6 +39,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
 
         ridgidBody = GetComponent<Rigidbody2D>();
+        spriteRen = GetComponent<SpriteRenderer>();
 
         // Dissables collision between clothes objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
@@ -64,8 +66,8 @@ public class DragAndDropClothing : MonoBehaviour {
                     if (GetComponent<Collider2D> () == Physics2D.OverlapPoint(touchPos)){
                             deltaX = touchPos.x - transform.position.x;
                             deltaY = touchPos.y - transform.position.y;
+                            spriteRen.sortingOrder = 1;
                             moveAllowed = true;
-                            GetComponent<CircleCollider2D>().sharedMaterial = null;
                     }
                     break;
 
@@ -82,6 +84,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     if (moveAllowed) {
                         snapToPoint(touchPos);
                         moveAllowed = false;
+                        spriteRen.sortingOrder = 0;
                     }
                     break;
 
@@ -155,7 +158,7 @@ public class DragAndDropClothing : MonoBehaviour {
         foreach(GameObject snapPoint in snapPoints){
             Vector2 snapPos = snapPoint.transform.position;
             // If the object is close to the snapPoint is not already snapped
-            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
+            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 2) && !snapped){
                 float distToSnapPos = Vector2.Distance(transform.position,snapPos);
             
                 // If we found a snappoint with smaller distance update shortest snap point
