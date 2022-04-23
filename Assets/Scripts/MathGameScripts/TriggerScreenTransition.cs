@@ -18,7 +18,7 @@ public class TriggerScreenTransition : MonoBehaviour
     void Update() {}
 
 
-    // Samt sätt location så karaktären springer utanför skärmen.
+    // Fixa så den sätter rätt location för rätt svar när player springer utanför skärmen
     // Glöm ej en transition till allt mellan
     // Se till att man inte kan gå utanför i gången till en annan skärm
 
