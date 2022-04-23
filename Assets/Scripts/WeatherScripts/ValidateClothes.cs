@@ -33,9 +33,25 @@ public class ValidateClothes : MonoBehaviour
                             validClothing = false;
                         }
                     }
-                    
-                    
                 }
+
+                // These snapPoints needs at least one clothing to be valid
+                else
+                {
+                    switch (snapPoint.name)
+                    {
+                        case "Chest":
+                            validClothing = false;
+                            break;
+                        case "Legs":
+                            validClothing = false;
+                            break;
+                        case "Feet":
+                            validClothing = false;
+                            break;
+                    }
+                }
+
             }
 
             // If one clothins was not valid

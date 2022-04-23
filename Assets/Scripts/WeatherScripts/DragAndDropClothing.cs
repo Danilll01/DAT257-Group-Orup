@@ -22,7 +22,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     public WeatherController.WeatherTypes chosenWeather;
 
-    public enum clothing{jacket, shirt, pants, hat, shoes};
+    public enum clothing{jacket, shirt, pants, hat, shoes, scarf};
     public clothing chosenClothing;
 
 
@@ -148,7 +148,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // Start values for shortest snap point
         GameObject shortestSnapPoint = null;
-        float shortestSnapPointDistance = float.MaxValue;
+        
 
         // Get what body part this clothing goes on
         switch (chosenClothing){
@@ -161,6 +161,9 @@ public class DragAndDropClothing : MonoBehaviour {
             case clothing.hat:
                 neededMatch = "Head";
                 break;
+            case clothing.scarf:
+                neededMatch = "Throat";
+                break;
             case clothing.shoes:
                 neededMatch = "Feet";
                 break;
@@ -170,22 +173,7 @@ public class DragAndDropClothing : MonoBehaviour {
         
         }
 
-        // Check for each point if the object is close to it
-        foreach(GameObject snapPoint in snapPoints){
-            Vector2 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint is not already snapped
-            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
-                float distToSnapPos = Vector2.Distance(transform.position,snapPos);
-            
-                // If we found a snappoint with smaller distance update shortest snap point
-                if (distToSnapPos < shortestSnapPointDistance)
-                {
-                    shortestSnapPoint = snapPoint;
-                    shortestSnapPointDistance = distToSnapPos;
-                }
-                
-            }
-        }
+        shortestSnapPoint = loopThroughSnapPoints(shortestSnapPoint,snapped);
 
         if (shortestSnapPoint != null)
         {
@@ -193,23 +181,13 @@ public class DragAndDropClothing : MonoBehaviour {
             if (shortestSnapPoint.name == neededMatch)
             {
 
-                // If the snapPoint has a clothing of same type, remove it
-                DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
-                foreach (DragAndDropClothing script in scripts)
-                {
-                    if (script.chosenClothing == chosenClothing)
-                    {
-                        script.removeFromSnapPoint();
-                    }
-
-                }
+                removeClothingType(shortestSnapPoint,neededMatch);
 
                 // Add on the new clothing
                 targetPosition = shortestSnapPoint.transform.position;
                 transform.SetParent(shortestSnapPoint.transform);
                 snapped = true;
                 lastPosition = position;
-
             }
         }
         
@@ -221,6 +199,49 @@ public class DragAndDropClothing : MonoBehaviour {
             targetPosition = originalPos;
         }
 
+    }
+
+
+    private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped)
+    {
+        float shortestSnapPointDistance = float.MaxValue;
+
+        // Check for each point if the object is close to it
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            Vector2 snapPos = snapPoint.transform.position;
+            // If the object is close to the snapPoint is not already snapped
+            if (GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped)
+            {
+                float distToSnapPos = Vector2.Distance(transform.position, snapPos);
+
+                // If we found a snappoint with smaller distance update shortest snap point
+                if (distToSnapPos < shortestSnapPointDistance)
+                {
+                    shortestSnapPoint = snapPoint;
+                    shortestSnapPointDistance = distToSnapPos;
+                }
+
+            }
+        }
+
+        return shortestSnapPoint;
+    }
+
+    // Remove clothing if of the same type
+    private void removeClothingType(GameObject shortestSnapPoint, string neededMatch)
+    {
+        
+
+       // If the snapPoint has a clothing of same type, remove it
+       DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
+       foreach (DragAndDropClothing script in scripts){
+            if (script.chosenClothing == chosenClothing){
+                script.removeFromSnapPoint();
+            }
+
+        }
+       
     }
 
     // Adds force to the player ridgidbody to move towards the target point
