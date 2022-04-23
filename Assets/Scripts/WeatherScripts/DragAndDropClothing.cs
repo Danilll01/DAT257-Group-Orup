@@ -169,6 +169,12 @@ public class DragAndDropClothing : MonoBehaviour {
         spriteRen.sprite = originalSprite;
         transform.position = lastPosition;
         targetPosition = originalPos;
+
+        if (colliders.Length > 1)
+        {
+            colliders[1].offset = new Vector2(0, 0);
+            colliders[1].size = new Vector2(0, 0);
+        }
     }
 
     // Used for drawing radius from snapPoints
@@ -266,6 +272,12 @@ public class DragAndDropClothing : MonoBehaviour {
 
             colliders[0].offset = originalColliderOffset;
             colliders[0].size = originalColliderSize;
+
+            if (colliders.Length > 1)
+            {
+                colliders[1].offset = new Vector2(0,0);
+                colliders[1].size = new Vector2(0, 0);
+            }
         }
 
     }
