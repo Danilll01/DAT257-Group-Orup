@@ -10,6 +10,7 @@ public class DragAndDropClothing : MonoBehaviour {
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
     private Vector3 targetPosition;
+    private Transform originParent;
 
     private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
@@ -29,6 +30,7 @@ public class DragAndDropClothing : MonoBehaviour {
     void Start(){
         originalPos = transform.position;
         targetPosition = originalPos;
+        originParent = transform.parent;
 
         snapPoints = new GameObject[snapPointsParent.transform.childCount];
 
@@ -117,9 +119,18 @@ public class DragAndDropClothing : MonoBehaviour {
 
     // Remove the object from the snapPoint
     public void removeFromSnapPoint(){
-        transform.SetParent(null);
+        transform.SetParent(originParent);
         transform.position = lastPosition;
         targetPosition = originalPos;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            Gizmos.DrawSphere(snapPoint.transform.position, 1);
+        }
     }
 
 
@@ -158,7 +169,7 @@ public class DragAndDropClothing : MonoBehaviour {
         foreach(GameObject snapPoint in snapPoints){
             Vector2 snapPos = snapPoint.transform.position;
             // If the object is close to the snapPoint is not already snapped
-            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 2) && !snapped){
+            if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
                 float distToSnapPos = Vector2.Distance(transform.position,snapPos);
             
                 // If we found a snappoint with smaller distance update shortest snap point
@@ -195,7 +206,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
-            transform.SetParent(null);
+            transform.SetParent(originParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
         }
