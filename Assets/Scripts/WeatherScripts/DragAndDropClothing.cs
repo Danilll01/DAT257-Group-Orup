@@ -32,6 +32,8 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
         originParent = transform.parent;
 
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+
         snapPoints = new GameObject[snapPointsParent.transform.childCount];
 
         for (int i = 0; i < snapPoints.Length; i++)
@@ -68,7 +70,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     if (GetComponent<Collider2D> () == Physics2D.OverlapPoint(touchPos)){
                             deltaX = touchPos.x - transform.position.x;
                             deltaY = touchPos.y - transform.position.y;
-                            spriteRen.sortingOrder = 1;
+                            spriteRen.sortingOrder++;
                             moveAllowed = true;
                     }
                     break;
@@ -77,7 +79,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed){
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY,0));
                     }
                     break;
 
@@ -86,11 +88,11 @@ public class DragAndDropClothing : MonoBehaviour {
                     if (moveAllowed) {
                         snapToPoint(touchPos);
                         moveAllowed = false;
-                        spriteRen.sortingOrder = 0;
+                        spriteRen.sortingOrder--;
                     }
                     break;
 
-                }
+            }
         }
 
         // For mouse controls
@@ -101,6 +103,7 @@ public class DragAndDropClothing : MonoBehaviour {
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if(Input.GetMouseButtonDown(0) && GetComponent<Collider2D> () == Physics2D.OverlapPoint(mousePosition)){
                 mouseMoveAllowed = true;
+                spriteRen.sortingOrder++;
             }
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
@@ -109,6 +112,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 if(Input.GetMouseButtonUp(0)){
                     snapToPoint(mousePosition);
                     mouseMoveAllowed = false;
+                    spriteRen.sortingOrder--;
                 }
             }
             
