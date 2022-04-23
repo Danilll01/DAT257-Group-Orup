@@ -21,14 +21,19 @@ public class ValidateClothes : MonoBehaviour
             // Loop through all snapPoints
             foreach(GameObject snapPoint in snapPoints){
                 if(snapPoint.transform.childCount > 0){
-                    // Get the DragAndDrop script on the clothing object
-                    DragAndDrop script = snapPoint.GetComponentInChildren<DragAndDrop>();
+                    // Get the DragAndDrop scripts on the clothing object
+                    DragAndDropClothing[] scripts = snapPoint.GetComponentsInChildren<DragAndDropClothing>();
                     // If the clothings weather does not match current weather
                     // send to script to remove it from character
-                    if(script.chosenWeather != weather){
-                        script.removeFromSnapPoint();
-                        validClothing = false;
+                    foreach (DragAndDropClothing script in scripts)
+                    {
+                        if (script.chosenWeather != weather && script.chosenWeather != WeatherController.WeatherTypes.Any)
+                        {
+                            script.removeFromSnapPoint();
+                            validClothing = false;
+                        }
                     }
+                    
                     
                 }
             }

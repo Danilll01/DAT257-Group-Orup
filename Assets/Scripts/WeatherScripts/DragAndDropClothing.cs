@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DragAndDrop : MonoBehaviour {
+public class DragAndDropClothing : MonoBehaviour {
 
     private float deltaX, deltaY;
     private bool moveAllowed = false;
@@ -125,6 +125,7 @@ public class DragAndDrop : MonoBehaviour {
         
         bool snapped = false;
         string neededMatch = "";
+        
 
         // Start values for shortest snap point
         GameObject shortestSnapPoint = snapPoints[0];
@@ -132,7 +133,7 @@ public class DragAndDrop : MonoBehaviour {
 
         // Get what body part this clothing goes on
         switch (chosenClothing){
-            case clothing.jacket:
+            case clothing.jacket: case clothing.shirt:
                 neededMatch = "Chest";
                 break;
             case clothing.pants:
@@ -169,10 +170,24 @@ public class DragAndDrop : MonoBehaviour {
 
         // Check if the snapoint match the clothing type
         if(shortestSnapPoint.name == neededMatch){
-                    targetPosition = shortestSnapPoint.transform.position;
-                    transform.SetParent(shortestSnapPoint.transform);
-                    snapped = true;
-                    lastPosition = position;
+
+            // If the snapPoint has a clothing of same type, remove it
+            DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
+            foreach (DragAndDropClothing script in scripts)
+            {
+                if (script.chosenClothing == chosenClothing)
+                {
+                    script.removeFromSnapPoint();
+                }
+
+            }
+  
+            // Add on the new clothing
+            targetPosition = shortestSnapPoint.transform.position;
+            transform.SetParent(shortestSnapPoint.transform);
+            snapped = true;
+            lastPosition = position;
+
         }
 
         // If we did not snap to anything, return the object to the original position

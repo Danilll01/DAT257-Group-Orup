@@ -27,7 +27,8 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private ValidateClothes validateClothes;
 
     // A type for different weather types
-    public enum WeatherTypes {Sun, Cloud, Rain, Snow};
+    // "Any" is used for clothing that work in any weather
+    public enum WeatherTypes {Sun, Cloud, Rain, Snow,Any};
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
