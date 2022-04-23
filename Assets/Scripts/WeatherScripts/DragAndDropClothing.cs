@@ -79,6 +79,8 @@ public class DragAndDropClothing : MonoBehaviour {
                 // At the moment the screen was touched, look if the touch is on the object.
                 // If the touch was on the object, set moveAllowed to true
                 case TouchPhase.Began:
+
+                    // Depending on how many colliders we have (max 2) we need to check input for both
                     if (colliders.Length > 1){
                         if (colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos))
                         {
@@ -127,6 +129,7 @@ public class DragAndDropClothing : MonoBehaviour {
             // Get the mouse position
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            // Depending on how many colliders we have (max 2) we need to check input for both
             if (colliders.Length > 1)
             {
                 // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
@@ -170,6 +173,7 @@ public class DragAndDropClothing : MonoBehaviour {
         transform.position = lastPosition;
         targetPosition = originalPos;
 
+        // If we had a second collider, make it small so player cant interact with it
         if (colliders.Length > 1)
         {
             colliders[1].offset = new Vector2(0, 0);
@@ -270,9 +274,11 @@ public class DragAndDropClothing : MonoBehaviour {
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
 
+            // We also put back the colliders how they originally were
             colliders[0].offset = originalColliderOffset;
             colliders[0].size = originalColliderSize;
 
+            // If we had a second collider, make it small so player cant interact with it
             if (colliders.Length > 1)
             {
                 colliders[1].offset = new Vector2(0,0);
@@ -282,6 +288,8 @@ public class DragAndDropClothing : MonoBehaviour {
 
     }
 
+    // If clothing object has a sprite to change to
+    // This method changes it and adds appropriate collider
     private void spriteChange()
     {
         BoxCollider2D newCollider = colliders[1];
@@ -290,6 +298,8 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = pointToSnapToOnSwitch.transform.position;
         transform.SetParent(pointToSnapToOnSwitch.transform);
 
+        // Change the colliders to new offsets and sizes
+        // values are specific for gloves
         colliders[0].offset = new Vector2(-0.4f,0.125f);
         colliders[0].size = new Vector2(1.61f, 1.35f);
 
