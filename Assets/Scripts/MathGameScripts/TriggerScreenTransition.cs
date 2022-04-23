@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class TriggerScreenTransition : MonoBehaviour
 {
-    [SerializeField] private Camera mainCam;
+    [SerializeField] private Camera mainCam; // Kan nog ta bort
     [SerializeField] private int whatCollider;
     [SerializeField] private MathAnswerGeneratorScript mathAnswerGenerator;
     [SerializeField] private AIDestinationSetter pathSetter;
@@ -19,6 +19,7 @@ public class TriggerScreenTransition : MonoBehaviour
 
 
     // Fixa så den sätter rätt location för rätt svar när player springer utanför skärmen
+    // Gör så att den bara ger tillbaka kontrollen efter transition
     // Glöm ej en transition till allt mellan
     // Se till att man inte kan gå utanför i gången till en annan skärm
 
@@ -32,7 +33,7 @@ public class TriggerScreenTransition : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         gameObject.SetActive(false);
         pathSetter.canGetNewPos(true);
-        setNewGoToPosition();
+        //setNewGoToPosition();
         mathAnswerGenerator.AnswerPressed(whatCollider);        
     }
 
@@ -57,8 +58,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 Debug.Log("This should never happen! If you see this report it!!");
                 break;
         }
-        Debug.Log(runTo);
-        Debug.Log(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 10));
+        
         pathSetter.setNewPath(runTo);
     }
 }

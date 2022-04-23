@@ -18,7 +18,8 @@ namespace Pathfinding {
 		public Transform target;
 		IAstarAI ai;
 
-		private bool canClick = true; 
+		private bool canClick = true;
+		[SerializeField] private Camera mainCam;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -46,6 +47,31 @@ namespace Pathfinding {
 		public void canGetNewPos(bool input) {
 			canClick = input;
         }
+
+		public void setNewGoToPosition(int whatCollider) { 
+
+			Vector2 runTo = Vector2.zero;
+
+			switch (whatCollider) {
+				case 1:
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(-10, mainCam.pixelHeight / 2));
+					break;
+				case 2:
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 10));
+					break;
+				case 3:
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth + 10, mainCam.pixelHeight / 2));
+					break;
+				case 4:
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, -10));
+					break;
+				default:
+					Debug.Log("This should never happen! If you see this report it!!");
+					break;
+			}
+
+			setNewPath(runTo);
+		}
 
 		public void setNewPath(Vector2 newPosVector) {
 			target.position = newPosVector;
