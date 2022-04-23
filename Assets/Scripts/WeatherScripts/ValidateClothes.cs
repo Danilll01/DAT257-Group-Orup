@@ -15,6 +15,7 @@ public class ValidateClothes : MonoBehaviour
     // Check if the clothes on the snappoints are valid with the current weather
     public void checkClothing(){
         bool validClothing = true;
+        string message = "";
 
         // If the weather is set, meaning we know what weather it is
         if(weatherSet){
@@ -31,12 +32,14 @@ public class ValidateClothes : MonoBehaviour
                         {
                             script.removeFromSnapPoint();
                             validClothing = false;
+                            message = "Some clothing does not match the weather";
                         }
                     }
                      // If it is not sunny, we need a jacket
                     if (weather != WeatherController.WeatherTypes.Sun && snapPoint.name == "Chest" && snapPoint.transform.childCount < 2)
                     {
                         validClothing = false;
+                        message = "Need a jacket in this weather";
                     }
                 }
 
@@ -50,18 +53,21 @@ public class ValidateClothes : MonoBehaviour
                     if (name == "Chest" || name == "Legs" || name == "Feet")
                     {
                         validClothing = false;
+                        message = "Missing shirt, pants or shoes";
                     }
 
                     // If it is raining, we need a hat and gloves
                     else if (weather == WeatherController.WeatherTypes.Rain && (name == "Head" || name == "Hand"))
                     {
                         validClothing = false;
+                        message = "Missing hat or gloves in the rain";
                     }
 
                     // If it is snowing, we need a hat, gloves and a scarf
                     else if (weather == WeatherController.WeatherTypes.Snow && (name == "Head" || name == "Hand" || name == "Throat"))
                     {
                         validClothing = false;
+                        message = "Missing hat, gloves or scarf in the snow weather";
                     }
 
                 }
@@ -73,7 +79,7 @@ public class ValidateClothes : MonoBehaviour
                 Debug.Log("Valid");
             }
             else{
-                Debug.Log("Invalid");
+                Debug.Log("Invalid: " + message);
             }
         }
         else{
