@@ -19,7 +19,6 @@ namespace Pathfinding {
 		IAstarAI ai;
 
 		private bool canClick = true;
-		[SerializeField] private Camera mainCam;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -54,16 +53,16 @@ namespace Pathfinding {
 
 			switch (whatCollider) {
 				case 1:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(-50, mainCam.pixelHeight / 2));
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(-50, Camera.main.pixelHeight / 2));
 					break;
 				case 2:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 50));
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight + 50));
 					break;
 				case 3:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth + 50, mainCam.pixelHeight / 2));
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth + 50, Camera.main.pixelHeight / 2));
 					break;
 				case 4:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, -50));
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, -50));
 					break;
 				default:
 					Debug.Log("This should never happen! If you see this report it!!");

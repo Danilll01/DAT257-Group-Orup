@@ -8,13 +8,15 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 {
     [SerializeField] private MathQuestionGenerator questionGenerator;
 
+    [SerializeField] private GameObject canvas;
+
     [SerializeField] private TextMeshProUGUI[] answerTxts;
     
     [SerializeField] private Sprite[] apples;
     [SerializeField] private Image[] imgHolders;
 
     [SerializeField] private GameObject[] cardHolders;
-    [SerializeField] private Camera[] cams;
+    [SerializeField] private Camera[] cams;                 // Cams[0] is main cam, the other represents the different answers
     [SerializeField] private Transform playerCharachter;
 
     // [SerializeField] private Transform[] spawnLocations; This can wait for now
@@ -106,7 +108,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 card.SetActive(true);
             }
 
-            // Dissables the card straight over from the pressed answer
+            // Changes active cards and teleports player to new location
             changeActiveCard(answerNumber);
 
             // And randomize a new question
@@ -115,6 +117,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             // Make the selected card red to show that it is wrong and dissable button
             cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
             cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
+            changeCameraView(answerNumber);
         }
     }
 
@@ -142,6 +145,16 @@ public class MathAnswerGeneratorScript : MonoBehaviour
                 break;
         }
 
-        playerCharachter.position = runFromVector;
+        Debug.Log("PLayer Teleported!!!!");
+        Debug.Log(playerCharachter.position);
+        playerCharachter.position = runFromVector; // Sets new position of player
+        Debug.Log(playerCharachter.position);
+    } 
+
+    // Changes what screen is currently active
+    private void changeCameraView(int answerNumber) {
+        cams[answerNumber].enabled = true;
+        cams[0].enabled = false;
+        canvas.SetActive(false);
     } 
 }

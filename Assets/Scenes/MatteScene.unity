@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 107431676}
   - component: {fileID: 107431679}
-  - component: {fileID: 107431678}
   - component: {fileID: 107431677}
   m_Layer: 0
   m_Name: TopWayCam
@@ -141,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &107431676
 Transform:
   m_ObjectHideFlags: 0
@@ -190,14 +189,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &107431678
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107431675}
-  m_Enabled: 1
 --- !u!20 &107431679
 Camera:
   m_ObjectHideFlags: 0
@@ -205,7 +196,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107431675}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1553,7 +1544,6 @@ GameObject:
   m_Component:
   - component: {fileID: 560551942}
   - component: {fileID: 560551945}
-  - component: {fileID: 560551944}
   - component: {fileID: 560551943}
   m_Layer: 0
   m_Name: BottomWayCam
@@ -1561,7 +1551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &560551942
 Transform:
   m_ObjectHideFlags: 0
@@ -1610,14 +1600,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &560551944
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560551941}
-  m_Enabled: 1
 --- !u!20 &560551945
 Camera:
   m_ObjectHideFlags: 0
@@ -1625,7 +1607,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560551941}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -1694,7 +1676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1065178691}
-  mainCam: {fileID: 1100881634}
 --- !u!114 &578196296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,6 +2045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionGenerator: {fileID: 1876462416}
+  canvas: {fileID: 2027823342}
   answerTxts:
   - {fileID: 2020156419}
   - {fileID: 1164762241}
@@ -5366,7 +5348,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1413387255}
   - component: {fileID: 1413387258}
-  - component: {fileID: 1413387257}
   - component: {fileID: 1413387256}
   m_Layer: 0
   m_Name: RightWayCam
@@ -5374,7 +5355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1413387255
 Transform:
   m_ObjectHideFlags: 0
@@ -5423,14 +5404,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1413387257
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413387254}
-  m_Enabled: 1
 --- !u!20 &1413387258
 Camera:
   m_ObjectHideFlags: 0
@@ -5438,7 +5411,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413387254}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -5938,7 +5911,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0060881376, y: -0.45243883}
+  m_Offset: {x: 0.0060881376, y: 0.2500546}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5949,7 +5922,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0146735, y: 1.4319954}
+  m_Size: {x: 2.0146735, y: 0.44850492}
   m_EdgeRadius: 0
 --- !u!1 &1458631207
 GameObject:
@@ -6034,7 +6007,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.0287328, y: 0.019341946}
+  m_Offset: {x: 0.31921434, y: 0.019341946}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6045,7 +6018,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2874317, y: 1.9468343}
+  m_Size: {x: 0.5146904, y: 1.9468343}
   m_EdgeRadius: 0
 --- !u!1 &1488724936
 GameObject:
@@ -6595,7 +6568,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1585659959}
   - component: {fileID: 1585659962}
-  - component: {fileID: 1585659961}
   - component: {fileID: 1585659960}
   m_Layer: 0
   m_Name: LeftWayCam
@@ -6603,7 +6575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1585659959
 Transform:
   m_ObjectHideFlags: 0
@@ -6652,14 +6624,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &1585659961
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585659958}
-  m_Enabled: 1
 --- !u!20 &1585659962
 Camera:
   m_ObjectHideFlags: 0
@@ -6667,7 +6631,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585659958}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -8334,7 +8298,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.59271216, y: -0.012682676}
+  m_Offset: {x: 0.03953147, y: -0.012682676}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8345,7 +8309,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0441785, y: 1.9321828}
+  m_Size: {x: 0.45408392, y: 1.9321828}
   m_EdgeRadius: 0
 --- !u!1 &1948772783
 GameObject:
@@ -8541,7 +8505,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002762258, y: 1.554656}
+  m_Offset: {x: -0.002762258, y: 0.68356466}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8552,7 +8516,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9714531, y: 1.6333761}
+  m_Size: {x: 1.9714531, y: 0.6779852}
   m_EdgeRadius: 0
 --- !u!1 &1981957419
 GameObject:
