@@ -34,6 +34,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 
+        // Set up the array of snapPoints
         snapPoints = new GameObject[snapPointsParent.transform.childCount];
 
         for (int i = 0; i < snapPoints.Length; i++)
@@ -173,6 +174,7 @@ public class DragAndDropClothing : MonoBehaviour {
         
         }
 
+        // Get the snapPoint with the shortest distance from clothing
         shortestSnapPoint = loopThroughSnapPoints(shortestSnapPoint,snapped);
 
         if (shortestSnapPoint != null)
@@ -180,14 +182,21 @@ public class DragAndDropClothing : MonoBehaviour {
             // Check if the snapoint match the clothing type
             if (shortestSnapPoint.name == neededMatch)
             {
+                removeClothingType(shortestSnapPoint, neededMatch);
 
-                removeClothingType(shortestSnapPoint,neededMatch);
-
-                // Add on the new clothing
-                targetPosition = shortestSnapPoint.transform.position;
-                transform.SetParent(shortestSnapPoint.transform);
-                snapped = true;
-                lastPosition = position;
+                // Special case with jacket being put on
+                // If there is no shirt on snapPoint, we are not putting on the jacket
+                if (chosenClothing == clothing.jacket && shortestSnapPoint.transform.childCount <= 0) {  
+                    // Do nothing
+                }
+                else
+                {
+                    // Add on the new clothing
+                    targetPosition = shortestSnapPoint.transform.position;
+                    transform.SetParent(shortestSnapPoint.transform);
+                    snapped = true;
+                    lastPosition = position;
+                }
             }
         }
         
@@ -242,6 +251,11 @@ public class DragAndDropClothing : MonoBehaviour {
 
         }
        
+    }
+
+    private void putOnShirtAndJacketCorrectly(GameObject snapPoint)
+    {
+        
     }
 
     // Adds force to the player ridgidbody to move towards the target point
