@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class DragAndDrop : MonoBehaviour {
 
     private float deltaX, deltaY;
@@ -9,13 +10,14 @@ public class DragAndDrop : MonoBehaviour {
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
     private Vector3 targetPosition;
+
+    private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
 
     [SerializeField] private GameObject[] snapPoints;
 
 
-    public enum weather{snow, sunny,rainy};
-    public weather chosenWeather;
+    public WeatherController.WeatherTypes chosenWeather;
 
     public enum clothing{jacket, pants, hat, shoes};
     public clothing chosenClothing;
@@ -32,6 +34,8 @@ public class DragAndDrop : MonoBehaviour {
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
 
     }
+
+   
  
     // Update is called once per frame
     void Update () {
@@ -66,8 +70,10 @@ public class DragAndDrop : MonoBehaviour {
 
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
-                    snapToPoint(touchPos);
-                    moveAllowed = false;
+                    if (moveAllowed) {
+                        snapToPoint(touchPos);
+                        moveAllowed = false;
+                    }
                     break;
 
                 }
@@ -97,12 +103,23 @@ public class DragAndDrop : MonoBehaviour {
         addForceToRidgidbody();
     }
 
+    // Remove the object from the snapPoint
+    public void removeFromSnapPoint(){
+        transform.SetParent(null);
+        transform.position = lastPosition;
+        targetPosition = originalPos;
+    }
+
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector2 position){
         
         bool snapped = false;
         string neededMatch = "";
+
+        // Start values for shortest snap point
+        GameObject shortestSnapPoint = snapPoints[0];
+        float shortestSnapPointDistance = float.MaxValue;
 
         // Get what body part this clothing goes on
         switch (chosenClothing){
@@ -126,15 +143,27 @@ public class DragAndDrop : MonoBehaviour {
 
         // Check for each point if the object is close to it
         foreach(GameObject snapPoint in snapPoints){
-            Vector3 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint and it is the correct body part, set the objects position to that point
+            Vector2 snapPos = snapPoint.transform.position;
+            // If the object is close to the snapPoint is not already snapped
             if(GetComponent<Collider2D>() == Physics2D.OverlapCircle(snapPos, 1) && !snapped){
-                if(snapPoint.name == neededMatch){
-                    targetPosition = snapPos;
-                    transform.SetParent(snapPoint.transform);
-                    snapped = true;
+                float distToSnapPos = Vector2.Distance(transform.position,snapPos);
+            
+                // If we found a snappoint with smaller distance update shortest snap point
+                if (distToSnapPos < shortestSnapPointDistance)
+                {
+                    shortestSnapPoint = snapPoint;
+                    shortestSnapPointDistance = distToSnapPos;
                 }
+                
             }
+        }
+
+        // Check if the snapoint match the clothing type
+        if(shortestSnapPoint.name == neededMatch){
+                    targetPosition = shortestSnapPoint.transform.position;
+                    transform.SetParent(shortestSnapPoint.transform);
+                    snapped = true;
+                    lastPosition = position;
         }
 
         // If we did not snap to anything, return the object to the original position
