@@ -33,28 +33,42 @@ public class ValidateClothes : MonoBehaviour
                             validClothing = false;
                         }
                     }
+                     // If it is not sunny, we need a jacket
+                    if (weather != WeatherController.WeatherTypes.Sun && snapPoint.name == "Chest" && snapPoint.transform.childCount < 2)
+                    {
+                        validClothing = false;
+                    }
                 }
 
-                // These snapPoints needs at least one clothing to be valid
+                // Check what snapPoints need clothing depending on weather
                 else
                 {
-                    switch (snapPoint.name)
+                    
+                    string name = snapPoint.name;
+
+                    // These points always need one clothing item on them
+                    if (name == "Chest" || name == "Legs" || name == "Feet")
                     {
-                        case "Chest":
-                            validClothing = false;
-                            break;
-                        case "Legs":
-                            validClothing = false;
-                            break;
-                        case "Feet":
-                            validClothing = false;
-                            break;
+                        validClothing = false;
                     }
+
+                    // If it is raining, we need a hat and gloves
+                    else if (weather == WeatherController.WeatherTypes.Rain && (name == "Head" || name == "Hand"))
+                    {
+                        validClothing = false;
+                    }
+
+                    // If it is snowing, we need a hat, gloves and a scarf
+                    else if (weather == WeatherController.WeatherTypes.Snow && (name == "Head" || name == "Hand" || name == "Throat"))
+                    {
+                        validClothing = false;
+                    }
+
                 }
 
             }
 
-            // If one clothins was not valid
+            // If one clothing was not valid
             if(validClothing){
                 Debug.Log("Valid");
             }

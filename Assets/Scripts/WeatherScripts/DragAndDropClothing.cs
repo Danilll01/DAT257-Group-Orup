@@ -22,7 +22,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     public WeatherController.WeatherTypes chosenWeather;
 
-    public enum clothing{jacket, shirt, pants, hat, shoes, scarf};
+    public enum clothing{jacket, shirt, pants, hat, shoes, scarf, gloves};
     public clothing chosenClothing;
 
 
@@ -167,6 +167,9 @@ public class DragAndDropClothing : MonoBehaviour {
                 break;
             case clothing.shoes:
                 neededMatch = "Feet";
+                break;
+            case clothing.gloves:
+                neededMatch = "Hand";
                 break;
             default:
                 Debug.Log("Not a valid clothing");
