@@ -14,19 +14,28 @@ public class DragAndDrop : MonoBehaviour {
     private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
 
-    [SerializeField] private GameObject[] snapPoints;
+    [SerializeField] private GameObject snapPointsParent;
+    private GameObject[] snapPoints;
 
 
     public WeatherController.WeatherTypes chosenWeather;
 
-    public enum clothing{jacket, pants, hat, shoes};
+    public enum clothing{jacket,shirt, pants, hat, shoes};
     public clothing chosenClothing;
 
 
-    // Setup the original position
+    // Setup the original position and snapPoints
     void Start(){
         originalPos = transform.position;
         targetPosition = originalPos;
+
+        snapPoints = new GameObject[snapPointsParent.transform.childCount];
+
+        for (int i = 0; i < snapPoints.Length; i++)
+        {
+            snapPoints[i] = snapPointsParent.transform.GetChild(i).gameObject;
+        }
+
 
         ridgidBody = GetComponent<Rigidbody2D>();
 
