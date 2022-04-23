@@ -54,16 +54,16 @@ namespace Pathfinding {
 
 			switch (whatCollider) {
 				case 1:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(-10, mainCam.pixelHeight / 2));
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(-50, mainCam.pixelHeight / 2));
 					break;
 				case 2:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 10));
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 50));
 					break;
 				case 3:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth + 10, mainCam.pixelHeight / 2));
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth + 50, mainCam.pixelHeight / 2));
 					break;
 				case 4:
-					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, -10));
+					runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, -50));
 					break;
 				default:
 					Debug.Log("This should never happen! If you see this report it!!");
@@ -73,7 +73,7 @@ namespace Pathfinding {
 			setNewPath(runTo);
 		}
 
-		public void setNewPath(Vector2 newPosVector) {
+		private void setNewPath(Vector2 newPosVector) {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
 		}

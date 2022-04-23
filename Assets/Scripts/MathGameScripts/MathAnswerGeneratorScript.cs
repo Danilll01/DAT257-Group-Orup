@@ -99,9 +99,10 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     // Method to call when a answer is pressed
     public void AnswerPressed(int answerNumber) {
         if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
-            // If so, make all card holders active and blue again
+            // If so, make all card holders active, blue and interactable again
             foreach (GameObject card in cardHolders) {
                 card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+                card.GetComponent<Button>().interactable = true;
                 card.SetActive(true);
             }
 
@@ -111,8 +112,9 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             // And randomize a new question
             questionGenerator.randomizeProblem();
         } else {
-            // Make the selected card red to show that it is wrong
+            // Make the selected card red to show that it is wrong and dissable button
             cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
+            cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
         }
     }
 

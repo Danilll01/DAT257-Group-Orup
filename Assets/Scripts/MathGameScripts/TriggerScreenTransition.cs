@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class TriggerScreenTransition : MonoBehaviour
 {
-    [SerializeField] private Camera mainCam; // Kan nog ta bort
+
     [SerializeField] private int whatCollider;
     [SerializeField] private MathAnswerGeneratorScript mathAnswerGenerator;
     [SerializeField] private AIDestinationSetter pathSetter;
@@ -32,33 +32,9 @@ public class TriggerScreenTransition : MonoBehaviour
     // This will be called when the players enter the collider
     void OnTriggerEnter2D(Collider2D col) {
         gameObject.SetActive(false);
-        pathSetter.canGetNewPos(true);
-        //setNewGoToPosition();
+        pathSetter.canGetNewPos(true); // This maybe will change 
         mathAnswerGenerator.AnswerPressed(whatCollider);        
     }
 
-    private void setNewGoToPosition() {
-
-        Vector2 runTo = Vector2.zero;
-
-        switch (whatCollider) {
-            case 1:
-                runTo = mainCam.ScreenToWorldPoint(new Vector3(-10, mainCam.pixelHeight / 2));
-                break;
-            case 2:
-                runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, mainCam.pixelHeight + 10));
-                break;
-            case 3:
-                runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth + 10, mainCam.pixelHeight / 2));
-                break;
-            case 4:
-                runTo = mainCam.ScreenToWorldPoint(new Vector3(mainCam.pixelWidth / 2, -10));
-                break;
-            default:
-                Debug.Log("This should never happen! If you see this report it!!");
-                break;
-        }
-        
-        pathSetter.setNewPath(runTo);
-    }
+  
 }
