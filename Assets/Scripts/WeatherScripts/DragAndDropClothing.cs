@@ -22,7 +22,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     public WeatherController.WeatherTypes chosenWeather;
 
-    public enum clothing{jacket,shirt, pants, hat, shoes};
+    public enum clothing{jacket, shirt, pants, hat, shoes};
     public clothing chosenClothing;
 
 
@@ -128,6 +128,7 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
     }
 
+    // Used for drawing radius from snapPoints
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -146,7 +147,7 @@ public class DragAndDropClothing : MonoBehaviour {
         
 
         // Start values for shortest snap point
-        GameObject shortestSnapPoint = snapPoints[0];
+        GameObject shortestSnapPoint = null;
         float shortestSnapPointDistance = float.MaxValue;
 
         // Get what body part this clothing goes on
@@ -186,27 +187,32 @@ public class DragAndDropClothing : MonoBehaviour {
             }
         }
 
-        // Check if the snapoint match the clothing type
-        if(shortestSnapPoint.name == neededMatch){
-
-            // If the snapPoint has a clothing of same type, remove it
-            DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
-            foreach (DragAndDropClothing script in scripts)
+        if (shortestSnapPoint != null)
+        {
+            // Check if the snapoint match the clothing type
+            if (shortestSnapPoint.name == neededMatch)
             {
-                if (script.chosenClothing == chosenClothing)
+
+                // If the snapPoint has a clothing of same type, remove it
+                DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
+                foreach (DragAndDropClothing script in scripts)
                 {
-                    script.removeFromSnapPoint();
+                    if (script.chosenClothing == chosenClothing)
+                    {
+                        script.removeFromSnapPoint();
+                    }
+
                 }
 
-            }
-  
-            // Add on the new clothing
-            targetPosition = shortestSnapPoint.transform.position;
-            transform.SetParent(shortestSnapPoint.transform);
-            snapped = true;
-            lastPosition = position;
+                // Add on the new clothing
+                targetPosition = shortestSnapPoint.transform.position;
+                transform.SetParent(shortestSnapPoint.transform);
+                snapped = true;
+                lastPosition = position;
 
+            }
         }
+        
 
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
