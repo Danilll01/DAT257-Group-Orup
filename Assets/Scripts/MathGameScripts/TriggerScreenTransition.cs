@@ -16,7 +16,8 @@ public class TriggerScreenTransition : MonoBehaviour
     [SerializeField] private Transform playerCharachter;
     [SerializeField] private Transform[] afterTPPoints;  // [0] is same side, [1] is opposite
 
-    [SerializeField] private CanvasGroup transitionScreen;
+    [SerializeField] private ScreenTransition transitionScreen;
+    
 
 
     // Start is called before the first frame update
@@ -39,7 +40,7 @@ public class TriggerScreenTransition : MonoBehaviour
         if (!mathAnswerGenerator.IsCorrectAnswer(whatCollider)) {
             // Here Screen transition goes!!!!!!!!!!!!!!
 
-            makeScreenTransition(
+            transitionScreen.Transition(
                 () => {
                     pathCam.enabled = true;
                     mainCam.enabled = false;
@@ -48,8 +49,8 @@ public class TriggerScreenTransition : MonoBehaviour
             
         } else {
             // Here Screen transition goes!!!!!!!!!!
-     
-            makeScreenTransition(
+
+            transitionScreen.Transition(
                 () => {
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
@@ -64,7 +65,7 @@ public class TriggerScreenTransition : MonoBehaviour
     public void SwitchBackToMainScreen() {
         // Here Screen transition goes!!!!!!!!!!!!
 
-        makeScreenTransition(
+        transitionScreen.Transition(
             () => {
                 mainCam.enabled = true;
                 pathCam.enabled = false;
@@ -75,9 +76,44 @@ public class TriggerScreenTransition : MonoBehaviour
         );
     }
 
-    private void makeScreenTransition(Action inBetweenTransition) {
-        inBetweenTransition();
-    }
+    //private IEnumerator makeScreenTransition(Action inBetweenTransition) {
+    //    float timer = 0;
+    //    float maxTransition = transitionTime / 2;
+
+    //    while (timer <= maxTransition) {
+    //        transitionScreen.alpha = Mathf.Lerp(0, 1, timer / maxTransition);
+    //        timer += Time.deltaTime;
+    //        yield return null;
+    //    }
+
+    //    Debug.Log("NU gör den det!!!!!");
+    //    inBetweenTransition();
+    //    timer = 0;
+
+    //    while (timer <= maxTransition) {
+    //        transitionScreen.alpha = Mathf.Lerp(1, 0, timer / maxTransition);
+    //        timer += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //}
+
+
+    //private IEnumerator Fade(bool fadeOut) {
+
+    //    transitionScreen.alpha = Mathf.Lerp(0, 1, );
+
+    //    float timer = transitionTime / 2;
+
+    //    while
+
+    //    Color c = renderer.material.color;
+    //    for (float alpha = 1f; alpha >= 0; alpha -= 0.1f) {
+    //        c.a = alpha;
+    //        renderer.material.color = c;
+    //        yield return null;
+    //    }
+    //}
+
 
     // Activates this collider for player to collide on
     public void activateCollider() {

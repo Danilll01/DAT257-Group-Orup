@@ -4899,6 +4899,7 @@ GameObject:
   - component: {fileID: 1134120368}
   - component: {fileID: 1134120367}
   - component: {fileID: 1134120366}
+  - component: {fileID: 1134120369}
   m_Layer: 5
   m_Name: BlackTransition
   m_TagString: Untagged
@@ -4976,6 +4977,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134120364}
   m_CullTransparentMesh: 1
+--- !u!114 &1134120369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134120364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3e2a532424064439b65a0ca0ae9efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionTime: 2
 --- !u!1 &1146694585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6694,7 +6708,7 @@ MonoBehaviour:
   afterTPPoints:
   - {fileID: 1769994382}
   - {fileID: 1099539563}
-  transitionScreen: {fileID: 1134120366}
+  transitionScreen: {fileID: 1134120369}
 --- !u!50 &1456788975
 Rigidbody2D:
   serializedVersion: 4
@@ -6797,7 +6811,7 @@ MonoBehaviour:
   afterTPPoints:
   - {fileID: 647202712}
   - {fileID: 600810169}
-  transitionScreen: {fileID: 1134120366}
+  transitionScreen: {fileID: 1134120369}
 --- !u!50 &1458631210
 Rigidbody2D:
   serializedVersion: 4
@@ -9284,7 +9298,7 @@ MonoBehaviour:
   afterTPPoints:
   - {fileID: 600810169}
   - {fileID: 647202712}
-  transitionScreen: {fileID: 1134120366}
+  transitionScreen: {fileID: 1134120369}
 --- !u!50 &1932401434
 Rigidbody2D:
   serializedVersion: 4
@@ -9533,7 +9547,7 @@ MonoBehaviour:
   afterTPPoints:
   - {fileID: 1099539563}
   - {fileID: 1769994382}
-  transitionScreen: {fileID: 1134120366}
+  transitionScreen: {fileID: 1134120369}
 --- !u!50 &1979410603
 Rigidbody2D:
   serializedVersion: 4
