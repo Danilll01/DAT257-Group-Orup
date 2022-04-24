@@ -27,9 +27,6 @@ public class TriggerScreenTransition : MonoBehaviour
     void Update() {}
 
 
-    // Se till att man inte kan gå utanför i gången till en annan skärm
-
-
     // Changes what screen is currently active
     private void changeCameraView() {
 
@@ -40,6 +37,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 () => {
                     pathCam.enabled = true;
                     mainCam.enabled = false;
+                    mathAnswerGenerator.ActivateCanvas(false);
                 }
             );
             
@@ -47,10 +45,12 @@ public class TriggerScreenTransition : MonoBehaviour
             // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
+                    Debug.Log("Skickar");
+                    mathAnswerGenerator.AnswerPressed(whatCollider);
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
                     pathSetter.canGetNewPos(true);
-                    mathAnswerGenerator.AnswerPressed(whatCollider);
+                    
                 }
             );
         }
@@ -66,7 +66,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 pathCam.enabled = false;
                 pathSetter.setNewPath(afterTPPoints[0].position);
                 pathSetter.canGetNewPos(true);
-                mathAnswerGenerator.ActivateCanvas();
+                mathAnswerGenerator.ActivateCanvas(true);
             }
         );
     }

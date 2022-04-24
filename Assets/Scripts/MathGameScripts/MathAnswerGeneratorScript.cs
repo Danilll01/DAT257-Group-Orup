@@ -96,6 +96,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
     // Method to call when a answer is pressed
     public void AnswerPressed(int answerNumber) {
+        Debug.Log("Numer: " + answerNumber);
         if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
             // If so, make all card holders active, blue and interactable again
             foreach (GameObject card in cardHolders) {
@@ -124,8 +125,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     } 
 
     // Activates the canvas object
-    public void ActivateCanvas() {
-        canvas.SetActive(true);
+    public void ActivateCanvas(bool active) {
+        canvas.SetActive(active);
     } 
 
     // Returns if its the right path 
