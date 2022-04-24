@@ -1712,6 +1712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1065178691}
+  minMaxXpos: {x: -5.8, y: 5.8}
+  minMaxYpos: {x: -4, y: 4}
 --- !u!114 &578196296
 MonoBehaviour:
   m_ObjectHideFlags: 0

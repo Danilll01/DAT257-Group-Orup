@@ -19,6 +19,8 @@ namespace Pathfinding {
 		IAstarAI ai;
 
 		private bool canClick = true;
+		[SerializeField] private Vector2 minMaxXpos;
+		[SerializeField] private Vector2 minMaxYpos;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -39,6 +41,10 @@ namespace Pathfinding {
 
 			if (Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+				target.position = new Vector2(Mathf.Clamp(target.position.x, minMaxXpos.x, minMaxXpos.y)
+											 ,Mathf.Clamp(target.position.y, minMaxYpos.x, minMaxYpos.y));
+
 				if (target != null && ai != null) ai.destination = target.position;
 			}
 		}
