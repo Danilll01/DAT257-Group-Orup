@@ -121,7 +121,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 // If the touch ended(player let go off the screen), set moveAllowed to false
                 case TouchPhase.Ended:
                     if (moveAllowed) {
-                        snapToPoint(touchPos);
+                        snapToPoint(transform.position);
                         moveAllowed = false;
                         spriteRen.sortingOrder--;
                     }
@@ -164,7 +164,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 transform.SetParent(null);
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
                 if (Input.GetMouseButtonUp(0)){
-                    snapToPoint(mousePosition);
+                    snapToPoint(transform.position);
                     mouseMoveAllowed = false;
                     spriteRen.sortingOrder--;
                 }
