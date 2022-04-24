@@ -37,7 +37,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 () => {
                     pathCam.enabled = true;
                     mainCam.enabled = false;
-                    mathAnswerGenerator.ActivateCanvas(false);
+                    mathAnswerGenerator.AnswerPressedWrong(whatCollider);
                 }
             );
             
@@ -46,7 +46,7 @@ public class TriggerScreenTransition : MonoBehaviour
             transitionScreen.Transition(
                 () => {
                     Debug.Log("Skickar");
-                    mathAnswerGenerator.AnswerPressed(whatCollider);
+                    mathAnswerGenerator.AnswerPressedRight(whatCollider);
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
                     pathSetter.canGetNewPos(true);
@@ -66,7 +66,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 pathCam.enabled = false;
                 pathSetter.setNewPath(afterTPPoints[0].position);
                 pathSetter.canGetNewPos(true);
-                mathAnswerGenerator.ActivateCanvas(true);
+                mathAnswerGenerator.ActivateCanvas();
             }
         );
     }

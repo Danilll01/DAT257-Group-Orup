@@ -95,38 +95,39 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     }
 
     // Method to call when a answer is pressed
-    public void AnswerPressed(int answerNumber) {
-        Debug.Log("Numer: " + answerNumber);
-        if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
-            // If so, make all card holders active, blue and interactable again
-            foreach (GameObject card in cardHolders) {
-                card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
-                card.GetComponent<Button>().interactable = true;
-                card.SetActive(true);
-            }
-
-            // Changes active cards and teleports player to new location
-            changeActiveCard(answerNumber);
-
-            // And randomize a new question
-            questionGenerator.randomizeProblem();
-        } else {
-            // Make the selected card red to show that it is wrong and dissable button
-            cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
-            cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
-            canvas.SetActive(false);
+    public void AnswerPressedRight(int answerNumber) {
+       
+        // Make all card holders active, blue and interactable again
+        foreach (GameObject card in cardHolders) {
+            card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+            card.GetComponent<Button>().interactable = true;
+            card.SetActive(true);
         }
+
+        // Changes active cards and teleports player to new location
+        changeActiveCard(answerNumber);
+
+        // And randomize a new question
+        questionGenerator.randomizeProblem();
+        
     }
 
     // Changes what card is active
     private void changeActiveCard(int answerNumber) {
         int disableNumber = (answerNumber + 1) % cardHolders.Length;
         cardHolders[disableNumber].SetActive(false);
-    } 
+    }
+
+    public void AnswerPressedWrong(int answerNumber) {
+        // Make the selected card red to show that it is wrong and dissable button
+        cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f / 255f, 0);
+        cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
+        canvas.SetActive(false);
+    }
 
     // Activates the canvas object
-    public void ActivateCanvas(bool active) {
-        canvas.SetActive(active);
+    public void ActivateCanvas() {
+        canvas.SetActive(true);
     } 
 
     // Returns if its the right path 
