@@ -38,22 +38,25 @@ public class ScreenTransition : MonoBehaviour
 
         transitionScreen.blocksRaycasts = true;
 
+        // Fade in black screen
         while (timer <= maxTransition) {
             transitionScreen.alpha = Mathf.Lerp(0, 1, timer / maxTransition);
             timer += Time.deltaTime;
             yield return null;
         }
 
+        // Wait on black screen
         timer = 0;
         while (timer <= waitTime) {
             timer += Time.deltaTime;
             yield return null;
         }
 
-        // This is the given method implemented with lambda
+        // This is the given method implemented with lambda that runs here
         inBetweenTransition();
         timer = 0;
 
+        // Fade back to game screen
         while (timer <= maxTransition) {
             transitionScreen.alpha = Mathf.Lerp(1, 0, timer / maxTransition);
             timer += Time.deltaTime;
