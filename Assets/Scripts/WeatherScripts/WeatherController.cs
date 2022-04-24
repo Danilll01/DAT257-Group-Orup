@@ -28,7 +28,7 @@ public class WeatherController : MonoBehaviour
 
     // A type for different weather types
     // "Any" is used for clothing that work in any weather
-    public enum WeatherTypes {Sun, Cloud, Rain, Snow,Any};
+    public enum WeatherTypes {Sun, Cloud, Rain, Snow, Any};
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
@@ -72,7 +72,7 @@ public class WeatherController : MonoBehaviour
         // Generates a random weather type
         System.Random random = new System.Random();
         Array values = Enum.GetValues(typeof(WeatherTypes));
-        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length));
+        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length - 1));
 
         // Sets weather to the randomly generated weather
         SetWeather(randomWeather, WindSpeed.None);

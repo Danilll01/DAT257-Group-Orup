@@ -87,6 +87,7 @@ public class DragAndDropClothing : MonoBehaviour {
                             deltaX = touchPos.x - transform.position.x;
                             deltaY = touchPos.y - transform.position.y;
                             spriteRen.sortingOrder++;
+                            changeBackSprite();
                             moveAllowed = true;
                         }
 
@@ -136,6 +137,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 if (Input.GetMouseButtonDown(0) && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
                 {
                     mouseMoveAllowed = true;
+                    changeBackSprite();
                     spriteRen.sortingOrder++;
                 }
 
@@ -269,23 +271,28 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
-            spriteRen.sprite = originalSprite;
             transform.SetParent(originParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
 
-            // We also put back the colliders how they originally were
-            colliders[0].offset = originalColliderOffset;
-            colliders[0].size = originalColliderSize;
-
-            // If we had a second collider, make it small so player cant interact with it
-            if (colliders.Length > 1)
-            {
-                colliders[1].offset = new Vector2(0,0);
-                colliders[1].size = new Vector2(0, 0);
-            }
+            changeBackSprite();
         }
 
+    }
+
+    private void changeBackSprite()
+    {
+        spriteRen.sprite = originalSprite;
+        // We also put back the colliders how they originally were
+        colliders[0].offset = originalColliderOffset;
+        colliders[0].size = originalColliderSize;
+
+        // If we had a second collider, make it small so player cant interact with it
+        if (colliders.Length > 1)
+        {
+            colliders[1].offset = new Vector2(0, 0);
+            colliders[1].size = new Vector2(0, 0);
+        }
     }
 
     // If clothing object has a sprite to change to
