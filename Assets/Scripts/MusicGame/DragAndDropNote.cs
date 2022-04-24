@@ -14,7 +14,8 @@ public class DragAndDropNote : MonoBehaviour
     // Temporary audio source for playing the note sound
     private AudioSource tempAudioSource;
 
-    [SerializeField] private GameObject[] snapPoints;
+    [SerializeField] private GameObject snapPointsParent;
+    private GameObject[] snapPoints;
 
     // All instruments that can be played
     private enum Instrument { Piano, Ukulele, Trombone };
@@ -27,6 +28,17 @@ public class DragAndDropNote : MonoBehaviour
         originalPos = transform.position;
         targetPosition = originalPos;
 
+        // Initialize array with snap points
+        int nrSnapPoints = snapPointsParent.transform.childCount;
+        snapPoints = new GameObject[nrSnapPoints];
+        
+        // Add all snap points to array
+        for (int i = 0; i < nrSnapPoints; i++)
+        {
+            GameObject child = snapPointsParent.transform.GetChild(i).gameObject;
+            snapPoints[i] = child;
+        }
+        
         ridgidBody = GetComponent<Rigidbody2D>();
 
         // Temporary audio source

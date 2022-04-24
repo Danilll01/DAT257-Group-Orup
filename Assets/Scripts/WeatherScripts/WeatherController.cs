@@ -18,13 +18,17 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private GameObject rainyObject;
     [SerializeField] private GameObject snowyObject;
 
-    public Text currentWeatherText;
-	public Text currentTemperatureText;
+    [SerializeField] private Text currentWeatherText;
 
-    public WeatherData weatherData;
+	[SerializeField] private Text currentTemperatureText;
+
+    [SerializeField] private WeatherData weatherData;
+
+    [SerializeField] private ValidateClothes validateClothes;
 
     // A type for different weather types
-    private enum WeatherTypes {Sun, Cloud, Rain, Snow};
+    // "Any" is used for clothing that work in any weather
+    public enum WeatherTypes {Sun, Cloud, Rain, Snow, Any};
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
@@ -34,12 +38,7 @@ public class WeatherController : MonoBehaviour
     {
         // Hide all weather objects when starting the game
         HideAllWeather();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnTodayClick ()
@@ -52,7 +51,6 @@ public class WeatherController : MonoBehaviour
         float currentTemp = weatherData.GetTemp(false);
 
         CheckWeather(currentWeather,currentTemp);
-        Debug.Log("Todays weather");
         
     }
 
@@ -64,7 +62,6 @@ public class WeatherController : MonoBehaviour
         float tomorrowTemp = weatherData.GetTemp(true);
       
         CheckWeather(tomorrowWeather,tomorrowTemp);
-        Debug.Log("Tomorrows weather");
         
     }
 
@@ -75,16 +72,17 @@ public class WeatherController : MonoBehaviour
         // Generates a random weather type
         System.Random random = new System.Random();
         Array values = Enum.GetValues(typeof(WeatherTypes));
-        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length));
+        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length - 1));
 
         // Sets weather to the randomly generated weather
         SetWeather(randomWeather, WindSpeed.None);
-        Debug.Log("Random weather");
+
     }
 
 
     // Sets the weather depending on what we got from API
     private void CheckWeather(string weather, float temp){
+
 
         if(weather == "error" || temp == -1f){
             OnRandomClick();
@@ -111,6 +109,7 @@ public class WeatherController : MonoBehaviour
 
             currentWeatherText.text = "WeatherAPI: " + weather;
             currentTemperatureText.text = "TemperatureAPI: " + temp;
+            
         }
         
     }
@@ -128,27 +127,25 @@ public class WeatherController : MonoBehaviour
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 25°";
-                Debug.Log("Sunny");
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 15°";
-                Debug.Log("Cloudy");
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 7°";
-                Debug.Log("Rainy");
                 break;
             case WeatherTypes.Snow:
                 snowyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: -5°";
-                Debug.Log("Snowy");
                 break;
             default:
                 Debug.Log("No work");
                 break;
         }
+
+        validateClothes.setWeather(weather);
     }
 
     // Hides all weather objects

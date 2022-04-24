@@ -7,7 +7,7 @@ using TMPro;
 // GPSLocation can fetch and display location data of a hand held devide. The device must have enabled location service.
 // If access is enabled by user and connection is succesful, it will update the text fields with the latest fetched location data.
 // Latitude and longitude values are stored in the attributes latitudeValue and longitudeValue. 
-// OBS! M�ste l�gga till Location Usage Description i Player Settings
+// OBS! Måste lägga till Location Usage Description i Player Settings
 
 public class GPSLocation : MonoBehaviour
 {
@@ -74,7 +74,7 @@ public class GPSLocation : MonoBehaviour
         // Check if user has enabled location service for this application
         if (!Input.location.isEnabledByUser)
         {
-            GPSStatus.text = "Applikationen har ej �tkomst till platsdata";
+            GPSStatus.text = "Applikationen har ej åtkomst till platsdata";
             yield break;
         }
 
@@ -92,7 +92,7 @@ public class GPSLocation : MonoBehaviour
         // The service did not initialize within 20 seconds, break
         if (maxWait < 1)
         {
-            GPSStatus.text = "Service connection tog f�r l�ng tid";
+            GPSStatus.text = "Service connection tog för lång tid";
             yield break;
         }
 
@@ -105,7 +105,7 @@ public class GPSLocation : MonoBehaviour
         } else
         {
             // Access granted
-            GPSStatus.text = "S�ker plats...";
+            GPSStatus.text = "Söker plats...";
 
             // Continiously collect location data
             InvokeRepeating("UpdateGPSData", 0.5f, 1f); 
@@ -121,7 +121,7 @@ public class GPSLocation : MonoBehaviour
         if (Input.location.status == LocationServiceStatus.Running)
         {
             // Access granted to GPS values and it has been initialized
-            GPSStatus.text = "Visar v�der f�r platsen";
+            GPSStatus.text = "Visar väder för platsen";
 
             // Get values from service 
             latitudeValue = Input.location.lastData.latitude;
