@@ -50,6 +50,7 @@ public class TriggerScreenTransition : MonoBehaviour
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
                     pathSetter.canGetNewPos(true);
+                    mathAnswerGenerator.AnswerPressed(whatCollider);
                 }
             );
         }
@@ -80,7 +81,7 @@ public class TriggerScreenTransition : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         gameObject.SetActive(false);
         changeCameraView();
-        mathAnswerGenerator.AnswerPressed(whatCollider);
+        
     }
 
 
