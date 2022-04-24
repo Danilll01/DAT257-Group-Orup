@@ -12,7 +12,7 @@ public class DragAndDropNote : MonoBehaviour
     private Rigidbody2D ridgidBody;
 
     // Audio source for playing the note sound
-    private AudioSource tempAudioSource;
+    private AudioSource audioSource;
 
     // Which parent to look for snap points in
     [SerializeField] private GameObject snapPointsParent;
@@ -40,7 +40,7 @@ public class DragAndDropNote : MonoBehaviour
         ridgidBody = GetComponent<Rigidbody2D>();
 
         // Gets objects audio source
-        tempAudioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         // Dissables collision between note objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Notes needs to be on layer 6
@@ -160,7 +160,7 @@ public class DragAndDropNote : MonoBehaviour
             SetCorrectNote(shortestSnapPoint);
 
             // Temporarily play note E3
-            tempAudioSource.Play();
+            audioSource.Play();
         }
 
 
@@ -209,7 +209,7 @@ public class DragAndDropNote : MonoBehaviour
         AudioClip audioClip = GetAudioClip(snapPointNote);
 
         // If a clip is found update audio source with new clip
-        if (audioClip != null) tempAudioSource.clip = audioClip;
+        if (audioClip != null) audioSource.clip = audioClip;
     }
 
     // Gets correct note based on which instrument the object is
