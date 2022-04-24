@@ -23,6 +23,7 @@ public class ScreenTransition : MonoBehaviour
     // Update is called once per frame
     void Update() {}
 
+    // Activates the screen transition
     public void Transition(Action inBetweenTransition) {
         if (!isActive) {
             isActive = true;
@@ -30,9 +31,12 @@ public class ScreenTransition : MonoBehaviour
         }
     }
 
+    // Runs the transition and runs the given method when the screen is black
     private IEnumerator makeScreenTransition(Action inBetweenTransition) {
         float timer = 0;
         float maxTransition = fadeTime / 2;
+
+        transitionScreen.blocksRaycasts = true;
 
         while (timer <= maxTransition) {
             transitionScreen.alpha = Mathf.Lerp(0, 1, timer / maxTransition);
@@ -46,6 +50,7 @@ public class ScreenTransition : MonoBehaviour
             yield return null;
         }
 
+        // This is the given method implemented with lambda
         inBetweenTransition();
         timer = 0;
 
@@ -54,6 +59,8 @@ public class ScreenTransition : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+
+        transitionScreen.blocksRaycasts = false;
 
         isActive = false;
     }

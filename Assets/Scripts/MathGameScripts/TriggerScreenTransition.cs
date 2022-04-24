@@ -27,9 +27,6 @@ public class TriggerScreenTransition : MonoBehaviour
     void Update() {}
 
 
-    
-
-    // Glöm ej en transition till allt mellan
     // Se till att man inte kan gå utanför i gången till en annan skärm
 
 
@@ -38,8 +35,7 @@ public class TriggerScreenTransition : MonoBehaviour
 
         // If it is wrong path, switch screen
         if (!mathAnswerGenerator.IsCorrectAnswer(whatCollider)) {
-            // Here Screen transition goes!!!!!!!!!!!!!!
-
+            // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
                     pathCam.enabled = true;
@@ -48,8 +44,7 @@ public class TriggerScreenTransition : MonoBehaviour
             );
             
         } else {
-            // Here Screen transition goes!!!!!!!!!!
-
+            // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
                     pathSetter.setNewPath(afterTPPoints[1].position);
@@ -63,8 +58,7 @@ public class TriggerScreenTransition : MonoBehaviour
 
     // Switch to main screen and setup player agent and canvas (Called from other script)
     public void SwitchBackToMainScreen() {
-        // Here Screen transition goes!!!!!!!!!!!!
-
+        // Call to run transition with given method
         transitionScreen.Transition(
             () => {
                 mainCam.enabled = true;
@@ -75,44 +69,6 @@ public class TriggerScreenTransition : MonoBehaviour
             }
         );
     }
-
-    //private IEnumerator makeScreenTransition(Action inBetweenTransition) {
-    //    float timer = 0;
-    //    float maxTransition = transitionTime / 2;
-
-    //    while (timer <= maxTransition) {
-    //        transitionScreen.alpha = Mathf.Lerp(0, 1, timer / maxTransition);
-    //        timer += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    Debug.Log("NU gör den det!!!!!");
-    //    inBetweenTransition();
-    //    timer = 0;
-
-    //    while (timer <= maxTransition) {
-    //        transitionScreen.alpha = Mathf.Lerp(1, 0, timer / maxTransition);
-    //        timer += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
-
-
-    //private IEnumerator Fade(bool fadeOut) {
-
-    //    transitionScreen.alpha = Mathf.Lerp(0, 1, );
-
-    //    float timer = transitionTime / 2;
-
-    //    while
-
-    //    Color c = renderer.material.color;
-    //    for (float alpha = 1f; alpha >= 0; alpha -= 0.1f) {
-    //        c.a = alpha;
-    //        renderer.material.color = c;
-    //        yield return null;
-    //    }
-    //}
 
 
     // Activates this collider for player to collide on
