@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 public class TriggerScreenTransition : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TriggerScreenTransition : MonoBehaviour
     [SerializeField] private Camera pathCam;
     [SerializeField] private Transform playerCharachter;
     [SerializeField] private Transform[] afterTPPoints;  // [0] is same side, [1] is opposite
+
+    [SerializeField] private CanvasGroup transitionScreen;
 
 
     // Start is called before the first frame update
@@ -35,13 +38,24 @@ public class TriggerScreenTransition : MonoBehaviour
         // If it is wrong path, switch screen
         if (!mathAnswerGenerator.IsCorrectAnswer(whatCollider)) {
             // Here Screen transition goes!!!!!!!!!!!!!!
-            pathCam.enabled = true;
-            mainCam.enabled = false;
+
+            makeScreenTransition(
+                () => {
+                    pathCam.enabled = true;
+                    mainCam.enabled = false;
+                }
+            );
+            
         } else {
             // Here Screen transition goes!!!!!!!!!!
-            pathSetter.setNewPath(afterTPPoints[1].position);
-            teleportPlayer();
-            pathSetter.canGetNewPos(true);
+     
+            makeScreenTransition(
+                () => {
+                    pathSetter.setNewPath(afterTPPoints[1].position);
+                    teleportPlayer();
+                    pathSetter.canGetNewPos(true);
+                }
+            );
         }
         
     }
@@ -49,11 +63,20 @@ public class TriggerScreenTransition : MonoBehaviour
     // Switch to main screen and setup player agent and canvas (Called from other script)
     public void SwitchBackToMainScreen() {
         // Here Screen transition goes!!!!!!!!!!!!
-        mainCam.enabled = true;
-        pathCam.enabled = false;
-        pathSetter.setNewPath(afterTPPoints[0].position);
-        pathSetter.canGetNewPos(true);
-        mathAnswerGenerator.ActivateCanvas();
+
+        makeScreenTransition(
+            () => {
+                mainCam.enabled = true;
+                pathCam.enabled = false;
+                pathSetter.setNewPath(afterTPPoints[0].position);
+                pathSetter.canGetNewPos(true);
+                mathAnswerGenerator.ActivateCanvas();
+            }
+        );
+    }
+
+    private void makeScreenTransition(Action inBetweenTransition) {
+        inBetweenTransition();
     }
 
     // Activates this collider for player to collide on
@@ -95,5 +118,7 @@ public class TriggerScreenTransition : MonoBehaviour
         pathSetter.teleportAgent(runFromVector);
         
     }
+
+
 
 }
