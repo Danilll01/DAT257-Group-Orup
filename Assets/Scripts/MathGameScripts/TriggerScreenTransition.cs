@@ -45,7 +45,6 @@ public class TriggerScreenTransition : MonoBehaviour
             // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
-                    Debug.Log("Skickar");
                     mathAnswerGenerator.AnswerPressedRight(whatCollider);
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
