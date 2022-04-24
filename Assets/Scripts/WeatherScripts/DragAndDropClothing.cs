@@ -280,6 +280,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     }
 
+    // Change sprite back to original sprite
     private void changeBackSprite()
     {
         spriteRen.sprite = originalSprite;
