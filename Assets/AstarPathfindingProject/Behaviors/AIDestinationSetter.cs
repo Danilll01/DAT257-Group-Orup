@@ -43,10 +43,12 @@ namespace Pathfinding {
 			}
 		}
 
+		// If this script accept new target positions to move towards
 		public void canGetNewPos(bool input) {
 			canClick = input;
         }
 
+		// Sets a position to go to based on which canvas button was pressed
 		public void setNewGoToPosition(int whatCollider) { 
 
 			Vector2 runTo = Vector2.zero;
@@ -72,14 +74,15 @@ namespace Pathfinding {
 			setNewPath(runTo);
 		}
 
+		// Sets a new path for the agent to pathfind to
 		public void setNewPath(Vector2 newPosVector) {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
 		}
 
+		// Teleports the agent to the given position
 		public void teleportAgent(Vector2 teleportTo) {
 			ai.Teleport(teleportTo);
-
 		}
 	}
 }

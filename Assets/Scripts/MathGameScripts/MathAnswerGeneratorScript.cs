@@ -117,18 +117,18 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         }
     }
 
-    // Changes what card is active and also teleports player charachter to that location
+    // Changes what card is active
     private void changeActiveCard(int answerNumber) {
         int disableNumber = (answerNumber + 1) % cardHolders.Length;
         cardHolders[disableNumber].SetActive(false);
     } 
 
-    // Changes what screen is currently active
+    // Activates the canvas object
     public void ActivateCanvas() {
         canvas.SetActive(true);
     } 
 
-    // Returns if its the right path
+    // Returns if its the right path 
     public bool IsCorrectAnswer(int whatPath) {
         return whatPath == correctAnswerHolder;
     }

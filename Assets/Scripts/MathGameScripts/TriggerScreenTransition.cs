@@ -23,9 +23,8 @@ public class TriggerScreenTransition : MonoBehaviour
     void Update() {}
 
 
-    // Fixa så den sätter rätt location för rätt svar när player springer utanför skärmen
-    // Gör player animation i fel svar
-    // Gör så att den bara ger tillbaka kontrollen efter transition
+    
+
     // Glöm ej en transition till allt mellan
     // Se till att man inte kan gå utanför i gången till en annan skärm
 
@@ -47,6 +46,7 @@ public class TriggerScreenTransition : MonoBehaviour
         
     }
 
+    // Switch to main screen and setup player agent and canvas (Called from other script)
     public void SwitchBackToMainScreen() {
         // Here Screen transition goes!!!!!!!!!!!!
         mainCam.enabled = true;
@@ -56,6 +56,7 @@ public class TriggerScreenTransition : MonoBehaviour
         mathAnswerGenerator.ActivateCanvas();
     }
 
+    // Activates this collider for player to collide on
     public void activateCollider() {
         gameObject.SetActive(true);
     }
@@ -65,7 +66,6 @@ public class TriggerScreenTransition : MonoBehaviour
         gameObject.SetActive(false);
         changeCameraView();
         mathAnswerGenerator.AnswerPressed(whatCollider);
-        
     }
 
 
@@ -92,12 +92,8 @@ public class TriggerScreenTransition : MonoBehaviour
                 break;
         }
 
-        Debug.Log("PLayer Teleported!!!!");
-        Debug.Log(playerCharachter.position);
-        //playerCharachter.position = runFromVector; // Sets new position of player
-
         pathSetter.teleportAgent(runFromVector);
-        Debug.Log(playerCharachter.position);
+        
     }
 
 }
