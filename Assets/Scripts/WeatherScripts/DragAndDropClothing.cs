@@ -247,7 +247,16 @@ public class DragAndDropClothing : MonoBehaviour {
             // Check if the snapoint match the clothing type
             if (shortestSnapPoint.name == neededMatch)
             {
-                bool switching = removeClothingType(shortestSnapPoint, neededMatch);
+                // Specific case for gloves
+                if (spriteToSwitchTo != null)
+                {
+                    removeClothingType(pointToSnapToOnSwitch, neededMatch);
+                }
+                else
+                {
+                    removeClothingType(shortestSnapPoint, neededMatch);
+                }
+                
 
                 // Special case with jacket being put on
                 // If there is no shirt on snapPoint, we are not putting on the jacket
@@ -271,7 +280,6 @@ public class DragAndDropClothing : MonoBehaviour {
 
                     snapped = true;
                     lastPosition = position;
-                    //inventoryScript.removeClothingFromArray(this.gameObject, switching);
 
                 }
             }
@@ -316,6 +324,7 @@ public class DragAndDropClothing : MonoBehaviour {
         spriteRen.sprite = spriteToSwitchTo;
         targetPosition = pointToSnapToOnSwitch.transform.position;
         transform.SetParent(pointToSnapToOnSwitch.transform);
+        
 
         // Change the colliders to new offsets and sizes
         // values are specific for gloves
