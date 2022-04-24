@@ -33,11 +33,11 @@ public class closetInventory : MonoBehaviour
             if(currentIndex >= clothes.Count || currentIndex < 0){
                 currentIndex = 0;
             }
-
+ 
             if(clothes.Count > 0 && !switching){
                 clothes[currentIndex].SetActive(true);
             }
-            else if (switching){
+            if (switching){
                 currentIndex = clothes.Count -1;
             }
         }
@@ -47,7 +47,7 @@ public class closetInventory : MonoBehaviour
     // When clothing is taken off character, add it to our array
     public void AddClothingToArray(GameObject obj, bool switching){
         if(!clothes.Contains(obj)){
-            if(clothes.Count > 0 && !switching){   
+            if(clothes.Count > 0 ){   
                 clothes[currentIndex].SetActive(false);
             }
  

@@ -113,6 +113,8 @@ public class DragAndDropClothing : MonoBehaviour {
                 case TouchPhase.Moved:
                     if (moveAllowed){
                         transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY,0));
+                        transform.SetParent(null);
+                        inventoryScript.removeClothingFromArray(this.gameObject, false);
                     }
                     break;
 
@@ -142,15 +144,15 @@ public class DragAndDropClothing : MonoBehaviour {
                     mouseMoveAllowed = true;
                     changeBackSprite();
                     spriteRen.sortingOrder++;
+                    
                 }
-
             }
             else
             {
                 if (Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition))
                 {
                     mouseMoveAllowed = true;
-                    spriteRen.sortingOrder++;
+                    spriteRen.sortingOrder++; 
                 }
             }
 
@@ -159,7 +161,9 @@ public class DragAndDropClothing : MonoBehaviour {
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if(mouseMoveAllowed){
                 transform.position = mousePosition;
-                if(Input.GetMouseButtonUp(0)){
+                transform.SetParent(null);
+                inventoryScript.removeClothingFromArray(this.gameObject, false);
+                if (Input.GetMouseButtonUp(0)){
                     snapToPoint(mousePosition);
                     mouseMoveAllowed = false;
                     spriteRen.sortingOrder--;
@@ -267,7 +271,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
                     snapped = true;
                     lastPosition = position;
-                    inventoryScript.removeClothingFromArray(this.gameObject, switching);
+                    //inventoryScript.removeClothingFromArray(this.gameObject, switching);
 
                 }
             }

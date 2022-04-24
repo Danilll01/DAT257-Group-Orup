@@ -1138,7 +1138,7 @@ RectTransform:
   m_GameObject: {fileID: 233065133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3795012, y: 1.3795012, z: 1}
+  m_LocalScale: {x: 1.5003784, y: 1.5003784, z: 1.0876237}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 872395823}
@@ -1146,7 +1146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.41, y: 6.51}
+  m_AnchoredPosition: {x: -3.34, y: 6.54}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &233065135
@@ -2991,7 +2991,7 @@ RectTransform:
   m_GameObject: {fileID: 529361860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9893231, y: 0.9893231, z: 0.71716}
+  m_LocalScale: {x: 1.3271987, y: 1.3271987, z: 0.9620859}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 872395823}
@@ -2999,7 +2999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.85, y: 6.51}
+  m_AnchoredPosition: {x: -2.72, y: 6.54}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &529361862
@@ -3041,7 +3041,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.22733605, y: 0.20121396}
+  m_Offset: {x: 0.06546563, y: 0.20121396}
   m_SpriteTilingProperty:
     border: {x: 2.6599998, y: 2.79, z: 2.55, w: 2.3799999}
     pivot: {x: 0.5, y: 0.5}
@@ -3052,7 +3052,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0503855, y: 1.1997719}
+  m_Size: {x: 1.9424716, y: 1.1997719}
   m_EdgeRadius: 0
 --- !u!50 &529361864
 Rigidbody2D:
