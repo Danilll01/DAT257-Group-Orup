@@ -8,16 +8,14 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 {
     [SerializeField] private MathQuestionGenerator questionGenerator;
 
+    [SerializeField] private GameObject canvas;
+
     [SerializeField] private TextMeshProUGUI[] answerTxts;
     
     [SerializeField] private Sprite[] apples;
     [SerializeField] private Image[] imgHolders;
 
     [SerializeField] private GameObject[] cardHolders;
-    [SerializeField] private Camera[] cams;
-    [SerializeField] private Transform playerCharachter;
-
-    // [SerializeField] private Transform[] spawnLocations; This can wait for now
 
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
@@ -97,49 +95,43 @@ public class MathAnswerGeneratorScript : MonoBehaviour
     }
 
     // Method to call when a answer is pressed
-    public void AnswerPressed(int answerNumber) {
-        if (answerNumber == correctAnswerHolder) { // Checks if the button pressed contains the correct answer
-            // If so, make all card holders active and blue again
-            foreach (GameObject card in cardHolders) {
-                card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
-                card.SetActive(true);
-            }
-
-            // Dissables the card straight over from the pressed answer
-            changeActiveCard(answerNumber);
-
-            // And randomize a new question
-            questionGenerator.randomizeProblem();
-        } else {
-            // Make the selected card red to show that it is wrong
-            cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f/255f, 0);
+    public void AnswerPressedRight(int answerNumber) {
+       
+        // Make all card holders active, blue and interactable again
+        foreach (GameObject card in cardHolders) {
+            card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+            card.GetComponent<Button>().interactable = true;
+            card.SetActive(true);
         }
+
+        // Changes active cards and teleports player to new location
+        changeActiveCard(answerNumber);
+
+        // And randomize a new question
+        questionGenerator.randomizeProblem();
+        
     }
 
-    // Changes what card is active and also teleports player charachter to that location
+    // Changes what card is active
     private void changeActiveCard(int answerNumber) {
-        int dissableNumber = (answerNumber + 1) % cardHolders.Length;
-        cardHolders[dissableNumber].SetActive(false);
+        int disableNumber = (answerNumber + 1) % cardHolders.Length;
+        cardHolders[disableNumber].SetActive(false);
+    }
 
-        Vector2 runFromVector = Vector2.zero; // Temp value before switch
+    public void AnswerPressedWrong(int answerNumber) {
+        // Make the selected card red to show that it is wrong and dissable button
+        cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f / 255f, 0);
+        cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
+        canvas.SetActive(false);
+    }
 
-        switch (dissableNumber + 1) {
-            case 1:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(-10, cams[0].pixelHeight / 2));
-                break;
-            case 2:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, cams[0].pixelHeight + 10));
-                break;
-            case 3:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth + 10, cams[0].pixelHeight / 2));
-                break;
-            case 4:
-                runFromVector = cams[0].ScreenToWorldPoint(new Vector3(cams[0].pixelWidth / 2, -10));
-                break;
-            default: Debug.Log("This should never happen! If you see this report it!!");
-                break;
-        }
-
-        playerCharachter.position = runFromVector;
+    // Activates the canvas object
+    public void ActivateCanvas() {
+        canvas.SetActive(true);
     } 
+
+    // Returns if its the right path 
+    public bool IsCorrectAnswer(int whatPath) {
+        return whatPath == correctAnswerHolder;
+    }
 }

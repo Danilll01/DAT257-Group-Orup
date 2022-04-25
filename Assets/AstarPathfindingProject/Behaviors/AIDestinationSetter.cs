@@ -18,6 +18,10 @@ namespace Pathfinding {
 		public Transform target;
 		IAstarAI ai;
 
+		private bool canClick = true;
+		[SerializeField] private Vector2 minMaxXpos;
+		[SerializeField] private Vector2 minMaxYpos;
+
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
 			// Update the destination right before searching for a path as well.
@@ -35,10 +39,56 @@ namespace Pathfinding {
 		/// <summary>Updates the AI's destination every frame</summary>
 		void Update() {
 
-			if (Input.GetMouseButtonDown(0)) { 
+			if (Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+				target.position = new Vector2(Mathf.Clamp(target.position.x, minMaxXpos.x, minMaxXpos.y)
+											 ,Mathf.Clamp(target.position.y, minMaxYpos.x, minMaxYpos.y));
+
 				if (target != null && ai != null) ai.destination = target.position;
 			}
+		}
+
+		// If this script accept new target positions to move towards
+		public void canGetNewPos(bool input) {
+			canClick = input;
+        }
+
+		// Sets a position to go to based on which canvas button was pressed
+		public void setNewGoToPosition(int whatCollider) { 
+
+			Vector2 runTo = Vector2.zero;
+
+			switch (whatCollider) {
+				case 1:
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(-50, Camera.main.pixelHeight / 2));
+					break;
+				case 2:
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight + 50));
+					break;
+				case 3:
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth + 50, Camera.main.pixelHeight / 2));
+					break;
+				case 4:
+					runTo = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, -50));
+					break;
+				default:
+					Debug.Log("This should never happen! If you see this report it!!");
+					break;
+			}
+			
+			setNewPath(runTo);
+		}
+
+		// Sets a new path for the agent to pathfind to
+		public void setNewPath(Vector2 newPosVector) {
+			target.position = newPosVector;
+			if (target != null && ai != null) ai.destination = target.position;
+		}
+
+		// Teleports the agent to the given position
+		public void teleportAgent(Vector2 teleportTo) {
+			ai.Teleport(teleportTo);
 		}
 	}
 }
