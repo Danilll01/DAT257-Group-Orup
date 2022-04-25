@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace Pathfinding {
 	/// <summary>
@@ -19,6 +20,7 @@ namespace Pathfinding {
 		IAstarAI ai;
 
 		private bool canClick = true;
+		private bool isActive = false;
 		[SerializeField] private Vector2 minMaxXpos;
 		[SerializeField] private Vector2 minMaxYpos;
 
@@ -89,6 +91,27 @@ namespace Pathfinding {
 		// Teleports the agent to the given position
 		public void teleportAgent(Vector2 teleportTo) {
 			ai.Teleport(teleportTo);
+			
+		}
+
+		// Activates the coroutine that checks if player is stopped
+		public void CallGenerateNewAnswers(Action callToMethod) {
+			if (!isActive) {
+				isActive = true;
+				StartCoroutine(makeFadeIn(callToMethod));
+			}
+		}
+
+		// Calls mathgenerator to generate a new exercise and fade it in slowly
+		private IEnumerator makeFadeIn(Action callToMethod) {
+
+            while (!ai.reachedDestination) {
+				yield return null;
+			}
+
+			callToMethod();
+
+			isActive = false;
 		}
 	}
 }
