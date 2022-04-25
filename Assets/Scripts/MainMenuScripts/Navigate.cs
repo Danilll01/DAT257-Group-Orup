@@ -50,13 +50,13 @@ namespace Pathfinding {
 		private void checkJumpNode() {
             foreach (JumpNodeScript node in jumpNodes) {
 
-				if (Vector2.Distance(ai.position, node.JumpFromPosition()) < 0.05) {
+				if (Vector2.Distance(ai.position, node.JumpFromPosition()) < 0.1) {
 					
 					
 					List<Vector3> remPath = new List<Vector3>();
 					ai.GetRemainingPath(remPath, out bool stale);
 					
-					if (Vector2.Distance(remPath[1], node.JumpToCoordinates()) < 0.05) {
+					if (Vector2.Distance(remPath[1], node.JumpToCoordinates()) < 0.1) {
 						float normalSpeed = ai.maxSpeed;
 						ai.maxSpeed = node.GetJumpSpeed();
 						node.StartJumpAnimation(transform.GetChild(0),

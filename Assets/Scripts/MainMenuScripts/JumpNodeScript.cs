@@ -54,6 +54,7 @@ public class JumpNodeScript : MonoBehaviour
             yield return null;
         }
         setNormalAgentSpeed();
+        agent.localPosition = normalValues;
         isJumping = false;
     }
 }
