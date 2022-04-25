@@ -30,7 +30,7 @@ public class ValidateClothes : MonoBehaviour
                     {
                         if (script.chosenWeather != weather && script.chosenWeather != WeatherController.WeatherTypes.Any)
                         {
-                            script.removeFromSnapPoint();
+                            script.removeFromSnapPoint(false);
                             validClothing = false;
                             message = "Some clothing does not match the weather";
                         }
