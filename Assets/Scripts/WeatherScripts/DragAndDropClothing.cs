@@ -27,9 +27,6 @@ public class DragAndDropClothing : MonoBehaviour {
     private Sprite originalSprite;
     [SerializeField] private GameObject pointToSnapToOnSwitch;
 
-    [SerializeField] private Text debugText;
-
-
     public WeatherController.WeatherTypes chosenWeather;
     private closetInventory inventoryScript;
 
@@ -344,7 +341,6 @@ public class DragAndDropClothing : MonoBehaviour {
     private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped)
     {
         float shortestSnapPointDistance = float.MaxValue;
-        debugText.text = "";
 
         // Problem is here, when a clothing is one, it does not detect that it is close
         // to snappoints that are covered by another clothing object
@@ -367,7 +363,6 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 float distToSnapPos = Vector2.Distance(transform.position, snapPos);
 
-                debugText.text += " " + snapPoint.name;
 
                 // If we found a snappoint with smaller distance update shortest snap point
                 if (distToSnapPos < shortestSnapPointDistance)
