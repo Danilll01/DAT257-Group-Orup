@@ -11,15 +11,22 @@ public class DragAndDropNote : MonoBehaviour
     private Vector3 targetPosition;
     private Rigidbody2D ridgidBody;
 
-    // Temporary audio source for playing the note sound
-    private AudioSource tempAudioSource;
+    // Audio source for playing the note sound
+    private AudioSource audioSource;
 
-    [SerializeField] private GameObject[] snapPoints;
+    // Which parent to look for snap points in
+    [SerializeField] private GameObject snapPointsParent;
+    private GameObject[] snapPoints;
 
     // All instruments that can be played
     private enum Instrument { Piano, Ukulele, Trombone };
     // Which instrument the note is
     [SerializeField] private Instrument instrument;
+
+    // Every note for all instrumets
+    [SerializeField] private AudioClip[] pianoClips;
+    [SerializeField] private AudioClip[] ukeleleClips;
+    [SerializeField] private AudioClip[] tromboneClips;
 
     void Start()
     {
@@ -27,10 +34,13 @@ public class DragAndDropNote : MonoBehaviour
         originalPos = transform.position;
         targetPosition = originalPos;
 
+        // Initialize array with snap points
+        InitializeSnapPointsArray();
+
         ridgidBody = GetComponent<Rigidbody2D>();
 
-        // Temporary audio source
-        tempAudioSource = GetComponent<AudioSource>();
+        // Gets objects audio source
+        audioSource = GetComponent<AudioSource>();
 
         // Dissables collision between note objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Notes needs to be on layer 6
@@ -146,8 +156,11 @@ public class DragAndDropNote : MonoBehaviour
             transform.SetParent(shortestSnapPoint.transform);
             snapped = true;
 
+            // Sets the correct audio clip depending on which note the object was placed on
+            SetCorrectNote(shortestSnapPoint);
+
             // Temporarily play note E3
-            tempAudioSource.Play();
+            audioSource.Play();
         }
 
 
@@ -169,5 +182,56 @@ public class DragAndDropNote : MonoBehaviour
             Vector2 forceVector = (targetPosition - transform.position) * 15 * (Time.deltaTime * 1000);
             ridgidBody.AddForce(forceVector);
         }
+    }
+
+    // Initializes snap points array
+    private void InitializeSnapPointsArray()
+    {
+        // Get number of snap points
+        int nrSnapPoints = snapPointsParent.transform.childCount;
+        snapPoints = new GameObject[nrSnapPoints];
+
+        // Add all snap points to array
+        for (int i = 0; i < nrSnapPoints; i++)
+        {
+            GameObject child = snapPointsParent.transform.GetChild(i).gameObject;
+            snapPoints[i] = child;
+        }
+    }
+
+    // Changes audio clip source to match the current note the object is attached to 
+    private void SetCorrectNote(GameObject snapPoint)
+    {
+        // Get the note portion of the objects name
+        string snapPointNote = snapPoint.name.Split("-")[2];
+
+        // Get the correct audio clip based on which note to play
+        AudioClip audioClip = GetAudioClip(snapPointNote);
+
+        // If a clip is found update audio source with new clip
+        if (audioClip != null) audioSource.clip = audioClip;
+    }
+
+    // Gets correct note based on which instrument the object is
+    private AudioClip GetAudioClip(string noteName)
+    {
+        return instrument switch
+        {
+            Instrument.Piano => FindAudioClipNote(pianoClips, noteName),
+            Instrument.Ukulele => FindAudioClipNote(ukeleleClips, noteName),
+            Instrument.Trombone => FindAudioClipNote(tromboneClips, noteName),
+            _ => null,
+        };
+    }
+
+    // Finds a specific note in an audio clip array
+    private AudioClip FindAudioClipNote(AudioClip[] clips, string noteName)
+    {
+        foreach (AudioClip clip in clips)
+        {
+            // If we found a note with matching name, return it
+            if (clip.name == noteName) return clip;
+        }
+        return null;
     }
 }
