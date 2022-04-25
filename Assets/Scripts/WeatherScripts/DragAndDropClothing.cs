@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class DragAndDropClothing : MonoBehaviour {
@@ -25,6 +26,8 @@ public class DragAndDropClothing : MonoBehaviour {
     [SerializeField] private Sprite spriteToSwitchTo;
     private Sprite originalSprite;
     [SerializeField] private GameObject pointToSnapToOnSwitch;
+
+    [SerializeField] private Text debugText;
 
 
     public WeatherController.WeatherTypes chosenWeather;
@@ -341,15 +344,30 @@ public class DragAndDropClothing : MonoBehaviour {
     private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped)
     {
         float shortestSnapPointDistance = float.MaxValue;
+        debugText.text = "";
+
+        // Problem is here, when a clothing is one, it does not detect that it is close
+        // to snappoints that are covered by another clothing object
 
         // Check for each point if the object is close to it
         foreach (GameObject snapPoint in snapPoints)
         {
             Vector2 snapPos = snapPoint.transform.position;
             // If the object is close to the snapPoint is not already snapped
-            if (colliders[0] == Physics2D.OverlapCircle(snapPos, 1) && !snapped)
+            Collider2D[] results = Physics2D.OverlapCircleAll(snapPos, 1);
+            bool collided = false;
+            foreach (Collider2D result in results)
+            {
+                if (colliders[0] == result)
+                {
+                    collided = true;
+                }
+            }
+            if (collided && !snapped)
             {
                 float distToSnapPos = Vector2.Distance(transform.position, snapPos);
+
+                debugText.text += " " + snapPoint.name;
 
                 // If we found a snappoint with smaller distance update shortest snap point
                 if (distToSnapPos < shortestSnapPointDistance)
@@ -360,6 +378,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
             }
         }
+
 
         return shortestSnapPoint;
     }
