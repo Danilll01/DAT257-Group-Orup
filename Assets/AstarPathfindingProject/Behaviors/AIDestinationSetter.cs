@@ -105,7 +105,15 @@ namespace Pathfinding {
 		// Calls mathgenerator to generate a new exercise and fade it in slowly
 		private IEnumerator makeFadeIn(Action callToMethod) {
 
+			// Wait untill the ai has stopped on new screen
             while (!ai.reachedDestination) {
+				yield return null;
+			}
+
+			// Small delay before the new exercice is shown
+			float timer = 0;
+            while (timer < 0.2f) {
+				timer += Time.deltaTime;
 				yield return null;
 			}
 
