@@ -7,6 +7,7 @@ public class PlayMusic : MonoBehaviour
 
     [SerializeField] private GameObject snapPointParent;
     [SerializeField] private int nrNotesPerBeat = 13;
+    [SerializeField] private GameObject marker;
 
     private GameObject[] snapPoints;
 
@@ -87,11 +88,6 @@ public class PlayMusic : MonoBehaviour
             noteSequence[4*(currBarPos - 1) + (currNotePos - 1)].Add(snapPoint);
         }
         return noteSequence;
-    }
-
-    private GameObject GetNoteFromSnapPoint(GameObject snapPoint)
-    {
-        return null;
     }
 
     private int ParseIntFromObjectName(string input, string splitWord)
