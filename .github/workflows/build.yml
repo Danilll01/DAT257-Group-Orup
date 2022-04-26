@@ -21,8 +21,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v1.${{ github.run_number }}
-          release_name: Release V1.${{ github.run_number }}
+          tag_name: v2.${{ github.run_number - 35 }}
+          release_name: Release V2.${{ github.run_number - 35 }}
           
       - name: Zipping win
         uses: montudor/action-zip@v1
@@ -50,7 +50,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/StandaloneWindows64.zip
-          asset_name: Win64-v1.${{ github.run_number }}.zip
+          asset_name: Win64-v2.${{ github.run_number - 35 }}.zip
           asset_content_type: application/zip
       - name: Upload asset iOS
         id: upload-release-asset-iOS 
@@ -60,7 +60,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/iOS.zip
-          asset_name: iOS-v1.${{ github.run_number }}.zip
+          asset_name: iOS-v2.${{ github.run_number - 35 }}.zip
           asset_content_type: application/zip
       - name: Upload asset Android
         id: upload-release-asset-android 
@@ -70,7 +70,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/Android.zip
-          asset_name: Android-v1.${{ github.run_number }}.zip
+          asset_name: Android-v2.${{ github.run_number - 35 }}.zip
           asset_content_type: application/zip
       - name: Upload asset macOS
         id: upload-release-asset-macOS
@@ -80,7 +80,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/StandaloneOSX.zip
-          asset_name: macOS-v1.${{ github.run_number }}.zip
+          asset_name: macOS-2.${{ github.run_number - 35 }}.zip
           asset_content_type: application/zip
 
   buildForAllSupportedPlatforms:
