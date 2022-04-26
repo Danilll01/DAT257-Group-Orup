@@ -14,8 +14,7 @@ jobs:
       - name: run number with offset
         env:
           NUM: ${{ github.run_number }}
-        run: |
-          echo ::set-env name=GITHUB_RUN_NUMBER_WITH_OFFSET::$(($NUM-35))
+        run: echo "GITHUB_RUN_NUMBER_WITH_OFFSET=$(($NUM - 37))" >> $GITHUB_ENV
       - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
     
       - name: Get files
