@@ -312,6 +312,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     targetPosition = shortestSnapPoint.transform.position;
                     transform.SetParent(shortestSnapPoint.transform);
 
+                    // Move jacket forward so it is in front of shirt
                     if (chosenClothing == clothing.jacket)
                     {
                         transform.localPosition = new Vector3(0, 0, -0.2f);
