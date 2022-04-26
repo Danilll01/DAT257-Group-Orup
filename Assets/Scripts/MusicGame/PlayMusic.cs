@@ -10,7 +10,8 @@ public class PlayMusic : MonoBehaviour
     [SerializeField] private GameObject marker;
 
     private GameObject[] snapPoints;
-    
+    private int totalNrNotes;
+    private int playedNotes = 0;
 
 
     // Start is called before the first frame update
@@ -67,6 +68,9 @@ public class PlayMusic : MonoBehaviour
 
             // Play the sound of the note
             note.GetComponentInChildren<AudioSource>().Play();
+
+            // Increment counter
+            playedNotes++;
         }
     }
 
@@ -98,6 +102,9 @@ public class PlayMusic : MonoBehaviour
             
             // Add the snap point to the current beat in the note sequence
             noteSequence[4*(currBarPos - 1) + (currNotePos - 1)].Add(snapPoint);
+
+            // Increment max number of notes
+            totalNrNotes++;
         }
         return noteSequence;
     }
