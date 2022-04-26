@@ -724,7 +724,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 2
   chosenClothing: 2
 --- !u!222 &161236370
@@ -1212,7 +1211,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 21300000, guid: 5b0ad00edfc4c40049c4eff820ce682e, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 6
 --- !u!222 &233065138
@@ -1496,7 +1494,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 4
   chosenClothing: 1
 --- !u!222 &291625006
@@ -1558,7 +1555,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &291625009
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2307,7 +2304,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 2
   chosenClothing: 0
 --- !u!222 &405720736
@@ -2473,7 +2469,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 1
   chosenClothing: 0
 --- !u!222 &406368949
@@ -3095,7 +3090,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 21300000, guid: 2f20c1ee8407e4f14a7e70489e18f28d, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
-  debugText: {fileID: 0}
   chosenWeather: 2
   chosenClothing: 6
 --- !u!222 &529361866
@@ -3528,7 +3522,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 0
   chosenClothing: 2
 --- !u!222 &582446085
@@ -5040,7 +5033,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 1
   chosenClothing: 2
 --- !u!222 &886206614
@@ -5560,7 +5552,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 2
   chosenClothing: 3
 --- !u!222 &941320069
@@ -6684,7 +6675,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 0
 --- !u!222 &1151940280
@@ -7031,7 +7021,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 4
 --- !u!222 &1158460216
@@ -7775,7 +7764,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 2
 --- !u!222 &1533443604
@@ -8214,7 +8202,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 3
 --- !u!222 &1555384647
@@ -8912,7 +8899,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 1
   chosenClothing: 4
 --- !u!222 &1753605710
@@ -9863,7 +9849,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 1
   chosenClothing: 0
 --- !u!222 &1880700056
@@ -10029,7 +10014,6 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  debugText: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 5
 --- !u!222 &1881085873

@@ -276,6 +276,15 @@ public class DragAndDropClothing : MonoBehaviour {
                         targetPosition = shortestSnapPoint.transform.position;
                         transform.SetParent(shortestSnapPoint.transform);
                         
+                        if (chosenClothing == clothing.jacket)
+                        {
+                            transform.localPosition = new Vector3(0,0,-0.2f);
+                        }
+                        else
+                        {
+                            transform.localPosition = Vector3.zero;
+                        }
+
                     }
 
                     snapped = true;
