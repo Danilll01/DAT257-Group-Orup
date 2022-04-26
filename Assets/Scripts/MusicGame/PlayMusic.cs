@@ -41,12 +41,28 @@ public class PlayMusic : MonoBehaviour
     public void PlayMusicLoop()
     {
         List<GameObject>[] noteSequence = ParseNoteData();
-        foreach (List<GameObject> notes in noteSequence)
+        for (int i = 0; i < noteSequence.Length; i++)
         {
-            Debug.Log(notes.Count);
+            StartCoroutine(PlayNoteAfterTime((i + 1), noteSequence[i]));
         }
     }
 
+    private IEnumerator PlayNoteAfterTime(float time, List<GameObject> notes)
+    {
+        yield return new WaitForSeconds(time);
+
+        PlayOneNote(notes);
+    }
+
+    private void PlayOneNote(List<GameObject> notes)
+    {
+        foreach (GameObject note in notes)
+        {
+            if (note == null) continue;
+
+            note.GetComponentInChildren<AudioSource>().Play();
+        }
+    }
 
     private List<GameObject>[] ParseNoteData()
     {
@@ -71,6 +87,11 @@ public class PlayMusic : MonoBehaviour
             noteSequence[4*(currBarPos - 1) + (currNotePos - 1)].Add(snapPoint);
         }
         return noteSequence;
+    }
+
+    private GameObject GetNoteFromSnapPoint(GameObject snapPoint)
+    {
+        return null;
     }
 
     private int ParseIntFromObjectName(string input, string splitWord)
