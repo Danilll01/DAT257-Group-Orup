@@ -39,23 +39,24 @@ public class DragAndDropClothing : MonoBehaviour {
         originalPos = transform.position;
         targetPosition = originalPos;
         originParent = transform.parent;
-        
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+       
 
         // Set up the array of snapPoints
         snapPoints = new GameObject[snapPointsParent.transform.childCount];
-
-        inventoryScript = originParent.GetComponent<closetInventory>();
 
         for (int i = 0; i < snapPoints.Length; i++)
         {
             snapPoints[i] = snapPointsParent.transform.GetChild(i).gameObject;
         }
 
-
+        // Retrive the necesarry components
         ridgidBody = GetComponent<Rigidbody2D>();
         spriteRen = GetComponent<SpriteRenderer>();
         colliders = GetComponents<BoxCollider2D>();
+
+        inventoryScript = originParent.GetComponent<closetInventory>();
+
+        // Get data of current collider
         originalColliderOffset = colliders[0].offset;
         originalColliderSize = colliders[0].size;
         originalSprite = spriteRen.sprite;
@@ -71,115 +72,147 @@ public class DragAndDropClothing : MonoBehaviour {
     void Update () {
 
         // If there were any touches on the screen
+        // Send to touchMovement function
         if(Input.touchCount > 0){
             Touch touch = Input.GetTouch(0);
+            touchMovement(touch);
 
-            // Get the position of the touch
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-
-
-            switch (touch.phase) {
-                // At the moment the screen was touched, look if the touch is on the object.
-                // If the touch was on the object, set moveAllowed to true
-                case TouchPhase.Began:
-
-                    // Depending on how many colliders we have (max 2) we need to check input for both
-                    if (colliders.Length > 1){
-                        if (colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos))
-                        {
-                            deltaX = touchPos.x - transform.position.x;
-                            deltaY = touchPos.y - transform.position.y;
-                            spriteRen.sortingOrder++;
-                            changeBackSprite();
-                            moveAllowed = true;
-                        }
-
-                    }
-                    else
-                    {
-                        if (colliders[0] == Physics2D.OverlapPoint(touchPos))
-                        {
-                            deltaX = touchPos.x - transform.position.x;
-                            deltaY = touchPos.y - transform.position.y;
-                            spriteRen.sortingOrder++;
-                            moveAllowed = true;
-                        }
-                    }
-                    
-                    break;
-
-                // While the touch is moving and is allowed to move, update the object position
-                // to the touchs position
-                case TouchPhase.Moved:
-                    if (moveAllowed){
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY,0));
-                        transform.SetParent(null);
-                        inventoryScript.removeClothingFromArray(this.gameObject, false);
-                    }
-                    break;
-
-                // If the touch ended(player let go off the screen), set moveAllowed to false
-                case TouchPhase.Ended:
-                    if (moveAllowed) {
-                        snapToPoint(transform.position);
-                        moveAllowed = false;
-                        spriteRen.sortingOrder--;
-                    }
-                    break;
-
-            }
         }
 
         // For mouse controls
         else{
             // Get the mouse position
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            // Depending on how many colliders we have (max 2) we need to check input for both
-            if (colliders.Length > 1)
-            {
-                // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
-                if (Input.GetMouseButtonDown(0) && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
-                {
-                    mouseMoveAllowed = true;
-                    changeBackSprite();
-                    spriteRen.sortingOrder++;
-                    
-                }
-            }
-            else
-            {
-                if (Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition))
-                {
-                    mouseMoveAllowed = true;
-                    spriteRen.sortingOrder++; 
-                }
-            }
-
-            
-
-            // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
-            if(mouseMoveAllowed){
-                transform.position = mousePosition;
-                transform.SetParent(null);
-                inventoryScript.removeClothingFromArray(this.gameObject, false);
-                if (Input.GetMouseButtonUp(0)){
-                    snapToPoint(transform.position);
-                    mouseMoveAllowed = false;
-                    spriteRen.sortingOrder--;
-                }
-            }
-            
+            mouseMovement(mousePosition);
         }
 
+        // Move the object towards target if movement is allowed
         addForceToRidgidbody();
+    }
+
+
+    // Draging code for touch input
+    private void touchMovement(Touch touch)
+    {
+        // Get the position of the touch
+        Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+
+        switch (touch.phase)
+        {
+            // At the moment the screen was touched, look if the touch is on the object.
+            // If the touch was on the object, set moveAllowed to true
+            case TouchPhase.Began:
+
+                // Depending on how many colliders we have (max 2) we need to check input for both
+                if (colliders.Length > 1)
+                {
+                    if (colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos))
+                    {
+                        deltaX = touchPos.x - transform.position.x;
+                        deltaY = touchPos.y - transform.position.y;
+                        spriteRen.sortingOrder++;
+                        changeBackSprite();
+                        moveAllowed = true;
+                    }
+
+                }
+                else
+                {
+                    if (colliders[0] == Physics2D.OverlapPoint(touchPos))
+                    {
+                        deltaX = touchPos.x - transform.position.x;
+                        deltaY = touchPos.y - transform.position.y;
+                        spriteRen.sortingOrder++;
+                        moveAllowed = true;
+                    }
+                }
+
+                break;
+
+            // While the touch is moving and is allowed to move, update the object position
+            // to the touchs position
+            case TouchPhase.Moved:
+                if (moveAllowed)
+                {
+                    transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                    transform.SetParent(null);
+                    inventoryScript.removeClothingFromArray(this.gameObject, false);
+                }
+                break;
+
+            // If the touch ended(player let go off the screen), set moveAllowed to false
+            case TouchPhase.Ended:
+                if (moveAllowed)
+                {
+                    snapToPoint(transform.position);
+                    moveAllowed = false;
+                    spriteRen.sortingOrder--;
+                }
+                break;
+
+        }
+    }
+
+    // Draging code for mouse input
+    private void mouseMovement(Vector2 mousePosition)
+    {
+        // Depending on how many colliders we have (max 2) we need to check input for both
+        if (colliders.Length > 1 && !mouseMoveAllowed)
+        {
+            // If the mouse is pressed down and the mouse is over one of the objects colliders, set mouseMoveAllowed to true
+            // Also change back the sprite to original sprite when the object is being dragged
+            // Remove the clothing from the closet
+            if (Input.GetMouseButtonDown(0) && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
+            {
+                mouseMoveAllowed = true;
+                changeBackSprite();
+                spriteRen.sortingOrder++;
+                transform.SetParent(null);
+                inventoryScript.removeClothingFromArray(this.gameObject, false);
+
+            }
+        }
+        else if (!mouseMoveAllowed)
+        {
+            // If the mouse is pressed down and the mouse is over the objects collider, set mouseMoveAllowed to true
+            // Also set the order of the sprite forwards
+            // Remove the clothing from the closet
+            if (Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition))
+            {
+                mouseMoveAllowed = true;
+                spriteRen.sortingOrder++;
+                transform.SetParent(null);
+                inventoryScript.removeClothingFromArray(this.gameObject, false);
+            }
+        }
+
+
+
+        // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
+
+        if (mouseMoveAllowed)
+        {
+            transform.position = mousePosition;
+            
+            // When the mouse button is let go, try to snap to point
+            if (Input.GetMouseButtonUp(0))
+            {
+                snapToPoint(transform.position);
+                mouseMoveAllowed = false;
+                spriteRen.sortingOrder--;
+            }
+        }
     }
 
     // Remove the object from the snapPoint
     public void removeFromSnapPoint(bool switching){
+        // Set everything back to original
         transform.SetParent(originParent);
         spriteRen.sprite = originalSprite;
         transform.position = lastPosition;
+
+        // Move object towards position in the closet
+        // And add it back to the closet inventory
         targetPosition = originalPos;
         inventoryScript.AddClothingToArray(this.gameObject,switching);
 
@@ -240,57 +273,59 @@ public class DragAndDropClothing : MonoBehaviour {
         }
 
         // Get the snapPoint with the shortest distance from clothing
-        shortestSnapPoint = loopThroughSnapPoints(shortestSnapPoint,snapped);
+        shortestSnapPoint = loopThroughSnapPoints(shortestSnapPoint,snapped,neededMatch);
 
+        // If we found a close snapPoint
         if (shortestSnapPoint != null)
         {
-            // Check if the snapoint match the clothing type
-            if (shortestSnapPoint.name == neededMatch)
+            // Specific case for gloves
+            if (spriteToSwitchTo != null)
             {
-                // Specific case for gloves
+                // Remove all the clothins of the same type on snapPoint
+                removeClothingType(pointToSnapToOnSwitch, neededMatch);
+            }
+            else
+            {
+                // Remove all the clothins of the same type on snapPoint
+                removeClothingType(shortestSnapPoint, neededMatch);
+            }
+
+
+            // Special case with jacket being put on
+            // If there is no shirt on snapPoint, we are not putting on the jacket
+            if (chosenClothing == clothing.jacket && shortestSnapPoint.transform.childCount <= 0)
+            {
+                // Do nothing
+            }
+
+            else
+            {
+                // If we need to change the image of clothing object
+                // Add new clothing to specific snapPoint
                 if (spriteToSwitchTo != null)
                 {
-                    removeClothingType(pointToSnapToOnSwitch, neededMatch);
+                    spriteChange();
                 }
                 else
                 {
-                    removeClothingType(shortestSnapPoint, neededMatch);
-                }
-                
+                    // Add on the new clothing
+                    targetPosition = shortestSnapPoint.transform.position;
+                    transform.SetParent(shortestSnapPoint.transform);
 
-                // Special case with jacket being put on
-                // If there is no shirt on snapPoint, we are not putting on the jacket
-                if (chosenClothing == clothing.jacket && shortestSnapPoint.transform.childCount <= 0) {  
-                    // Do nothing
-                }
-                else
-                {
-                    // If we need to change the image of clothing object
-                    // Add new clothing to specific snapPoint
-                    if (spriteToSwitchTo != null) { 
-                        spriteChange();
+                    if (chosenClothing == clothing.jacket)
+                    {
+                        transform.localPosition = new Vector3(0, 0, -0.2f);
                     }
                     else
                     {
-                        // Add on the new clothing
-                        targetPosition = shortestSnapPoint.transform.position;
-                        transform.SetParent(shortestSnapPoint.transform);
-                        
-                        if (chosenClothing == clothing.jacket)
-                        {
-                            transform.localPosition = new Vector3(0,0,-0.2f);
-                        }
-                        else
-                        {
-                            transform.localPosition = Vector3.zero;
-                        }
-
+                        transform.localPosition = Vector3.zero;
                     }
 
-                    snapped = true;
-                    lastPosition = position;
-
                 }
+
+                snapped = true;
+                lastPosition = position;
+
             }
         }
         
@@ -347,7 +382,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
 
 
-    private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped)
+    private GameObject loopThroughSnapPoints(GameObject shortestSnapPoint, bool snapped, string neededMatch)
     {
         float shortestSnapPointDistance = float.MaxValue;
 
@@ -357,33 +392,40 @@ public class DragAndDropClothing : MonoBehaviour {
         // Check for each point if the object is close to it
         foreach (GameObject snapPoint in snapPoints)
         {
-            Vector2 snapPos = snapPoint.transform.position;
-            // If the object is close to the snapPoint is not already snapped
-            Collider2D[] results = Physics2D.OverlapCircleAll(snapPos, 1);
-            bool collided = false;
-            foreach (Collider2D result in results)
+            // If snapPoints name is the neededMatch
+            if (snapPoint.name == neededMatch)
             {
-                if (colliders[0] == result)
-                {
-                    collided = true;
-                }
-            }
-            if (collided && !snapped)
-            {
-                float distToSnapPos = Vector2.Distance(transform.position, snapPos);
+                Vector2 snapPos = snapPoint.transform.position;
 
+                // Store all colliders that overlap the snapPoint
+                Collider2D[] results = Physics2D.OverlapCircleAll(snapPos, 1);
+                bool collided = false;
 
-                // If we found a snappoint with smaller distance update shortest snap point
-                if (distToSnapPos < shortestSnapPointDistance)
+                // Check if one of the colliders is the current object
+                foreach (Collider2D result in results)
                 {
-                    shortestSnapPoint = snapPoint;
-                    shortestSnapPointDistance = distToSnapPos;
+                    if (colliders[0] == result)
+                    {
+                        collided = true;
+                    }
                 }
 
+                // If it is our collider and it has not snapped yet
+                if (collided && !snapped)
+                {
+                    float distToSnapPos = Vector2.Distance(transform.position, snapPos);
+
+
+                    // If we found a snappoint with smaller distance update shortest snap point
+                    if (distToSnapPos < shortestSnapPointDistance)
+                    {
+                        shortestSnapPoint = snapPoint;
+                        shortestSnapPointDistance = distToSnapPos;
+                    }
+
+                }
             }
         }
-
-
         return shortestSnapPoint;
     }
 
