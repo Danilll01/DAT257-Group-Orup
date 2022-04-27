@@ -21,13 +21,11 @@ public class ThermometerControl : MonoBehaviour{
         minTemp = -20;
     }
 
-    void Update(){
-        temperatureText.text = (int)updateTemp + " *C;";
-        TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
-    }
 
     //Used by WeatherController to update the active temperature
     public void setTemp(float temp){
         updateTemp = temp;
+        temperatureText.text = (int)updateTemp + " *C;";
+        TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
     }
 }
