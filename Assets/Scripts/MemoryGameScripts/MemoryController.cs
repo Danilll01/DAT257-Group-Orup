@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MemoryController : MonoBehaviour {
     // Field for choosing the background image of the cards
@@ -51,6 +52,8 @@ public class MemoryController : MonoBehaviour {
     // Meny som är inaktiv vid start men som aktiveras när spelet är vunnet
     [SerializeField]
     private GameObject finishMenu;
+
+    [SerializeField] private AudioMixer mixer;
 
 
 
