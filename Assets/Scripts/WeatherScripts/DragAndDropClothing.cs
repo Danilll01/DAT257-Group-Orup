@@ -113,6 +113,9 @@ public class DragAndDropClothing : MonoBehaviour {
                         spriteRen.sortingOrder++;
                         changeBackSprite();
                         moveAllowed = true;
+                        transform.SetParent(null);
+                        inventoryScript.removeClothingFromArray(this.gameObject, false);
+                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
                     }
 
                 }
@@ -124,6 +127,9 @@ public class DragAndDropClothing : MonoBehaviour {
                         deltaY = touchPos.y - transform.position.y;
                         spriteRen.sortingOrder++;
                         moveAllowed = true;
+                        transform.SetParent(null);
+                        inventoryScript.removeClothingFromArray(this.gameObject, false);
+                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
                     }
                 }
 
@@ -135,8 +141,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 if (moveAllowed)
                 {
                     transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
-                    transform.SetParent(null);
-                    inventoryScript.removeClothingFromArray(this.gameObject, false);
+                    
                 }
                 break;
 
@@ -215,6 +220,7 @@ public class DragAndDropClothing : MonoBehaviour {
         // And add it back to the closet inventory
         targetPosition = originalPos;
         inventoryScript.AddClothingToArray(this.gameObject,switching);
+        Debug.Log("Called remove");
 
         // If we had a second collider, make it small so player cant interact with it
         if (colliders.Length > 1)
@@ -439,6 +445,7 @@ public class DragAndDropClothing : MonoBehaviour {
        foreach (DragAndDropClothing script in scripts){
             if (script.chosenClothing == chosenClothing){
                 script.removeFromSnapPoint(true);
+                Debug.Log("Remove clothing");
                 switching = true;
             }
 
