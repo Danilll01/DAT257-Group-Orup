@@ -66,6 +66,7 @@ public class WeatherController : MonoBehaviour
         thermometerControl.setTemp(tomorrowTemp);
       
         CheckWeather(tomorrowWeather,tomorrowTemp);
+
         
     }
 
