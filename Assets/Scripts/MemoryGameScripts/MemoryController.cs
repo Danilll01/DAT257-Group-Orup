@@ -115,7 +115,7 @@ public class MemoryController : MonoBehaviour {
             foreach (AudioClip clip in sounds) {
 
                 // If filenames match, change index of audiofile to index of picture
-                if (clip.name == sprite.name) {
+                if (clip.name.ToLower() == sprite.name.ToLower()) {
                     soundsOrdered[i] = clip;
                 }
             }
