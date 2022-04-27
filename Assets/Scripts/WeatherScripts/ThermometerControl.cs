@@ -8,7 +8,7 @@ using TMPro;
 public class ThermometerControl : MonoBehaviour{
 
     [SerializeField] private TextMeshProUGUI temperatureText;
-    [SerializeField] private TempBar;
+    [SerializeField] private Image TempBar;
 
     private float updateTemp;
     private float maxTemp;
@@ -16,15 +16,12 @@ public class ThermometerControl : MonoBehaviour{
 
 
     // Start is called before the first frame update and sets max/min temp
-    void Start()
-    {
+    void Start(){
         maxTemp = 40;
         minTemp = -20;
     }
 
-    void Update()
-    {
-
+    void Update(){
         temperatureText.text = (int)updateTemp + " *C;";
         TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
     }
