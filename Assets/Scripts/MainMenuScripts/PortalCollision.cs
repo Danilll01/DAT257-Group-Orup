@@ -11,9 +11,14 @@ public class PortalCollision : MonoBehaviour
     // If collider is triggered, open its corresponding game's scene 
     void OnTriggerEnter2D(Collider2D col)
     {
-        gameObject.SetActive(false);
-        // Change to game's scene
-        SceneManager.LoadScene(sceneIndex);
+        if (col.tag == "Player")
+        {
+            gameObject.SetActive(false);
+            // Change to game's scene
+            SceneManager.LoadScene(sceneIndex);
+
+        }
+        
 
     }
 
