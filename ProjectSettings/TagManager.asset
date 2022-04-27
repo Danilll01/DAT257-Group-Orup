@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PuzzleButton
   - Jump
+  - Node
   layers:
   - Default
   - TransparentFX

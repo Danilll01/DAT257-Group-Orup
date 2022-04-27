@@ -17,6 +17,7 @@ namespace Pathfinding {
 	[AddComponentMenu("Pathfinding/Link")]
 	[HelpURL("http://arongranberg.com/astar/docs/class_pathfinding_1_1_node_link.php")]
 	public class NodeLink : GraphModifier {
+
 		/// <summary>End position of the link</summary>
 		public Transform end;
 
