@@ -45,10 +45,17 @@ public class TriggerScreenTransition : MonoBehaviour
             // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
-                    mathAnswerGenerator.AnswerPressedRight(whatCollider);
+                    
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
-                    pathSetter.canGetNewPos(true);
+                    mathAnswerGenerator.HideCanvas();
+
+                    // Method to generate new exercise is called when player stopps after a teleportation 
+                    pathSetter.CallGenerateNewAnswers(
+                        () => {
+                            mathAnswerGenerator.AnswerPressedRight(whatCollider); 
+                            pathSetter.canGetNewPos(true);
+                        });
                     
                 }
             );

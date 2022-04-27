@@ -45,6 +45,8 @@ public class ScreenTransition : MonoBehaviour
             yield return null;
         }
 
+        transitionScreen.alpha = 1;
+
         // Wait on black screen
         timer = 0;
         while (timer <= waitTime) {
