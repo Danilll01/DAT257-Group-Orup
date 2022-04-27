@@ -12,12 +12,14 @@ public class PlayMusic : MonoBehaviour
     private GameObject[] snapPoints;
     private int totalNrNotes;
     private int playedNotes = 0;
+    private MarkerMover markerMoverScript;
 
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeSnapPointsArray();
+        markerMoverScript = GetComponent<MarkerMover>();
     }
 
     // Update is called once per frame
@@ -44,23 +46,32 @@ public class PlayMusic : MonoBehaviour
     public void PlayMusicLoop()
     {
         List<GameObject>[] noteSequence = ParseNoteData();
-        for (int i = 0; i < noteSequence.Length; i++)
-        {
-            StartCoroutine(PlayNoteAfterTime((i + 1), noteSequence[i]));
-        }
+
+        markerMoverScript.ResetPlayer();
+
+        StopAllCoroutines();
+
+        StartCoroutine(PlayNoteAfterTime(1, noteSequence));
     }
 
     // Waits for a specified amount of time before playing the list of notes (the beat)
-    private IEnumerator PlayNoteAfterTime(float time, List<GameObject> notes)
+    private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
-        yield return new WaitForSeconds(time);
-
-        PlayNotes(notes);
+        for (int i = 0; i < notes.Length-1; i++)
+        {
+            yield return new WaitForSeconds(time);
+            
+            PlayNotes(notes[i], i, notes.Length-1);
+        }
+        
     }
 
     // Play all notes in a beat
-    private void PlayNotes(List<GameObject> notes)
+    private void PlayNotes(List<GameObject> notes, int index, int maxIndex)
     {
+        markerMoverScript.SetNewDestination(index % maxIndex);
+        markerMoverScript.TeleportPlayerToCurrentDestination(index);
+
         foreach (GameObject note in notes)
         {
             // Skip if the note is null
