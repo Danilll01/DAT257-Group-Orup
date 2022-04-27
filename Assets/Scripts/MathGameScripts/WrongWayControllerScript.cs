@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WrongWayControllerScript : MonoBehaviour {
 
-    private Camera camera;
+    private Camera cam;
 
     [SerializeField] private float timeUntillSwitchBack;
     [SerializeField] private TriggerScreenTransition screenTransition;
@@ -12,24 +12,23 @@ public class WrongWayControllerScript : MonoBehaviour {
     [SerializeField] private float playerSpeed;
     [SerializeField] private Transform player;
     [SerializeField] private Transform moveTo;
+
     private Vector2 startingLocation;
-    private Vector2 currentTarget;
     private bool haveStartedAnimation = false;
 
 
     // Start is called before the first frame update
     void Start() {
         // Gets camera for this screen and sets up the timer for use
-        camera = transform.GetComponent<Camera>();
+        cam = transform.GetComponent<Camera>();
 
         // Sets the starting location for the animation player
         startingLocation = player.position;
-        currentTarget = startingLocation;
     }
 
     // Update is called once per frame
     void Update() {
-        if (camera.enabled == true && !haveStartedAnimation) { // If on this screen animate player
+        if (cam.enabled == true && !haveStartedAnimation) { // If on this screen animate player
             player.position = startingLocation;
             haveStartedAnimation = true;
             StartCoroutine(runPlayerAnimation());
@@ -69,7 +68,7 @@ public class WrongWayControllerScript : MonoBehaviour {
         screenTransition.SwitchBackToMainScreen();
 
         // Moves until screen transition is complete
-        while (camera.enabled == true) {
+        while (cam.enabled == true) {
             player.position += (Vector3) moveBackVector;
             yield return null;
         }
