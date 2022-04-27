@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Movement : MonoBehaviour
 {
-	[SerializeField]
+
+
+    [SerializeField] private GameObject[] portals;
+
+    [SerializeField]
 	float moveSpeed = 3f;
 
     [SerializeField]
@@ -63,12 +68,17 @@ public class Movement : MonoBehaviour
             target = cam.ScreenToWorldPoint(touch.position);    
             ShootRay();
 
+            // Check if click is on one of the "portals"
+
             
         }
         // If there were any mouse clicks
         else if(Input.GetMouseButtonDown(0)){
             // Get the click position as a world position
             target = cam.ScreenToWorldPoint(Input.mousePosition);
+            
+            // Check if click is on one of the "portals"
+
             ShootRay();
         }
 
