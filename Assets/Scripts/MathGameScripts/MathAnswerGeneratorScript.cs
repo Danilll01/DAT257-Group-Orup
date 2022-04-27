@@ -4,14 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class MathAnswerGeneratorScript : MonoBehaviour
-{
+public class MathAnswerGeneratorScript : MonoBehaviour {
     [SerializeField] private MathQuestionGenerator questionGenerator;
 
-    [SerializeField] private GameObject canvas;
+    [SerializeField] private CanvasGroup canvas;
 
     [SerializeField] private TextMeshProUGUI[] answerTxts;
-    
+
     [SerializeField] private Sprite[] apples;
     [SerializeField] private Image[] imgHolders;
 
@@ -19,14 +18,15 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
+    [SerializeField] private float fadeInTimer = 1;
     private int correctAnswerHolder;
 
 
     // Start is called before the first frame update
-    void Start() {}
+    void Start() { }
 
     // Update is called once per frame
-    void Update() {}
+    void Update() { }
 
     // Generate 3 answers with one correct answer of them
     public void GenerateAnswers(int rightAnswer) {
@@ -38,7 +38,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
             secondWrong = generateRandomNumber(rightAnswer);
         } while (secondWrong == firstWrong);
 
-        
+
 
         // Calls fillAnswer function with a different position for the right answer
         switch (Random.Range(0, 3)) {
@@ -65,7 +65,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
     // Fills active cardHolders with the given answers
     private void fillAnswers(int[] answers, int correctAnswer) {
-        
+
         int answerCounter = 0; // Help count what answer to set
 
         for (int i = 0; i < cardHolders.Length; i++) {
@@ -91,12 +91,12 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         } while (rightAnswer + bonus < 0 || bonus == 0 || rightAnswer + bonus > 18); // Ensures that the new generated answer is non negative and is not the same as the answer
 
         // Returns the new wrong answer
-        return rightAnswer + bonus; 
+        return rightAnswer + bonus;
     }
 
     // Method to call when a answer is pressed
     public void AnswerPressedRight(int answerNumber) {
-       
+
         // Make all card holders active, blue and interactable again
         foreach (GameObject card in cardHolders) {
             card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
@@ -109,7 +109,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour
 
         // And randomize a new question
         questionGenerator.randomizeProblem();
-        
+
+        StartCoroutine(makeAnswersFadeIn());
     }
 
     // Changes what card is active
@@ -122,16 +123,36 @@ public class MathAnswerGeneratorScript : MonoBehaviour
         // Make the selected card red to show that it is wrong and dissable button
         cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f / 255f, 0);
         cardHolders[answerNumber - 1].GetComponent<Button>().interactable = false;
-        canvas.SetActive(false);
+        canvas.alpha = 0;
+        canvas.interactable = false;
     }
 
     // Activates the canvas object
     public void ActivateCanvas() {
-        canvas.SetActive(true);
-    } 
+        canvas.alpha = 1;
+        canvas.interactable = true;
+    }
+
+    // Hides the interactable canvas
+    public void HideCanvas() {
+        canvas.alpha = 0;
+    }
 
     // Returns if its the right path 
     public bool IsCorrectAnswer(int whatPath) {
         return whatPath == correctAnswerHolder;
+    }
+
+    private IEnumerator makeAnswersFadeIn() {
+
+        // Fade in answers
+        float timer = 0;
+        while (timer <= fadeInTimer) {
+            canvas.alpha = Mathf.Lerp(0, 1, timer / fadeInTimer);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        canvas.interactable = true;
+        canvas.alpha = 1;
     }
 }
