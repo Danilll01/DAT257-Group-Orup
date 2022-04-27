@@ -35,4 +35,9 @@ public class MainMenuController : MonoBehaviour
         // Needs to be added
         SceneManager.LoadScene(6);
     }
+
+    public void OnGoBackButtonClick()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
