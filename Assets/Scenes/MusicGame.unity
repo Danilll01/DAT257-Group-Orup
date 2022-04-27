@@ -11113,9 +11113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpNodes: []
-  playerWrapper: {fileID: 0}
-  originalPos: {fileID: 0}
-  endPos: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &961336716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16370,9 +16368,7 @@ MonoBehaviour:
   - {fileID: 820295862}
   - {fileID: 518617822}
   - {fileID: 1415586975}
-  playerWrapper: {fileID: 519501501}
-  originalPos: {fileID: 447411734}
-  endPos: {fileID: 137620972}
+  player: {fileID: 519501501}
 --- !u!1001 &1474340621
 PrefabInstance:
   m_ObjectHideFlags: 0
