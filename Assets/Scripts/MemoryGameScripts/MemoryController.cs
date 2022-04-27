@@ -52,6 +52,8 @@ public class MemoryController : MonoBehaviour {
     [SerializeField]
     private GameObject finishMenu;
 
+    [SerializeField]
+    private AudioSource rightAnswerSound;
 
 
     // Runs at start. Loads all pictures and sounds
@@ -229,7 +231,7 @@ public class MemoryController : MonoBehaviour {
         if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex) {
 
             yield return new WaitForSeconds(0.25f);
-
+            rightAnswerSound.Play();    
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
