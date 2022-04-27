@@ -14,23 +14,35 @@ public class MarkerMover : MonoBehaviour
 
     private Navigate playerNavigateScript;
 
-
     // Start is called before the first frame update
     void Start()
     {
         playerNavigateScript = playerWrapper.GetComponent<Navigate>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TeleportPlayerToCurrentDestination(int index)
     {
-        
+        if (!((Vector2) playerWrapper.transform.position == (Vector2) jumpNodes[index].transform.position))
+        {
+            playerNavigateScript.ai.Teleport(jumpNodes[index].transform.position);
+        }
     }
 
-    public void StartMarkerMovement()
+    public void SetNewDestination(int index)
     {
-        playerNavigateScript.setNewPath((Vector2) endPos.position);
-        //playerNavigateScript.setNewPath((Vector2) originalPos.position);
-        
+        if (index >= (jumpNodes.Length-2))
+        {
+            index = 0;
+        } else
+        {
+            index++;
+        }
+
+        playerNavigateScript.setNewPath(jumpNodes[index].transform.position);
+    }
+
+    public void ResetPlayer()
+    {
+        TeleportPlayerToCurrentDestination(0);
     }
 }
