@@ -817,18 +817,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281326452}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1276593587}
-  m_Father: {fileID: 1533899857}
-  m_RootOrder: 11
+  m_Children: []
+  m_Father: {fileID: 1276593587}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 784, y: 254.71}
+  m_AnchoredPosition: {x: 1.9663696, y: -40.601627}
   m_SizeDelta: {x: 129.7078, y: 351.7777}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &281326454
@@ -845,8 +844,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   temperatureText: {fileID: 969742284}
   TempBar: {fileID: 1276593588}
-  maxTemp: 40
-  minTemp: -20
 --- !u!114 &281326455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,11 +1463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapPoints:
-  - {fileID: 839556679}
-  - {fileID: 563087118}
-  - {fileID: 974775048}
-  - {fileID: 2055892060}
+  snapPointsParent: {fileID: 0}
+  spriteToSwitchTo: {fileID: 0}
+  pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 0
   chosenClothing: 1
 --- !u!222 &582446085
@@ -2393,7 +2388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 654, y: 406.08}
+  m_AnchoredPosition: {x: 613.03, y: -214}
   m_SizeDelta: {x: 449.14, y: 113.4518}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &969742284
@@ -3033,11 +3028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapPoints:
-  - {fileID: 839556679}
-  - {fileID: 563087118}
-  - {fileID: 974775048}
-  - {fileID: 2055892060}
+  snapPointsParent: {fileID: 0}
+  spriteToSwitchTo: {fileID: 0}
+  pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 3
   chosenClothing: 0
 --- !u!222 &1151940280
@@ -3418,18 +3411,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276593586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 281326453}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 281326453}
+  m_Father: {fileID: 1533899857}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.1519, y: 51.6028}
-  m_SizeDelta: {x: 48.0019, y: 194.5351}
+  m_AnchoredPosition: {x: 613.03357, y: 19.146606}
+  m_SizeDelta: {x: 67.3448, y: 178.0013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276593588
 MonoBehaviour:
@@ -3679,7 +3673,7 @@ RectTransform:
   - {fileID: 15292433}
   - {fileID: 659498887}
   - {fileID: 1790473614}
-  - {fileID: 281326453}
+  - {fileID: 1276593587}
   - {fileID: 969742283}
   m_Father: {fileID: 317181604}
   m_RootOrder: 0
