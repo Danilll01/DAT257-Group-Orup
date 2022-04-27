@@ -33,13 +33,17 @@ public class DragAndDropClothing : MonoBehaviour {
     public enum clothing{jacket, shirt, pants, hat, shoes, scarf, gloves};
     public clothing chosenClothing;
 
+    static bool beingDragged;
+
 
     // Setup the original position and snapPoints
     void Start(){
         originalPos = transform.position;
         targetPosition = originalPos;
         originParent = transform.parent;
-       
+
+        beingDragged = false;
+
 
         // Set up the array of snapPoints
         snapPoints = new GameObject[snapPointsParent.transform.childCount];
@@ -106,7 +110,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 // Depending on how many colliders we have (max 2) we need to check input for both
                 if (colliders.Length > 1)
                 {
-                    if (colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos))
+                    if ((colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos)) && !beingDragged)
                     {
                         deltaX = touchPos.x - transform.position.x;
                         deltaY = touchPos.y - transform.position.y;
@@ -115,19 +119,21 @@ public class DragAndDropClothing : MonoBehaviour {
                         moveAllowed = true;
                         transform.SetParent(null);
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
+                        beingDragged = true;
                         transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
                     }
 
                 }
                 else
                 {
-                    if (colliders[0] == Physics2D.OverlapPoint(touchPos))
+                    if ((colliders[0] == Physics2D.OverlapPoint(touchPos)) && !beingDragged)
                     {
                         deltaX = touchPos.x - transform.position.x;
                         deltaY = touchPos.y - transform.position.y;
                         spriteRen.sortingOrder++;
                         moveAllowed = true;
                         transform.SetParent(null);
+                        beingDragged = true;
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
                         transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
                     }
@@ -152,6 +158,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     snapToPoint(transform.position);
                     moveAllowed = false;
                     spriteRen.sortingOrder--;
+                    beingDragged = false;
                 }
                 break;
 
@@ -167,12 +174,13 @@ public class DragAndDropClothing : MonoBehaviour {
             // If the mouse is pressed down and the mouse is over one of the objects colliders, set mouseMoveAllowed to true
             // Also change back the sprite to original sprite when the object is being dragged
             // Remove the clothing from the closet
-            if (Input.GetMouseButtonDown(0) && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
+            if (Input.GetMouseButtonDown(0) && !beingDragged && (colliders[0] == Physics2D.OverlapPoint(mousePosition) || colliders[1] == Physics2D.OverlapPoint(mousePosition)))
             {
                 mouseMoveAllowed = true;
                 changeBackSprite();
                 spriteRen.sortingOrder++;
                 transform.SetParent(null);
+                beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
 
             }
@@ -182,11 +190,12 @@ public class DragAndDropClothing : MonoBehaviour {
             // If the mouse is pressed down and the mouse is over the objects collider, set mouseMoveAllowed to true
             // Also set the order of the sprite forwards
             // Remove the clothing from the closet
-            if (Input.GetMouseButtonDown(0) && colliders[0] == Physics2D.OverlapPoint(mousePosition))
+            if (Input.GetMouseButtonDown(0) && !beingDragged && colliders[0] == Physics2D.OverlapPoint(mousePosition))
             {
                 mouseMoveAllowed = true;
                 spriteRen.sortingOrder++;
                 transform.SetParent(null);
+                beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
             }
         }
@@ -205,6 +214,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 snapToPoint(transform.position);
                 mouseMoveAllowed = false;
                 spriteRen.sortingOrder--;
+                beingDragged = false;
             }
         }
     }
@@ -220,7 +230,6 @@ public class DragAndDropClothing : MonoBehaviour {
         // And add it back to the closet inventory
         targetPosition = originalPos;
         inventoryScript.AddClothingToArray(this.gameObject,switching);
-        Debug.Log("Called remove");
 
         // If we had a second collider, make it small so player cant interact with it
         if (colliders.Length > 1)
@@ -445,7 +454,6 @@ public class DragAndDropClothing : MonoBehaviour {
        foreach (DragAndDropClothing script in scripts){
             if (script.chosenClothing == chosenClothing){
                 script.removeFromSnapPoint(true);
-                Debug.Log("Remove clothing");
                 switching = true;
             }
 
