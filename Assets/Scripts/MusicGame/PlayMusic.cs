@@ -7,25 +7,20 @@ public class PlayMusic : MonoBehaviour
 
     [SerializeField] private GameObject snapPointParent;
     [SerializeField] private int nrNotesPerBeat = 13;
-    [SerializeField] private GameObject marker;
 
     private GameObject[] snapPoints;
     private int totalNrNotes;
     private int playedNotes = 0;
+    // Reference to moving script for marker
     private MarkerMover markerMoverScript;
-
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeSnapPointsArray();
-        markerMoverScript = GetComponent<MarkerMover>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Get marker mover script
+        markerMoverScript = GetComponent<MarkerMover>();
     }
 
     // Initializes snap points array
@@ -43,14 +38,19 @@ public class PlayMusic : MonoBehaviour
         }
     }
 
+    // Starts to play music
     public void PlayMusicLoop()
     {
+        // Get note data
         List<GameObject>[] noteSequence = ParseNoteData();
 
+        // Resets marker position
         markerMoverScript.ResetPlayer();
 
+        // Cancel the previous run of coroutines
         StopAllCoroutines();
 
+        // Start coroutine to play all notes with 1 second delay
         StartCoroutine(PlayNoteAfterTime(1, noteSequence));
     }
 
@@ -61,17 +61,23 @@ public class PlayMusic : MonoBehaviour
         {
             yield return new WaitForSeconds(time);
             
-            PlayNotes(notes[i], i, notes.Length-1);
+            // Sets the location to the next note to be played
+            markerMoverScript.SetNewDestination(i % (notes.Length - 1));
+
+            // Teleport the marker to the current note (if the jump hasn't finished)
+            markerMoverScript.TeleportToDestination(i);
+
+            // Play all notes in a beat
+            PlayNotes(notes[i]);
         }
         
     }
 
-    // Play all notes in a beat
-    private void PlayNotes(List<GameObject> notes, int index, int maxIndex)
+    // Play all notes in a beat and teleports location to supplied  
+    private void PlayNotes(List<GameObject> notes)
     {
-        markerMoverScript.SetNewDestination(index % maxIndex);
-        markerMoverScript.TeleportPlayerToCurrentDestination(index);
-
+        
+        // Loop through all notes in a beat
         foreach (GameObject note in notes)
         {
             // Skip if the note is null
