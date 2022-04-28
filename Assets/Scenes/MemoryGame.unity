@@ -542,6 +542,7 @@ MonoBehaviour:
   btns: []
   sounds: []
   finishMenu: {fileID: 1503384692}
+  mixer: {fileID: 0}
 --- !u!224 &542771385 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5212912224807299405, guid: b03f867fdad4043b9959f6682b5a74fe, type: 3}
@@ -901,7 +902,7 @@ AudioSource:
   m_GameObject: {fileID: 1533143752}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f8bd480bd44421747bbec0f64485549c, type: 2}
   m_audioClip: {fileID: 8300000, guid: 9cc6fda9b31024a5caa01af4e4fa1467, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
