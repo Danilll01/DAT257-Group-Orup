@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayMusic : MonoBehaviour
 {
 
     [SerializeField] private GameObject snapPointParent;
     [SerializeField] private int nrNotesPerBeat = 13;
+
+    [SerializeField] private TextMeshProUGUI playButtonText;
 
     private GameObject[] snapPoints;
     private int totalNrNotes;
@@ -24,6 +27,8 @@ public class PlayMusic : MonoBehaviour
 
         // Get marker mover script
         markerMoverScript = GetComponent<MarkerMover>();
+
+        playButtonText.text = "Play";
     }
 
     // Initializes snap points array
@@ -52,6 +57,7 @@ public class PlayMusic : MonoBehaviour
             // Resets marker position
             markerMoverScript.ResetPlayer();
 
+            playButtonText.text = "Play";
             isPlaying = false;
         } else
         {
@@ -63,6 +69,8 @@ public class PlayMusic : MonoBehaviour
 
             // Start coroutine to play all notes with 1 second delay
             StartCoroutine(PlayNoteAfterTime(1, noteSequence));
+
+            playButtonText.text = "Stop";
             isPlaying = true;
         }
 

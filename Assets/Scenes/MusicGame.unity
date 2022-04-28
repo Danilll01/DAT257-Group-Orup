@@ -16316,6 +16316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapPointParent: {fileID: 478392195}
   nrNotesPerBeat: 13
+  playButtonText: {fileID: 1307296647}
 --- !u!4 &1469437398
 Transform:
   m_ObjectHideFlags: 0
