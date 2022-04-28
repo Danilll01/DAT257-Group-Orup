@@ -24,6 +24,8 @@ public class WeatherController : MonoBehaviour
 
     [SerializeField] private WeatherData weatherData;
 
+    [SerializeField] private ThermometerControl thermometerControl;
+
     [SerializeField] private ValidateClothes validateClothes;
 
     // A type for different weather types
@@ -49,6 +51,7 @@ public class WeatherController : MonoBehaviour
 	    // Clear, Rain, ThunderStorm, Drizzle, Snow, Clouds
         string currentWeather = weatherData.GetWeather(false);
         float currentTemp = weatherData.GetTemp(false);
+        thermometerControl.setTemp(currentTemp);
 
         CheckWeather(currentWeather,currentTemp);
         
@@ -60,8 +63,10 @@ public class WeatherController : MonoBehaviour
 
         string tomorrowWeather = weatherData.GetWeather(true);
         float tomorrowTemp = weatherData.GetTemp(true);
+        thermometerControl.setTemp(tomorrowTemp);
       
         CheckWeather(tomorrowWeather,tomorrowTemp);
+
         
     }
 
@@ -117,7 +122,7 @@ public class WeatherController : MonoBehaviour
     // Switches to the correct weather object based on inputted weather.
     private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
     {
-
+        float randTemp = 0;
         HideAllWeather();
 
         // Displays the diffenent weather objects in a mutual exclusive way
@@ -127,24 +132,29 @@ public class WeatherController : MonoBehaviour
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 25°";
+                randTemp = 25;
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 15°";
+                randTemp = 15;
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: 7°";
+                randTemp = 7;
                 break;
             case WeatherTypes.Snow:
                 snowyObject.SetActive(true);
                 temporaryTempText.text = "Temperature: -5°";
+                randTemp = -5;
                 break;
             default:
                 Debug.Log("No work");
                 break;
         }
-
+        
+        thermometerControl.setTemp(randTemp);
         validateClothes.setWeather(weather);
     }
 

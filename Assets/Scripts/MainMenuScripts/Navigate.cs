@@ -39,10 +39,10 @@ namespace Pathfinding {
 		void Update() {
 
 			// Sets target after mouse click
-			if (Input.GetMouseButtonDown(0)) {
+			/*if (Input.GetMouseButtonDown(0)) {
 				target.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				if (target != null && ai != null) ai.destination = target.position;
-			}
+			}*/
 
 			// Checks if agent is at a jumping node 
 			checkJumpNode();
