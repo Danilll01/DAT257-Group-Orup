@@ -5,16 +5,22 @@ using TMPro;
 
 public class PlayMusic : MonoBehaviour
 {
-
+    // Parent with all snap points
     [SerializeField] private GameObject snapPointParent;
+
+    // Max number of notes there are per beat
     [SerializeField] private int nrNotesPerBeat = 13;
 
+    // Play button text
     [SerializeField] private TextMeshProUGUI playButtonText;
 
     private GameObject[] snapPoints;
+
+    // To be implemented later when we want to reset marker after all notes are played
     private int totalNrNotes;
     private int playedNotes = 0;
 
+    // Is the song playing
     private bool isPlaying = false;
 
     // Reference to moving script for marker
@@ -28,6 +34,7 @@ public class PlayMusic : MonoBehaviour
         // Get marker mover script
         markerMoverScript = GetComponent<MarkerMover>();
 
+        // Update button text
         playButtonText.text = "Play";
     }
 
@@ -57,6 +64,7 @@ public class PlayMusic : MonoBehaviour
             // Resets marker position
             markerMoverScript.ResetPlayer();
 
+            // Update button text and isPlaying
             playButtonText.text = "Play";
             isPlaying = false;
         } else
@@ -70,6 +78,7 @@ public class PlayMusic : MonoBehaviour
             // Start coroutine to play all notes with 1 second delay
             StartCoroutine(PlayNoteAfterTime(1, noteSequence));
 
+            // Update button text and isPlaying
             playButtonText.text = "Stop";
             isPlaying = true;
         }
@@ -93,6 +102,7 @@ public class PlayMusic : MonoBehaviour
             // Play all notes in a beat
             PlayNotes(notes[i]);
         }
+        // Reset bool after done with playing the song
         isPlaying = false;
     }
 

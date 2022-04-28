@@ -11,11 +11,13 @@ public class MarkerMover : MonoBehaviour
     // The player object
     [SerializeField] private GameObject player;
 
+    // Position of the player sprite
     [SerializeField] private Transform playerSpritePos;
 
     // The navigation script of the player
     private Navigate playerNavigateScript;
 
+    // Used to correctly reset the player sprite
     private Vector2 defaultSpritePos;
 
     // Start is called before the first frame update
@@ -24,6 +26,7 @@ public class MarkerMover : MonoBehaviour
         // Find navigate script
         playerNavigateScript = player.GetComponent<Navigate>();
 
+        // Get the default position of the sprite
         defaultSpritePos = playerSpritePos.transform.localPosition;
     }
 
@@ -37,7 +40,7 @@ public class MarkerMover : MonoBehaviour
             playerNavigateScript.ai.Teleport(jumpNodes[index].transform.position, false);
             player.transform.position = jumpNodes[index].transform.position;
 
-
+            // If the sprite is not at its default location, update it.
             if ((Vector2) playerSpritePos.transform.localPosition != defaultSpritePos)
             {
                 playerSpritePos.transform.localPosition = defaultSpritePos;
@@ -59,6 +62,7 @@ public class MarkerMover : MonoBehaviour
         
         TeleportToDestination(0);
         
+        // Set sprite to correct position
         playerSpritePos.transform.localPosition = defaultSpritePos;
     }
 }
