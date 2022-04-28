@@ -65,4 +65,13 @@ public class MarkerMover : MonoBehaviour
         // Set sprite to correct position
         playerSpritePos.transform.localPosition = defaultSpritePos;
     }
+
+    // Changes the time between jumps on all jump nodes
+    public void ChangeJumpTime(float time)
+    {
+        foreach (GameObject node in jumpNodes)
+        {
+            node.GetComponent<JumpNodeScript>().SetJumpTime(time);
+        }
+    }
 }

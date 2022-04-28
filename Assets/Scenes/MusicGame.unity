@@ -16216,6 +16216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapPointParent: {fileID: 478392195}
   nrNotesPerBeat: 13
+  secondsBetweenBeats: 1
   playButtonText: {fileID: 1307296647}
 --- !u!4 &1469437398
 Transform:

@@ -11,6 +11,8 @@ public class PlayMusic : MonoBehaviour
     // Max number of notes there are per beat
     [SerializeField] private int nrNotesPerBeat = 13;
 
+    [SerializeField] private float secondsBetweenBeats = 1;
+
     // Play button text
     [SerializeField] private TextMeshProUGUI playButtonText;
 
@@ -36,6 +38,9 @@ public class PlayMusic : MonoBehaviour
 
         // Update button text
         playButtonText.text = "Play";
+
+        // Sync time between beats to time between jumps
+        markerMoverScript.ChangeJumpTime(secondsBetweenBeats);
     }
 
     // Initializes snap points array
@@ -76,7 +81,7 @@ public class PlayMusic : MonoBehaviour
             StopAllCoroutines();
 
             // Start coroutine to play all notes with 1 second delay
-            StartCoroutine(PlayNoteAfterTime(1, noteSequence));
+            StartCoroutine(PlayNoteAfterTime(secondsBetweenBeats, noteSequence));
 
             // Update button text and isPlaying
             playButtonText.text = "Stop";
