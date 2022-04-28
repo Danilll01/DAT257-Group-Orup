@@ -11,6 +11,9 @@ public class PlayMusic : MonoBehaviour
     private GameObject[] snapPoints;
     private int totalNrNotes;
     private int playedNotes = 0;
+
+    private bool isPlaying = false;
+
     // Reference to moving script for marker
     private MarkerMover markerMoverScript;
 
@@ -41,17 +44,29 @@ public class PlayMusic : MonoBehaviour
     // Starts to play music
     public void PlayMusicLoop()
     {
-        // Get note data
-        List<GameObject>[] noteSequence = ParseNoteData();
+        if (isPlaying)
+        {
+            // Cancel the previous run of coroutines
+            StopAllCoroutines();
 
-        // Resets marker position
-        markerMoverScript.ResetPlayer();
+            // Resets marker position
+            markerMoverScript.ResetPlayer();
 
-        // Cancel the previous run of coroutines
-        StopAllCoroutines();
+            isPlaying = false;
+        } else
+        {
+            // Get note data
+            List<GameObject>[] noteSequence = ParseNoteData();
 
-        // Start coroutine to play all notes with 1 second delay
-        StartCoroutine(PlayNoteAfterTime(1, noteSequence));
+            // Cancel the previous run of coroutines
+            StopAllCoroutines();
+
+            // Start coroutine to play all notes with 1 second delay
+            StartCoroutine(PlayNoteAfterTime(1, noteSequence));
+            isPlaying = true;
+        }
+
+        
     }
 
     // Waits for a specified amount of time before playing the list of notes (the beat)
@@ -62,7 +77,7 @@ public class PlayMusic : MonoBehaviour
             yield return new WaitForSeconds(time);
             
             // Sets the location to the next note to be played
-            markerMoverScript.SetNewDestination(i % (notes.Length - 1));
+            markerMoverScript.SetNewDestination((i+1) % (notes.Length - 1));
 
             // Teleport the marker to the current note (if the jump hasn't finished)
             markerMoverScript.TeleportToDestination(i);
@@ -70,7 +85,7 @@ public class PlayMusic : MonoBehaviour
             // Play all notes in a beat
             PlayNotes(notes[i]);
         }
-        
+        isPlaying = false;
     }
 
     // Play all notes in a beat and teleports location to supplied  
