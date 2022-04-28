@@ -103,6 +103,7 @@ public class PlayMusic : MonoBehaviour
             PlayNotes(notes[i]);
         }
         // Reset bool after done with playing the song
+        playButtonText.text = "Play";
         isPlaying = false;
     }
 
