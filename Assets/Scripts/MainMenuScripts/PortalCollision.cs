@@ -13,7 +13,7 @@ public class PortalCollision : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            gameObject.SetActive(false);
+            gameObject.transform.GetComponent<BoxCollider2D>().isTrigger = false;
             // Change to game's scene
             SceneManager.LoadScene(sceneIndex);
 
@@ -21,6 +21,7 @@ public class PortalCollision : MonoBehaviour
         
 
     }
+
 
     // Start is called before the first frame update
     void Start()
