@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 
+using TMPro;
+
 public class PortalHandler : MonoBehaviour
 {
 
@@ -12,14 +14,15 @@ public class PortalHandler : MonoBehaviour
 
     public void onPortalClick(int portalId)
     {
-        // kalla på navigate 
+        // Make player go to the portal's corresponding node
         navigation.setNewPath(portals[portalId].position);
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
