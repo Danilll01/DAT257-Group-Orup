@@ -55,11 +55,17 @@ public class MemoryController : MonoBehaviour {
     [SerializeField]
     private AudioSource rightAnswerSound;
 
+    // Pointer for Audio Source
+    private AudioSource victorySound;
+
 
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
         sounds = Resources.LoadAll<AudioClip>("Animal_sounds");
+
+        // Gets the AudioSource component and attaches to the pointer
+        victorySound = GetComponent<AudioSource>();
     }
 
 
@@ -83,7 +89,6 @@ public class MemoryController : MonoBehaviour {
 
         // Finds buttons 
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
-        AudioSource audioSource;
 
 
         for (int i = 0; i < objects.Length; i++) {
@@ -93,7 +98,7 @@ public class MemoryController : MonoBehaviour {
             // Attaches picture to backside of card
             btns[i].image.sprite = bgImage;
             // Adds audio component
-            audioSource = objects[i].AddComponent<AudioSource>();
+            objects[i].AddComponent<AudioSource>();
 
         }
     }
@@ -265,10 +270,20 @@ public class MemoryController : MonoBehaviour {
         // Increments number of correct guesses
         countCorrectGuesses++;
 
-        // Activates the menu if game is finished
+        // Activates the menu if game is finished and plays victory sound
         if (countCorrectGuesses == gameGuesses) {
             finishMenu.SetActive(true);
+            StartCoroutine(PlayVictorySound());
         }
+    }
+
+    // Plays the sound after winning the game
+    IEnumerator PlayVictorySound() {
+        // Wait one second before playing to not intefere with sound of matching final pair of cards
+        yield return new WaitForSeconds(1f);
+        victorySound.Play();
+        yield return new WaitForSeconds(1.5f);
+        victorySound.Stop();
     }
 
     // Shuffles cards
