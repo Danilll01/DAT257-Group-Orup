@@ -220,7 +220,7 @@ public class MemoryController : MonoBehaviour {
         }
         // If the firstGuess is the same as the the next, the just play sound
         else {
-            StartCoroutine(SoundStop(secondGuessIndex));
+            StartCoroutine(SoundStop(firstGuessIndex));
         }
     }
 
