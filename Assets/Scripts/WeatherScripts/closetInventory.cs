@@ -7,6 +7,7 @@ public class closetInventory : MonoBehaviour
     List<GameObject> clothes;
 
     int currentIndex;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,8 @@ public class closetInventory : MonoBehaviour
     // When a clothing is removed from closet, remove it from array and show next item
     public void removeClothingFromArray(GameObject obj, bool switching){
         if(clothes.Contains(obj)){
-            clothes.Remove(obj);
+            //obj.GetComponent<AudioSource>().Play();
+            clothes.Remove(obj);           
             currentIndex++;
             if(currentIndex >= clothes.Count || currentIndex < 0){
                 currentIndex = 0;
