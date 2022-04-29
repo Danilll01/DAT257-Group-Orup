@@ -201,7 +201,7 @@ public class MemoryController : MonoBehaviour {
             // Plays the audiofile of animal
             StartCoroutine(SoundStop(firstGuessIndex));
         }
-        // Same as if-clause but with second
+        // If secondguess is not firstguess
         else if (!secondGuess && (firstGuessIndex != int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name))) {
             secondGuess = true;
 
@@ -218,6 +218,7 @@ public class MemoryController : MonoBehaviour {
             // Checks if puzzles match 
             StartCoroutine(CheckIfPuzzlesMatch());
         }
+        // If the firstGuess is the same as the the next, the just play sound
         else {
             StartCoroutine(SoundStop(secondGuessIndex));
         }
