@@ -10,6 +10,7 @@ public class PortalHandler : MonoBehaviour
 
     [SerializeField] private Transform[] portals;
     [SerializeField] private Navigate navigation;
+    private Transform startPosition;
 
 
     public void onPortalClick(int portalId)
@@ -22,7 +23,7 @@ public class PortalHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+       
     }
 
     // Update is called once per frame
