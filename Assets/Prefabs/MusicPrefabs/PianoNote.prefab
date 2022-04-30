@@ -104,13 +104,20 @@ MonoBehaviour:
   instrument: 0
   pianoClips:
   - {fileID: 8300000, guid: 368d00055620bfd4abc587176a3b1588, type: 3}
+  - {fileID: 8300000, guid: 164e6e2486e8d4fffb02c55b046b4b4b, type: 3}
   - {fileID: 8300000, guid: 3c0a59382a8898949bdf82e598cb6110, type: 3}
+  - {fileID: 8300000, guid: e0f36b6f7a30449368e84ded29c76ec4, type: 3}
   - {fileID: 8300000, guid: 2cc5b89dcb0df1e4f84802d389f11385, type: 3}
   - {fileID: 8300000, guid: 47c2260960ea945428cec70c3bafa4c9, type: 3}
+  - {fileID: 8300000, guid: 7d587f45f90c745c1846ba503fc640e4, type: 3}
   - {fileID: 8300000, guid: 2e9444371deed9f448757020a83f0a85, type: 3}
+  - {fileID: 8300000, guid: cac3164d2943f467298ccd22b1ac00c4, type: 3}
   - {fileID: 8300000, guid: 317ced907f863a747824a47d5335b21f, type: 3}
+  - {fileID: 8300000, guid: 88a04256426264444a62ea2f95d10247, type: 3}
   - {fileID: 8300000, guid: c1a473f896d15744a8151e654693b843, type: 3}
+  - {fileID: 8300000, guid: cb72dce1987514dae8218305d9293c6b, type: 3}
   - {fileID: 8300000, guid: 00862000d7045f04192c0a0d74360fdc, type: 3}
+  - {fileID: 8300000, guid: 3854fca14d0ce46089068b93c0db5dfb, type: 3}
   ukeleleClips:
   - {fileID: 8300000, guid: 428ee3e1d490c9746ac80737a0f11f2f, type: 3}
   - {fileID: 8300000, guid: 1609a5113b5c4044eae769a60625bae8, type: 3}
