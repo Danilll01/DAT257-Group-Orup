@@ -53,14 +53,11 @@ public class MemoryController : MonoBehaviour {
     [SerializeField]
     private GameObject finishMenu;
 
-    [SerializeField] private AudioMixer mixer;
-
-
 
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
-        sounds = Resources.LoadAll<AudioClip>("Animal_sounds");
+        sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
     }
 
 
@@ -175,7 +172,7 @@ public class MemoryController : MonoBehaviour {
     // Coroutine for deciding how long sounds should play
     IEnumerator SoundStop(int index) {
         btns[index].GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         btns[index].GetComponent<AudioSource>().Stop();
 
     }
