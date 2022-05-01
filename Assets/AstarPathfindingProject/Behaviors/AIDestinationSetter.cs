@@ -53,28 +53,31 @@ namespace Pathfinding {
 			if (Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+				// Clamps the target position to be inside the range where the player can move
 				target.position = new Vector2(Mathf.Clamp(target.position.x, minMaxXpos.x, minMaxXpos.y)
 											 ,Mathf.Clamp(target.position.y, minMaxYpos.x, minMaxYpos.y));
 
 				if (target != null && ai != null) ai.destination = target.position;
 			}
 
+			// Animate the player sprite 
 			animateCharachter();
 		}
 
+		// Controlls charachter animation and facing direction of sprite
 		private void animateCharachter() {
 			animator.SetFloat("Speed", ai.velocity.magnitude);
 
             if (ai.velocity.x > 0) {
 
-				playerSprite.localScale = standardScale;
+				playerSprite.localScale = standardScale; // Faces right
 
             } else if (ai.velocity.x < 0) {
 
 				// Multiply the player's x local scale by -1.
 				Vector3 theScale = standardScale;
 				theScale.x *= -1;
-				playerSprite.localScale = theScale;
+				playerSprite.localScale = theScale; // Faces left
 
 			}
         }
