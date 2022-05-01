@@ -23,6 +23,8 @@ namespace Pathfinding {
 		private bool isActive = false;
 		[SerializeField] private Vector2 minMaxXpos;
 		[SerializeField] private Vector2 minMaxYpos;
+		[SerializeField] private Animator animator;
+			
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -49,7 +51,13 @@ namespace Pathfinding {
 
 				if (target != null && ai != null) ai.destination = target.position;
 			}
+
+			animateCharachter();
 		}
+
+		private void animateCharachter() {
+			animator.SetFloat("Speed", ai.velocity.magnitude);
+        }
 
 		// If this script accept new target positions to move towards
 		public void canGetNewPos(bool input) {
