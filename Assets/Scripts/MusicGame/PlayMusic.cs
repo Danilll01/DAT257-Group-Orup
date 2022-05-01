@@ -8,6 +8,9 @@ public class PlayMusic : MonoBehaviour
     // Parent with all snap points
     [SerializeField] private GameObject snapPointParent;
 
+    // Parent with all unplaced notes
+    [SerializeField] private GameObject parentWithNotes;
+
     // Max number of notes there are per beat
     [SerializeField] private int nrNotesPerBeat = 13;
 
@@ -72,6 +75,9 @@ public class PlayMusic : MonoBehaviour
             // Update button text and isPlaying
             playButtonText.text = "Play";
             isPlaying = false;
+
+            // Unlock all notes
+            LockOrUnlockAllNodes(true);
         } else
         {
             // Get note data
@@ -86,6 +92,9 @@ public class PlayMusic : MonoBehaviour
             // Update button text and isPlaying
             playButtonText.text = "Stop";
             isPlaying = true;
+
+            // Lock all notes
+            LockOrUnlockAllNodes(false);
         }
 
         
@@ -174,5 +183,29 @@ public class PlayMusic : MonoBehaviour
 
         // Parses the int from string
         return int.Parse(input.Split("-")[splitWordIndex].Split(splitWord)[1]);
+    }
+
+    // Make the note movable or not movable
+    private void LockOrUnlockAllNodes(bool unlock)
+    {
+        List<DragAndDropNote> allNotes = new List<DragAndDropNote>();
+        // Add all notes attached to bars
+        allNotes.AddRange(snapPointParent.GetComponentsInChildren<DragAndDropNote>());
+
+        // Add all not placed notes 
+        allNotes.AddRange(parentWithNotes.GetComponentsInChildren<DragAndDropNote>());
+        
+        // Go through all notes
+        foreach (DragAndDropNote note in allNotes)
+        {
+            // Unlock note if it should be unlocked
+            if (unlock)
+            {
+                note.UnlockNode();
+            } else
+            {
+                note.LockNode();
+            }
+        }
     }
 }
