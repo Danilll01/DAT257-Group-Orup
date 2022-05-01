@@ -53,11 +53,19 @@ public class MemoryController : MonoBehaviour {
     [SerializeField]
     private GameObject finishMenu;
 
+    [SerializeField]
+    private AudioSource rightAnswerSound;
+
+    // Pointer for Audio Source
+    private AudioSource victorySound;
 
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
         sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
+
+        // Gets the AudioSource component and attaches to the pointer
+        victorySound = GetComponent<AudioSource>();
     }
 
 
@@ -81,7 +89,6 @@ public class MemoryController : MonoBehaviour {
 
         // Finds buttons 
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
-        AudioSource audioSource;
 
 
         for (int i = 0; i < objects.Length; i++) {
@@ -91,7 +98,7 @@ public class MemoryController : MonoBehaviour {
             // Attaches picture to backside of card
             btns[i].image.sprite = bgImage;
             // Adds audio component
-            audioSource = objects[i].AddComponent<AudioSource>();
+            objects[i].AddComponent<AudioSource>();
 
         }
     }
@@ -199,9 +206,8 @@ public class MemoryController : MonoBehaviour {
             // Plays the audiofile of animal
             StartCoroutine(SoundStop(firstGuessIndex));
         }
-
         // Same as if-clause but with second
-        else if (!secondGuess) {
+        else if (!secondGuess && (firstGuessIndex != int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name))) {
             secondGuess = true;
 
             secondGuessIndex = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
@@ -217,6 +223,9 @@ public class MemoryController : MonoBehaviour {
             // Checks if puzzles match 
             StartCoroutine(CheckIfPuzzlesMatch());
         }
+        else {
+            StartCoroutine(SoundStop(secondGuessIndex));
+        }
     }
 
     // Checks if puzzles match by checking the filename of picture
@@ -229,7 +238,7 @@ public class MemoryController : MonoBehaviour {
         if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex) {
 
             yield return new WaitForSeconds(0.25f);
-
+            rightAnswerSound.Play();    
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
@@ -263,10 +272,20 @@ public class MemoryController : MonoBehaviour {
         // Increments number of correct guesses
         countCorrectGuesses++;
 
-        // Activates the menu if game is finished
+        // Activates the menu if game is finished and plays victory sound
         if (countCorrectGuesses == gameGuesses) {
             finishMenu.SetActive(true);
+            StartCoroutine(PlayVictorySound());
         }
+    }
+
+    // Plays the sound after winning the game
+    IEnumerator PlayVictorySound() {
+        // Wait one second before playing to not intefere with sound of matching final pair of cards
+        yield return new WaitForSeconds(1f);
+        victorySound.Play();
+        yield return new WaitForSeconds(1.5f);
+        victorySound.Stop();
     }
 
     // Shuffles cards
