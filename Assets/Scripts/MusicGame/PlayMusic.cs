@@ -119,6 +119,9 @@ public class PlayMusic : MonoBehaviour
         // Reset bool after done with playing the song
         playButtonText.text = "Play";
         isPlaying = false;
+
+        // Unlock all notes
+        LockOrUnlockAllNodes(true);
     }
 
     // Play all notes in a beat and teleports location to supplied  
