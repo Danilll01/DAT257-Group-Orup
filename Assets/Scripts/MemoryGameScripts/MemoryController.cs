@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class MemoryController : MonoBehaviour {
     // Field for choosing the background image of the cards
@@ -58,11 +59,10 @@ public class MemoryController : MonoBehaviour {
     // Pointer for Audio Source
     private AudioSource victorySound;
 
-
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
-        sounds = Resources.LoadAll<AudioClip>("Animal_sounds");
+        sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
 
         // Gets the AudioSource component and attaches to the pointer
         victorySound = GetComponent<AudioSource>();
@@ -122,7 +122,7 @@ public class MemoryController : MonoBehaviour {
             foreach (AudioClip clip in sounds) {
 
                 // If filenames match, change index of audiofile to index of picture
-                if (clip.name == sprite.name) {
+                if (clip.name.ToLower() == sprite.name.ToLower()) {
                     soundsOrdered[i] = clip;
                 }
             }
@@ -179,7 +179,7 @@ public class MemoryController : MonoBehaviour {
     // Coroutine for deciding how long sounds should play
     IEnumerator SoundStop(int index) {
         btns[index].GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         btns[index].GetComponent<AudioSource>().Stop();
 
     }
