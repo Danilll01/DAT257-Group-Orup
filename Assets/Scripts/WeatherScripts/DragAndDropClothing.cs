@@ -176,7 +176,6 @@ public class DragAndDropClothing : MonoBehaviour {
         // Depending on how many colliders we have (max 2) we need to check input for both
         if (colliders.Length > 1 && !mouseMoveAllowed)
         {
-            //this.gameObject.GetComponent<AudioSource>().Play();
             // If the mouse is pressed down and the mouse is over one of the objects colliders, set mouseMoveAllowed to true
             // Also change back the sprite to original sprite when the object is being dragged
             // Remove the clothing from the closet

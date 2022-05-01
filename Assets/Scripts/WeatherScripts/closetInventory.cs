@@ -29,7 +29,6 @@ public class closetInventory : MonoBehaviour
     // When a clothing is removed from closet, remove it from array and show next item
     public void removeClothingFromArray(GameObject obj, bool switching){
         if(clothes.Contains(obj)){
-            //obj.GetComponent<AudioSource>().Play();
             clothes.Remove(obj);           
             currentIndex++;
             if(currentIndex >= clothes.Count || currentIndex < 0){
