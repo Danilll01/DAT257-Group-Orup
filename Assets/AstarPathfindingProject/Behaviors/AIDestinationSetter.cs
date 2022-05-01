@@ -25,6 +25,7 @@ namespace Pathfinding {
 		[SerializeField] private Vector2 minMaxXpos;
 		[SerializeField] private Vector2 minMaxYpos;
 		[SerializeField] private Transform playerSprite;
+		
 		private Animator animator;
 			
 
