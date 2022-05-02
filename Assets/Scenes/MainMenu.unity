@@ -123,6 +123,77 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &39041589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 39041590}
+  - component: {fileID: 39041592}
+  - component: {fileID: 39041591}
+  m_Layer: 0
+  m_Name: JumpNode (20)
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &39041590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39041589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.927, y: 7.007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1133679600}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39041591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39041589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpToNode: {fileID: 164779307}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpTime: 0.5
+--- !u!114 &39041592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39041589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca327ce4e754a4597a70fb963758f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 578982694783813677
+  end: {fileID: 164779307}
+  costFactor: 1
+  oneWay: 1
+  deleteConnection: 0
 --- !u!1 &75119078
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,6 +262,148 @@ MonoBehaviour:
   version: 1
   uniqueID: 986608295577178920
   end: {fileID: 566869553}
+  costFactor: 1
+  oneWay: 1
+  deleteConnection: 0
+--- !u!1 &106678315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106678316}
+  - component: {fileID: 106678318}
+  - component: {fileID: 106678317}
+  m_Layer: 0
+  m_Name: JumpNode (22)
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106678316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106678315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.844, y: 3.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1133679600}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106678317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106678315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpToNode: {fileID: 0}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpTime: 0.5
+--- !u!114 &106678318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106678315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca327ce4e754a4597a70fb963758f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 7318927162780209401
+  end: {fileID: 0}
+  costFactor: 1
+  oneWay: 1
+  deleteConnection: 0
+--- !u!1 &164779306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 164779307}
+  - component: {fileID: 164779309}
+  - component: {fileID: 164779308}
+  m_Layer: 0
+  m_Name: JumpNode (19)
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &164779307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164779306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.406, y: 6.011, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1133679600}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &164779308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164779306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpToNode: {fileID: 39041590}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpTime: 0.5
+--- !u!114 &164779309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164779306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca327ce4e754a4597a70fb963758f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 3835407196989716523
+  end: {fileID: 39041590}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -646,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1003527423}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -668,7 +881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 6793600874138899442
-  end: {fileID: 0}
+  end: {fileID: 1003527423}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -1423,7 +1636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1497553143}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -1445,7 +1658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 3087255156819756204
-  end: {fileID: 0}
+  end: {fileID: 1497553143}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -7921,7 +8134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1463659519}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -7943,7 +8156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 679545907569721545
-  end: {fileID: 0}
+  end: {fileID: 1463659519}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -11022,6 +11235,77 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &988849051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988849052}
+  - component: {fileID: 988849054}
+  - component: {fileID: 988849053}
+  m_Layer: 0
+  m_Name: JumpNode (23)
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &988849052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988849051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.029, y: 1.5027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1133679600}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &988849053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988849051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpToNode: {fileID: 1219200813}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpTime: 0.5
+--- !u!114 &988849054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988849051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca327ce4e754a4597a70fb963758f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6806437530304410235
+  end: {fileID: 1219200813}
+  costFactor: 1
+  oneWay: 1
+  deleteConnection: 0
 --- !u!1 &1003527422
 GameObject:
   m_ObjectHideFlags: 0
@@ -11048,7 +11332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1003527422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.69, y: 0.006, z: 0}
+  m_LocalPosition: {x: 6.426, y: 0.006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11067,7 +11351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 293880985}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -11089,7 +11373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 6984609326218605645
-  end: {fileID: 0}
+  end: {fileID: 293880985}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -11117,7 +11401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014800981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.056, y: 1.495, z: 0}
+  m_LocalPosition: {x: 3.613, y: 1.495, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11623,7 +11907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1452102038}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -11645,7 +11929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 1018812637331769654
-  end: {fileID: 0}
+  end: {fileID: 1452102038}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -11780,6 +12064,11 @@ Transform:
   - {fileID: 233931348}
   - {fileID: 1250811675}
   - {fileID: 2038917656}
+  - {fileID: 164779307}
+  - {fileID: 39041590}
+  - {fileID: 1463659519}
+  - {fileID: 106678316}
+  - {fileID: 988849052}
   m_Father: {fileID: 820747901}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12320,7 +12609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 988849052}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -12342,7 +12631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 1581005109847154476
-  end: {fileID: 0}
+  end: {fileID: 988849052}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -12596,7 +12885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 830641685}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -12618,7 +12907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 1498353492736898224
-  end: {fileID: 0}
+  end: {fileID: 830641685}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -12782,7 +13071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1905787603}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -12804,7 +13093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 601019337814665371
-  end: {fileID: 0}
+  end: {fileID: 1905787603}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -12999,7 +13288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1108033168}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -13021,7 +13310,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 1689047386454296716
-  end: {fileID: 0}
+  end: {fileID: 1108033168}
+  costFactor: 1
+  oneWay: 1
+  deleteConnection: 0
+--- !u!1 &1463659518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463659519}
+  - component: {fileID: 1463659521}
+  - component: {fileID: 1463659520}
+  m_Layer: 0
+  m_Name: JumpNode (21)
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463659519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463659518}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.864, y: 4.5026, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1133679600}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1463659520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463659518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpToNode: {fileID: 831783856}
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpTime: 0.5
+--- !u!114 &1463659521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463659518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca327ce4e754a4597a70fb963758f8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  uniqueID: 6301762225853927859
+  end: {fileID: 831783856}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -13418,7 +13778,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572869011}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.7, y: 4.52, z: 0}
+  m_LocalPosition: {x: 7.7, y: 4.5026, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13437,7 +13797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 106678316}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -13459,7 +13819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 8243727858386135274
-  end: {fileID: 0}
+  end: {fileID: 106678316}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
@@ -13833,7 +14193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e49235ea99732d24fb02c2ae01c6cb6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpToNode: {fileID: 0}
+  jumpToNode: {fileID: 1318078324}
   jumpCurve:
     serializedVersion: 2
     m_Curve: []
@@ -13855,7 +14215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   uniqueID: 2835998612769743791
-  end: {fileID: 0}
+  end: {fileID: 1318078324}
   costFactor: 1
   oneWay: 1
   deleteConnection: 0
