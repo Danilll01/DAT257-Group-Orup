@@ -63,11 +63,13 @@ public class JumpNodeScript : MonoBehaviour
         while (normalizedTime < 1.0f) {
             float yOffset = jumpCurve.Evaluate(normalizedTime); // Evaluates the curve based on current time in animation
 
+            float yBefore = agent.transform.position.y;
+
             agent.transform.localPosition = normalValues + (yOffset * Vector3.up); // Change local sprite position to move the sprite
             normalizedTime += Time.deltaTime / duration;
 
             // Starts the second part of jump animation
-            if (normalizedTime > 0.5f) {
+            if (yBefore > agent.transform.position.y) {
                 animator.SetBool("EndJump", true);
             }
 

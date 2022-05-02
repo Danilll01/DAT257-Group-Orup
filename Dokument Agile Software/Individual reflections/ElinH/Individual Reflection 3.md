@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV3 - Elin Hagman
 ## Vad vill jag lära mig eller förstå bättre?
 Jag känner mig fortfarande lite osäker med Unity och vill lära mig mer. Till nästa sprint vill jag förstå hur man kan få använderns location med Unity.
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
