@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabObject: {fileID: 7310518306814944659, guid: c4e7886f3d958ef48a47e221ce32c0a1, type: 3}
+  snapPointsParent: {fileID: 0}
 --- !u!1 &8998416770983496495
 GameObject:
   m_ObjectHideFlags: 0
