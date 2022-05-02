@@ -87,7 +87,6 @@ public class DragAndDropNote : MonoBehaviour
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
                         // Reset collider size and make sprite visible
-                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
                         GetComponent<SpriteRenderer>().enabled = true;
                     }
                     break;
@@ -107,6 +106,8 @@ public class DragAndDropNote : MonoBehaviour
                     if (moveAllowed)
                     {
                         SnapToPoint(touchPos);
+                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
                     }
                     moveAllowed = false;
                     break;
@@ -123,6 +124,7 @@ public class DragAndDropNote : MonoBehaviour
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
+                GetComponent<SpriteRenderer>().enabled = true;
                 mouseMoveAllowed = true;
             }
 
@@ -133,6 +135,9 @@ public class DragAndDropNote : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     SnapToPoint(mousePosition);
+
+                    GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
                     mouseMoveAllowed = false;
                 }
             }
