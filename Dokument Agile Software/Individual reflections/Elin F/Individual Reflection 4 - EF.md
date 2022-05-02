@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV3 - Elin Forsberg
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill lära mig mer om hur man skalar unity scenen på olika skärmar och resolutions på ett bra sätt. Kommer få en bättre förståelse
 för det senare när vi kommer till det senare.
