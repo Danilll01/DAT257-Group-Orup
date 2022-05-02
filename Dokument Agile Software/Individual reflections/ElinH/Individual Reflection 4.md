@@ -1,4 +1,4 @@
-# Individuell reflektion LV4 - NAMN
+# Individuell reflektion LV4 - Elin Hagman
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill få en större vana i unity så att jag kan jobba mer effektivt och bidra med mer velocity.
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?

@@ -117,15 +117,13 @@ public class DragAndDropClothing : MonoBehaviour {
                     {
                         GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         spriteRen.sortingOrder += 10;
                         changeBackSprite();
                         moveAllowed = true;
                         transform.SetParent(null);
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
                         beingDragged = true;
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                        transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     }
 
                 }
@@ -135,14 +133,12 @@ public class DragAndDropClothing : MonoBehaviour {
                     {
                         GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         spriteRen.sortingOrder += 10;
                         moveAllowed = true;
                         transform.SetParent(null);
                         beingDragged = true;
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                        transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     }
                 }
 
@@ -154,7 +150,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 if (moveAllowed)
                 {
                     
-                    transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                    transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     
                 }
                 break;
