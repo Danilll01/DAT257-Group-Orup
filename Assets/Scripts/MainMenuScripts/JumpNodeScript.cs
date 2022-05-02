@@ -58,18 +58,24 @@ public class JumpNodeScript : MonoBehaviour
 
         // Gets the animator
         Animator animator = agent.GetComponent<Animator>();
-        animator.SetBool("IsJumping", true);
+        animator.SetBool("StartJump", true);
 
         while (normalizedTime < 1.0f) {
             float yOffset = jumpCurve.Evaluate(normalizedTime); // Evaluates the curve based on current time in animation
 
             agent.transform.localPosition = normalValues + (yOffset * Vector3.up); // Change local sprite position to move the sprite
             normalizedTime += Time.deltaTime / duration;
+
+            if (normalizedTime > 0.5f) {
+                animator.SetBool("EndJump", true);
+            }
+
             yield return null;
         }
         setNormalAgentSpeed();
         agent.localPosition = normalValues; // Return player sprite to it's original location
-        animator.SetBool("IsJumping", false);
+        animator.SetBool("StartJump", false);
+        animator.SetBool("EndJump", false);
         isJumping = false;
     }
 }
