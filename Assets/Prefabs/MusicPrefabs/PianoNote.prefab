@@ -136,6 +136,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 88e42101e8ccc39409e13060edc5face, type: 3}
   - {fileID: 8300000, guid: 036d9d778e28c0b42b5f082f58e1a703, type: 3}
   - {fileID: 8300000, guid: 44cf91e4e645c8943a41d410dbf468b9, type: 3}
+  spawnColliderSize: 1.5
 --- !u!50 &7310518306814944658
 Rigidbody2D:
   serializedVersion: 4
