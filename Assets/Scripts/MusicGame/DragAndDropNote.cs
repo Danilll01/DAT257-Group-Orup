@@ -198,7 +198,6 @@ public class DragAndDropNote : MonoBehaviour
             {
                 GetComponent<CircleCollider2D>().radius = originalColliderRadius;
             }
-            
         }
 
 
@@ -208,6 +207,12 @@ public class DragAndDropNote : MonoBehaviour
             transform.SetParent(originalParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
+        }
+        
+        // Delete object if it would snap to the pool
+        if (originalPos == targetPosition)
+        {
+            Destroy(gameObject);
         }
 
     }
