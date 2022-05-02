@@ -26,7 +26,7 @@ public class DragAndDropNote : MonoBehaviour
     // Which instrument the note is
     [SerializeField] Instrument instrument;
 
-    // Every note for all instrumets
+    // Every note for the current instrumet
     [SerializeField] private AudioClip[] instrumentClips;
 
     // Used to make note easier to grab when in the pool
@@ -86,7 +86,7 @@ public class DragAndDropNote : MonoBehaviour
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
-                        // Reset collider size and make sprite visible
+                        // Make sprite visible
                         GetComponent<SpriteRenderer>().enabled = true;
                     }
                     break;
@@ -106,8 +106,9 @@ public class DragAndDropNote : MonoBehaviour
                     if (moveAllowed)
                     {
                         SnapToPoint(touchPos);
-                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
 
+                        // Reset collider size
+                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
                     }
                     moveAllowed = false;
                     break;
@@ -124,7 +125,9 @@ public class DragAndDropNote : MonoBehaviour
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
+                // Make sprite visible
                 GetComponent<SpriteRenderer>().enabled = true;
+
                 mouseMoveAllowed = true;
             }
 
@@ -136,6 +139,7 @@ public class DragAndDropNote : MonoBehaviour
                 {
                     SnapToPoint(mousePosition);
 
+                    // Reset collider size
                     GetComponent<CircleCollider2D>().radius = originalColliderRadius;
 
                     mouseMoveAllowed = false;
