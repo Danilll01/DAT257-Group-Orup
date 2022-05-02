@@ -11,6 +11,9 @@ public class DragAndDropNote : MonoBehaviour
     private Vector3 targetPosition;
     private Rigidbody2D ridgidBody;
 
+    // If the note can move
+    private bool lockedInPlace = false;
+
     // Audio source for playing the note sound
     private AudioSource audioSource;
 
@@ -51,7 +54,7 @@ public class DragAndDropNote : MonoBehaviour
     void Update()
     {
         // If there were any touches on the screen
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !lockedInPlace)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -96,7 +99,7 @@ public class DragAndDropNote : MonoBehaviour
         }
 
         // For mouse controls
-        else
+        else if (!lockedInPlace)
         {
             // Get the mouse position
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -233,5 +236,17 @@ public class DragAndDropNote : MonoBehaviour
             if (clip.name == noteName) return clip;
         }
         return null;
+    }
+
+    // Locks the note so it can't be moved
+    public void LockNode()
+    {
+        lockedInPlace = true;
+    }
+
+    // Unlocks the note so it can be moved
+    public void UnlockNode()
+    {
+        lockedInPlace = false;
     }
 }

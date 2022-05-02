@@ -16,6 +16,9 @@ public class WrongWayControllerScript : MonoBehaviour {
     private Vector2 startingLocation;
     private bool haveStartedAnimation = false;
 
+    private PlayerAnimatorController playerAnimator;
+    //private Animator animator;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -24,6 +27,9 @@ public class WrongWayControllerScript : MonoBehaviour {
 
         // Sets the starting location for the animation player
         startingLocation = player.position;
+
+        // Gets the animator for the player sprite
+        playerAnimator = player.GetComponent<PlayerAnimatorController>();
     }
 
     // Update is called once per frame
@@ -40,12 +46,20 @@ public class WrongWayControllerScript : MonoBehaviour {
 
         float timeUntilCallback = 0; // Value to know how long untill callback
 
+
         // Move towards the moveTo position
         while (Vector2.Distance(player.position, moveTo.position) > 0.05f) {
-            player.position = Vector2.MoveTowards(player.position, moveTo.position, playerSpeed * Time.deltaTime);
+            Vector2 moveTowards = Vector2.MoveTowards(player.position, moveTo.position, playerSpeed * Time.deltaTime);
+            
+            playerAnimator.UpdatePlayerAnimation(moveTowards - (Vector2) player.position);
+            player.position = moveTowards;
+
             timeUntilCallback += Time.deltaTime;
             yield return null;
         }
+
+        // Stops player runing animation
+        playerAnimator.UpdatePlayerAnimation(Vector2.zero);
 
         // Stands at position untill moveback
         float timer = 0;
@@ -54,8 +68,12 @@ public class WrongWayControllerScript : MonoBehaviour {
             yield return null;
         }
 
+
         // The vector to move back with
         Vector2 moveBackVector = Vector2.MoveTowards(player.position, startingLocation, playerSpeed * Time.deltaTime) - (Vector2) player.position;
+
+        // Starts the running animation
+        playerAnimator.UpdatePlayerAnimation(moveBackVector);
 
         // Moves back until the time for callback has come
         while (timeUntilCallback > 0) {

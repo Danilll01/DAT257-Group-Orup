@@ -21,8 +21,13 @@ namespace Pathfinding {
 
 		private bool canClick = true;
 		private bool isActive = false;
+		private Vector3 standardScale;
 		[SerializeField] private Vector2 minMaxXpos;
 		[SerializeField] private Vector2 minMaxYpos;
+		[SerializeField] private Transform playerSprite;
+		
+		private Animator animator;
+			
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
@@ -31,7 +36,12 @@ namespace Pathfinding {
 			// frame as the destination is used for debugging and may be used for other things by other
 			// scripts as well. So it makes sense that it is up to date every frame.
 			if (ai != null) ai.onSearchPath += Update;
-			
+
+			// Sets the standard scale for this object
+			standardScale = playerSprite.localScale;
+
+			// Gets the animator for the player sprite
+			animator = playerSprite.GetComponent<Animator>();
 		}
 
 		void OnDisable () {
@@ -44,12 +54,34 @@ namespace Pathfinding {
 			if (Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+				// Clamps the target position to be inside the range where the player can move
 				target.position = new Vector2(Mathf.Clamp(target.position.x, minMaxXpos.x, minMaxXpos.y)
 											 ,Mathf.Clamp(target.position.y, minMaxYpos.x, minMaxYpos.y));
 
 				if (target != null && ai != null) ai.destination = target.position;
 			}
+
+			// Animate the player sprite 
+			animateCharachter();
 		}
+
+		// Controlls charachter animation and facing direction of sprite
+		private void animateCharachter() {
+			animator.SetFloat("Speed", ai.velocity.magnitude);
+
+            if (ai.velocity.x > 0) {
+
+				playerSprite.localScale = standardScale; // Faces right
+
+            } else if (ai.velocity.x < 0) {
+
+				// Multiply the player's x local scale by -1.
+				Vector3 theScale = standardScale;
+				theScale.x *= -1;
+				playerSprite.localScale = theScale; // Faces left
+
+			}
+        }
 
 		// If this script accept new target positions to move towards
 		public void canGetNewPos(bool input) {
@@ -103,6 +135,7 @@ namespace Pathfinding {
 		}
 
 		// Calls mathgenerator to generate a new exercise and fade it in slowly
+		// When a new screen is shown and the player has to move upp first
 		private IEnumerator makeFadeIn(Action callToMethod) {
 
 			// Wait untill the ai has stopped on new screen
