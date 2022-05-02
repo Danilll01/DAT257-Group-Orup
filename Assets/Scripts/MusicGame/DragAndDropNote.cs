@@ -21,10 +21,8 @@ public class DragAndDropNote : MonoBehaviour
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
 
-    // All instruments that can be played
-    private enum Instrument { Piano, Ukulele, Trombone };
     // Which instrument the note is
-    [SerializeField] private Instrument instrument;
+    [SerializeField] Instrument instrument;
 
     // Every note for all instrumets
     [SerializeField] private AudioClip[] pianoClips;
@@ -222,7 +220,7 @@ public class DragAndDropNote : MonoBehaviour
         {
             Instrument.Piano => FindAudioClipNote(pianoClips, noteName),
             Instrument.Ukulele => FindAudioClipNote(ukeleleClips, noteName),
-            Instrument.Trombone => FindAudioClipNote(tromboneClips, noteName),
+            Instrument.Trumpet => FindAudioClipNote(tromboneClips, noteName),
             _ => null,
         };
     }
