@@ -9,6 +9,7 @@ public class DragAndDropNote : MonoBehaviour
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
     private Vector3 targetPosition;
+    private Transform originalParent;
     private Rigidbody2D ridgidBody;
 
     // If the note can move
@@ -34,6 +35,7 @@ public class DragAndDropNote : MonoBehaviour
         // Setup the original position
         originalPos = transform.position;
         targetPosition = originalPos;
+        originalParent = transform.parent;
 
         // Initialize array with snap points
         if (snapPointsParent != null)
@@ -131,6 +133,7 @@ public class DragAndDropNote : MonoBehaviour
     // Method for snapping to object to a point close to it
     private void SnapToPoint(Vector2 position)
     {
+        // If the snap point array is empty don't run this method
         if (snapPoints.Length == 0) return; 
 
         bool snapped = false;
@@ -160,6 +163,8 @@ public class DragAndDropNote : MonoBehaviour
         {
             targetPosition = shortestSnapPoint.transform.position;
             transform.SetParent(shortestSnapPoint.transform);
+            
+            
             snapped = true;
 
             // Sets the correct audio clip depending on which note the object was placed on
@@ -173,7 +178,7 @@ public class DragAndDropNote : MonoBehaviour
         // If we did not snap to anything, return the object to the original position
         if (!snapped)
         {
-            transform.SetParent(null);
+            transform.SetParent(originalParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
         }
@@ -253,6 +258,7 @@ public class DragAndDropNote : MonoBehaviour
         lockedInPlace = false;
     }
 
+    // Sets the snap point parent object and initializes the array
     public void SetSnapPointParent(GameObject parent)
     {
         snapPointsParent = parent;
