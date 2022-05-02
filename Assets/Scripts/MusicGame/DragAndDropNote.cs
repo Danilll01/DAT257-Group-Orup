@@ -36,8 +36,11 @@ public class DragAndDropNote : MonoBehaviour
         targetPosition = originalPos;
 
         // Initialize array with snap points
-        InitializeSnapPointsArray();
-
+        if (snapPointsParent != null)
+        {
+            InitializeSnapPointsArray();
+        }
+        
         ridgidBody = GetComponent<Rigidbody2D>();
 
         // Gets objects audio source
@@ -128,6 +131,8 @@ public class DragAndDropNote : MonoBehaviour
     // Method for snapping to object to a point close to it
     private void SnapToPoint(Vector2 position)
     {
+        if (snapPoints.Length == 0) return; 
+
         bool snapped = false;
         
         // Start values for shortest snap point
@@ -246,5 +251,11 @@ public class DragAndDropNote : MonoBehaviour
     public void UnlockNode()
     {
         lockedInPlace = false;
+    }
+
+    public void SetSnapPointParent(GameObject parent)
+    {
+        snapPointsParent = parent;
+        InitializeSnapPointsArray();
     }
 }
