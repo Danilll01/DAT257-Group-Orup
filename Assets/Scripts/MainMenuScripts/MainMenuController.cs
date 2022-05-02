@@ -39,5 +39,6 @@ public class MainMenuController : MonoBehaviour
     public void OnGoBackButtonClick()
     {
         SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(8); // For testing Temp3
     }
 }
