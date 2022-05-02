@@ -12,6 +12,7 @@ public class DragAndDropNote : MonoBehaviour
     private Transform originalParent;
     private float originalColliderRadius;
     private Rigidbody2D ridgidBody;
+    private bool toBeDeleted;
 
     // If the note can move
     private bool lockedInPlace = false;
@@ -149,6 +150,12 @@ public class DragAndDropNote : MonoBehaviour
         }
 
         AddForceToRidgidbody();
+        
+        // If note want's to be deleted and is close to its pool, delete it
+        if (toBeDeleted && Mathf.Abs(Vector2.Distance(originalPos, transform.position)) < 0.1 )
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -207,14 +214,10 @@ public class DragAndDropNote : MonoBehaviour
             transform.SetParent(originalParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
-        }
-        
-        // Delete object if it would snap to the pool
-        if (originalPos == targetPosition)
-        {
-            Destroy(gameObject);
-        }
 
+            // Set the object to be deleted if it's released outside a snappoint
+            toBeDeleted = true;
+        }
     }
 
     // Adds force to the player ridgidbody to move towards the target point
