@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV4 - Fredrik Ahlqvist
 ## Vad vill jag lära mig eller förstå bättre?
 Fixa grafiska element i unity då i framtiden kommer vi lägga mer fokus på utseendet.
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
