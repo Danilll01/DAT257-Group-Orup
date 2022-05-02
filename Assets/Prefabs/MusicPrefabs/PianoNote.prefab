@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapPointsParent: {fileID: 0}
   instrument: 0
-  pianoClips:
+  instrumentClips:
   - {fileID: 8300000, guid: 368d00055620bfd4abc587176a3b1588, type: 3}
   - {fileID: 8300000, guid: cb29bbcde0e71470b94f05d8c89d9c3f, type: 3}
   - {fileID: 8300000, guid: 3c0a59382a8898949bdf82e598cb6110, type: 3}
@@ -118,24 +118,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 85bf7def8f6b543a7b5a8fef345d7ba2, type: 3}
   - {fileID: 8300000, guid: 00862000d7045f04192c0a0d74360fdc, type: 3}
   - {fileID: 8300000, guid: 161e8a4e4dc6047008c6181d0d4daf35, type: 3}
-  ukeleleClips:
-  - {fileID: 8300000, guid: 428ee3e1d490c9746ac80737a0f11f2f, type: 3}
-  - {fileID: 8300000, guid: 1609a5113b5c4044eae769a60625bae8, type: 3}
-  - {fileID: 8300000, guid: 203380a39737d0a48b4adf5ea0ed1061, type: 3}
-  - {fileID: 8300000, guid: c6dfe2777fde3234fb9c105702253d94, type: 3}
-  - {fileID: 8300000, guid: 231ae3681cfb6c74abbd92372732dab5, type: 3}
-  - {fileID: 8300000, guid: 8e2cb417b8f883e46a291a2382568df4, type: 3}
-  - {fileID: 8300000, guid: ce5406ec61734754ca00c3b85d51dda6, type: 3}
-  - {fileID: 8300000, guid: 6a47e673858a20d4aaec40ae9e443616, type: 3}
-  tromboneClips:
-  - {fileID: 8300000, guid: 84525262da59c2b45b3a2322e38a4928, type: 3}
-  - {fileID: 8300000, guid: d32e71dd2b7368742b5c5c587ac62c5d, type: 3}
-  - {fileID: 8300000, guid: 039b2a8e453efc24c8ebb26a435f3039, type: 3}
-  - {fileID: 8300000, guid: 326bd8b6d070d6e4690fdad5f97ab65b, type: 3}
-  - {fileID: 8300000, guid: 35452107c77bf1a46b2bfd22e8e8da00, type: 3}
-  - {fileID: 8300000, guid: 88e42101e8ccc39409e13060edc5face, type: 3}
-  - {fileID: 8300000, guid: 036d9d778e28c0b42b5f082f58e1a703, type: 3}
-  - {fileID: 8300000, guid: 44cf91e4e645c8943a41d410dbf468b9, type: 3}
   spawnColliderSize: 1.5
 --- !u!50 &7310518306814944658
 Rigidbody2D:

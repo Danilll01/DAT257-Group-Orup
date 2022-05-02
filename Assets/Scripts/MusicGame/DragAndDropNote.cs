@@ -27,9 +27,7 @@ public class DragAndDropNote : MonoBehaviour
     [SerializeField] Instrument instrument;
 
     // Every note for all instrumets
-    [SerializeField] private AudioClip[] pianoClips;
-    [SerializeField] private AudioClip[] ukeleleClips;
-    [SerializeField] private AudioClip[] tromboneClips;
+    [SerializeField] private AudioClip[] instrumentClips;
 
     // Used to make note easier to grab when in the pool
     [SerializeField] private float spawnColliderSize = 1;
@@ -246,13 +244,7 @@ public class DragAndDropNote : MonoBehaviour
     // Gets correct note based on which instrument the object is
     private AudioClip GetAudioClip(string noteName)
     {
-        return instrument switch
-        {
-            Instrument.Piano => FindAudioClipNote(pianoClips, noteName),
-            Instrument.Ukulele => FindAudioClipNote(ukeleleClips, noteName),
-            Instrument.Trumpet => FindAudioClipNote(tromboneClips, noteName),
-            _ => null,
-        };
+        return FindAudioClipNote(instrumentClips, noteName);
     }
 
     // Finds a specific note in an audio clip array
