@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV3 - Fredrik Ahlqvist
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill lära mig att bli bättre på att använda Unity för att bidra till projektet samt CS för samma anledning.
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
