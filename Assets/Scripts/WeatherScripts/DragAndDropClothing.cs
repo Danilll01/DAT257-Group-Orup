@@ -16,6 +16,7 @@ public class DragAndDropClothing : MonoBehaviour {
     private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
     private SpriteRenderer spriteRen;
+    private int originSortingOrder;
 
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
@@ -42,6 +43,7 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
         originParent = transform.parent;
 
+
         beingDragged = false;
 
 
@@ -64,6 +66,7 @@ public class DragAndDropClothing : MonoBehaviour {
         originalColliderOffset = colliders[0].offset;
         originalColliderSize = colliders[0].size;
         originalSprite = spriteRen.sprite;
+        originSortingOrder = spriteRen.sortingOrder;
 
         // Dissables collision between clothes objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
@@ -114,15 +117,13 @@ public class DragAndDropClothing : MonoBehaviour {
                     {
                         GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
-                        spriteRen.sortingOrder++;
+                        spriteRen.sortingOrder += 10;
                         changeBackSprite();
                         moveAllowed = true;
                         transform.SetParent(null);
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
                         beingDragged = true;
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                        transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     }
 
                 }
@@ -132,14 +133,12 @@ public class DragAndDropClothing : MonoBehaviour {
                     {
                         GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
-                        spriteRen.sortingOrder++;
+                        spriteRen.sortingOrder += 10;
                         moveAllowed = true;
                         transform.SetParent(null);
                         beingDragged = true;
                         inventoryScript.removeClothingFromArray(this.gameObject, false);
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                        transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     }
                 }
 
@@ -151,7 +150,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 if (moveAllowed)
                 {
                     
-                    transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY, 0));
+                    transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
                     
                 }
                 break;
@@ -162,7 +161,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 {
                     snapToPoint(transform.position);
                     moveAllowed = false;
-                    spriteRen.sortingOrder--;
+                    spriteRen.sortingOrder = originSortingOrder;
                     beingDragged = false;
                 }
                 break;
@@ -183,7 +182,7 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 mouseMoveAllowed = true;
                 changeBackSprite();
-                spriteRen.sortingOrder++;
+                spriteRen.sortingOrder += 10;
                 transform.SetParent(null);
                 beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
@@ -198,7 +197,7 @@ public class DragAndDropClothing : MonoBehaviour {
             if (Input.GetMouseButtonDown(0) && !beingDragged && colliders[0] == Physics2D.OverlapPoint(mousePosition))
             {
                 mouseMoveAllowed = true;
-                spriteRen.sortingOrder++;
+                spriteRen.sortingOrder += 10;
                 transform.SetParent(null);
                 beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
@@ -218,7 +217,7 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 snapToPoint(transform.position);
                 mouseMoveAllowed = false;
-                spriteRen.sortingOrder--;
+                spriteRen.sortingOrder = originSortingOrder;
                 beingDragged = false;
             }
         }
@@ -236,24 +235,8 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
         inventoryScript.AddClothingToArray(this.gameObject,switching);
 
-        // If we had a second collider, make it small so player cant interact with it
-        if (colliders.Length > 1)
-        {
-            colliders[1].offset = new Vector2(0, 0);
-            colliders[1].size = new Vector2(0, 0);
-        }
+        changeBackSprite();
     }
-
-    // Used for drawing radius from snapPoints
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        foreach (GameObject snapPoint in snapPoints)
-        {
-            Gizmos.DrawSphere(snapPoint.transform.position, 1);
-        }
-    }
-
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector2 position){

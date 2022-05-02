@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV4 - Oscar Adamsson
 ## Vad vill jag lära mig eller förstå bättre?
 Kopplingen mellan Unity och Github, förstår inte riktigt hur det fungerar
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
