@@ -16,6 +16,7 @@ public class DragAndDropClothing : MonoBehaviour {
     private Vector3 lastPosition;
     private Rigidbody2D ridgidBody;
     private SpriteRenderer spriteRen;
+    private int originSortingOrder;
 
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
@@ -42,6 +43,7 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
         originParent = transform.parent;
 
+
         beingDragged = false;
 
 
@@ -64,6 +66,7 @@ public class DragAndDropClothing : MonoBehaviour {
         originalColliderOffset = colliders[0].offset;
         originalColliderSize = colliders[0].size;
         originalSprite = spriteRen.sprite;
+        originSortingOrder = spriteRen.sortingOrder;
 
         // Dissables collision between clothes objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
@@ -116,7 +119,7 @@ public class DragAndDropClothing : MonoBehaviour {
                         GetComponent<AudioSource>().Play();
                         deltaX = touchPos.x - transform.position.x;
                         deltaY = touchPos.y - transform.position.y;
-                        spriteRen.sortingOrder++;
+                        spriteRen.sortingOrder += 10;
                         changeBackSprite();
                         moveAllowed = true;
                         transform.SetParent(null);
@@ -134,7 +137,7 @@ public class DragAndDropClothing : MonoBehaviour {
                         GetComponent<AudioSource>().Play();
                         deltaX = touchPos.x - transform.position.x;
                         deltaY = touchPos.y - transform.position.y;
-                        spriteRen.sortingOrder++;
+                        spriteRen.sortingOrder += 10;
                         moveAllowed = true;
                         transform.SetParent(null);
                         beingDragged = true;
@@ -162,7 +165,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 {
                     snapToPoint(transform.position);
                     moveAllowed = false;
-                    spriteRen.sortingOrder--;
+                    spriteRen.sortingOrder = originSortingOrder;
                     beingDragged = false;
                 }
                 break;
@@ -183,7 +186,7 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 mouseMoveAllowed = true;
                 changeBackSprite();
-                spriteRen.sortingOrder++;
+                spriteRen.sortingOrder += 10;
                 transform.SetParent(null);
                 beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
@@ -198,7 +201,7 @@ public class DragAndDropClothing : MonoBehaviour {
             if (Input.GetMouseButtonDown(0) && !beingDragged && colliders[0] == Physics2D.OverlapPoint(mousePosition))
             {
                 mouseMoveAllowed = true;
-                spriteRen.sortingOrder++;
+                spriteRen.sortingOrder += 10;
                 transform.SetParent(null);
                 beingDragged = true;
                 inventoryScript.removeClothingFromArray(this.gameObject, false);
@@ -218,7 +221,7 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 snapToPoint(transform.position);
                 mouseMoveAllowed = false;
-                spriteRen.sortingOrder--;
+                spriteRen.sortingOrder = originSortingOrder;
                 beingDragged = false;
             }
         }
@@ -243,17 +246,6 @@ public class DragAndDropClothing : MonoBehaviour {
             colliders[1].size = new Vector2(0, 0);
         }
     }
-
-    // Used for drawing radius from snapPoints
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        foreach (GameObject snapPoint in snapPoints)
-        {
-            Gizmos.DrawSphere(snapPoint.transform.position, 1);
-        }
-    }
-
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector2 position){
