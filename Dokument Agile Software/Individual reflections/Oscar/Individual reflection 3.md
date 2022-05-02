@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV3 - Oscar Adamsson
 ## Vad vill jag lära mig eller förstå bättre?
 Unity och scrum framwork
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
