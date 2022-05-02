@@ -10,6 +10,7 @@ public class DragAndDropNote : MonoBehaviour
     private Vector3 originalPos;
     private Vector3 targetPosition;
     private Transform originalParent;
+    private float originalColliderRadius;
     private Rigidbody2D ridgidBody;
 
     // If the note can move
@@ -29,6 +30,9 @@ public class DragAndDropNote : MonoBehaviour
     [SerializeField] private AudioClip[] pianoClips;
     [SerializeField] private AudioClip[] ukeleleClips;
     [SerializeField] private AudioClip[] tromboneClips;
+
+    // Used to make note easier to grab when in the pool
+    [SerializeField] private float spawnColliderSize = 1;
 
     void Start()
     {
@@ -50,6 +54,13 @@ public class DragAndDropNote : MonoBehaviour
 
         // Dissables collision between note objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Notes needs to be on layer 6
+
+        // Get original collider size
+        originalColliderRadius = GetComponent<CircleCollider2D>().radius;
+
+        // Make the note easier to grab and disable the sprite
+        GetComponent<CircleCollider2D>().radius = spawnColliderSize;
+        GetComponent<SpriteRenderer>().enabled = false;
 
     }
 
@@ -76,6 +87,10 @@ public class DragAndDropNote : MonoBehaviour
                         deltaY = touchPos.y - transform.position.y;
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
+
+                        // Reset collider size and make sprite visible
+                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+                        GetComponent<SpriteRenderer>().enabled = true;
                     }
                     break;
 
@@ -164,14 +179,19 @@ public class DragAndDropNote : MonoBehaviour
             targetPosition = shortestSnapPoint.transform.position;
             transform.SetParent(shortestSnapPoint.transform);
             
-            
             snapped = true;
 
             // Sets the correct audio clip depending on which note the object was placed on
             SetCorrectNote(shortestSnapPoint);
 
-            // Temporarily play note E3
+            // Play the assigned note
             audioSource.Play();
+
+            if (originalPos != targetPosition)
+            {
+                GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+            }
+            
         }
 
 
