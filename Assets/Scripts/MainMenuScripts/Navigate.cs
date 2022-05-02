@@ -37,7 +37,8 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Updates the AI's destination every frame</summary>
-		void FixedUpdate() {
+
+		void Update() {
 
 			// Sets target after mouse click
 			if (Input.GetMouseButtonDown(0)) {
@@ -49,6 +50,11 @@ namespace Pathfinding {
 			checkJumpNode();
 
 			playerAnimator.UpdatePlayerAnimation(ai.velocity);
+		}
+
+		void FixedUpdate() {
+			// Checks if agent is at a jumping node 
+			checkJumpNode();
 		}
 
 		// Checks if player agent is at a jumping node and is going to do the jump, if so it calls for the jump animation to be played
