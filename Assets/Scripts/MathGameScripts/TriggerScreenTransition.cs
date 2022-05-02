@@ -85,9 +85,10 @@ public class TriggerScreenTransition : MonoBehaviour
 
     // This will be called when the players enter the collider
     void OnTriggerEnter2D(Collider2D col) {
-        gameObject.SetActive(false);
-        changeCameraView();
-        
+        if (col.tag == "Player") {
+            gameObject.SetActive(false);
+            changeCameraView();
+        }
     }
 
 
