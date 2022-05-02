@@ -17,7 +17,7 @@ namespace Pathfinding {
 	public class Navigate : VersionedMonoBehaviour {
 		/// <summary>The object that the AI should move to</summary>
 		public Transform target;
-		IAstarAI ai;
+		public IAstarAI ai;
 
 		[SerializeField] private JumpNodeScript[] jumpNodes;
 
@@ -27,16 +27,16 @@ namespace Pathfinding {
 			// This is enough in theory, but this script will also update the destination every
 			// frame as the destination is used for debugging and may be used for other things by other
 			// scripts as well. So it makes sense that it is up to date every frame.
-			if (ai != null) ai.onSearchPath += Update;
+			if (ai != null) ai.onSearchPath += FixedUpdate;
 
 		}
 
 		void OnDisable() {
-			if (ai != null) ai.onSearchPath -= Update;
+			if (ai != null) ai.onSearchPath -= FixedUpdate;
 		}
 
 		/// <summary>Updates the AI's destination every frame</summary>
-		void Update() {
+		void FixedUpdate() {
 
 			// Sets target after mouse click
 			/*if (Input.GetMouseButtonDown(0)) {
@@ -61,7 +61,7 @@ namespace Pathfinding {
 					ai.GetRemainingPath(remPath, out bool stale);
 					
 					// And see if the next node is the same as the jumpnode is going to 
-					if (Vector2.Distance(remPath[1], node.JumpToCoordinates()) < 0.1) {
+					if (!stale && Vector2.Distance(remPath[1], node.JumpToCoordinates()) < 0.1) {
 
 						// If so, play jumping animation
 						float normalSpeed = ai.maxSpeed;
@@ -84,8 +84,6 @@ namespace Pathfinding {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
 		}
-
-		
 	}
 }
 
