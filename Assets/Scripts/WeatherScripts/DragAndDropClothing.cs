@@ -239,12 +239,7 @@ public class DragAndDropClothing : MonoBehaviour {
         targetPosition = originalPos;
         inventoryScript.AddClothingToArray(this.gameObject,switching);
 
-        // If we had a second collider, make it small so player cant interact with it
-        if (colliders.Length > 1)
-        {
-            colliders[1].offset = new Vector2(0, 0);
-            colliders[1].size = new Vector2(0, 0);
-        }
+        changeBackSprite();
     }
 
     // Method for snapping to object to a point close to it
