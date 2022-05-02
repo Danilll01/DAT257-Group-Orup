@@ -60,19 +60,24 @@ public class JumpNodeScript : MonoBehaviour
         Animator animator = agent.GetComponent<Animator>();
         animator.SetBool("StartJump", true);
 
+        // Sets up a value to know when to swich jumpingsprite
+        float yBefore = agent.transform.position.y;
+
         while (normalizedTime < 1.0f) {
             float yOffset = jumpCurve.Evaluate(normalizedTime); // Evaluates the curve based on current time in animation
-
-            float yBefore = agent.transform.position.y;
 
             agent.transform.localPosition = normalValues + (yOffset * Vector3.up); // Change local sprite position to move the sprite
             normalizedTime += Time.deltaTime / duration;
 
-            // Starts the second part of jump animation
+            Debug.Log(yBefore - agent.transform.position.y);
+
+            // Starts the second part of jump animation by comparing y coordinates with frame before (This is to change when falling down)
             if (yBefore > agent.transform.position.y) {
                 animator.SetBool("EndJump", true);
             }
 
+            // Helps determening if the playersprite should change
+            yBefore = agent.transform.position.y;
             yield return null;
         }
 
