@@ -66,14 +66,17 @@ public class JumpNodeScript : MonoBehaviour
             agent.transform.localPosition = normalValues + (yOffset * Vector3.up); // Change local sprite position to move the sprite
             normalizedTime += Time.deltaTime / duration;
 
+            // Starts the second part of jump animation
             if (normalizedTime > 0.5f) {
                 animator.SetBool("EndJump", true);
             }
 
             yield return null;
         }
+
+        // Reset player sprite and agent speed
         setNormalAgentSpeed();
-        agent.localPosition = normalValues; // Return player sprite to it's original location
+        agent.localPosition = normalValues; 
         animator.SetBool("StartJump", false);
         animator.SetBool("EndJump", false);
         isJumping = false;

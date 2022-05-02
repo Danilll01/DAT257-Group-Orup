@@ -49,6 +49,7 @@ namespace Pathfinding {
 			// Checks if agent is at a jumping node 
 			checkJumpNode();
 
+			// Animate player
 			playerAnimator.UpdatePlayerAnimation(ai.velocity);
 		}
 
