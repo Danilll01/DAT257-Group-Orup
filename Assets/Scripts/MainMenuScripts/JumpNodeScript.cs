@@ -34,6 +34,11 @@ public class JumpNodeScript : MonoBehaviour
         return Vector2.Distance(transform.position, jumpToNode.position) / jumpTime;
     }
 
+    public void SetJumpTime(float time)
+    {
+        jumpTime = time;
+    }
+
     // Starting function for the jump animation, blocks repeated calls if animation is playing
     public void StartJumpAnimation(Transform agent, Action setNormalAgentSpeed) {
         if (!isJumping) {
