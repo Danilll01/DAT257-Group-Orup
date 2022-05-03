@@ -40,9 +40,17 @@ public class LetterController : MonoBehaviour
 
     public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList)
     {
+        List<GameObject> tempCards = new List<GameObject>();
+        foreach (GameObject card in cards)
+        {
+            tempCards.Add(card);
+        }
         for (int i = 0; i < cards.Length; i++)
         {
-            cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set matching letter
+            int index = UnityEngine.Random.Range(0, tempCards.Count); // Ranomize a index in the lists
+            tempCards[index].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set matching letter
+            tempCards.RemoveAt(index);
+            
         }
     }
 

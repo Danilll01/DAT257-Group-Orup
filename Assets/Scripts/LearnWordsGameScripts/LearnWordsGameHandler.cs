@@ -19,6 +19,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     void Start()
     {
         randomCardAmount = imgController.getCardAmount(); // The amount of cards to randomize sprites and words to 
+        generateNewCards();
     }
 
 
