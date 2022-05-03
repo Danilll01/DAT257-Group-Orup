@@ -103,20 +103,21 @@ MonoBehaviour:
   snapPointsParent: {fileID: 0}
   instrument: 2
   instrumentClips:
-  - {fileID: 8300000, guid: 84525262da59c2b45b3a2322e38a4928, type: 3}
-  - {fileID: 8300000, guid: 852e0fc679fa142a8b1b294448df9be9, type: 3}
-  - {fileID: 8300000, guid: d32e71dd2b7368742b5c5c587ac62c5d, type: 3}
-  - {fileID: 8300000, guid: 530583003ed224c27bd764a41d1d08fa, type: 3}
-  - {fileID: 8300000, guid: 326bd8b6d070d6e4690fdad5f97ab65b, type: 3}
-  - {fileID: 8300000, guid: a8c5fc2f0877dba40a47d5e00e053dca, type: 3}
+  - {fileID: 8300000, guid: b50d22654f7f8d248a638f834ae18406, type: 3}
+  - {fileID: 8300000, guid: 1f4c63e9f5871054a809af41a581e46c, type: 3}
+  - {fileID: 8300000, guid: 534b1220c30cf5542bd17de4765a4e4c, type: 3}
+  - {fileID: 8300000, guid: 0b478de580ddda442932e7acea58fbf0, type: 3}
+  - {fileID: 8300000, guid: 83963bfda3792c6428511d7d8125bb0a, type: 3}
+  - {fileID: 8300000, guid: 4e3fba640bd19234d885e0223108c8f6, type: 3}
+  - {fileID: 8300000, guid: bc777044687cecb499414ad74b32a205, type: 3}
   - {fileID: 8300000, guid: d1352a463b1634737ad9dd081c68ac7a, type: 3}
-  - {fileID: 8300000, guid: aa3c251dbe89e429c81cb8ee58ac19cf, type: 3}
-  - {fileID: 8300000, guid: 88e42101e8ccc39409e13060edc5face, type: 3}
-  - {fileID: 8300000, guid: 846e3e326890c40d39810ee4127adeee, type: 3}
-  - {fileID: 8300000, guid: 036d9d778e28c0b42b5f082f58e1a703, type: 3}
-  - {fileID: 8300000, guid: 5bd7ed311aed24307afaab34da421b32, type: 3}
-  - {fileID: 8300000, guid: 44cf91e4e645c8943a41d410dbf468b9, type: 3}
-  - {fileID: 8300000, guid: 7f04fb25c37724c11b4657f52ba5328c, type: 3}
+  - {fileID: 8300000, guid: 9a28ac52db820954fbf8c9ba25c598bf, type: 3}
+  - {fileID: 8300000, guid: 1c11c969879ca4445a4b11cb22852be2, type: 3}
+  - {fileID: 8300000, guid: 20050d7af92ee144e96f4c821b738bb8, type: 3}
+  - {fileID: 8300000, guid: e7f8c8376f27d9242a1f53e4b916e080, type: 3}
+  - {fileID: 8300000, guid: 7c843d643158c964b8ccb719a5a59a06, type: 3}
+  - {fileID: 8300000, guid: 63b913517d728294e989591fa68a6c3b, type: 3}
+  - {fileID: 8300000, guid: 686c08c6bafc1d448bd6ed3174b4362e, type: 3}
   spawnColliderSize: 1.5
 --- !u!50 &8801270885078129173
 Rigidbody2D:

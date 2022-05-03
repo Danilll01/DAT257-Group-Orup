@@ -50,7 +50,7 @@ namespace Pathfinding {
 			checkJumpNode();
 
 			// Animate player
-			playerAnimator.UpdatePlayerAnimation(ai.velocity);
+			if (playerAnimator != null)	playerAnimator.UpdatePlayerAnimation(ai.velocity);
 		}
 
 		void FixedUpdate() {
