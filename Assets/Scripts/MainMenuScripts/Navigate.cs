@@ -20,6 +20,7 @@ namespace Pathfinding {
 		public IAstarAI ai;
 
 		[SerializeField] private JumpNodeScript[] jumpNodes;
+		[SerializeField] private PlayerAnimatorController playerAnimator;
 
 		void OnEnable() {
 			ai = GetComponent<IAstarAI>();
@@ -36,11 +37,25 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Updates the AI's destination every frame</summary>
-		void FixedUpdate() {
+
+		void Update() {
+
+			// Sets target after mouse click
+			if (Input.GetMouseButtonDown(0)) {
+				target.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+				if (target != null && ai != null) ai.destination = target.position;
+			}
 
 			// Checks if agent is at a jumping node 
 			checkJumpNode();
 
+			// Animate player
+			playerAnimator.UpdatePlayerAnimation(ai.velocity);
+		}
+
+		void FixedUpdate() {
+			// Checks if agent is at a jumping node 
+			checkJumpNode();
 		}
 
 		// Checks if player agent is at a jumping node and is going to do the jump, if so it calls for the jump animation to be played
