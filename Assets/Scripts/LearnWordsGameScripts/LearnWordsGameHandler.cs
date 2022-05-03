@@ -41,6 +41,7 @@ public class LearnWordsGameHandler : MonoBehaviour
         }
 
         imgController.placeInformationInCard(randList);
+        letterController.placeInformationInCard(randList);
     }
 
     // Update is called once per frame

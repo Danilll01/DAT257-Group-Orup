@@ -4569,6 +4569,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4c6a656e290de4297919a93f5b64e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 1698672234}
+  - {fileID: 412297122}
+  - {fileID: 423653472}
+  - {fileID: 1667583366}
 --- !u!1001 &1081456813504075576
 PrefabInstance:
   m_ObjectHideFlags: 0
