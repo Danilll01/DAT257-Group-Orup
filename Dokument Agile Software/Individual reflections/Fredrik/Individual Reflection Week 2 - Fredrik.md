@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV2 - Fredrik Ahlqvist
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill lära mig att använda Unity för att utveckla en applikation för att göra minispel åt förskolaelever
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?
