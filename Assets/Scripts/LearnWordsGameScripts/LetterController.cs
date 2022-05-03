@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class LetterController : MonoBehaviour
 {
 
     private GameObject selectedLetter = null;
+    [SerializeField] private GameObject[] cards;
 
     // Start is called before the first frame update
     void Start() {}
 
     // Update is called once per frame
-    void Update() {}
+    void Update() { }
+
+    // Returns the amount of cards that exist
+    public int getCardAmount() { return cards.Length; }
 
     // When a letter is clicked this method is called. The parameter is the clicked object
     public void LetterClicked(GameObject letterObject) {
@@ -30,6 +35,23 @@ public class LetterController : MonoBehaviour
         } else {
             selectedLetter = letterObject;
             selectedLetter.GetComponent<Image>().color = new Color(0, 1, 100f / 255f);
+        }
+    }
+
+    // Place the correct information on the crads
+    public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList)
+    {
+        List<GameObject> tempCards = new List<GameObject>();
+        foreach (GameObject card in cards)
+        {
+            tempCards.Add(card);
+        }
+        for (int i = 0; i < cards.Length; i++)
+        {
+            int index = UnityEngine.Random.Range(0, tempCards.Count); // Ranomize a index in the lists
+            tempCards[index].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set matching letter
+            tempCards.RemoveAt(index); // Remove from temp list to randomize on remaining cards
+            
         }
     }
 
