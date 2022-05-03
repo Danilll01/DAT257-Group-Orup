@@ -21,6 +21,7 @@ namespace Pathfinding {
 
 		[SerializeField] private JumpNodeScript[] jumpNodes;
 		[SerializeField] private PlayerAnimatorController playerAnimator;
+		private Vector3 spritePos;
 
 		void OnEnable() {
 			ai = GetComponent<IAstarAI>();
@@ -29,6 +30,8 @@ namespace Pathfinding {
 			// frame as the destination is used for debugging and may be used for other things by other
 			// scripts as well. So it makes sense that it is up to date every frame.
 			if (ai != null) ai.onSearchPath += FixedUpdate;
+
+			spritePos = transform.GetChild(0).transform.localPosition;
 
 		}
 
@@ -75,8 +78,8 @@ namespace Pathfinding {
 						// If so, play jumping animation
 						float normalSpeed = ai.maxSpeed;
 						ai.maxSpeed = node.GetJumpSpeed();
-						node.StartJumpAnimation(transform.GetChild(0),
-							
+						node.StartJumpAnimation(transform.GetChild(0), spritePos,
+
 							// Lambda to set speed back to normal after jump
 							() => {
 								ai.maxSpeed = normalSpeed;
