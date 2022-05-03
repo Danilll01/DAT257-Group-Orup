@@ -38,6 +38,7 @@ public class LetterController : MonoBehaviour
         }
     }
 
+    // Place the correct information on the crads
     public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList)
     {
         List<GameObject> tempCards = new List<GameObject>();
@@ -49,7 +50,7 @@ public class LetterController : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(0, tempCards.Count); // Ranomize a index in the lists
             tempCards[index].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set matching letter
-            tempCards.RemoveAt(index);
+            tempCards.RemoveAt(index); // Remove from temp list to randomize on remaining cards
             
         }
     }
