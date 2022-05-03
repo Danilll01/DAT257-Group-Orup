@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DragAndDropNote : MonoBehaviour
 {
-    private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
@@ -82,8 +81,6 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
@@ -97,7 +94,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Moved:
                     if (moveAllowed)
                     {
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        transform.position = new Vector3(touchPos.x, touchPos.y);
                     }
                     break;
 
