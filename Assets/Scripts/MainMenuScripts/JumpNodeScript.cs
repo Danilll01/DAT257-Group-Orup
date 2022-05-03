@@ -67,8 +67,6 @@ public class JumpNodeScript : MonoBehaviour
             agent.transform.localPosition = normalValues + (yOffset * Vector3.up); // Change local sprite position to move the sprite
             normalizedTime += Time.deltaTime / duration;
 
-            Debug.Log(yBefore - agent.transform.position.y);
-
             // Starts the second part of jump animation by comparing y coordinates with frame before (This is to change when falling down)
             if (yBefore > agent.transform.position.y) {
                 animator.SetBool("EndJump", true);
