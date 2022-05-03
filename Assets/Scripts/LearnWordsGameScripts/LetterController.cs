@@ -60,6 +60,11 @@ public class LetterController : MonoBehaviour
         return selectedLetter != null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
     }
 
+    public Transform getSelectedLetterTransform()
+    {
+        return selectedLetter.transform;
+    }
+
     // Make sure the selected card now have the right color
     public void haveMatched() {
         selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);

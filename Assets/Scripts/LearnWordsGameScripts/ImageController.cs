@@ -66,6 +66,11 @@ public class ImageController : MonoBehaviour
         return selectedImgCard != null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
     }
 
+    public Transform getSelectedImgTransform()
+    {
+        return selectedImgCard.transform;
+    }
+
     // Make sure the selected card now have the right color
     public void haveMatched() {
         selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
