@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DragAndDropNote : MonoBehaviour
 {
-    private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
@@ -12,6 +11,7 @@ public class DragAndDropNote : MonoBehaviour
     private Transform originalParent;
     private float originalColliderRadius;
     private Rigidbody2D ridgidBody;
+    private SpriteRenderer sprite;
     private bool toBeDeleted;
 
     // If the note can move
@@ -59,8 +59,8 @@ public class DragAndDropNote : MonoBehaviour
 
         // Make the note easier to grab and disable the sprite
         GetComponent<CircleCollider2D>().radius = spawnColliderSize;
-        GetComponent<SpriteRenderer>().enabled = false;
-
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -82,13 +82,11 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
 
                         // Make sprite visible
-                        GetComponent<SpriteRenderer>().enabled = true;
+                        sprite.enabled = true;
                     }
                     break;
 
@@ -97,7 +95,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Moved:
                     if (moveAllowed)
                     {
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        transform.position = new Vector3(touchPos.x, touchPos.y);
                     }
                     break;
 
@@ -127,7 +125,7 @@ public class DragAndDropNote : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
                 // Make sprite visible
-                GetComponent<SpriteRenderer>().enabled = true;
+                sprite.enabled = true;
 
                 mouseMoveAllowed = true;
             }
