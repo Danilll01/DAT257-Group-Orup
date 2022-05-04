@@ -72,12 +72,8 @@ public class PlayMusic : MonoBehaviour
             // Resets marker position
             markerMoverScript.ResetPlayer();
 
-            // Update button text and isPlaying
-            playButtonText.text = "Play";
-            isPlaying = false;
-
-            // Unlock all notes
-            LockOrUnlockAllNodes(true);
+            // Sets all the variables to stop playing
+            PlayOrStopSetVars(false);
         } else
         {
             // Get note data
@@ -89,12 +85,8 @@ public class PlayMusic : MonoBehaviour
             // Start coroutine to play all notes with 1 second delay
             StartCoroutine(PlayNoteAfterTime(secondsBetweenBeats, noteSequence));
 
-            // Update button text and isPlaying
-            playButtonText.text = "Stop";
-            isPlaying = true;
-
-            // Lock all notes
-            LockOrUnlockAllNodes(false);
+            // Sets all the variables to start playing
+            PlayOrStopSetVars(true);
         }
 
         
@@ -116,12 +108,8 @@ public class PlayMusic : MonoBehaviour
             // Play all notes in a beat
             PlayNotes(notes[i]);
         }
-        // Reset bool after done with playing the song
-        playButtonText.text = "Play";
-        isPlaying = false;
-
-        // Unlock all notes
-        LockOrUnlockAllNodes(true);
+        // Stops music playing
+        PlayOrStopSetVars(false);
     }
 
     // Play all notes in a beat and teleports location to supplied  
@@ -188,6 +176,17 @@ public class PlayMusic : MonoBehaviour
         return int.Parse(input.Split("-")[splitWordIndex].Split(splitWord)[1]);
     }
 
+    // Sets button text, isPlaying and locks/unlocks all nodes based if the loop should play or stop
+    private void PlayOrStopSetVars(bool play)
+    {
+        // Update button text and isPlaying
+        playButtonText.text = play ? "Stop" : "Play";
+        isPlaying = play;
+
+        // Lock all notes
+        LockOrUnlockAllNodes(!play);
+    }
+
     // Make the note movable or not movable
     private void LockOrUnlockAllNodes(bool unlock)
     {
@@ -220,8 +219,13 @@ public class PlayMusic : MonoBehaviour
             // If snap point donsn't contain a note, skip it.
             if (snapPoint.transform.childCount < 2) continue;
 
-            // Tell the note to unsnap and delete itself
-            snapPoint.transform.GetChild(1).GetComponent<DragAndDropNote>().SnapToOriginalPosAndDelete();
+            // Only works if the loop is not playing
+            if (!isPlaying)
+            {
+                // Tell the note to unsnap and delete itself
+                snapPoint.transform.GetChild(1).GetComponent<DragAndDropNote>().SnapToOriginalPosAndDelete();
+            }
+            
         }
     }
 }
