@@ -4,10 +4,9 @@ using UnityEngine;
 using TMPro;
 
 
-// GPSLocation can fetch and display location data of a hand held devide. The device must have enabled location service.
+// GPSLocation can fetch location data of a hand held devices. The device must have enabled location service.
 // If access is enabled by user and connection is succesful, it will update the text fields with the latest fetched location data.
 // Latitude and longitude values are stored in the attributes latitudeValue and longitudeValue. 
-// OBS! Måste lägga till Location Usage Description i Player Settings
 
 public class GPSLocation : MonoBehaviour
 {
@@ -20,11 +19,13 @@ public class GPSLocation : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI GPSStatus;
     // Textfield showing current latitude value 
+    /*
     [SerializeField]
     private TextMeshProUGUI latitudeTextField;
     // Textfield showing current longitude value
     [SerializeField]
     private TextMeshProUGUI longitudeTextField;
+    */
 
     [SerializeField]
     private WeatherData weatherData;
@@ -63,8 +64,8 @@ public class GPSLocation : MonoBehaviour
     {
         CancelInvoke("UpdateGPSData"); // Cancel GPS update
         GPSStatus.text = "";
-        latitudeTextField.text = "";
-        longitudeTextField.text = "";
+        /*latitudeTextField.text = "";
+        longitudeTextField.text = "";*/
         
     }
 
@@ -127,8 +128,10 @@ public class GPSLocation : MonoBehaviour
             latitudeValue = Input.location.lastData.latitude;
             longitudeValue = Input.location.lastData.longitude;
 
+            /*
             latitudeTextField.text = "Latitude: " + latitudeValue.ToString();
             longitudeTextField.text = "Longitude: " + longitudeValue.ToString();
+            */
 
             weatherData.Begin();
 
