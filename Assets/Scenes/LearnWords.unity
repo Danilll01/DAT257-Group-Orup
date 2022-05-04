@@ -2817,15 +2817,25 @@ MonoBehaviour:
   imgController: {fileID: 1682987501}
   letterController: {fileID: 2142850464}
   images:
-  - {fileID: 21300000, guid: ac5185cc7f141584ba41d382c80be38d, type: 3}
-  - {fileID: 21300000, guid: 785eadc73d396e84ab202569c21654ca, type: 3}
-  - {fileID: 21300000, guid: 3326961768a82a449a1a4868d8b21105, type: 3}
-  - {fileID: 21300000, guid: ec45181aa3a62964a91c8df50856f97f, type: 3}
+  - {fileID: 21300000, guid: b87222fe1a4d4fc43b3364ade1c81c79, type: 3}
+  - {fileID: 21300000, guid: 767b47c6e68c091409a395c29b073742, type: 3}
+  - {fileID: 21300000, guid: 9165f4c45658af14e99fe6298c73d7ba, type: 3}
+  - {fileID: 21300000, guid: 77072e17982a9e042b16331e58c799c2, type: 3}
+  - {fileID: 21300000, guid: 1fa9575ee8580ee48ade204595c9c678, type: 3}
+  - {fileID: 21300000, guid: bf75a669544f4b644bc4a90e864f19e4, type: 3}
+  - {fileID: 21300000, guid: 895e24318a5d516409af54748a29f25f, type: 3}
+  - {fileID: 21300000, guid: 6d6d1a8a5dad62240b591664f7bf27ae, type: 3}
+  - {fileID: 21300000, guid: 6c2d45d28119b8e48baf2799b5cd96ff, type: 3}
   matchingWord:
-  - "\xC4 \xE4"
-  - P p
+  - A a
+  - A a
   - B b
-  - G g
+  - C c
+  - J j
+  - K k
+  - V v
+  - V v
+  - "\xC4 \xE4"
 --- !u!23 &1388211854
 MeshRenderer:
   m_ObjectHideFlags: 0

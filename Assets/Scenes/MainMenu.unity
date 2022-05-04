@@ -1201,6 +1201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 254898741}
   - component: {fileID: 254898740}
+  - component: {fileID: 254898743}
+  - component: {fileID: 254898742}
   m_Layer: 0
   m_Name: frog-idle-1
   m_TagString: Untagged
@@ -1275,6 +1277,38 @@ Transform:
   m_Father: {fileID: 1180710248}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254898742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254898739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3649681de7343fe44bc879f1cc49358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &254898743
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254898739}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0082eca8d5e93934e804c56ad80d7b8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &293880984
 GameObject:
   m_ObjectHideFlags: 0
@@ -12852,6 +12886,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1112630914}
   - component: {fileID: 1112630915}
+  - component: {fileID: 1112630917}
+  - component: {fileID: 1112630916}
   m_Layer: 0
   m_Name: frog-idle-1 (2)
   m_TagString: Untagged
@@ -13061,6 +13097,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124717722}
   m_CullTransparentMesh: 1
+--- !u!114 &1112630916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112630913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3649681de7343fe44bc879f1cc49358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1112630917
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112630913}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0082eca8d5e93934e804c56ad80d7b8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1133679599
 GameObject:
   m_ObjectHideFlags: 0
@@ -14773,6 +14841,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1549673383}
   - component: {fileID: 1549673384}
+  - component: {fileID: 1549673385}
+  - component: {fileID: 1549673386}
   m_Layer: 0
   m_Name: frog-idle-1 (1)
   m_TagString: Untagged
@@ -14847,6 +14917,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1549673385
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549673382}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0082eca8d5e93934e804c56ad80d7b8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1549673386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549673382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3649681de7343fe44bc879f1cc49358e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1572869011
 GameObject:
   m_ObjectHideFlags: 0
