@@ -46,7 +46,7 @@ public class PlayMusic : MonoBehaviour
         playButtonText.text = "Play";
 
         // Sync time between beats to time between jumps
-        markerMoverScript.ChangeJumpTime(secondsBetweenBeats);
+        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.01f);
     }
 
     // Initializes snap points array
