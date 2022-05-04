@@ -12,6 +12,8 @@ public class PortalHandler : MonoBehaviour
     [SerializeField] private Transform[] portals;
     // The player object
     [SerializeField] private Navigate navigation;
+    [SerializeField] private Collider2D[] colliders;
+
 
 
 
@@ -19,6 +21,10 @@ public class PortalHandler : MonoBehaviour
     {
         // Make player go to the portal's corresponding node
         navigation.setNewPath(portals[portalId].position);
+        foreach (Collider2D collider in colliders)
+        {
+            collider.isTrigger = false;
+        }
 
     }
 
@@ -38,13 +44,7 @@ public class PortalHandler : MonoBehaviour
     // Translates scene index of the game to its index in portals 
     private int getPortalsIndex(int sceneIndex)
     {
-        if (sceneIndex == 6)
-        {
-            return 4; // is music game
-        } else
-        {
-            return (sceneIndex - 1);
-        }
+        return (sceneIndex - 1);
     }
 
     // Update is called once per frame

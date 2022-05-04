@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 189989836}
   - component: {fileID: 189989835}
   m_Layer: 5
-  m_Name: Portal (4)
+  m_Name: MusicPortal (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -865,6 +865,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1510777996}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &189989836
 MonoBehaviour:
@@ -2797,7 +2809,7 @@ GameObject:
   - component: {fileID: 588893797}
   - component: {fileID: 588893796}
   m_Layer: 5
-  m_Name: Portal (1)
+  m_Name: WeatherPortal (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2879,6 +2891,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1717321135}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &588893797
 MonoBehaviour:
@@ -3402,7 +3426,7 @@ GameObject:
   - component: {fileID: 686820901}
   - component: {fileID: 686820903}
   m_Layer: 0
-  m_Name: Collider (4)
+  m_Name: WordCollider (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3446,7 +3470,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.04048854, y: -0.080256104}
@@ -3477,12 +3501,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &708300414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,12 +3705,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portals:
-  - {fileID: 810011780}
-  - {fileID: 588893795}
-  - {fileID: 2118103922}
-  - {fileID: 1578510520}
-  - {fileID: 189989834}
+  - {fileID: 793294822}
+  - {fileID: 1711396136}
+  - {fileID: 1302966043}
+  - {fileID: 1832868775}
+  - {fileID: 1360549887}
   navigation: {fileID: 647728315}
+  colliders:
+  - {fileID: 1510777996}
+  - {fileID: 1338284438}
+  - {fileID: 1717321135}
+  - {fileID: 844332356}
+  - {fileID: 686820902}
 --- !u!4 &729899279
 Transform:
   m_ObjectHideFlags: 0
@@ -9120,7 +9150,7 @@ GameObject:
   - component: {fileID: 810011782}
   - component: {fileID: 810011781}
   m_Layer: 5
-  m_Name: Portal
+  m_Name: MathPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9202,6 +9232,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1338284438}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &810011782
 MonoBehaviour:
@@ -9439,7 +9481,7 @@ GameObject:
   - component: {fileID: 844332355}
   - component: {fileID: 844332357}
   m_Layer: 0
-  m_Name: Collider (3)
+  m_Name: MemoryCollider (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9483,7 +9525,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.016627073, y: 0.22198927}
@@ -9514,12 +9556,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &861884340
 GameObject:
   m_ObjectHideFlags: 0
@@ -14720,7 +14762,7 @@ GameObject:
   - component: {fileID: 1338284437}
   - component: {fileID: 1338284439}
   m_Layer: 0
-  m_Name: Collider (1)
+  m_Name: MathCollider (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14764,7 +14806,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.04610157, y: 0.012892216}
@@ -14795,12 +14837,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &1360549886
 GameObject:
   m_ObjectHideFlags: 0
@@ -15371,7 +15413,7 @@ GameObject:
   - component: {fileID: 1510777995}
   - component: {fileID: 1510777997}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: MusicCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15404,7 +15446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f59c3d01b28165844bd3e2315e578d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 6
+  sceneIndex: 5
 --- !u!61 &1510777996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15415,7 +15457,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.023597479, y: 0.082591236}
@@ -15446,12 +15488,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &1514336649
 GameObject:
   m_ObjectHideFlags: 0
@@ -15740,7 +15782,7 @@ GameObject:
   - component: {fileID: 1578510522}
   - component: {fileID: 1578510521}
   m_Layer: 5
-  m_Name: Portal (3)
+  m_Name: WordPortal (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15822,6 +15864,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 686820902}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1578510522
 MonoBehaviour:
@@ -16071,7 +16125,7 @@ GameObject:
   - component: {fileID: 1717321134}
   - component: {fileID: 1717321136}
   m_Layer: 0
-  m_Name: Collider (2)
+  m_Name: WeatherCollider (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16115,7 +16169,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0026876926, y: 0.24289894}
@@ -16146,12 +16200,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!1 &1832868774
 GameObject:
   m_ObjectHideFlags: 0
@@ -16390,7 +16444,7 @@ GameObject:
   - component: {fileID: 1882714635}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17876,7 +17930,7 @@ GameObject:
   - component: {fileID: 2118103924}
   - component: {fileID: 2118103923}
   m_Layer: 5
-  m_Name: Portal (2)
+  m_Name: MemoryPortal (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17958,6 +18012,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 844332356}
+        m_TargetAssemblyTypeName: UnityEngine.Collider2D, UnityEngine
+        m_MethodName: set_isTrigger
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2118103924
 MonoBehaviour:

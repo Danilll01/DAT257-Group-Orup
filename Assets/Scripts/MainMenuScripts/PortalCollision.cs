@@ -11,7 +11,6 @@ public class PortalCollision : MonoBehaviour
     // If collider is triggered, open its corresponding game's scene 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Collided");
         // If player collides with this game object
         if (col.tag == "Player")
         {
