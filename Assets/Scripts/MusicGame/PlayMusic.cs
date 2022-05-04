@@ -227,10 +227,15 @@ public class PlayMusic : MonoBehaviour
             // Only works if the loop is not playing
             if (!isPlaying)
             {
-                // Tell the note to unsnap and delete itself
-                snapPoint.transform.GetChild(1).GetComponent<DragAndDropNote>().SnapToOriginalPosAndDelete();
+                // Gets all scripts of notes
+                DragAndDropNote[] notes = snapPoint.transform.GetComponentsInChildren<DragAndDropNote>();
+
+                // Tell all notes to unsnap and delete itself
+                foreach (DragAndDropNote note in notes)
+                {
+                    note.SnapToOriginalPosAndDelete();
+                }
             }
-            
         }
     }
 }
