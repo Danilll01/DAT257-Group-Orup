@@ -211,4 +211,17 @@ public class PlayMusic : MonoBehaviour
             }
         }
     }
+
+    // Deletes all placed notes 
+    public void DeleteAllNotes()
+    {
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            // If snap point donsn't contain a note, skip it.
+            if (snapPoint.transform.childCount < 2) continue;
+
+            // Destroy the note object
+            Destroy(snapPoint.transform.GetChild(1).gameObject);
+        }
+    }
 }
