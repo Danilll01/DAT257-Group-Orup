@@ -33,7 +33,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OnMusicGameClick() {
         // Needs to be added
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void OnGoBackButtonClick()
