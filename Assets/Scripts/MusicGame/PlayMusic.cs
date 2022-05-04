@@ -32,7 +32,7 @@ public class PlayMusic : MonoBehaviour
     private bool isPlaying = false;
 
     // If the music should loop
-    private bool isLooping = false;
+    public bool isLooping { get; set; }
 
     // Reference to moving script for marker
     private MarkerMover markerMoverScript;
@@ -114,13 +114,16 @@ public class PlayMusic : MonoBehaviour
             // Play all notes in a beat
             PlayNotes(notes[i]);
         }
-        // Stops music playing
-        PlayOrStopSetVars(false);
+        
 
         if (isLooping)
         {
             yield return new WaitForSeconds(1);
-            PlayMusicLoop();
+            StartCoroutine(PlayNoteAfterTime(time, notes));
+        } else
+        {
+            // Stops music playing
+            PlayOrStopSetVars(false);
         }
         
     }
