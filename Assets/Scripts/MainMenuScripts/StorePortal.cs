@@ -12,7 +12,7 @@ public static class StorePortal
     public static void setLastPortalSceneIndex (int sceneIndex)
     {
         // check so that it is one of the games
-        if ((sceneIndex >= 0 && sceneIndex <= 5))
+        if (sceneIndex >= 0 && sceneIndex <= 5)
         {
             lastPortalSceneIndex = sceneIndex;
         }

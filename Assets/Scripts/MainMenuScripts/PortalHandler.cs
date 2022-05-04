@@ -21,6 +21,8 @@ public class PortalHandler : MonoBehaviour
     {
         // Make player go to the portal's corresponding node
         navigation.setNewPath(portals[portalId].position);
+
+        // Set all the colliders triggers to false
         foreach (Collider2D collider in colliders)
         {
            collider.isTrigger = false;
