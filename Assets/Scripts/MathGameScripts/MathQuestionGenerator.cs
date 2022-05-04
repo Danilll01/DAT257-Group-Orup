@@ -9,6 +9,7 @@ public class MathQuestionGenerator : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textInput;
     [SerializeField] private TextMeshProUGUI operatorText;
     [SerializeField] private Sprite[] apples;
+    [SerializeField] private Sprite[] fruits;
     [SerializeField] private Image imageHolder1;
     [SerializeField] private Image imageHolder2;
     [SerializeField] private MathAnswerGeneratorScript answerGenerator;
@@ -56,7 +57,7 @@ public class MathQuestionGenerator : MonoBehaviour
             imageHolder1.sprite = apples[x];
             imageHolder2.sprite = apples[y];
 
-            answerGenerator.GenerateAnswers(result);
+            answerGenerator.GenerateAnswers(result, fruits[Random.Range(0, fruits.Length)]);
         }
             
         

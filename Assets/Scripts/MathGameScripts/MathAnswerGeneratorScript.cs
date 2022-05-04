@@ -16,6 +16,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
 
     [SerializeField] private GameObject[] cardHolders;
 
+    [SerializeField] private Transform[] fillImageCard;
+
 
     [SerializeField] private int rangeFromCorrectAnswer = 5;
     [SerializeField] private float fadeInTimer = 1;
@@ -29,7 +31,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
     void Update() { }
 
     // Generate 3 answers with one correct answer of them
-    public void GenerateAnswers(int rightAnswer) {
+    public void GenerateAnswers(int rightAnswer, Sprite fruitImage) {
         // Generate first random wrong number
         int firstWrong = generateRandomNumber(rightAnswer);
         int secondWrong;
@@ -45,26 +47,26 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
             case 0:
 
                 int[] answers = { rightAnswer, firstWrong, secondWrong };
-                fillAnswers(answers, rightAnswer);
+                fillAnswers(answers, rightAnswer, fruitImage);
 
                 break;
             case 1:
 
                 int[] answers2 = { firstWrong, rightAnswer, secondWrong };
-                fillAnswers(answers2, rightAnswer);
+                fillAnswers(answers2, rightAnswer, fruitImage);
 
                 break;
             default:
 
                 int[] answers3 = { firstWrong, secondWrong, rightAnswer };
-                fillAnswers(answers3, rightAnswer);
+                fillAnswers(answers3, rightAnswer, fruitImage);
 
                 break;
         }
     }
 
     // Fills active cardHolders with the given answers
-    private void fillAnswers(int[] answers, int correctAnswer) {
+    private void fillAnswers(int[] answers, int correctAnswer, Sprite fruitImage) {
 
         int answerCounter = 0; // Help count what answer to set
 
@@ -72,7 +74,10 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
             if (cardHolders[i].activeSelf && answerCounter < 3) { // Skips the inactive card
                 int currentWriting = answers[answerCounter];
                 answerTxts[i].text = "= " + currentWriting;
-                imgHolders[i].sprite = apples[currentWriting];
+                //imgHolders[i].sprite = apples[currentWriting];
+
+                fillImageCard[i].GetComponent<FillCardImages>().FillCard(currentWriting, fruitImage);
+                
                 answerCounter++;
 
                 if (currentWriting == correctAnswer) {
