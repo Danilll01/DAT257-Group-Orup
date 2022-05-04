@@ -6,13 +6,8 @@ using TMPro;
 
 public class MathAnswerGeneratorScript : MonoBehaviour {
     [SerializeField] private MathQuestionGenerator questionGenerator;
-
     [SerializeField] private CanvasGroup canvas;
-
     [SerializeField] private TextMeshProUGUI[] answerTxts;
-
-    [SerializeField] private Sprite[] apples;
-    [SerializeField] private Image[] imgHolders;
 
     [SerializeField] private GameObject[] cardHolders;
 
@@ -74,7 +69,6 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
             if (cardHolders[i].activeSelf && answerCounter < 3) { // Skips the inactive card
                 int currentWriting = answers[answerCounter];
                 answerTxts[i].text = "= " + currentWriting;
-                //imgHolders[i].sprite = apples[currentWriting];
 
                 fillImageCard[i].GetComponent<FillCardImages>().FillCard(currentWriting, fruitImage);
                 

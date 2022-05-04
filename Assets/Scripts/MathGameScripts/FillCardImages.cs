@@ -9,19 +9,15 @@ public class FillCardImages : MonoBehaviour
     [SerializeField] private Transform[] imageHolders;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    void Start() {}
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update() {}
 
+    // Fills the card with the given amount of images
     public void FillCard(int amount, Sprite image) {
 
+        // Activates the right amount object and fills every child with correct image
         for (int i = 0; i < imageHolders.Length; i++) {
             if (i == amount) {
                 imageHolders[amount].gameObject.SetActive(true);
@@ -33,6 +29,7 @@ public class FillCardImages : MonoBehaviour
 
     }
 
+    // Fills all images in holders child
     private void fillCorrectAmount(Transform holder, Sprite image) {
         for (int i = 0; i < holder.childCount; i++) {
             holder.GetChild(i).GetComponent<Image>().sprite = image;
