@@ -291,4 +291,14 @@ public class DragAndDropNote : MonoBehaviour
         snapPointsParent = parent;
         InitializeSnapPointsArray();
     }
+
+    public void SnapToOriginalPosAndDelete()
+    {
+        // Sets position to the original position
+        transform.SetParent(originalParent);
+        targetPosition = originalPos;
+
+        // Set the object to be deleted when it reaches the pool
+        toBeDeleted = true;
+    }
 }
