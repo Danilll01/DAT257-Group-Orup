@@ -23,7 +23,7 @@ public class PortalHandler : MonoBehaviour
         navigation.setNewPath(portals[portalId].position);
         foreach (Collider2D collider in colliders)
         {
-            collider.isTrigger = false;
+           collider.isTrigger = false;
         }
 
     }
