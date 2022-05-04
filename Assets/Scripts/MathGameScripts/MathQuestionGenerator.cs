@@ -12,6 +12,9 @@ public class MathQuestionGenerator : MonoBehaviour
     [SerializeField] private Sprite[] fruits;
     [SerializeField] private Image imageHolder1;
     [SerializeField] private Image imageHolder2;
+
+    [SerializeField] private FillCardImages holder1;
+    [SerializeField] private FillCardImages holder2;
     [SerializeField] private MathAnswerGeneratorScript answerGenerator;
 
     private int x;
@@ -54,10 +57,14 @@ public class MathQuestionGenerator : MonoBehaviour
         else { // Otherwise show the result and call to generate 3 answers
             textInput.text = x + " " + op + " " + y + " = " + result;
             operatorText.text = op;
-            imageHolder1.sprite = apples[x];
-            imageHolder2.sprite = apples[y];
+            //imageHolder1.sprite = apples[x];
+            //imageHolder2.sprite = apples[y];
 
-            answerGenerator.GenerateAnswers(result, fruits[Random.Range(0, fruits.Length)]);
+            Sprite generatedSprite = fruits[Random.Range(0, fruits.Length)];
+            holder1.FillCard(x, generatedSprite);
+            holder2.FillCard(y, generatedSprite);
+
+            answerGenerator.GenerateAnswers(result, generatedSprite);
         }
             
         
