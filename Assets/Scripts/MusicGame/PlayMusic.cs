@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayMusic : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayMusic : MonoBehaviour
 
     // Play button text
     [SerializeField] private TextMeshProUGUI playButtonText;
+
+    [SerializeField] private Button restartButton;
 
     private GameObject[] snapPoints;
 
@@ -185,6 +188,8 @@ public class PlayMusic : MonoBehaviour
 
         // Lock all notes
         LockOrUnlockAllNodes(!play);
+
+        restartButton.interactable = !play;
     }
 
     // Make the note movable or not movable
