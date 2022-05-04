@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DragAndDropNote : MonoBehaviour
 {
-    private float deltaX, deltaY;
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
     private Vector3 originalPos;
     private Vector3 targetPosition;
+    private Transform originalParent;
+    private float originalColliderRadius;
     private Rigidbody2D ridgidBody;
+    private SpriteRenderer sprite;
+    private bool toBeDeleted;
 
     // If the note can move
     private bool lockedInPlace = false;
@@ -21,25 +24,28 @@ public class DragAndDropNote : MonoBehaviour
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
 
-    // All instruments that can be played
-    private enum Instrument { Piano, Ukulele, Trombone };
     // Which instrument the note is
-    [SerializeField] private Instrument instrument;
+    [SerializeField] Instrument instrument;
 
-    // Every note for all instrumets
-    [SerializeField] private AudioClip[] pianoClips;
-    [SerializeField] private AudioClip[] ukeleleClips;
-    [SerializeField] private AudioClip[] tromboneClips;
+    // Every note for the current instrumet
+    [SerializeField] private AudioClip[] instrumentClips;
+
+    // Used to make note easier to grab when in the pool
+    [SerializeField] private float spawnColliderSize = 1;
 
     void Start()
     {
         // Setup the original position
         originalPos = transform.position;
         targetPosition = originalPos;
+        originalParent = transform.parent;
 
         // Initialize array with snap points
-        InitializeSnapPointsArray();
-
+        if (snapPointsParent != null)
+        {
+            InitializeSnapPointsArray();
+        }
+        
         ridgidBody = GetComponent<Rigidbody2D>();
 
         // Gets objects audio source
@@ -48,6 +54,13 @@ public class DragAndDropNote : MonoBehaviour
         // Dissables collision between note objects 
         Physics2D.IgnoreLayerCollision(6, 6); // Notes needs to be on layer 6
 
+        // Get original collider size
+        originalColliderRadius = GetComponent<CircleCollider2D>().radius;
+
+        // Make the note easier to grab and disable the sprite
+        GetComponent<CircleCollider2D>().radius = spawnColliderSize;
+        sprite = GetComponentInChildren<SpriteRenderer>();
+        sprite.enabled = false;
     }
 
     // Update is called once per frame
@@ -69,10 +82,11 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
-                        deltaX = touchPos.x - transform.position.x;
-                        deltaY = touchPos.y - transform.position.y;
                         moveAllowed = true;
                         GetComponent<CircleCollider2D>().sharedMaterial = null;
+
+                        // Make sprite visible
+                        sprite.enabled = true;
                     }
                     break;
 
@@ -81,7 +95,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Moved:
                     if (moveAllowed)
                     {
-                        transform.position = (new Vector3(touchPos.x - deltaX, touchPos.y - deltaY));
+                        transform.position = new Vector3(touchPos.x, touchPos.y);
                     }
                     break;
 
@@ -91,6 +105,9 @@ public class DragAndDropNote : MonoBehaviour
                     if (moveAllowed)
                     {
                         SnapToPoint(touchPos);
+
+                        // Reset collider size
+                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
                     }
                     moveAllowed = false;
                     break;
@@ -107,6 +124,9 @@ public class DragAndDropNote : MonoBehaviour
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
+                // Make sprite visible
+                sprite.enabled = true;
+
                 mouseMoveAllowed = true;
             }
 
@@ -117,6 +137,10 @@ public class DragAndDropNote : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     SnapToPoint(mousePosition);
+
+                    // Reset collider size
+                    GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
                     mouseMoveAllowed = false;
                 }
             }
@@ -124,12 +148,21 @@ public class DragAndDropNote : MonoBehaviour
         }
 
         AddForceToRidgidbody();
+        
+        // If note want's to be deleted and is close to its pool, delete it
+        if (toBeDeleted && Mathf.Abs(Vector2.Distance(originalPos, transform.position)) < 0.1 )
+        {
+            Destroy(gameObject);
+        }
     }
 
 
     // Method for snapping to object to a point close to it
     private void SnapToPoint(Vector2 position)
     {
+        // If the snap point array is empty don't run this method
+        if (snapPoints.Length == 0) return; 
+
         bool snapped = false;
         
         // Start values for shortest snap point
@@ -157,24 +190,32 @@ public class DragAndDropNote : MonoBehaviour
         {
             targetPosition = shortestSnapPoint.transform.position;
             transform.SetParent(shortestSnapPoint.transform);
+            
             snapped = true;
 
             // Sets the correct audio clip depending on which note the object was placed on
             SetCorrectNote(shortestSnapPoint);
 
-            // Temporarily play note E3
+            // Play the assigned note
             audioSource.Play();
+
+            if (originalPos != targetPosition)
+            {
+                GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+            }
         }
 
 
         // If we did not snap to anything, return the object to the original position
         if (!snapped)
         {
-            transform.SetParent(null);
+            transform.SetParent(originalParent);
             transform.position = position; // This is to have the right coordinates
             targetPosition = originalPos;
-        }
 
+            // Set the object to be deleted if it's released outside a snappoint
+            toBeDeleted = true;
+        }
     }
 
     // Adds force to the player ridgidbody to move towards the target point
@@ -218,13 +259,7 @@ public class DragAndDropNote : MonoBehaviour
     // Gets correct note based on which instrument the object is
     private AudioClip GetAudioClip(string noteName)
     {
-        return instrument switch
-        {
-            Instrument.Piano => FindAudioClipNote(pianoClips, noteName),
-            Instrument.Ukulele => FindAudioClipNote(ukeleleClips, noteName),
-            Instrument.Trombone => FindAudioClipNote(tromboneClips, noteName),
-            _ => null,
-        };
+        return FindAudioClipNote(instrumentClips, noteName);
     }
 
     // Finds a specific note in an audio clip array
@@ -248,5 +283,12 @@ public class DragAndDropNote : MonoBehaviour
     public void UnlockNode()
     {
         lockedInPlace = false;
+    }
+
+    // Sets the snap point parent object and initializes the array
+    public void SetSnapPointParent(GameObject parent)
+    {
+        snapPointsParent = parent;
+        InitializeSnapPointsArray();
     }
 }

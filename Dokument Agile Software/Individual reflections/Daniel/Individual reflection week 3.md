@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV3 - Daniel Persson
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill förstå scrum processen bättre och hur vi ska förbättra vår applicering av scrum i gruppen.
 Det ska jag uppnå genom att läsa på mer online om hur processen fungerar. 
