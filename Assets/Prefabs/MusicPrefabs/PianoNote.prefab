@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7310518306814944659
+--- !u!1 &4131238149295207522
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7310518306814944663}
-  - component: {fileID: 7310518306814944656}
-  - component: {fileID: 7310518306814944657}
-  - component: {fileID: 7310518306814944658}
-  - component: {fileID: 7310518306814944662}
-  - component: {fileID: 7310518306814944661}
+  - component: {fileID: 6190596626201931847}
+  - component: {fileID: 1660884841644049926}
   m_Layer: 6
-  m_Name: PianoNote
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7310518306814944663
+--- !u!4 &6190596626201931847
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7310518306814944659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.82, y: 2.87, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_GameObject: {fileID: 4131238149295207522}
+  m_LocalRotation: {x: -0, y: -0, z: -0.70710653, w: 0.70710707}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.68, y: 0.68, z: 0.68}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 7310518306814944663}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7310518306814944656
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!212 &1660884841644049926
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7310518306814944659}
+  m_GameObject: {fileID: 4131238149295207522}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6895aec571549d458fb0696c442536f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,6 +84,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7310518306814944659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7310518306814944663}
+  - component: {fileID: 7310518306814944657}
+  - component: {fileID: 7310518306814944658}
+  - component: {fileID: 7310518306814944662}
+  - component: {fileID: 7310518306814944661}
+  m_Layer: 6
+  m_Name: PianoNote
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7310518306814944663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7310518306814944659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.82, y: 2.87, z: 0}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 6190596626201931847}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7310518306814944657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,40 +134,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapPointsParent: {fileID: 0}
   instrument: 0
-  pianoClips:
+  instrumentClips:
   - {fileID: 8300000, guid: 368d00055620bfd4abc587176a3b1588, type: 3}
-  - {fileID: 8300000, guid: 164e6e2486e8d4fffb02c55b046b4b4b, type: 3}
+  - {fileID: 8300000, guid: cb29bbcde0e71470b94f05d8c89d9c3f, type: 3}
   - {fileID: 8300000, guid: 3c0a59382a8898949bdf82e598cb6110, type: 3}
-  - {fileID: 8300000, guid: e0f36b6f7a30449368e84ded29c76ec4, type: 3}
+  - {fileID: 8300000, guid: 896d89ded9bd84330a635308266029c2, type: 3}
   - {fileID: 8300000, guid: 2cc5b89dcb0df1e4f84802d389f11385, type: 3}
   - {fileID: 8300000, guid: 47c2260960ea945428cec70c3bafa4c9, type: 3}
-  - {fileID: 8300000, guid: 7d587f45f90c745c1846ba503fc640e4, type: 3}
+  - {fileID: 8300000, guid: 4498e524187f940cdabcedfdb11cdf16, type: 3}
   - {fileID: 8300000, guid: 2e9444371deed9f448757020a83f0a85, type: 3}
-  - {fileID: 8300000, guid: cac3164d2943f467298ccd22b1ac00c4, type: 3}
+  - {fileID: 8300000, guid: 25d914dbf7c034f7cbd7debe04f89341, type: 3}
   - {fileID: 8300000, guid: 317ced907f863a747824a47d5335b21f, type: 3}
-  - {fileID: 8300000, guid: 88a04256426264444a62ea2f95d10247, type: 3}
+  - {fileID: 8300000, guid: 082f2368c8c9342529a4c439bd6c1768, type: 3}
   - {fileID: 8300000, guid: c1a473f896d15744a8151e654693b843, type: 3}
-  - {fileID: 8300000, guid: cb72dce1987514dae8218305d9293c6b, type: 3}
+  - {fileID: 8300000, guid: 85bf7def8f6b543a7b5a8fef345d7ba2, type: 3}
   - {fileID: 8300000, guid: 00862000d7045f04192c0a0d74360fdc, type: 3}
-  - {fileID: 8300000, guid: 3854fca14d0ce46089068b93c0db5dfb, type: 3}
-  ukeleleClips:
-  - {fileID: 8300000, guid: 428ee3e1d490c9746ac80737a0f11f2f, type: 3}
-  - {fileID: 8300000, guid: 1609a5113b5c4044eae769a60625bae8, type: 3}
-  - {fileID: 8300000, guid: 203380a39737d0a48b4adf5ea0ed1061, type: 3}
-  - {fileID: 8300000, guid: c6dfe2777fde3234fb9c105702253d94, type: 3}
-  - {fileID: 8300000, guid: 231ae3681cfb6c74abbd92372732dab5, type: 3}
-  - {fileID: 8300000, guid: 8e2cb417b8f883e46a291a2382568df4, type: 3}
-  - {fileID: 8300000, guid: ce5406ec61734754ca00c3b85d51dda6, type: 3}
-  - {fileID: 8300000, guid: 6a47e673858a20d4aaec40ae9e443616, type: 3}
-  tromboneClips:
-  - {fileID: 8300000, guid: 84525262da59c2b45b3a2322e38a4928, type: 3}
-  - {fileID: 8300000, guid: d32e71dd2b7368742b5c5c587ac62c5d, type: 3}
-  - {fileID: 8300000, guid: 039b2a8e453efc24c8ebb26a435f3039, type: 3}
-  - {fileID: 8300000, guid: 326bd8b6d070d6e4690fdad5f97ab65b, type: 3}
-  - {fileID: 8300000, guid: 35452107c77bf1a46b2bfd22e8e8da00, type: 3}
-  - {fileID: 8300000, guid: 88e42101e8ccc39409e13060edc5face, type: 3}
-  - {fileID: 8300000, guid: 036d9d778e28c0b42b5f082f58e1a703, type: 3}
-  - {fileID: 8300000, guid: 44cf91e4e645c8943a41d410dbf468b9, type: 3}
+  - {fileID: 8300000, guid: 161e8a4e4dc6047008c6181d0d4daf35, type: 3}
+  spawnColliderSize: 1.5
 --- !u!50 &7310518306814944658
 Rigidbody2D:
   serializedVersion: 4
@@ -156,7 +171,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &7310518306814944662
 CircleCollider2D:
   m_ObjectHideFlags: 0
