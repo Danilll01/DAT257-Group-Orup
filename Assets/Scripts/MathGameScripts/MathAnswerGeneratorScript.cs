@@ -96,9 +96,9 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
     // Method to call when a answer is pressed
     public void AnswerPressedRight(int answerNumber) {
 
-        // Make all card holders active, blue and interactable again
+        // Make all card holders active and interactable again
         foreach (GameObject card in cardHolders) {
-            card.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+            card.GetComponent<Image>().color = new Color(1,1,1); // No color tint 
             card.GetComponent<Button>().interactable = true;
             card.SetActive(true);
         }
