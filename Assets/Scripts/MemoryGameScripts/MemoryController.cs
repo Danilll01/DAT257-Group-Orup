@@ -178,10 +178,12 @@ public class MemoryController : MonoBehaviour {
 
     // Coroutine for deciding how long sounds should play
     IEnumerator SoundStop(int index) {
-        btns[index].GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(2f);
-        btns[index].GetComponent<AudioSource>().Stop();
-
+        if (btns[firstGuessIndex].image.sprite != bgImage || btns[secondGuessIndex].image.sprite != bgImage)
+        {
+            btns[index].GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(2f);
+            btns[index].GetComponent<AudioSource>().Stop();
+        }
     }
 
     // Checks if first and second guess has been done or not
