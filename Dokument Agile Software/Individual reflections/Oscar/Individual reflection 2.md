@@ -1,4 +1,4 @@
-# Individuell reflektion LVX - NAMN
+# Individuell reflektion LV2 - Oscar Adamsson
 ## Vad vill jag lära mig eller förstå bättre?
 Jag vill lära mig mer om Unity och API:er. Tycker det ska bli kul att lära mig SCRUM frameworket
 ## Hur kan jag hjälpa någon annan, eller hela teamet, att lära sig något nytt?

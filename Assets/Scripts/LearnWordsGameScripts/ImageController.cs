@@ -10,6 +10,7 @@ public class ImageController : MonoBehaviour
     private GameObject selectedImgCard = null;
     [SerializeField] private GameObject[] cards;
 
+
     // Start is called before the first frame update
     void Start() {
 
@@ -31,7 +32,8 @@ public class ImageController : MonoBehaviour
             cards[i].GetComponent<Image>().color = new Color(0, 166f / 255f, 1); // Make blue
 
             cards[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardInfoList[i].Item1; // Set new image
-            cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set new "hidden" text
+            cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item1.name; // Set text to word of image
+            cards[i].GetComponentInChildren<Text>().text = cardInfoList[i].Item2;  // Set new "hidden" text
         }
 
     }
@@ -61,7 +63,12 @@ public class ImageController : MonoBehaviour
 
     // Returns the selected card info to the main game controller
     public string getSelectedImgCardInfo() {
-        return selectedImgCard != null ? selectedImgCard.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_IMAGE_OBJECT" ;
+        return selectedImgCard != null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
+    }
+
+    public Transform getSelectedImgTransform()
+    {
+        return selectedImgCard.transform;
     }
 
     // Make sure the selected card now have the right color

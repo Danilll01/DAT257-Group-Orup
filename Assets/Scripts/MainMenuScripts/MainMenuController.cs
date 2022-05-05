@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start() {}
+    void Start() {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+    }
 
     // Update is called once per frame
     void Update() {}
@@ -33,11 +35,12 @@ public class MainMenuController : MonoBehaviour
 
     public void OnMusicGameClick() {
         // Needs to be added
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(5);
     }
 
     public void OnGoBackButtonClick()
     {
         SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(8); // For testing Temp3
     }
 }
