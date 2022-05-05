@@ -5,46 +5,40 @@ using TMPro;
 
 
 // GPSLocation can fetch location data of a hand held devices. The device must have enabled location service.
-// If access is enabled by user and connection is succesful, it will update the text fields with the latest fetched location data.
-// Latitude and longitude values are stored in the attributes latitudeValue and longitudeValue. 
 
 public class GPSLocation : MonoBehaviour
 {
-    // Holds latest latitude value of device
-    public float latitudeValue;
+    // Holds latest latitude value of device, default value set to gothenburg
+    private static float latitudeValue = 57.686433f;
     // Holds latest longitude value of device
-    public float longitudeValue;
+    private static float longitudeValue = 11.966388f;
+    // Holds the current status of the service: Running(can query for locations), Initializing, Stopped or Failed
+    public LocationServiceStatus locationServiceStatus;
 
-    // Textfield showing status of GPS Service
-    [SerializeField]
-    private TextMeshProUGUI GPSStatus;
-    // Textfield showing current latitude value 
-    /*
-    [SerializeField]
-    private TextMeshProUGUI latitudeTextField;
-    // Textfield showing current longitude value
-    [SerializeField]
-    private TextMeshProUGUI longitudeTextField;
-    */
 
-    [SerializeField]
-    private WeatherData weatherData;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        Debug.Log("Starting");
+
+        // Updates latitude and longitude attributes if service successfully connects
+        UpdateLocationData();
+
+
         // Values for testing weather accuracy when on desktop
         // Preset coordinates for gothenburg
 
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+        /*if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             latitudeValue = 57.686433f;
             longitudeValue = 11.966388f;
 
-            weatherData.Begin();
-        }
+            //weatherData.Begin();
+        }*/   // <------------- Removed this and set values as default in static variables, are updated if service can connect
 
-        
+
     }
 
     // Update is called once per frame
@@ -53,39 +47,41 @@ public class GPSLocation : MonoBehaviour
 
     }
 
-    // Fetches location data if possible and updates the associated attributes with the new values
-    public void OnUpdateLocationClick()
+    // Tries to connect to location service and updates location data if connection was successful
+    public void UpdateLocationData()
     {
+        Debug.Log("Tries to connect to service");
         StartCoroutine(StartGPSLocation());
     }
 
-    // Clears all text fields and stops calling UpdateGPSData
-    public void ClearLocationData()
-    {
-        CancelInvoke("UpdateGPSData"); // Cancel GPS update
-        GPSStatus.text = "";
-        /*latitudeTextField.text = "";
-        longitudeTextField.text = "";*/
-        
-    }
 
     // Tries to fetch location data
     IEnumerator StartGPSLocation()
     {
+
+
+        Debug.Log("Wait for remote to connect..."); // <------------- uncomment this code block for using unity remote
+        yield return new WaitForSeconds(5);
+        Debug.Log("Waited for remote");
+
+
+
         // Check if user has enabled location service for this application
         if (!Input.location.isEnabledByUser)
         {
-            GPSStatus.text = "Applikationen har ej åtkomst till platsdata";
+            Debug.Log("Location not enabled by user");
+            locationServiceStatus = Input.location.status;
             yield break;
         }
 
         // Start service
         Input.location.Start();
-        
+
         // Wait for max 20 seconds for service to initialize
         int maxWait = 20;
         while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
         {
+            locationServiceStatus = Input.location.status;
             yield return new WaitForSeconds(1); // Wait one second
             maxWait--;                          
         }
@@ -93,20 +89,21 @@ public class GPSLocation : MonoBehaviour
         // The service did not initialize within 20 seconds, break
         if (maxWait < 1)
         {
-            GPSStatus.text = "Service connection tog för lång tid";
+            Debug.Log("Service took to long to connect");
+            locationServiceStatus = Input.location.status;
             yield break;
         }
 
         if (Input.location.status == LocationServiceStatus.Failed)
         {
             // Access failed
-            GPSStatus.text = "Kunde ej hitta enhetens plats";
+            locationServiceStatus = Input.location.status;
             yield break;
 
         } else
         {
             // Access granted
-            GPSStatus.text = "Söker plats...";
+            locationServiceStatus = Input.location.status;
 
             // Continiously collect location data
             InvokeRepeating("UpdateGPSData", 0.5f, 1f); 
@@ -115,33 +112,40 @@ public class GPSLocation : MonoBehaviour
 
     }
 
-    // Saves the latest latitude and longitude data from service in latitudeValue and longitudeValue and updates the associated text fields
+    // Saves the latest latitude and longitude data from service in latitudeValue and longitudeValue
     // Stops service after data has been collected
     private void UpdateGPSData ()
     {
         if (Input.location.status == LocationServiceStatus.Running)
         {
             // Access granted to GPS values and it has been initialized
-            GPSStatus.text = "Visar väder för platsen";
 
-            // Get values from service 
+            // Get lastest values from service 
             latitudeValue = Input.location.lastData.latitude;
             longitudeValue = Input.location.lastData.longitude;
-
-            /*
-            latitudeTextField.text = "Latitude: " + latitudeValue.ToString();
-            longitudeTextField.text = "Longitude: " + longitudeValue.ToString();
-            */
-
-            weatherData.Begin();
+            Debug.Log("Latitude: " + latitudeValue + " Longitude:" + longitudeValue);
 
         } else
         {
             // Service has stopped 
+            
         }
 
+        // Stop service when latest location data has been fetched
         Input.location.Stop();
+        locationServiceStatus = Input.location.status;
     }
+
+    public static float getLatitudeValue()
+    {
+        return latitudeValue;
+    }
+
+    public static float getLongitudeValue()
+    {
+        return longitudeValue;
+    }
+
 
     
 }
