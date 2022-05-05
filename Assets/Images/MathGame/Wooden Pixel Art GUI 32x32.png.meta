@@ -217,7 +217,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,6 +225,27 @@ TextureImporter:
       bones: []
       spriteID: 0c677dbc0d8fd1448a3a8b1c3db12a1f
       internalID: -1045857845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenBar
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 32
+        width: 92
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef68b52e2ff50c42b48afbaf83e0535
+      internalID: -1356601191
       vertices: []
       indices: 
       edges: []
@@ -246,6 +267,7 @@ TextureImporter:
       DarkPanel: -741674603
       WoodenPanel: 143430562
       RedoButton: -1045857845
+      WoodenBar: -1356601191
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
