@@ -31,6 +31,9 @@ public class PlayMusic : MonoBehaviour
     // Is the song playing
     private bool isPlaying = false;
 
+    // If the music should loop
+    public bool isLooping { get; set; }
+
     // Reference to moving script for marker
     private MarkerMover markerMoverScript;
 
@@ -46,7 +49,7 @@ public class PlayMusic : MonoBehaviour
         playButtonText.text = "Play";
 
         // Sync time between beats to time between jumps
-        markerMoverScript.ChangeJumpTime(secondsBetweenBeats);
+        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.01f);
     }
 
     // Initializes snap points array
@@ -111,8 +114,18 @@ public class PlayMusic : MonoBehaviour
             // Play all notes in a beat
             PlayNotes(notes[i]);
         }
-        // Stops music playing
-        PlayOrStopSetVars(false);
+        
+
+        if (isLooping)
+        {
+            yield return new WaitForSeconds(1);
+            StartCoroutine(PlayNoteAfterTime(time, notes));
+        } else
+        {
+            // Stops music playing
+            PlayOrStopSetVars(false);
+        }
+        
     }
 
     // Play all notes in a beat and teleports location to supplied  
@@ -237,5 +250,10 @@ public class PlayMusic : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ToggleLooping()
+    {
+        isLooping = !isLooping;
     }
 }
