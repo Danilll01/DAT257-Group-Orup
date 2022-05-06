@@ -17,7 +17,6 @@ public class TriggerScreenTransition : MonoBehaviour
     [SerializeField] private Transform[] afterTPPoints;  // [0] is same side, [1] is opposite
 
     [SerializeField] private ScreenTransition transitionScreen;
-    
 
 
     // Start is called before the first frame update
@@ -49,6 +48,8 @@ public class TriggerScreenTransition : MonoBehaviour
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
                     mathAnswerGenerator.HideCanvas();
+                    // Add correct sound
+                    transitionScreen.GetComponent<AudioSource>().Play();
 
                     // Method to generate new exercise is called when player stopps after a teleportation 
                     pathSetter.CallGenerateNewAnswers(
