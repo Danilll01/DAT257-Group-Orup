@@ -21,8 +21,6 @@ public class GPSLocation : MonoBehaviour
     void Start()
     {
 
-        Debug.Log("Starting");
-
         // Updates latitude and longitude attributes if service successfully connects
         UpdateLocationData();
 
@@ -89,23 +87,25 @@ public class GPSLocation : MonoBehaviour
         // The service did not initialize within 20 seconds, break
         if (maxWait < 1)
         {
-            Debug.Log("Service took to long to connect");
+            Debug.Log("Service took too long to connect");
             locationServiceStatus = Input.location.status;
             yield break;
         }
 
+        // Check if service succesfully connected
         if (Input.location.status == LocationServiceStatus.Failed)
         {
             // Access failed
             locationServiceStatus = Input.location.status;
+            Debug.Log("Location Service failed");
             yield break;
 
         } else
         {
             // Access granted
             locationServiceStatus = Input.location.status;
-
-            // Continiously collect location data
+            Debug.Log("Succesfully connected to location service");
+            // Collect location data
             InvokeRepeating("UpdateGPSData", 0.5f, 1f); 
         }
 
@@ -118,7 +118,6 @@ public class GPSLocation : MonoBehaviour
     {
         if (Input.location.status == LocationServiceStatus.Running)
         {
-            // Access granted to GPS values and it has been initialized
 
             // Get lastest values from service 
             latitudeValue = Input.location.lastData.latitude;
