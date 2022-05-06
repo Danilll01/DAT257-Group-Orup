@@ -36,6 +36,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 () => {
                     pathCam.enabled = true;
                     mainCam.enabled = false;
+                    transitionScreen.GetComponents<AudioSource>()[1].Play(); // Play sound for wrong answer
                     mathAnswerGenerator.AnswerPressedWrong(whatCollider);
                 }
             );
@@ -48,8 +49,8 @@ public class TriggerScreenTransition : MonoBehaviour
                     pathSetter.setNewPath(afterTPPoints[1].position);
                     teleportPlayer();
                     mathAnswerGenerator.HideCanvas();
-                    // Add correct sound
-                    transitionScreen.GetComponent<AudioSource>().Play();
+                    transitionScreen.GetComponents<AudioSource>()[0].Play(); // Play sound for correct answer
+                    
 
                     // Method to generate new exercise is called when player stopps after a teleportation 
                     pathSetter.CallGenerateNewAnswers(
