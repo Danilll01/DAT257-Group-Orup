@@ -287,8 +287,6 @@ public class MemoryController : MonoBehaviour {
         // Wait one second before playing to not intefere with sound of matching final pair of cards
         yield return new WaitForSeconds(1f);
         victorySound.Play();
-        yield return new WaitForSeconds(1.5f);
-        victorySound.Stop();
     }
 
     // Shuffles cards
