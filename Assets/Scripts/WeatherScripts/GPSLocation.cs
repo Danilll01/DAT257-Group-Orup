@@ -58,9 +58,9 @@ public class GPSLocation : MonoBehaviour
     {
 
 
-        Debug.Log("Wait for remote to connect..."); // <------------- uncomment this code block for using unity remote
+        /*Debug.Log("Wait for remote to connect..."); // <------------- uncomment this code block for using unity remote
         yield return new WaitForSeconds(5);
-        Debug.Log("Waited for remote");
+        Debug.Log("Waited for remote");*/
 
 
 
