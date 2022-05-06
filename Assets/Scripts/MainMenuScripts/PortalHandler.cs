@@ -13,7 +13,6 @@ public class PortalHandler : MonoBehaviour
     [SerializeField] private Transform[] portals;
     // The player object
     [SerializeField] private Navigate navigation;
-    [SerializeField] private Collider2D[] colliders;
 
 
 
@@ -31,12 +30,6 @@ public class PortalHandler : MonoBehaviour
                 SceneManager.LoadScene(portalId);
 
             });
-
-        // Set all the colliders triggers to false
-        foreach (Collider2D collider in colliders)
-        {
-           collider.isTrigger = false;
-        }
 
     }
 
