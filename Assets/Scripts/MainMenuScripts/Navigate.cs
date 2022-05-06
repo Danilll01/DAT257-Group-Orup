@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace Pathfinding {
 	/// <summary>
@@ -22,6 +23,7 @@ namespace Pathfinding {
 		[SerializeField] private JumpNodeScript[] jumpNodes;
 		[SerializeField] private PlayerAnimatorController playerAnimator;
 		private Vector3 spritePos;
+		private bool isWaitingOnPortalReached = false;
 
 		void OnEnable() {
 			ai = GetComponent<IAstarAI>();
@@ -96,6 +98,42 @@ namespace Pathfinding {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
 		}
+
+
+		// Sets new position to go to and wait for end of destination to do the given Action (Often swich scenes)
+		public void MoveTowardsPortal(Vector2 newPosVector, Action callToMethod) {
+
+			target.position = newPosVector;
+			if (target != null && ai != null) {
+				ai.destination = target.position;
+
+				// Stops all coroutines (to reset them) if a new call comes in
+                if (isWaitingOnPortalReached) {
+					StopAllCoroutines();
+                }
+
+				// Starts waiting for when agent have reached it's destination
+				isWaitingOnPortalReached = true;
+				StartCoroutine(waitUntillPortalReached(callToMethod));
+			}
+		}
+
+		// Calls the scene switcher method when the destination of the path is reached
+		private IEnumerator waitUntillPortalReached(Action callToMethod) {
+
+			// Wait untill the ai has reached portal
+			while (!ai.reachedDestination) {
+				yield return null;
+			}
+
+			// Small delay before switching
+			yield return new WaitForSeconds(0.2f);
+
+			callToMethod();
+
+			isWaitingOnPortalReached = false;
+		}
+
 	}
 }
 
