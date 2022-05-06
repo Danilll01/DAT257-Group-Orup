@@ -23,20 +23,6 @@ public class GPSLocation : MonoBehaviour
 
         // Updates latitude and longitude attributes if service successfully connects
         UpdateLocationData();
-
-
-        // Values for testing weather accuracy when on desktop
-        // Preset coordinates for gothenburg
-
-        /*if (SystemInfo.deviceType == DeviceType.Desktop)
-        {
-            latitudeValue = 57.686433f;
-            longitudeValue = 11.966388f;
-
-            //weatherData.Begin();
-        }*/   // <------------- Removed this and set values as default in static variables, are updated if service can connect
-
-
     }
 
     // Update is called once per frame
