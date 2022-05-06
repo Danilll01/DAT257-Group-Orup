@@ -146,12 +146,6 @@ namespace Pathfinding {
 			// Small delay before the new exercice is shown
 			yield return new WaitForSeconds(0.2f);
 
-			//float timer = 0;
-   //         while (timer < 0.2f) {
-			//	timer += Time.deltaTime;
-			//	yield return null;
-			//}
-
 			callToMethod();
 
 			isActive = false;
