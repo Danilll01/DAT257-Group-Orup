@@ -16746,7 +16746,7 @@ GameObject:
   - component: {fileID: 1496148784}
   - component: {fileID: 1496148783}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Drums
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16764,7 +16764,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 54189a49d03ccdb41b0dd36545338a33, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.36
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
