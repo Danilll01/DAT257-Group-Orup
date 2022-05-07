@@ -126,8 +126,10 @@ namespace Pathfinding {
 				yield return null;
 			}
 
+			playerAnimator.EnterPortal();
+
 			// Small delay before switching
-			yield return new WaitForSeconds(0.2f);
+			yield return new WaitForSeconds(0.3f);
 
 			callToMethod();
 
