@@ -2254,6 +2254,74 @@ PrefabInstance:
       propertyPath: jumpToNode
       value: 
       objectReference: {fileID: 447411734}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].time
+      value: 0.25274798
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].time
+      value: 0.76528716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: 0.9587052
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].value
+      value: 0.86612445
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: 2.3462822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].inSlope
+      value: -3.5278895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inWeight
+      value: 0.19221248
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: 2.3462822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].outSlope
+      value: -3.5278895
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].outWeight
+      value: 0.16564715
+      objectReference: {fileID: 0}
     - target: {fileID: 7932873463070207181, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
       propertyPath: m_RootOrder
       value: 23
@@ -6587,6 +6655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
+  canClickToSetPosition: 0
   minMaxXpos: {x: -59.56, y: 169.57}
   minMaxYpos: {x: -71.56, y: 107.41}
   playerSprite: {fileID: 0}
@@ -6604,6 +6673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 211645679}
+  canClickToSetPosition: 0
   jumpNodes:
   - {fileID: 447411735}
   - {fileID: 2025421962}
@@ -11039,6 +11109,50 @@ PrefabInstance:
       propertyPath: jumpToNode
       value: 
       objectReference: {fileID: 475336784}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].time
+      value: 0.24441668
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].time
+      value: 0.49862456
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: 0.5118973
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].value
+      value: 0.67159015
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: 2.3462822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].inSlope
+      value: -0.35442397
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inWeight
+      value: 0.19221248
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: 2.3462822
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].inWeight
+      value: 0.9124732
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].outSlope
+      value: -0.35442397
+      objectReference: {fileID: 0}
+    - target: {fileID: 7932873463070207180, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].outWeight
+      value: 0.16564715
+      objectReference: {fileID: 0}
     - target: {fileID: 7932873463070207181, guid: fef3e3cc1fd06b54598ac9a2ee605463, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -16707,7 +16821,7 @@ MonoBehaviour:
   snapPointParent: {fileID: 478392195}
   parentWithNotes: {fileID: 2043350562}
   nrNotesPerBeat: 13
-  secondsBetweenBeats: 1
+  secondsBetweenBeats: 0.6
   playButtonText: {fileID: 1307296647}
   restartButton: {fileID: 975321416}
 --- !u!4 &1469437398

@@ -101,30 +101,26 @@ public class PlayMusic : MonoBehaviour
     // Waits for a specified amount of time before playing the list of notes (the beat)
     private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
-        for (int i = 0; i < notes.Length-1; i++)
-        {
-            yield return new WaitForSeconds(time);
-            
-            // Sets the location to the next note to be played
-            markerMoverScript.SetNewDestination((i+1) % (notes.Length - 1));
+        do {
+            for (int i = 0; i < notes.Length; i++) {
 
-            // Teleport the marker to the current note (if the jump hasn't finished)
-            markerMoverScript.TeleportToDestination(i);
+                // Sets the location to the next note to be played
+                markerMoverScript.SetNewDestination((i + 1) % (notes.Length));
 
-            // Play all notes in a beat
-            PlayNotes(notes[i]);
-        }
-        
+                // Teleport the marker to the current note (if the jump hasn't finished)
+                markerMoverScript.TeleportToDestination(i);
 
-        if (isLooping)
-        {
-            yield return new WaitForSeconds(1);
-            StartCoroutine(PlayNoteAfterTime(time, notes));
-        } else
-        {
-            // Stops music playing
-            PlayOrStopSetVars(false);
-        }
+                // Play all notes in a beat
+                PlayNotes(notes[i]);
+
+                yield return new WaitForSeconds(time);
+
+            }
+        } while (isLooping);
+
+
+        // Stops music playing
+        PlayOrStopSetVars(false);
         
     }
 
