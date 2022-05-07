@@ -3098,6 +3098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1498900222}
+  canClickToSetPosition: 1
   jumpNodes:
   - {fileID: 2027406209}
   - {fileID: 1318078325}

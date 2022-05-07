@@ -20,6 +20,7 @@ namespace Pathfinding {
 		public Transform target;
 		public IAstarAI ai;
 
+		[SerializeField] private bool canClickToSetPosition = false;
 		[SerializeField] private JumpNodeScript[] jumpNodes;
 		[SerializeField] private PlayerAnimatorController playerAnimator;
 		private Vector3 spritePos;
@@ -46,7 +47,7 @@ namespace Pathfinding {
 		void Update() {
 
 			// Sets target after mouse click
-			if (Input.GetMouseButtonDown(0)) {
+			if (canClickToSetPosition && Input.GetMouseButtonDown(0)) {
 				target.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				if (target != null && ai != null) ai.destination = target.position;
 			}
