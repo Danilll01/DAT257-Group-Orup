@@ -72487,6 +72487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 1065178691}
+  canClickToSetPosition: 1
   minMaxXpos: {x: -5.8, y: 5.8}
   minMaxYpos: {x: -4, y: 4}
   playerSprite: {fileID: 6786419267481501805}
