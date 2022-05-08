@@ -39,4 +39,9 @@ public class PlayerAnimatorController : MonoBehaviour
 
         }
     }
+
+    // Sets the animation to show the fox enter the portal
+    public void EnterPortal() {
+        animator.SetTrigger("EnterPortal");
+    }
 }
