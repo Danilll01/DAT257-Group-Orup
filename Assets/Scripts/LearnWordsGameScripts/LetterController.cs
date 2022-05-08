@@ -56,8 +56,9 @@ public class LetterController : MonoBehaviour
     }
 
     // Returns the selected card info to the main game controller
-    public string getSelectedLetterCardInfo() {
-        return selectedLetter != null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
+    public GameObject getSelectedLetterCardInfo() {
+        return selectedLetter; 
+        //!= null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
     }
 
     public Transform getSelectedLetterTransform()
@@ -67,7 +68,7 @@ public class LetterController : MonoBehaviour
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+        //selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
         selectedLetter = null;
     }
 }

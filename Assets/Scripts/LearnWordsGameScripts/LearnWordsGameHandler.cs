@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LearnWordsGameHandler : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     private List<GameObject> lines;
     private int randomCardAmount;
     private int rightAnswerCounter = 0;
+    private Dictionary<GameObject, GameObject> selectedAnswers = new Dictionary<GameObject, GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +31,15 @@ public class LearnWordsGameHandler : MonoBehaviour
 
     // Generate new information to later be placed on the image cards
     public void generateNewCards() {
+        // Removes lines
         foreach (GameObject line in lines)
         {
             Destroy(line);
         }
         lines.Clear();
-        List<System.Tuple<Sprite, string>> randList = new List<System.Tuple<Sprite, string>>(); // Creates the structure we use to send data with
+
+        // Creates the structure we use to send data with
+        List<System.Tuple<Sprite, string>> randList = new List<System.Tuple<Sprite, string>>(); 
 
         // temp lists to help with randomizing the order of new card data (without duplicates)
         List<Sprite> tempImages = new List<Sprite>(images);
@@ -56,13 +62,31 @@ public class LearnWordsGameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Checks if the currently selected cards match from each side / card base
-        if (imgController.getSelectedImgCardInfo() == letterController.getSelectedLetterCardInfo()) {
-            drawLine(imgController.getSelectedImgTransform(), letterController.getSelectedLetterTransform());
+
+        GameObject imgCard = imgController.getSelectedImgCardInfo();
+        GameObject letterCard = imgController.getSelectedImgCardInfo();
+
+        if (imgCard != null && letterCard != null) {
+            Debug.Log("Hej");
+            selectedAnswers[imgCard] = letterCard;
+            drawLine(imgCard.transform, letterCard.transform);
             imgController.haveMatched();
             letterController.haveMatched();
-            checkIfAllAnswers();
         }
+
+
+
+
+
+
+
+        // Checks if the currently selected cards match from each side / card base
+        //if (imgController.getSelectedImgCardInfo() == letterController.getSelectedLetterCardInfo()) {
+        //    drawLine(imgController.getSelectedImgTransform(), letterController.getSelectedLetterTransform());
+        //    imgController.haveMatched();
+        //    letterController.haveMatched();
+        //    checkIfAllAnswers();
+        //}
     }
 
     private void drawLine(Transform start, Transform end)
@@ -97,5 +121,34 @@ public class LearnWordsGameHandler : MonoBehaviour
             rightAnswerCounter = 0;
             generateNewCards();
         } 
+    }
+
+    public void CheckIfCorrect() {
+
+        int totalRight = 0;
+        List<GameObject> remove = new List<GameObject>();
+
+        foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
+            Debug.Log("Image" + fromTo.Key.GetComponentInChildren<Text>().text);
+            Debug.Log("Letter" + fromTo.Value.GetComponentInChildren<Text>().text);
+
+            if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<Text>().text) {
+                totalRight++;
+            } else {
+                remove.Add(fromTo.Key);
+                // Also remove line here
+            }
+        }
+
+        foreach (GameObject rem in remove) {
+            selectedAnswers.Remove(rem);
+        }
+
+        Debug.Log("Rätt: " + totalRight);
+        if (totalRight == randomCardAmount) {
+            selectedAnswers = new Dictionary<GameObject, GameObject>();
+            generateNewCards();
+        }
+
     }
 }

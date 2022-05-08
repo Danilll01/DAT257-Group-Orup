@@ -62,8 +62,9 @@ public class ImageController : MonoBehaviour
     }
 
     // Returns the selected card info to the main game controller
-    public string getSelectedImgCardInfo() {
-        return selectedImgCard != null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
+    public GameObject getSelectedImgCardInfo() {
+        return selectedImgCard; 
+        //!= null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
     }
 
     public Transform getSelectedImgTransform()
@@ -73,7 +74,7 @@ public class ImageController : MonoBehaviour
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
+       // selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
         selectedImgCard = null;
     }
 }
