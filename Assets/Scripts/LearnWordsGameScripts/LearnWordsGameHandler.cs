@@ -144,6 +144,7 @@ public class LearnWordsGameHandler : MonoBehaviour
         // Counts how many right / wrong answers the player has made
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
 
+            // If they are right
             if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text) {
                 totalRight++;
 
@@ -162,7 +163,6 @@ public class LearnWordsGameHandler : MonoBehaviour
         }
 
         // Generates new cards / re-draws lines if there where some wrong answers
-        Debug.Log("Rätt: " + totalRight);
         if (totalRight == randomCardAmount) {
             generateNewCards();
         } else {

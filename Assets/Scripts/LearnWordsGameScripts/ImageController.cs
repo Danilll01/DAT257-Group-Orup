@@ -64,7 +64,6 @@ public class ImageController : MonoBehaviour
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-       // selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
         selectedImgCard = null;
     }
 }

@@ -64,7 +64,6 @@ public class LetterController : MonoBehaviour
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        //selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
         selectedLetter = null;
     }
 }
