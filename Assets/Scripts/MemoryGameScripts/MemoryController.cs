@@ -123,9 +123,6 @@ public class MemoryController : MonoBehaviour {
             // Adds buttons to button-list
             btns.Add(objects[i].GetComponent<Button>());
 
-            // Attaches picture to backside of card
-            btns[i].image.sprite = null;
-
             // Adds audio component
             objects[i].AddComponent<AudioSource>();
 
@@ -230,7 +227,7 @@ public class MemoryController : MonoBehaviour {
             firstGuessPuzzle = gamePuzzles[firstGuessIndex].name;
 
             // Sets image of the first guess to the image corresponding to the index
-            btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
+            //btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
 
             cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
@@ -245,7 +242,7 @@ public class MemoryController : MonoBehaviour {
 
             secondGuessPuzzle = gamePuzzles[secondGuessIndex].name;
 
-            btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
+            //btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
 
             cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
@@ -288,8 +285,6 @@ public class MemoryController : MonoBehaviour {
 
         // Sets image back to background image of card if guess was wrong
         else {
-            //btns[firstGuessIndex].image.sprite = bgImage;
-            //btns[secondGuessIndex].image.sprite = bgImage;
             cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
             cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
         }
@@ -310,7 +305,10 @@ public class MemoryController : MonoBehaviour {
 
         // Activates the menu if game is finished and plays victory sound
         if (countCorrectGuesses == gameGuesses) {
+            // Show victory screen
             finishMenu.SetActive(true);
+
+            // Hide all cards
             cardsParent.SetActive(false);
 
             StartCoroutine(PlayVictorySound());
