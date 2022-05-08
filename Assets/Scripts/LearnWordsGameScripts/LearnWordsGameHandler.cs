@@ -15,7 +15,7 @@ public class LearnWordsGameHandler : MonoBehaviour
 
     private List<GameObject> lines;
     private int randomCardAmount;
-    private int rightAnswerCounter = 0;
+    //private int rightAnswerCounter = 0;
     private Dictionary<GameObject, GameObject> selectedAnswers = new Dictionary<GameObject, GameObject>();
 
     // Start is called before the first frame update
@@ -52,45 +52,19 @@ public class LearnWordsGameHandler : MonoBehaviour
             // Removes items to avoid duplicates
             tempImages.RemoveAt(index);
             tempMatchingWord.RemoveAt(index);
+            createLines();
         }
 
         imgController.placeInformationInCard(randList);
         letterController.placeInformationInCard(randList);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-        GameObject imgCard = imgController.getSelectedImgCardInfo();
-        GameObject letterCard = letterController.getSelectedLetterCardInfo();
-
-        if (imgCard != null && letterCard != null) {
-            selectedAnswers[imgCard] = letterCard;
-
-            drawLine(imgCard.transform, letterCard.transform);
-
-            imgController.haveMatched();
-            letterController.haveMatched();
-        }
-
-
-
-
-
-
-
-        // Checks if the currently selected cards match from each side / card base
-        //if (imgController.getSelectedImgCardInfo() == letterController.getSelectedLetterCardInfo()) {
-        //    drawLine(imgController.getSelectedImgTransform(), letterController.getSelectedLetterTransform());
-        //    imgController.haveMatched();
-        //    letterController.haveMatched();
-        //    checkIfAllAnswers();
-        //}
+    private void createLines() {
+        drawLine(Camera.main.ScreenToWorldPoint(Vector3.left), Camera.main.ScreenToWorldPoint(Vector3.left));
     }
 
-    private void drawLine(Transform start, Transform end)
-    {
+    private void drawLine(Vector3 start, Vector3 end) {
         //For creating line renderer object
         LineRenderer lineRenderer = new LineRenderer();
         GameObject line = new GameObject("Line");
@@ -103,25 +77,70 @@ public class LearnWordsGameHandler : MonoBehaviour
         lineRenderer.useWorldSpace = true;
         lineRenderer.material = GetComponent<MeshRenderer>().material;
 
-        Vector3 startPos = Camera.main.ScreenToWorldPoint(start.position);
-        Vector3 endPos = Camera.main.ScreenToWorldPoint(end.position);
-
         //For drawing line in the world space, provide the x,y,z values
-        lineRenderer.SetPosition(0, new Vector3(startPos.x, startPos.y, 0)); //x,y and z position of the starting point of the line
-        lineRenderer.SetPosition(1, new Vector3(endPos.x, endPos.y, 0)); //x,y and z position of the end point of the line
+        lineRenderer.SetPosition(0, new Vector3(start.x, start.y, 0)); //x,y and z position of the starting point of the line
+        lineRenderer.SetPosition(1, new Vector3(end.x, end.y, 0)); //x,y and z position of the end point of the line
 
         lines.Add(line);
     }
+    private void drawLine(Transform start, Transform end) {
+        Vector3 startPos = Camera.main.ScreenToWorldPoint(start.position);
+        Vector3 endPos = Camera.main.ScreenToWorldPoint(end.position);
+
+        drawLine(startPos, endPos);
+    }
+
+
+    private void reDrawLines() {
+        int i = 0;
+        foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
+            LineRenderer line = lines[i].GetComponent<LineRenderer>();
+            Debug.Log("hej");
+            Vector3 startPos = Camera.main.ScreenToWorldPoint(fromTo.Key.transform.position);
+            Vector3 endPos = Camera.main.ScreenToWorldPoint(fromTo.Value.transform.position);
+
+            line.SetPosition(0, new Vector3(startPos.x, startPos.y, 0));
+            line.SetPosition(1, new Vector3(endPos.x, endPos.y, 0));
+            i++;
+        }
+
+        Vector3 standartPos = Camera.main.ScreenToWorldPoint(Vector3.left);
+
+        for (int j = i; j < lines.Count; j++) {
+            LineRenderer line = lines[j].GetComponent<LineRenderer>();
+            line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
+            line.SetPosition(1, new Vector3(standartPos.x, standartPos.y, 0));
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        GameObject imgCard = imgController.getSelectedImgCardInfo();
+        GameObject letterCard = letterController.getSelectedLetterCardInfo();
+
+        if (imgCard != null && letterCard != null) {
+            selectedAnswers[imgCard] = letterCard;
+
+            //drawLine(imgCard.transform, letterCard.transform);
+
+            reDrawLines();
+
+            imgController.haveMatched();
+            letterController.haveMatched();
+        }
+    }
 
     // Checks if all cards have been answered correctly and if so, calls to genereate new ones
-    private void checkIfAllAnswers() {
-        rightAnswerCounter++;
+    //private void checkIfAllAnswers() {
+    //    rightAnswerCounter++;
         
-        if (rightAnswerCounter == randomCardAmount) {
-            rightAnswerCounter = 0;
-            generateNewCards();
-        } 
-    }
+    //    if (rightAnswerCounter == randomCardAmount) {
+    //        rightAnswerCounter = 0;
+    //        generateNewCards();
+    //    } 
+    //}
 
     public void CheckIfCorrect() {
 
@@ -147,6 +166,8 @@ public class LearnWordsGameHandler : MonoBehaviour
         if (totalRight == randomCardAmount) {
             selectedAnswers = new Dictionary<GameObject, GameObject>();
             generateNewCards();
+        } else {
+            reDrawLines();
         }
 
     }
