@@ -242,8 +242,7 @@ public class MemoryController : MonoBehaviour {
 
             secondGuessPuzzle = gamePuzzles[secondGuessIndex].name;
 
-            //btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
-
+            // Flips card
             cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
             StartCoroutine(SoundStop(secondGuessIndex));
@@ -273,6 +272,9 @@ public class MemoryController : MonoBehaviour {
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
+
+            DeactivateCard(firstGuessIndex);
+            DeactivateCard(secondGuessIndex);
 
             /*  Om korten ska försvinna efter man har valt rätt 
             btns[firstGuessIndex].image.color = new Color(0,0,0,0);
@@ -352,6 +354,15 @@ public class MemoryController : MonoBehaviour {
 
             // Set image on card to corrosponding image in the puzzle 
             cards[i].transform.GetChild(imgIndex).GetComponent<SpriteRenderer>().sprite = gamePuzzles[i];
+        }
+    }
+
+    // Changes color for cards to be transparent
+    private void DeactivateCard(int index)
+    {
+        foreach (SpriteRenderer img in cards[index].GetComponentsInChildren<SpriteRenderer>())
+        {
+            img.color = new Color(255, 255, 255, 0.6f);
         }
     }
 }
