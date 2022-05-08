@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -129,9 +128,8 @@ public class LearnWordsGameHandler : MonoBehaviour
         int totalRight = 0;
         List<GameObject> remove = new List<GameObject>();
 
+        // 
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
-            Debug.Log("Image" + fromTo.Key.GetComponentInChildren<Text>().text);
-            Debug.Log("Letter" + fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text);
 
             if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text) {
                 totalRight++;

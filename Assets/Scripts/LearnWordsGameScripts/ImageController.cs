@@ -29,7 +29,7 @@ public class ImageController : MonoBehaviour
     public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList) {
 
         for (int i = 0; i < cards.Length; i++) {
-            cards[i].GetComponent<Image>().color = new Color(0, 166f / 255f, 1); // Make blue
+            cards[i].GetComponent<Image>().color = new Color(1, 1, 1); // Make normal color
 
             cards[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardInfoList[i].Item1; // Set new image
             cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item1.name; // Set text to word of image
@@ -47,12 +47,13 @@ public class ImageController : MonoBehaviour
 
             // Make old card blue
             if (selectedImgCard != null) {
-                selectedImgCard.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+                selectedImgCard.GetComponent<Image>().color = new Color(1, 1, 1);
             }
 
 
             // If it's the same we have, unselect it
             if (imageObject.Equals(selectedImgCard)) {
+                //imageObject.GetComponent<Image>().color = new Color(1, 1, 1);
                 selectedImgCard = null;
             } else {
                 selectedImgCard = imageObject;
