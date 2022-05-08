@@ -88,6 +88,9 @@ public class MemoryController : MonoBehaviour {
         OrderSounds();
         AddSound();
 
+        AddImageToCards();
+        cardsParent.SetActive(true);
+
         finishMenu.SetActive(false);
 
         // Number of guesses in the game is equal to half the cards
@@ -114,7 +117,6 @@ public class MemoryController : MonoBehaviour {
 
         // Finds buttons 
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
-
 
         for (int i = 0; i < objects.Length; i++) {
 
@@ -309,6 +311,8 @@ public class MemoryController : MonoBehaviour {
         // Activates the menu if game is finished and plays victory sound
         if (countCorrectGuesses == gameGuesses) {
             finishMenu.SetActive(true);
+            cardsParent.SetActive(false);
+
             StartCoroutine(PlayVictorySound());
         }
     }
@@ -339,5 +343,17 @@ public class MemoryController : MonoBehaviour {
             list[randomIndex] = temp;
         }
 
+    }
+
+    // Assign an image to every card
+    private void AddImageToCards()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            int imgIndex = cards[i].transform.childCount - 1;
+
+            // Set image on card to corrosponding image in the puzzle 
+            cards[i].transform.GetChild(imgIndex).GetComponent<SpriteRenderer>().sprite = gamePuzzles[i];
+        }
     }
 }
