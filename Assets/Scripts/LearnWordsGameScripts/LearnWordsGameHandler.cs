@@ -52,6 +52,8 @@ public class LearnWordsGameHandler : MonoBehaviour
             // Removes items to avoid duplicates
             tempImages.RemoveAt(index);
             tempMatchingWord.RemoveAt(index);
+
+            // Creates a line to use later
             createLines();
         }
 
@@ -59,11 +61,12 @@ public class LearnWordsGameHandler : MonoBehaviour
         letterController.placeInformationInCard(randList);
     }
 
-
+    // Calls to create a line outside the screen
     private void createLines() {
         drawLine(Camera.main.ScreenToWorldPoint(Vector3.left), Camera.main.ScreenToWorldPoint(Vector3.left));
     }
 
+    // Creates a line between the given start/stop vectors
     private void drawLine(Vector3 start, Vector3 end) {
         //For creating line renderer object
         LineRenderer lineRenderer = new LineRenderer();
@@ -83,6 +86,8 @@ public class LearnWordsGameHandler : MonoBehaviour
 
         lines.Add(line);
     }
+
+    // Createsa line between the given start/stop transforms 
     private void drawLine(Transform start, Transform end) {
         Vector3 startPos = Camera.main.ScreenToWorldPoint(start.position);
         Vector3 endPos = Camera.main.ScreenToWorldPoint(end.position);
@@ -90,12 +95,13 @@ public class LearnWordsGameHandler : MonoBehaviour
         drawLine(startPos, endPos);
     }
 
-
+    // Redraw the lines based on current selected answers information
     private void reDrawLines() {
         int i = 0;
+
+        // Draw lines for the selected answers
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
             LineRenderer line = lines[i].GetComponent<LineRenderer>();
-            Debug.Log("hej");
             Vector3 startPos = Camera.main.ScreenToWorldPoint(fromTo.Key.transform.position);
             Vector3 endPos = Camera.main.ScreenToWorldPoint(fromTo.Value.transform.position);
 
@@ -104,8 +110,9 @@ public class LearnWordsGameHandler : MonoBehaviour
             i++;
         }
 
-        Vector3 standartPos = Camera.main.ScreenToWorldPoint(Vector3.left);
 
+        // Reset the position of unused lines
+        Vector3 standartPos = Camera.main.ScreenToWorldPoint(Vector3.left);
         for (int j = i; j < lines.Count; j++) {
             LineRenderer line = lines[j].GetComponent<LineRenderer>();
             line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
@@ -116,55 +123,46 @@ public class LearnWordsGameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Gets selected data from image/letter controllers
         GameObject imgCard = imgController.getSelectedImgCardInfo();
         GameObject letterCard = letterController.getSelectedLetterCardInfo();
 
+        // If two are selected add them to the dictionary (This also allows the player to remap answers)
         if (imgCard != null && letterCard != null) {
             selectedAnswers[imgCard] = letterCard;
 
-            //drawLine(imgCard.transform, letterCard.transform);
-
-            reDrawLines();
+            reDrawLines(); // Uppdate the lines based on new selected answers
 
             imgController.haveMatched();
             letterController.haveMatched();
         }
     }
 
-    // Checks if all cards have been answered correctly and if so, calls to genereate new ones
-    //private void checkIfAllAnswers() {
-    //    rightAnswerCounter++;
-        
-    //    if (rightAnswerCounter == randomCardAmount) {
-    //        rightAnswerCounter = 0;
-    //        generateNewCards();
-    //    } 
-    //}
-
+    // Check the selected answers
     public void CheckIfCorrect() {
 
         int totalRight = 0;
         List<GameObject> remove = new List<GameObject>();
 
-        // 
+        // Counts how many right / wrong answers the player has made
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
 
             if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text) {
                 totalRight++;
             } else {
                 remove.Add(fromTo.Key);
-                // Also remove line here
             }
         }
 
+        // Removes all wrong guesses from the dictionary
         foreach (GameObject rem in remove) {
             selectedAnswers.Remove(rem);
         }
 
+        // Generates new cards / re-draws lines if there where some wrong answers
         Debug.Log("Rätt: " + totalRight);
         if (totalRight == randomCardAmount) {
-            selectedAnswers = new Dictionary<GameObject, GameObject>();
+            selectedAnswers.Clear(); 
             generateNewCards();
         } else {
             reDrawLines();

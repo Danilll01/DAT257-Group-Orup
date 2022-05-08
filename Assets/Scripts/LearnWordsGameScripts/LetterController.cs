@@ -15,7 +15,7 @@ public class LetterController : MonoBehaviour
     void Start() {}
 
     // Update is called once per frame
-    void Update() { }
+    void Update() {}
 
     // Returns the amount of cards that exist
     public int getCardAmount() { return cards.Length; }
@@ -31,7 +31,6 @@ public class LetterController : MonoBehaviour
 
         // If it's the same we have, unselect it
         if (letterObject.Equals(selectedLetter)) {
-            //letterObject.GetComponent<Image>().color = new Color(1, 1, 1);
             selectedLetter = null;
         } else {
             selectedLetter = letterObject;
@@ -58,15 +57,9 @@ public class LetterController : MonoBehaviour
         }
     }
 
-    // Returns the selected card info to the main game controller
+    // Returns the selected card to the main game controller
     public GameObject getSelectedLetterCardInfo() {
         return selectedLetter; 
-        //!= null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
-    }
-
-    public Transform getSelectedLetterTransform()
-    {
-        return selectedLetter.transform;
     }
 
     // Make sure the selected card now have the right color

@@ -7,19 +7,15 @@ using System;
 
 public class ImageController : MonoBehaviour
 {
+
     private GameObject selectedImgCard = null;
     [SerializeField] private GameObject[] cards;
 
-
     // Start is called before the first frame update
-    void Start() {
-
-    }
+    void Start() {}
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update() {}
 
 
     // Returns the amount of cards that exist
@@ -53,7 +49,6 @@ public class ImageController : MonoBehaviour
 
             // If it's the same we have, unselect it
             if (imageObject.Equals(selectedImgCard)) {
-                //imageObject.GetComponent<Image>().color = new Color(1, 1, 1);
                 selectedImgCard = null;
             } else {
                 selectedImgCard = imageObject;
@@ -62,15 +57,9 @@ public class ImageController : MonoBehaviour
         }
     }
 
-    // Returns the selected card info to the main game controller
+    // Returns the selected card to the main game controller
     public GameObject getSelectedImgCardInfo() {
         return selectedImgCard; 
-        //!= null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
-    }
-
-    public Transform getSelectedImgTransform()
-    {
-        return selectedImgCard.transform;
     }
 
     // Make sure the selected card now have the right color
