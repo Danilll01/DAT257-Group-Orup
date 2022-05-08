@@ -16,6 +16,11 @@ public class MemoryController : MonoBehaviour {
     // List of the puzzle-pictures in the current game
     public List<Sprite> gamePuzzles = new List<Sprite>();
 
+    [SerializeField]
+    private GameObject cardsParent;
+
+    private GameObject[] cards;
+
     // List with the buttons (cards) 
     public List<Button> btns = new List<Button>();
 
@@ -74,6 +79,8 @@ public class MemoryController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        InitializeCardsArray();
+
         GetButtons();
         AddListeners();
         AddGamePuzzles();
@@ -87,6 +94,21 @@ public class MemoryController : MonoBehaviour {
         gameGuesses = gamePuzzles.Count / 2;
     }
 
+    // Initializes card array
+    private void InitializeCardsArray()
+    {
+        // Get number of snap points
+        int nrCards = cardsParent.transform.childCount;
+        cards = new GameObject[nrCards];
+
+        // Add all snap points to array
+        for (int i = 0; i < nrCards; i++)
+        {
+            GameObject child = cardsParent.transform.GetChild(i).gameObject;
+            cards[i] = child;
+        }
+    }
+
     // Gets buttons added by AddButtons-script and adds to btns-list. Attaches background picture and soundcomponent
     void GetButtons() {
 
@@ -98,8 +120,10 @@ public class MemoryController : MonoBehaviour {
 
             // Adds buttons to button-list
             btns.Add(objects[i].GetComponent<Button>());
+
             // Attaches picture to backside of card
-            btns[i].image.sprite = bgImage;
+            btns[i].image.sprite = null;
+
             // Adds audio component
             objects[i].AddComponent<AudioSource>();
 
@@ -206,6 +230,8 @@ public class MemoryController : MonoBehaviour {
             // Sets image of the first guess to the image corresponding to the index
             btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
 
+            cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
+
             // Plays the audiofile of animal
             StartCoroutine(SoundStop(firstGuessIndex));
         }
@@ -218,6 +244,9 @@ public class MemoryController : MonoBehaviour {
             secondGuessPuzzle = gamePuzzles[secondGuessIndex].name;
 
             btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
+
+            cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
+
             StartCoroutine(SoundStop(secondGuessIndex));
 
             // Counts up number of guesses made
@@ -257,8 +286,10 @@ public class MemoryController : MonoBehaviour {
 
         // Sets image back to background image of card if guess was wrong
         else {
-            btns[firstGuessIndex].image.sprite = bgImage;
-            btns[secondGuessIndex].image.sprite = bgImage;
+            //btns[firstGuessIndex].image.sprite = bgImage;
+            //btns[secondGuessIndex].image.sprite = bgImage;
+            cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
+            cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
         }
         yield return new WaitForSeconds(0.5f);
 
