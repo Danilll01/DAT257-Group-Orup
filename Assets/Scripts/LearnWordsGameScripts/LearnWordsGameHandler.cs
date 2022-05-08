@@ -64,12 +64,13 @@ public class LearnWordsGameHandler : MonoBehaviour
     {
 
         GameObject imgCard = imgController.getSelectedImgCardInfo();
-        GameObject letterCard = imgController.getSelectedImgCardInfo();
+        GameObject letterCard = letterController.getSelectedLetterCardInfo();
 
         if (imgCard != null && letterCard != null) {
-            Debug.Log("Hej");
             selectedAnswers[imgCard] = letterCard;
+
             drawLine(imgCard.transform, letterCard.transform);
+
             imgController.haveMatched();
             letterController.haveMatched();
         }
@@ -130,9 +131,9 @@ public class LearnWordsGameHandler : MonoBehaviour
 
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
             Debug.Log("Image" + fromTo.Key.GetComponentInChildren<Text>().text);
-            Debug.Log("Letter" + fromTo.Value.GetComponentInChildren<Text>().text);
+            Debug.Log("Letter" + fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text);
 
-            if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<Text>().text) {
+            if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text) {
                 totalRight++;
             } else {
                 remove.Add(fromTo.Key);
