@@ -16,6 +16,11 @@ public class MemoryController : MonoBehaviour {
     // List of the puzzle-pictures in the current game
     public List<Sprite> gamePuzzles = new List<Sprite>();
 
+    [SerializeField]
+    private GameObject cardsParent;
+
+    private GameObject[] cards;
+
     // List with the buttons (cards) 
     public List<Button> btns = new List<Button>();
 
@@ -61,8 +66,11 @@ public class MemoryController : MonoBehaviour {
 
     // Runs at start. Loads all pictures and sounds
     void Awake() {
-        puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
-        sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
+        // If no sprites are provided use fallback method to load sprites
+        if (puzzles.Length == 0) puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
+
+        // If no sounds are provided use fallback method to load sounds
+        if (sounds.Length == 0) sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
 
         // Gets the AudioSource component and attaches to the pointer
         victorySound = GetComponent<AudioSource>();
@@ -71,6 +79,8 @@ public class MemoryController : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        InitializeCardsArray();
+
         GetButtons();
         AddListeners();
         AddGamePuzzles();
@@ -78,10 +88,28 @@ public class MemoryController : MonoBehaviour {
         OrderSounds();
         AddSound();
 
+        AddImageToCards();
+        cardsParent.SetActive(true);
+
         finishMenu.SetActive(false);
 
         // Number of guesses in the game is equal to half the cards
         gameGuesses = gamePuzzles.Count / 2;
+    }
+
+    // Initializes card array
+    private void InitializeCardsArray()
+    {
+        // Get number of snap points
+        int nrCards = cardsParent.transform.childCount;
+        cards = new GameObject[nrCards];
+
+        // Add all snap points to array
+        for (int i = 0; i < nrCards; i++)
+        {
+            GameObject child = cardsParent.transform.GetChild(i).gameObject;
+            cards[i] = child;
+        }
     }
 
     // Gets buttons added by AddButtons-script and adds to btns-list. Attaches background picture and soundcomponent
@@ -90,13 +118,11 @@ public class MemoryController : MonoBehaviour {
         // Finds buttons 
         GameObject[] objects = GameObject.FindGameObjectsWithTag("PuzzleButton");
 
-
         for (int i = 0; i < objects.Length; i++) {
 
             // Adds buttons to button-list
             btns.Add(objects[i].GetComponent<Button>());
-            // Attaches picture to backside of card
-            btns[i].image.sprite = bgImage;
+
             // Adds audio component
             objects[i].AddComponent<AudioSource>();
 
@@ -201,7 +227,9 @@ public class MemoryController : MonoBehaviour {
             firstGuessPuzzle = gamePuzzles[firstGuessIndex].name;
 
             // Sets image of the first guess to the image corresponding to the index
-            btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
+            //btns[firstGuessIndex].image.sprite = gamePuzzles[firstGuessIndex];
+
+            cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
             // Plays the audiofile of animal
             StartCoroutine(SoundStop(firstGuessIndex));
@@ -214,7 +242,9 @@ public class MemoryController : MonoBehaviour {
 
             secondGuessPuzzle = gamePuzzles[secondGuessIndex].name;
 
-            btns[secondGuessIndex].image.sprite = gamePuzzles[secondGuessIndex];
+            // Flips card
+            cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
+
             StartCoroutine(SoundStop(secondGuessIndex));
 
             // Counts up number of guesses made
@@ -243,6 +273,9 @@ public class MemoryController : MonoBehaviour {
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
 
+            DeactivateCard(firstGuessIndex);
+            DeactivateCard(secondGuessIndex);
+
             /*  Om korten ska försvinna efter man har valt rätt 
             btns[firstGuessIndex].image.color = new Color(0,0,0,0);
             btns[secondGuessIndex].image.color = new Color(0,0,0,0);
@@ -254,8 +287,8 @@ public class MemoryController : MonoBehaviour {
 
         // Sets image back to background image of card if guess was wrong
         else {
-            btns[firstGuessIndex].image.sprite = bgImage;
-            btns[secondGuessIndex].image.sprite = bgImage;
+            cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
+            cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToOriginalState();
         }
         yield return new WaitForSeconds(0.5f);
 
@@ -274,7 +307,12 @@ public class MemoryController : MonoBehaviour {
 
         // Activates the menu if game is finished and plays victory sound
         if (countCorrectGuesses == gameGuesses) {
+            // Show victory screen
             finishMenu.SetActive(true);
+
+            // Hide all cards
+            cardsParent.SetActive(false);
+
             StartCoroutine(PlayVictorySound());
         }
     }
@@ -284,8 +322,6 @@ public class MemoryController : MonoBehaviour {
         // Wait one second before playing to not intefere with sound of matching final pair of cards
         yield return new WaitForSeconds(1f);
         victorySound.Play();
-        yield return new WaitForSeconds(1.5f);
-        victorySound.Stop();
     }
 
     // Shuffles cards
@@ -307,5 +343,26 @@ public class MemoryController : MonoBehaviour {
             list[randomIndex] = temp;
         }
 
+    }
+
+    // Assign an image to every card
+    private void AddImageToCards()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            int imgIndex = cards[i].transform.childCount - 1;
+
+            // Set image on card to corrosponding image in the puzzle 
+            cards[i].transform.GetChild(imgIndex).GetComponent<SpriteRenderer>().sprite = gamePuzzles[i];
+        }
+    }
+
+    // Changes color for cards to be transparent
+    private void DeactivateCard(int index)
+    {
+        foreach (SpriteRenderer img in cards[index].GetComponentsInChildren<SpriteRenderer>())
+        {
+            img.color = new Color(255, 255, 255, 0.6f);
+        }
     }
 }
