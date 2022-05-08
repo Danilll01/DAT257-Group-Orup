@@ -1,21 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FlipCard : MonoBehaviour
 {
-    private void Flip(float degrees)
+    [SerializeField] private float lerpTime = 0.015f;
+
+    private Vector3 targetDegrees;
+    private Vector3 currentDegrees;
+
+    public void Start()
     {
-        transform.eulerAngles = new (0, degrees, 0); 
+        targetDegrees = transform.eulerAngles;
+        currentDegrees = transform.eulerAngles;
     }
 
+    public void Update()
+    {
+        // If card should rotate
+        if (currentDegrees != targetDegrees)
+        {
+            // Rotate the card to target position with Lerp
+            transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, targetDegrees, lerpTime);
+
+            // Update current angle
+            currentDegrees = transform.eulerAngles;
+        }
+    }
+
+    // Flips card so the animal is not showing
     public void FlipCardToOriginalState()
     {
-        Flip(0);
+        targetDegrees = new(0, 0, 0);
     }
 
+    // Flips card so the animal is showing
     public void FlipCardToAnimalState()
     {
-        Flip(180);
+        targetDegrees = new(0, 180, 0);
     }
 }
