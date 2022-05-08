@@ -39,9 +39,9 @@ public class ImageController : MonoBehaviour
     public void ImageClicked(GameObject imageObject) {
 
         // Only select and do things if it's not already matched
-        if (imageObject.GetComponent<Image>().color != new Color(1, 180f / 255f, 0)) {
+        if (imageObject.GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
 
-            // Make old card blue
+            // Make old card normal
             if (selectedImgCard != null) {
                 selectedImgCard.GetComponent<Image>().color = new Color(1, 1, 1);
             }
@@ -52,7 +52,7 @@ public class ImageController : MonoBehaviour
                 selectedImgCard = null;
             } else {
                 selectedImgCard = imageObject;
-                selectedImgCard.GetComponent<Image>().color = new Color(0, 1, 100f / 255f);
+                selectedImgCard.GetComponent<Image>().color = new Color(1, 1, 0); // Makes card yellow
             }
         }
     }

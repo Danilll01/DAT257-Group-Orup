@@ -36,6 +36,7 @@ public class LearnWordsGameHandler : MonoBehaviour
             Destroy(line);
         }
         lines.Clear();
+        selectedAnswers.Clear();
 
         // Creates the structure we use to send data with
         List<System.Tuple<Sprite, string>> randList = new List<System.Tuple<Sprite, string>>(); 
@@ -46,7 +47,7 @@ public class LearnWordsGameHandler : MonoBehaviour
 
         // Randomize card data for all cards
         for (int i = 0; i < randomCardAmount; i++) {
-            int index = Random.Range(0, tempImages.Count); // Ranomize a index in the lists
+            int index = Random.Range(0, tempImages.Count); // Randomize a index in the lists
             randList.Add(System.Tuple.Create(tempImages[index], tempMatchingWord[index])); // Place data from the index into the sending structure
             
             // Removes items to avoid duplicates
@@ -87,14 +88,6 @@ public class LearnWordsGameHandler : MonoBehaviour
         lines.Add(line);
     }
 
-    // Createsa line between the given start/stop transforms 
-    private void drawLine(Transform start, Transform end) {
-        Vector3 startPos = Camera.main.ScreenToWorldPoint(start.position);
-        Vector3 endPos = Camera.main.ScreenToWorldPoint(end.position);
-
-        drawLine(startPos, endPos);
-    }
-
     // Redraw the lines based on current selected answers information
     private void reDrawLines() {
         int i = 0;
@@ -131,6 +124,10 @@ public class LearnWordsGameHandler : MonoBehaviour
         if (imgCard != null && letterCard != null) {
             selectedAnswers[imgCard] = letterCard;
 
+            // Make them have normal color again
+            imgCard.GetComponent<Image>().color = new Color(1, 1, 1);
+            letterCard.GetComponent<Image>().color = new Color(1, 1, 1);
+
             reDrawLines(); // Uppdate the lines based on new selected answers
 
             imgController.haveMatched();
@@ -149,6 +146,11 @@ public class LearnWordsGameHandler : MonoBehaviour
 
             if (fromTo.Key.GetComponentInChildren<Text>().text == fromTo.Value.GetComponentInChildren<TextMeshProUGUI>().text) {
                 totalRight++;
+
+                // Make the right answers green
+                fromTo.Key.GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f);
+                fromTo.Value.GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f);
+
             } else {
                 remove.Add(fromTo.Key);
             }
@@ -162,7 +164,6 @@ public class LearnWordsGameHandler : MonoBehaviour
         // Generates new cards / re-draws lines if there where some wrong answers
         Debug.Log("Rätt: " + totalRight);
         if (totalRight == randomCardAmount) {
-            selectedAnswers.Clear(); 
             generateNewCards();
         } else {
             reDrawLines();
