@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PortalHandler : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class PortalHandler : MonoBehaviour
     [SerializeField] private Transform[] portals;
     // The player object
     [SerializeField] private Navigate navigation;
-    [SerializeField] private Collider2D[] colliders;
 
 
 
@@ -20,13 +20,16 @@ public class PortalHandler : MonoBehaviour
     public void onPortalClick(int portalId)
     {
         // Make player go to the portal's corresponding node
-        navigation.setNewPath(portals[portalId].position);
+        //navigation.setNewPath(portals[portalId].position);
 
-        // Set all the colliders triggers to false
-        foreach (Collider2D collider in colliders)
-        {
-           collider.isTrigger = false;
-        }
+        navigation.MoveTowardsPortal(portals[portalId-1].position,
+            
+            () => {
+
+                StorePortal.setLastPortalSceneIndex(portalId);
+                SceneManager.LoadScene(portalId);
+
+            });
 
     }
 

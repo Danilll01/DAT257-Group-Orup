@@ -38,13 +38,10 @@ public class MarkerMover : MonoBehaviour
         {
             // Teleport to a jump point based on provided index
             playerNavigateScript.ai.Teleport(jumpNodes[index].transform.position, false);
-            player.transform.position = jumpNodes[index].transform.position;
 
-            // If the sprite is not at its default location, update it.
-            if ((Vector2) playerSpritePos.transform.localPosition != defaultSpritePos)
-            {
-                playerSpritePos.transform.localPosition = defaultSpritePos;
-            }
+            // Reset player sprite position
+            playerSpritePos.localPosition = defaultSpritePos;
+            
         }
     }
 
