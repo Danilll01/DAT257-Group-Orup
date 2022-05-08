@@ -13,6 +13,8 @@ public class LearnWordsGameHandler : MonoBehaviour
     [SerializeField] private List<Sprite> images;
     [SerializeField] private List<string> matchingWord;
 
+    [SerializeField] private bool checkAnswerDirectly = false;
+
     private List<GameObject> lines;
     private int randomCardAmount;
     //private int rightAnswerCounter = 0;
@@ -132,6 +134,11 @@ public class LearnWordsGameHandler : MonoBehaviour
 
             imgController.haveMatched();
             letterController.haveMatched();
+
+            // Toggle to switch between if the answers should be checked directly / later
+            if (checkAnswerDirectly) {
+                CheckIfCorrect();
+            }
         }
     }
 
