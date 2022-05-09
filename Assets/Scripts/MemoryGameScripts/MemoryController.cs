@@ -204,10 +204,12 @@ public class MemoryController : MonoBehaviour {
 
     // Coroutine for deciding how long sounds should play
     IEnumerator SoundStop(int index) {
-        btns[index].GetComponent<AudioSource>().Play();
-        yield return new WaitForSeconds(2f);
-        btns[index].GetComponent<AudioSource>().Stop();
-
+        if (btns[firstGuessIndex].image.sprite != bgImage || btns[secondGuessIndex].image.sprite != bgImage)
+        {
+            btns[index].GetComponent<AudioSource>().Play();
+            yield return new WaitForSeconds(2f);
+            btns[index].GetComponent<AudioSource>().Stop();
+        }
     }
 
     // Checks if first and second guess has been done or not
@@ -234,7 +236,7 @@ public class MemoryController : MonoBehaviour {
             // Plays the audiofile of animal
             StartCoroutine(SoundStop(firstGuessIndex));
         }
-        // Same as if-clause but with second
+        // If secondguess is not firstguess
         else if (!secondGuess && (firstGuessIndex != int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name))) {
             secondGuess = true;
 
@@ -253,8 +255,9 @@ public class MemoryController : MonoBehaviour {
             // Checks if puzzles match 
             StartCoroutine(CheckIfPuzzlesMatch());
         }
+        // If the firstGuess is the same as the the next, the just play sound
         else {
-            StartCoroutine(SoundStop(secondGuessIndex));
+            StartCoroutine(SoundStop(firstGuessIndex));
         }
     }
 
