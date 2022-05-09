@@ -166,7 +166,7 @@ public class LearnWordsGameHandler : MonoBehaviour
                 // Make the wrong answers red
                 fromTo.Key.GetComponent<Image>().color = new Color(1, 90f / 255f, 90f / 255f);
                 fromTo.Value.GetComponent<Image>().color = new Color(1, 90f / 255f, 90f / 255f);
-                remove[fromTo.Key] = fromTo.Value;
+                remove[fromTo.Key] = fromTo.Value; // Add them to be removed later
             }
         }
 
@@ -180,25 +180,27 @@ public class LearnWordsGameHandler : MonoBehaviour
 
     }
 
+    // Resets wrong answers later
     private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUndone) {
-        yield return new WaitForSeconds(timeUntillReset);
+        yield return new WaitForSeconds(timeUntillReset); // Wait the time
         
         foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUndone) {
 
-            if (fromTo.Key.GetComponent<Image>().color == new Color(1, 90f / 255f, 90f / 255f) || fromTo.Value.GetComponent<Image>().color == new Color(1, 90f / 255f, 90f / 255f)) {
-
-                if (fromTo.Value == selectedAnswers[fromTo.Key]) {
-                    selectedAnswers.Remove(fromTo.Key);
-                }
+            // If some of the key value pair is red and they still hold the same connection in dictionary
+            if (fromTo.Value == selectedAnswers[fromTo.Key]) {
+                selectedAnswers.Remove(fromTo.Key);
             }
 
+            // Uncolor the objects
             unColor(fromTo.Key);
             unColor(fromTo.Value);
 
         }
+        // Draw the new lines
         reDrawLines();
     }
 
+    // If the given game object is red, turn it normal again
     private void unColor(GameObject colorObject) {
         if (colorObject.GetComponent<Image>().color == new Color(1, 90f / 255f, 90f / 255f)) {
             colorObject.GetComponent<Image>().color = new Color(1, 1, 1);
