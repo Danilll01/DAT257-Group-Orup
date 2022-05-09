@@ -2708,7 +2708,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: bf75a669544f4b644bc4a90e864f19e4, type: 3}
   - {fileID: 2072272477, guid: 683ab2a96e5fee34a977c675996bf3f8, type: 3}
   - {fileID: 21300000, guid: ccea7794d8cacc347b5209b325492e55, type: 3}
+  - {fileID: 21300000, guid: e489458b28f265442a79b463afb51475, type: 3}
   - {fileID: -325781722, guid: 683ab2a96e5fee34a977c675996bf3f8, type: 3}
+  - {fileID: 21300000, guid: f6e5983355ed94446831fce2eceb998c, type: 3}
+  - {fileID: 21300000, guid: 7852e17d1068bb748a87f1c07c87b892, type: 3}
   - {fileID: 21300000, guid: 078c443d6e24699408e6f5f3fd5c47cd, type: 3}
   - {fileID: 1710741198, guid: 683ab2a96e5fee34a977c675996bf3f8, type: 3}
   - {fileID: 21300000, guid: 6c2d45d28119b8e48baf2799b5cd96ff, type: 3}
@@ -2724,7 +2727,10 @@ MonoBehaviour:
   - K k
   - L l
   - M m
+  - O o
   - P p
+  - R r
+  - S s
   - T t
   - V v
   - "\xC4 \xE4"
