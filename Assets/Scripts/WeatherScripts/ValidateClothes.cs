@@ -28,12 +28,15 @@ public class ValidateClothes : MonoBehaviour
                     // send to script to remove it from character
                     foreach (DragAndDropClothing script in scripts)
                     {
-                        if (script.chosenWeather != weather && script.chosenWeather != WeatherController.WeatherTypes.Any)
+                        // If the chosen weather is not marked in the editor and the clothing is not of type any
+                        // then we remove it from the snapPoint
+                        if (!((script.chosenWeather & weather) != WeatherController.WeatherTypes.None))
                         {
                             script.removeFromSnapPoint(false);
                             validClothing = false;
                             message = "Some clothing does not match the weather";
                         }
+   
                     }
                      // If it is not sunny, we need a jacket
                     if (weather != WeatherController.WeatherTypes.Sun && snapPoint.name == "Chest" && snapPoint.transform.childCount < 2)
