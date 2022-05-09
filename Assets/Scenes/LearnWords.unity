@@ -2716,6 +2716,8 @@ MonoBehaviour:
   - V v
   - V v
   - "\xC4 \xE4"
+  checkAnswerDirectly: 0
+  timeUntillReset: 1
 --- !u!23 &1388211854
 MeshRenderer:
   m_ObjectHideFlags: 0
