@@ -793,7 +793,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0c3b69e15a3fa4e4e892d471c89ce751, type: 3}
   - {fileID: 21300000, guid: 043ec9f6bf03b32439d4cad357b8ec69, type: 3}
   - {fileID: 21300000, guid: 3045b544f92b79d4eacc52a6168e36c6, type: 3}
-  - {fileID: 21300000, guid: 1e1bb75152567e44ebef5e2daae12cfb, type: 3}
+  - {fileID: 21300000, guid: b8503af40d95941448b2b67c27266068, type: 3}
   - {fileID: 21300000, guid: 67a6be80d877af74cbeeafc2274b3eef, type: 3}
   gamePuzzles: []
   cardsParent: {fileID: 2023262525}
