@@ -37,8 +37,7 @@ public class WeatherController : MonoBehaviour
         Sun     = 0x01, 
         Cloud   = 0x02, 
         Rain    = 0x04, 
-        Snow    = 0x08, 
-        Any     = 0x10
+        Snow    = 0x08
     };
 
     // An enum for wind speed. (Not used now)
@@ -86,7 +85,7 @@ public class WeatherController : MonoBehaviour
         // Generates a random weather type
         System.Random random = new System.Random();
         Array values = Enum.GetValues(typeof(WeatherTypes));
-        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length - 1));
+        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(1,values.Length));
 
         // Sets weather to the randomly generated weather
         SetWeather(randomWeather, WindSpeed.None);

@@ -1880,7 +1880,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &291625006
 CanvasRenderer:
@@ -2452,7 +2452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.74, y: -3.57}
+  m_AnchoredPosition: {x: -6.67, y: -3.57}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &389553028
@@ -3223,7 +3223,7 @@ GameObject:
   - component: {fileID: 406368946}
   - component: {fileID: 406368951}
   m_Layer: 6
-  m_Name: CloudJacket
+  m_Name: Fleece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3311,8 +3311,8 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 2
-  chosenClothing: 3
+  chosenWeather: 12
+  chosenClothing: 1
 --- !u!222 &406368949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4516,7 +4516,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 2
+  chosenWeather: 7
   chosenClothing: 8
 --- !u!222 &536452627
 CanvasRenderer:
@@ -5787,7 +5787,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &779551273
 CanvasRenderer:
@@ -7662,7 +7662,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &1013088293
 CanvasRenderer:
@@ -10165,7 +10165,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &1482867723
 CanvasRenderer:
@@ -10696,7 +10696,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &1524723534
 CanvasRenderer:
@@ -12703,7 +12703,7 @@ GameObject:
   - component: {fileID: 1753605707}
   - component: {fileID: 1753605712}
   m_Layer: 6
-  m_Name: CloudShoes
+  m_Name: Sneakers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12726,7 +12726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.68, y: -3.69}
+  m_AnchoredPosition: {x: -6.66, y: -3.69}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &1753605707
@@ -12791,7 +12791,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 2
+  chosenWeather: 3
   chosenClothing: 16
 --- !u!222 &1753605710
 CanvasRenderer:
@@ -15081,7 +15081,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 16
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &2090973211
 CanvasRenderer:
