@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     [SerializeField] private List<string> matchingWord;
 
     [SerializeField] private bool checkAnswerDirectly = false;
+    [SerializeField] private float timeUntillReset = 1f;
 
     private List<GameObject> lines;
     private int randomCardAmount;
@@ -146,7 +148,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     public void CheckIfCorrect() {
 
         int totalRight = 0;
-        List<GameObject> remove = new List<GameObject>();
+        Dictionary<GameObject, GameObject> remove = new Dictionary<GameObject, GameObject>();
 
         // Counts how many right / wrong answers the player has made
         foreach (KeyValuePair<GameObject, GameObject> fromTo in selectedAnswers) {
@@ -160,21 +162,49 @@ public class LearnWordsGameHandler : MonoBehaviour
                 fromTo.Value.GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f);
 
             } else {
-                remove.Add(fromTo.Key);
-            }
-        }
 
-        // Removes all wrong guesses from the dictionary
-        foreach (GameObject rem in remove) {
-            selectedAnswers.Remove(rem);
+                // Make the wrong answers red
+                fromTo.Key.GetComponent<Image>().color = new Color(1, 90f / 255f, 90f / 255f);
+                fromTo.Value.GetComponent<Image>().color = new Color(1, 90f / 255f, 90f / 255f);
+                remove[fromTo.Key] = fromTo.Value; // Add them to be removed later
+            }
         }
 
         // Generates new cards / re-draws lines if there where some wrong answers
         if (totalRight == randomCardAmount) {
             generateNewCards();
         } else {
+            StartCoroutine(makeNormalCardAgain(remove));
             reDrawLines();
         }
 
     }
+
+    // Resets wrong answers later
+    private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUndone) {
+        yield return new WaitForSeconds(timeUntillReset); // Wait the time
+        
+        foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUndone) {
+
+            // If some of the key value pair is red and they still hold the same connection in dictionary
+            if (fromTo.Value == selectedAnswers[fromTo.Key]) {
+                selectedAnswers.Remove(fromTo.Key);
+            }
+
+            // Uncolor the objects
+            unColor(fromTo.Key);
+            unColor(fromTo.Value);
+
+        }
+        // Draw the new lines
+        reDrawLines();
+    }
+
+    // If the given game object is red, turn it normal again
+    private void unColor(GameObject colorObject) {
+        if (colorObject.GetComponent<Image>().color == new Color(1, 90f / 255f, 90f / 255f)) {
+            colorObject.GetComponent<Image>().color = new Color(1, 1, 1);
+        }
+    }
+
 }
