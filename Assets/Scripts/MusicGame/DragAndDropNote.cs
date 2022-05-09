@@ -185,8 +185,8 @@ public class DragAndDropNote : MonoBehaviour
 
         }
 
-        // If the object is close to the snapPoint, set the objects position to that point
-        if (shortestSnapPointDistance < 0.5f && !snapped)
+        // If the object is close to the snapPoint and the snappoint is empty of notes, set the objects position to that point
+        if (shortestSnapPointDistance < 0.5f && !snapped && shortestSnapPoint.transform.childCount <= 1)
         {
             targetPosition = shortestSnapPoint.transform.position;
             transform.SetParent(shortestSnapPoint.transform);
