@@ -28,11 +28,21 @@ public class DragAndDropClothing : MonoBehaviour {
     private Sprite originalSprite;
     [SerializeField] private GameObject pointToSnapToOnSwitch;
 
-    public WeatherController.WeatherTypes chosenWeather;
+    [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
     private closetInventory inventoryScript;
 
-    public enum clothing{jacket, shirt, pants, hat, shoes, scarf, gloves};
-    public clothing chosenClothing;
+    [System.Flags] public enum clothing : int{
+        None   = 0x00,
+        jacket = 0x01, 
+        shirt  = 0x02, 
+        pants  = 0x04, 
+        hat    = 0x08, 
+        shoes  = 0x10, 
+        scarf  = 0x12, 
+        gloves = 0x14
+    };
+
+    [EnumFlags] public clothing chosenClothing;
 
     static bool beingDragged;
 
@@ -247,11 +257,11 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // Start values for shortest snap point
         GameObject shortestSnapPoint = null;
-        
+
 
         // Get what body part this clothing goes on
         switch (chosenClothing){
-            case clothing.jacket: case clothing.shirt:
+            case (clothing.jacket | clothing.shirt): case clothing.shirt: case clothing.jacket:
                 neededMatch = "Chest";
                 break;
             case clothing.pants:

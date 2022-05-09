@@ -30,7 +30,16 @@ public class WeatherController : MonoBehaviour
 
     // A type for different weather types
     // "Any" is used for clothing that work in any weather
-    public enum WeatherTypes {Sun, Cloud, Rain, Snow, Any};
+
+    [System.Flags]
+    public enum WeatherTypes : int {
+        None    = 0x00,
+        Sun     = 0x01, 
+        Cloud   = 0x02, 
+        Rain    = 0x04, 
+        Snow    = 0x08, 
+        Any     = 0x10
+    };
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
