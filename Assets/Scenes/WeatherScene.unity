@@ -14325,7 +14325,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
-  chosenWeather: 8
+  chosenWeather: -1
   chosenClothing: 2
 --- !u!222 &1904257363
 CanvasRenderer:
