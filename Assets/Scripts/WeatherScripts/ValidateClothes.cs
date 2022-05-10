@@ -20,6 +20,10 @@ public class ValidateClothes : MonoBehaviour
         weatherSet = false;
         dragScript = new DragAndDropClothing();
         walkOut = false;
+        
+        doorPos.transform.parent.position = Camera.main.ScreenToWorldPoint(new Vector3((Camera.main.pixelWidth),0));
+        Vector3 doorParent = doorPos.transform.parent.position;
+        doorPos.transform.parent.position = new Vector3(doorPos.position.x - 6.6f, -2.47f);
     }
 
     void Update()
