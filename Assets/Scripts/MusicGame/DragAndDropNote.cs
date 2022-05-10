@@ -14,6 +14,7 @@ public class DragAndDropNote : MonoBehaviour
     private SpriteRenderer sprite;
     private bool toBeDeleted;
 
+    // What distance the program should fade helper lines
     private float helperLineCutoffDisctance = 3.5f;
 
     // If the note can move
@@ -150,6 +151,7 @@ public class DragAndDropNote : MonoBehaviour
         }
     }
 
+    // To be executed when entering a moving state by mouse or touch
     private void BeginMove(bool touchInput)
     {
         if (touchInput)
@@ -164,13 +166,16 @@ public class DragAndDropNote : MonoBehaviour
         sprite.enabled = true;
     }
 
+    // To be executed when actively moving by mouse or touch
     private void OnMove(Vector2 position)
     {
         transform.position = position;
 
+        // Update the style of the helper lines
         UpdateHelperLineColor(transform.position);
     }
 
+    // To be executed when exiting a moving state by mouse or touch
     private void EndMove(Vector2 position)
     {
         SnapToPoint(position);
@@ -178,6 +183,7 @@ public class DragAndDropNote : MonoBehaviour
         // Reset collider size
         GetComponent<CircleCollider2D>().radius = originalColliderRadius;
 
+        // Clear helper lines
         HideAllHelperLines();
     }
 
@@ -260,11 +266,11 @@ public class DragAndDropNote : MonoBehaviour
     // Initializes snap points array
     private GameObject[] FillArrayFromParent(GameObject parent)
     {
-        // Get number of snap points
+        // Get number of children
         int nrChildren = parent.transform.childCount;
         GameObject[] children = new GameObject[nrChildren];
 
-        // Add all snap points to array
+        // Add children to array
         for (int i = 0; i < nrChildren; i++)
         {
             GameObject child = parent.transform.GetChild(i).gameObject;
@@ -325,31 +331,37 @@ public class DragAndDropNote : MonoBehaviour
         toBeDeleted = true;
     }
 
+    // Updates the color on all helper lines depending on the notes distance to the line
     private void UpdateHelperLineColor(Vector2 notePos)
     {
         foreach (GameObject line in helperLines)
         {
+            // Get distance from note to line
             float distToNote = Vector2.Distance(line.transform.position, notePos);
 
+            // Get sprite component
             SpriteRenderer spriteRenderer = line.GetComponent<SpriteRenderer>();
 
             if (distToNote < helperLineCutoffDisctance)
             {
-                
+                // Change the alpha color the percent distance from note to line. Ex 0.001 = Far away, 1 = Closest it can be 
                 Color color = spriteRenderer.color;
                 color.a = 1 - (distToNote / helperLineCutoffDisctance);
                 spriteRenderer.color = color;
             } else
             {
+                // If line too far away, make fully transparent
                 spriteRenderer.color = new(0, 0, 0, 0);
             }
         }
     }
 
+    // Hides all helper lines
     private void HideAllHelperLines()
     {
         foreach (GameObject line in helperLines)
         {
+            // Make line fully transparent
             line.GetComponent<SpriteRenderer>().color = new(0, 0, 0, 0);
         }
     }
