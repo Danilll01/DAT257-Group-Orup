@@ -87,7 +87,6 @@ public class DragAndDropNote : MonoBehaviour
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
                         moveAllowed = true;
-                        GetComponent<CircleCollider2D>().sharedMaterial = null;
 
                         // Make sprite visible
                         sprite.enabled = true;
@@ -114,6 +113,8 @@ public class DragAndDropNote : MonoBehaviour
 
                         // Reset collider size
                         GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
+                        HideAllHelperLines();
                     }
                     moveAllowed = false;
                     break;
@@ -318,6 +319,14 @@ public class DragAndDropNote : MonoBehaviour
         }
     }
 
+    private void HideAllHelperLines()
+    {
+        foreach (GameObject line in helperLines)
+        {
+            line.GetComponent<SpriteRenderer>().color = new(0, 0, 0, 0);
+        }
+    }
+
 
     // ------------- Setters ---------------
 
@@ -333,9 +342,6 @@ public class DragAndDropNote : MonoBehaviour
     {
         helperLinesParent = parent;
         helperLines = FillArrayFromParent(parent);
-        foreach (GameObject line in helperLines)
-        {
-            line.GetComponent<SpriteRenderer>().color = new(0,0,0,0);
-        }
+        HideAllHelperLines();
     }
 }
