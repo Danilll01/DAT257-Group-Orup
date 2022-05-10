@@ -122,7 +122,8 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
     public void MakeCorrectAnswerGreen() {
         for (int i = 0; i < cardHolders.Length; i++) {
             if (i == correctAnswerHolder - 1) {
-                cardHolders[i].GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f);
+                cardHolders[i].GetComponent<Button>().interactable = false;
+                cardHolders[i].GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f); // Makes it green
             } else {
                 cardHolders[i].SetActive(false);
             }
