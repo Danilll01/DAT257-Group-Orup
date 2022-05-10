@@ -14,6 +14,9 @@ public class DragAndDropNote : MonoBehaviour
     private SpriteRenderer sprite;
     private bool toBeDeleted;
 
+    // What distance the program should fade helper lines
+    private float helperLineCutoffDisctance = 3.5f;
+
     // If the note can move
     private bool lockedInPlace = false;
 
@@ -23,6 +26,10 @@ public class DragAndDropNote : MonoBehaviour
     // Which parent to look for snap points in
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
+
+    // Which parent to look for snap points in
+    [SerializeField] private GameObject helperLinesParent;
+    private GameObject[] helperLines;
 
     // Which instrument the note is
     [SerializeField] Instrument instrument;
@@ -43,7 +50,7 @@ public class DragAndDropNote : MonoBehaviour
         // Initialize array with snap points
         if (snapPointsParent != null)
         {
-            InitializeSnapPointsArray();
+            snapPoints = FillArrayFromParent(snapPointsParent);
         }
         
         ridgidBody = GetComponent<Rigidbody2D>();
@@ -63,7 +70,7 @@ public class DragAndDropNote : MonoBehaviour
         sprite.enabled = false;
     }
 
-    // Update is called once per frame
+    // -------------------- Begin note movement --------------------
     void Update()
     {
         // If there were any touches on the screen
@@ -82,11 +89,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
-                        moveAllowed = true;
-                        GetComponent<CircleCollider2D>().sharedMaterial = null;
-
-                        // Make sprite visible
-                        sprite.enabled = true;
+                        BeginMove(true);
                     }
                     break;
 
@@ -95,7 +98,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Moved:
                     if (moveAllowed)
                     {
-                        transform.position = new Vector3(touchPos.x, touchPos.y);
+                        OnMove(touchPos);
                     }
                     break;
 
@@ -104,10 +107,7 @@ public class DragAndDropNote : MonoBehaviour
                     // Only move object if it should be moved
                     if (moveAllowed)
                     {
-                        SnapToPoint(touchPos);
-
-                        // Reset collider size
-                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+                        EndMove(touchPos);
                     }
                     moveAllowed = false;
                     break;
@@ -124,22 +124,17 @@ public class DragAndDropNote : MonoBehaviour
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
-                // Make sprite visible
-                sprite.enabled = true;
-
-                mouseMoveAllowed = true;
+                BeginMove(false);
             }
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if (mouseMoveAllowed)
             {
-                transform.position = mousePosition;
+                OnMove(mousePosition);
+
                 if (Input.GetMouseButtonUp(0))
                 {
-                    SnapToPoint(mousePosition);
-
-                    // Reset collider size
-                    GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+                    EndMove(mousePosition);
 
                     mouseMoveAllowed = false;
                 }
@@ -155,6 +150,45 @@ public class DragAndDropNote : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // To be executed when entering a moving state by mouse or touch
+    private void BeginMove(bool touchInput)
+    {
+        if (touchInput)
+        {
+            moveAllowed = true;
+        } else
+        {
+            mouseMoveAllowed = true;
+        }
+
+        // Make sprite visible
+        sprite.enabled = true;
+    }
+
+    // To be executed when actively moving by mouse or touch
+    private void OnMove(Vector2 position)
+    {
+        transform.position = position;
+
+        // Update the style of the helper lines
+        UpdateHelperLineColor(transform.position);
+    }
+
+    // To be executed when exiting a moving state by mouse or touch
+    private void EndMove(Vector2 position)
+    {
+        SnapToPoint(position);
+
+        // Reset collider size
+        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
+        // Clear helper lines
+        HideAllHelperLines();
+    }
+
+    // -------------------- End of note movement --------------------
+
 
 
     // Method for snapping to object to a point close to it
@@ -199,6 +233,7 @@ public class DragAndDropNote : MonoBehaviour
             // Play the assigned note
             audioSource.Play();
 
+            // Reset collider size if note has left the pool
             if (originalPos != targetPosition)
             {
                 GetComponent<CircleCollider2D>().radius = originalColliderRadius;
@@ -229,18 +264,20 @@ public class DragAndDropNote : MonoBehaviour
     }
 
     // Initializes snap points array
-    private void InitializeSnapPointsArray()
+    private GameObject[] FillArrayFromParent(GameObject parent)
     {
-        // Get number of snap points
-        int nrSnapPoints = snapPointsParent.transform.childCount;
-        snapPoints = new GameObject[nrSnapPoints];
+        // Get number of children
+        int nrChildren = parent.transform.childCount;
+        GameObject[] children = new GameObject[nrChildren];
 
-        // Add all snap points to array
-        for (int i = 0; i < nrSnapPoints; i++)
+        // Add children to array
+        for (int i = 0; i < nrChildren; i++)
         {
-            GameObject child = snapPointsParent.transform.GetChild(i).gameObject;
-            snapPoints[i] = child;
+            GameObject child = parent.transform.GetChild(i).gameObject;
+            children[i] = child;
         }
+
+        return children;
     }
 
     // Changes audio clip source to match the current note the object is attached to 
@@ -284,14 +321,6 @@ public class DragAndDropNote : MonoBehaviour
     {
         lockedInPlace = false;
     }
-
-    // Sets the snap point parent object and initializes the array
-    public void SetSnapPointParent(GameObject parent)
-    {
-        snapPointsParent = parent;
-        InitializeSnapPointsArray();
-    }
-
     public void SnapToOriginalPosAndDelete()
     {
         // Sets position to the original position
@@ -300,5 +329,58 @@ public class DragAndDropNote : MonoBehaviour
 
         // Set the object to be deleted when it reaches the pool
         toBeDeleted = true;
+    }
+
+    // Updates the color on all helper lines depending on the notes distance to the line
+    private void UpdateHelperLineColor(Vector2 notePos)
+    {
+        foreach (GameObject line in helperLines)
+        {
+            // Get distance from note to line
+            float distToNote = Vector2.Distance(line.transform.position, notePos);
+
+            // Get sprite component
+            SpriteRenderer spriteRenderer = line.GetComponent<SpriteRenderer>();
+
+            if (distToNote < helperLineCutoffDisctance)
+            {
+                // Change the alpha color the percent distance from note to line. Ex 0.001 = Far away, 1 = Closest it can be 
+                Color color = spriteRenderer.color;
+                color.a = 1 - (distToNote / helperLineCutoffDisctance);
+                spriteRenderer.color = color;
+            } else
+            {
+                // If line too far away, make fully transparent
+                spriteRenderer.color = new(0, 0, 0, 0);
+            }
+        }
+    }
+
+    // Hides all helper lines
+    private void HideAllHelperLines()
+    {
+        foreach (GameObject line in helperLines)
+        {
+            // Make line fully transparent
+            line.GetComponent<SpriteRenderer>().color = new(0, 0, 0, 0);
+        }
+    }
+
+
+    // ------------- Setters ---------------
+
+    // Sets the snap point parent object and initializes the array
+    public void SetSnapPointParent(GameObject parent)
+    {
+        snapPointsParent = parent;
+        snapPoints = FillArrayFromParent(parent);
+    }
+
+    // Sets the extra line parent object and initializes the array
+    public void SetExtraLineParent(GameObject parent)
+    {
+        helperLinesParent = parent;
+        helperLines = FillArrayFromParent(parent);
+        HideAllHelperLines();
     }
 }
