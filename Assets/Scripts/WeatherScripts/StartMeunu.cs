@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class StartMeunu : MonoBehaviour
 {
+
+    [SerializeField] private GameObject closeBtn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +20,18 @@ public class StartMeunu : MonoBehaviour
         
     }
 
+    public void OpenStartMenu(bool firstTime)
+    {
+        gameObject.SetActive(true);
+        if (!firstTime) {
+            closeBtn.SetActive(true);
+        }
+
+    }
+
     public void CloseStartMenu()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); 
+
     }
 }
