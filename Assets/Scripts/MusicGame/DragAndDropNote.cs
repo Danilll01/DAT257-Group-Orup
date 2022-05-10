@@ -14,6 +14,8 @@ public class DragAndDropNote : MonoBehaviour
     private SpriteRenderer sprite;
     private bool toBeDeleted;
 
+    private float helperLineCutoffDisctance = 3f;
+
     // If the note can move
     private bool lockedInPlace = false;
 
@@ -328,11 +330,12 @@ public class DragAndDropNote : MonoBehaviour
         foreach (GameObject line in helperLines)
         {
             float distToNote = Vector2.Distance(line.transform.position, notePos);
-            if (distToNote < 4f)
+
+            if (distToNote < helperLineCutoffDisctance)
             {
                 SpriteRenderer spriteRenderer = line.GetComponent<SpriteRenderer>();
                 Color color = spriteRenderer.color;
-                color.a = 1 - (distToNote / 4f);
+                color.a = 1 - (distToNote / helperLineCutoffDisctance);
                 spriteRenderer.color = color;
             }
         }
