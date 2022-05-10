@@ -8,13 +8,30 @@ public class ValidateClothes : MonoBehaviour
     private WeatherController.WeatherTypes weather;
     [SerializeField] private Animator foxAnim;
     [SerializeField] private Animator doorAnim;
+    [SerializeField] private Transform doorPos;
+    [SerializeField] private Transform foxPos;
     private bool weatherSet;
 
     private DragAndDropClothing dragScript;
+    private bool walkOut;
+    [SerializeField] private float speed = 10f;
 
     void Start(){
         weatherSet = false;
         dragScript = new DragAndDropClothing();
+        walkOut = false;
+    }
+
+    void Update()
+    {
+        if (walkOut)
+        {
+            float step = speed * Time.deltaTime;
+
+            // move sprite towards the target location
+            foxPos.position = Vector2.MoveTowards(foxPos.position, doorPos.position, step);
+        }
+        
     }
 
     // Check if the clothes on the snappoints are valid with the current weather
@@ -119,10 +136,13 @@ public class ValidateClothes : MonoBehaviour
             script.ridgidBody.bodyType = RigidbodyType2D.Static;
         }
         foxAnim.SetTrigger("walkOut");
+        walkOut = true;
     }
 
 
 
-    
+
+
+
 
 }
