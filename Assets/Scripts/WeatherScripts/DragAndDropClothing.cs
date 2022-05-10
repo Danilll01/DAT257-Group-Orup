@@ -30,7 +30,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
     private closetInventory inventoryScript;
-    private static bool ending = false;
+    private static bool ending;
 
     [System.Flags] public enum clothing : int{
         None   = 0x00,
@@ -56,6 +56,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
 
         beingDragged = false;
+        ending = false;
 
 
         // Set up the array of snapPoints
