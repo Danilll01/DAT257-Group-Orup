@@ -6,24 +6,33 @@ public class ValidateClothes : MonoBehaviour
 {
     [SerializeField] private GameObject[] snapPoints;
     private WeatherController.WeatherTypes weather;
+    [SerializeField] private Animator foxAnim;
+    [SerializeField] private Animator doorAnim;
     private bool weatherSet;
+
+    private DragAndDropClothing dragScript;
 
     void Start(){
         weatherSet = false;
+        dragScript = new DragAndDropClothing();
     }
 
     // Check if the clothes on the snappoints are valid with the current weather
     public void checkClothing(){
         bool validClothing = true;
         string message = "";
+        //DragAndDropClothing[] allScripts = null;
+        List<DragAndDropClothing> allScripts = new List<DragAndDropClothing>();
 
         // If the weather is set, meaning we know what weather it is
-        if(weatherSet){
+        if (weatherSet){
             // Loop through all snapPoints
             foreach(GameObject snapPoint in snapPoints){
                 if(snapPoint.transform.childCount > 0){
                     // Get the DragAndDrop scripts on the clothing object
                     DragAndDropClothing[] scripts = snapPoint.GetComponentsInChildren<DragAndDropClothing>();
+                    allScripts.AddRange(scripts);
+                    
                     // If the clothings weather does not match current weather
                     // send to script to remove it from character
                     foreach (DragAndDropClothing script in scripts)
@@ -80,6 +89,8 @@ public class ValidateClothes : MonoBehaviour
             // If one clothing was not valid
             if(validClothing){
                 Debug.Log("Valid");
+                disableClothing(allScripts);
+                
             }
             else{
                 Debug.Log("Invalid: " + message);
@@ -94,10 +105,23 @@ public class ValidateClothes : MonoBehaviour
 
 
     // Sets the weather variable to current weather
-     public void setWeather(WeatherController.WeatherTypes newWeather){
+    public void setWeather(WeatherController.WeatherTypes newWeather){
         weather = newWeather;
         weatherSet = true;
     }
+
+    private void disableClothing(List<DragAndDropClothing> allScripts)
+    {
+        dragScript.setEnding();
+        doorAnim.SetTrigger("openDoor");
+        foreach (var script in allScripts)
+        {
+            script.ridgidBody.bodyType = RigidbodyType2D.Static;
+        }
+        foxAnim.SetTrigger("walkOut");
+    }
+
+
 
     
 

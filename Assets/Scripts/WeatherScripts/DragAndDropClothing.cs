@@ -14,13 +14,13 @@ public class DragAndDropClothing : MonoBehaviour {
     private Transform originParent;
 
     private Vector3 lastPosition;
-    private Rigidbody2D ridgidBody;
+    public Rigidbody2D ridgidBody;
     private SpriteRenderer spriteRen;
     private int originSortingOrder;
 
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
-    private BoxCollider2D[] colliders;
+    public BoxCollider2D[] colliders;
     private Vector2 originalColliderOffset;
     private Vector2 originalColliderSize;
 
@@ -30,6 +30,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
     private closetInventory inventoryScript;
+    private static bool ending = false;
 
     [System.Flags] public enum clothing : int{
         None   = 0x00,
@@ -90,7 +91,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // If there were any touches on the screen
         // Send to touchMovement function
-        if(Input.touchCount > 0){
+        if(Input.touchCount > 0 && !ending){
             Touch touch = Input.GetTouch(0);
             touchMovement(touch);
 
@@ -99,8 +100,12 @@ public class DragAndDropClothing : MonoBehaviour {
         // For mouse controls
         else{
             // Get the mouse position
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseMovement(mousePosition);
+            if (!ending)
+            {
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseMovement(mousePosition);
+            }
+            
         }
 
         // Move the object towards target if movement is allowed
@@ -474,6 +479,11 @@ public class DragAndDropClothing : MonoBehaviour {
             Vector2 forceVector = (targetPosition - transform.position) * 15 * (Time.deltaTime * 1000);
             ridgidBody.AddForce(forceVector);
         }
+    }
+
+    public void setEnding()
+    {
+        ending = true;
     }
 
 }

@@ -721,7 +721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
@@ -1098,6 +1100,9 @@ MonoBehaviour:
   - {fileID: 2055892060}
   - {fileID: 1149227993}
   - {fileID: 1696580004}
+  clothings: {fileID: 0}
+  foxAnim: {fileID: 1719135550}
+  doorAnim: {fileID: 481104539}
 --- !u!4 &189363016
 Transform:
   m_ObjectHideFlags: 0
@@ -1350,7 +1355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 5b0ad00edfc4c40049c4eff820ce682e, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 8
@@ -1877,7 +1884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -2610,7 +2619,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
@@ -3046,7 +3057,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
@@ -3308,7 +3321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 12
@@ -3795,7 +3810,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -4260,7 +4277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 2f20c1ee8407e4f14a7e70489e18f28d, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 4
@@ -4618,7 +4637,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 7
@@ -4783,7 +4804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
@@ -5889,7 +5912,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -6611,7 +6636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
@@ -7227,7 +7254,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
@@ -7764,7 +7793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -8517,7 +8548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
@@ -8817,7 +8850,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -9125,7 +9160,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -10267,7 +10304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -10798,7 +10837,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -11034,7 +11075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -11568,7 +11611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -12060,7 +12105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
@@ -12915,7 +12962,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 3
@@ -13829,7 +13878,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
@@ -14091,7 +14142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
@@ -14449,7 +14502,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
@@ -15205,7 +15260,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d177060c24c9b46863e1a3eebf7ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ridgidBody: {fileID: 0}
   snapPointsParent: {fileID: 1199450797}
+  colliders: []
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
