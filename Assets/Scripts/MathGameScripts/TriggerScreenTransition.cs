@@ -13,6 +13,7 @@ public class TriggerScreenTransition : MonoBehaviour
               
     [SerializeField] private Camera mainCam;
     [SerializeField] private Camera pathCam;
+    [SerializeField] private GameObject rightAnswerCam;
     [SerializeField] private Transform playerCharachter;
     [SerializeField] private Transform[] afterTPPoints;  // [0] is same side, [1] is opposite
 
@@ -43,26 +44,50 @@ public class TriggerScreenTransition : MonoBehaviour
             
         } else {
             // Call to run transition with given method
+
             transitionScreen.Transition(
                 () => {
-                    
-                    pathSetter.setNewPath(afterTPPoints[1].position);
-                    teleportPlayer();
-                    mathAnswerGenerator.HideCanvas();
-                    transitionScreen.GetComponents<AudioSource>()[0].Play(); // Play sound for correct answer
-                    
 
-                    // Method to generate new exercise is called when player stopps after a teleportation 
-                    pathSetter.CallGenerateNewAnswers(
+                    rightAnswerCam.GetComponent<Camera>().enabled = true;
+                    mainCam.enabled = false;
+                    transitionScreen.GetComponents<AudioSource>()[0].Play(); // Play sound for correct answer
+                    // Make green
+                    rightAnswerCam.GetComponent<RightAnswerScreen>().StartGoToNormalScreen(
                         () => {
-                            mathAnswerGenerator.AnswerPressedRight(whatCollider); 
-                            pathSetter.canGetNewPos(true);
-                        });
-                    
+                            Debug.Log("3");
+                            switchFromRightScreen();
+                        }
+                    );
+
                 }
             );
+
         }
         
+    }
+
+    private void switchFromRightScreen() {
+        Debug.Log("4");
+        transitionScreen.Transition(
+            () => {
+                Debug.Log("5");
+                pathSetter.setNewPath(afterTPPoints[1].position);
+                teleportPlayer();
+                mathAnswerGenerator.HideCanvas();
+                
+                mainCam.enabled = true;
+                rightAnswerCam.GetComponent<Camera>().enabled = false;
+                
+
+                // Method to generate new exercise is called when player stopps after a teleportation 
+                pathSetter.CallGenerateNewAnswers(
+                        () => {
+                            mathAnswerGenerator.AnswerPressedRight(whatCollider);
+                            pathSetter.canGetNewPos(true);
+                        });
+
+            }
+        );
     }
 
     // Switch to main screen and setup player agent and canvas (Called from other script)
