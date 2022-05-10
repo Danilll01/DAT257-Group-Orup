@@ -574,6 +574,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8801270885078129174, guid: 87f7ced3ac7447a4aa1a7703980afadc, type: 3}
     - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
+      propertyPath: extraLinesParent
+      value: 
+      objectReference: {fileID: 910220134}
+    - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
       propertyPath: snapPointsParent
       value: 
       objectReference: {fileID: 478392195}
@@ -18706,6 +18710,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8801270885078129174, guid: 26a88f4bf2ada274492253b843b268ef, type: 3}
     - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
+      propertyPath: extraLinesParent
+      value: 
+      objectReference: {fileID: 910220134}
+    - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
       propertyPath: snapPointsParent
       value: 
       objectReference: {fileID: 478392195}
@@ -24352,6 +24360,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
+      propertyPath: extraLinesParent
+      value: 
+      objectReference: {fileID: 910220134}
     - target: {fileID: 7880347127735308347, guid: 086165a8c86555a42847bb7014a27b00, type: 3}
       propertyPath: snapPointsParent
       value: 

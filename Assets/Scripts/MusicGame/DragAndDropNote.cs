@@ -100,6 +100,8 @@ public class DragAndDropNote : MonoBehaviour
                     if (moveAllowed)
                     {
                         transform.position = new Vector3(touchPos.x, touchPos.y);
+
+                        UpdateHelperLineColor(transform.position);
                     }
                     break;
 
@@ -203,6 +205,7 @@ public class DragAndDropNote : MonoBehaviour
             // Play the assigned note
             audioSource.Play();
 
+            // Reset collider size if note has left the pool
             if (originalPos != targetPosition)
             {
                 GetComponent<CircleCollider2D>().radius = originalColliderRadius;
@@ -300,6 +303,22 @@ public class DragAndDropNote : MonoBehaviour
         toBeDeleted = true;
     }
 
+    private void UpdateHelperLineColor(Vector2 notePos)
+    {
+        foreach (GameObject line in helperLines)
+        {
+            float distToNote = Vector2.Distance(line.transform.position, notePos);
+            if (distToNote < 4f)
+            {
+                SpriteRenderer spriteRenderer = line.GetComponent<SpriteRenderer>();
+                Color color = spriteRenderer.color;
+                color.a = 1 - (distToNote / 4f);
+                spriteRenderer.color = color;
+            }
+        }
+    }
+
+
     // ------------- Setters ---------------
 
     // Sets the snap point parent object and initializes the array
@@ -308,9 +327,15 @@ public class DragAndDropNote : MonoBehaviour
         snapPointsParent = parent;
         snapPoints = FillArrayFromParent(parent);
     }
+
+    // Sets the extra line parent object and initializes the array
     public void SetExtraLineParent(GameObject parent)
     {
         helperLinesParent = parent;
         helperLines = FillArrayFromParent(parent);
+        foreach (GameObject line in helperLines)
+        {
+            line.GetComponent<SpriteRenderer>().color = new(0,0,0,0);
+        }
     }
 }
