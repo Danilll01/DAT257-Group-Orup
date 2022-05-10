@@ -118,6 +118,7 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
         cardHolders[disableNumber].SetActive(false);
     }
 
+    // Hides all wrong answers and highlights the correct answer in green
     public void MakeCorrectAnswerGreen() {
         for (int i = 0; i < cardHolders.Length; i++) {
             if (i == correctAnswerHolder - 1) {

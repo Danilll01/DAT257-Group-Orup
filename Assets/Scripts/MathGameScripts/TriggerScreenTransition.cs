@@ -35,26 +35,33 @@ public class TriggerScreenTransition : MonoBehaviour
             // Call to run transition with given method
             transitionScreen.Transition(
                 () => {
+                    // Switch to the path camera
                     pathCam.enabled = true;
                     mainCam.enabled = false;
                     transitionScreen.GetComponents<AudioSource>()[1].Play(); // Play sound for wrong answer
-                    mathAnswerGenerator.AnswerPressedWrong(whatCollider);
+                    mathAnswerGenerator.AnswerPressedWrong(whatCollider); // Make selected answer red
                 }
             );
             
         } else {
-            // Call to run transition with given method
+            // Call to run transition with given method for the right answer
 
+            // Makes transition to the black display screen
             transitionScreen.Transition(
                 () => {
 
+                    // Swtich to the right camera
                     rightAnswerCam.GetComponent<Camera>().enabled = true;
                     mainCam.enabled = false;
-                    transitionScreen.GetComponents<AudioSource>()[0].Play(); // Play sound for correct answer
+                    
+                    // Play right sound and make the canvas ready to show the right answer
+                    transitionScreen.GetComponents<AudioSource>()[0].Play(); 
                     mathAnswerGenerator.MakeCorrectAnswerGreen();
+
+                    // Call method to beging counting to move away from the black right answer screen
                     rightAnswerCam.GetComponent<RightAnswerScreen>().StartGoToNormalScreen(
                         () => {
-                            Debug.Log("3");
+                            // Method to call when it should go back to the main math screen
                             switchFromRightScreen();
                         }
                     );
@@ -66,15 +73,22 @@ public class TriggerScreenTransition : MonoBehaviour
         
     }
 
+    // This method is called when the right answer has been shown for the specified time there
+    // It transitions back from that screen to the main math screen and sets up for the new question to be generated
     private void switchFromRightScreen() {
-        Debug.Log("4");
+
+        // Make transition back
         transitionScreen.Transition(
             () => {
-                Debug.Log("5");
+
+                // Sets new path for the ai agent to walk towards and teleport the player to walk from the right place
                 pathSetter.setNewPath(afterTPPoints[1].position);
                 teleportPlayer();
+
+                // Hides canvas untill the new one is generated
                 mathAnswerGenerator.HideCanvas();
                 
+                // Switch camera back to the main math screen
                 mainCam.enabled = true;
                 rightAnswerCam.GetComponent<Camera>().enabled = false;
                 

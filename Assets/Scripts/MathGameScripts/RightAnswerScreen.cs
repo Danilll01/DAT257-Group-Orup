@@ -15,17 +15,17 @@ public class RightAnswerScreen : MonoBehaviour
     void Update() {}
 
 
+    // Starts the coroutine that counts untill it should switch back to the main screen.
     public void StartGoToNormalScreen(Action goBackMethod) {
         if (!isRunning) {
-            Debug.Log("1");
             isRunning = true;
             StartCoroutine(GoBackTransition(goBackMethod));
         }
     }
 
+    // Count down the time that the player should see the right answer and then runs the given back transition method
     private IEnumerator GoBackTransition(Action goBackMethod) {
-        yield return new WaitForSeconds(timeUntillNewQuestion);
-        Debug.Log("2");
+        yield return new WaitForSeconds(timeUntillNewQuestion); // This wait has to be longer than the fade back, otherwise it does not work
         goBackMethod();
         isRunning = false;
     }
