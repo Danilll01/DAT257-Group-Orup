@@ -67,7 +67,7 @@ public class DragAndDropNote : MonoBehaviour
         sprite.enabled = false;
     }
 
-    // Update is called once per frame
+    // -------------------- Begin note movement --------------------
     void Update()
     {
         // If there were any touches on the screen
@@ -86,10 +86,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
                     {
-                        moveAllowed = true;
-
-                        // Make sprite visible
-                        sprite.enabled = true;
+                        BeginMove(true);
                     }
                     break;
 
@@ -98,9 +95,7 @@ public class DragAndDropNote : MonoBehaviour
                 case TouchPhase.Moved:
                     if (moveAllowed)
                     {
-                        transform.position = new Vector3(touchPos.x, touchPos.y);
-
-                        UpdateHelperLineColor(transform.position);
+                        OnMove(touchPos);
                     }
                     break;
 
@@ -109,12 +104,7 @@ public class DragAndDropNote : MonoBehaviour
                     // Only move object if it should be moved
                     if (moveAllowed)
                     {
-                        SnapToPoint(touchPos);
-
-                        // Reset collider size
-                        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
-
-                        HideAllHelperLines();
+                        EndMove(touchPos);
                     }
                     moveAllowed = false;
                     break;
@@ -131,22 +121,17 @@ public class DragAndDropNote : MonoBehaviour
             // If the mouse is pressed down and the mouse is over the object, set mouseMoveAllowed to true
             if (Input.GetMouseButtonDown(0) && GetComponent<Collider2D>() == Physics2D.OverlapPoint(mousePosition))
             {
-                // Make sprite visible
-                sprite.enabled = true;
-
-                mouseMoveAllowed = true;
+                BeginMove(false);
             }
 
             // If mouseMoveAllowed is true, set the object to follow the mouse until the mouse button is released
             if (mouseMoveAllowed)
             {
-                transform.position = mousePosition;
+                OnMove(mousePosition);
+
                 if (Input.GetMouseButtonUp(0))
                 {
-                    SnapToPoint(mousePosition);
-
-                    // Reset collider size
-                    GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+                    EndMove(mousePosition);
 
                     mouseMoveAllowed = false;
                 }
@@ -162,6 +147,40 @@ public class DragAndDropNote : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void BeginMove(bool touchInput)
+    {
+        if (touchInput)
+        {
+            moveAllowed = true;
+        } else
+        {
+            mouseMoveAllowed = true;
+        }
+
+        // Make sprite visible
+        sprite.enabled = true;
+    }
+
+    private void OnMove(Vector2 position)
+    {
+        transform.position = position;
+
+        UpdateHelperLineColor(transform.position);
+    }
+
+    private void EndMove(Vector2 position)
+    {
+        SnapToPoint(position);
+
+        // Reset collider size
+        GetComponent<CircleCollider2D>().radius = originalColliderRadius;
+
+        HideAllHelperLines();
+    }
+
+    // -------------------- End of note movement --------------------
+
 
 
     // Method for snapping to object to a point close to it
