@@ -34,6 +34,12 @@ public class ValidateClothes : MonoBehaviour
 
             // move sprite towards the target location
             foxPos.position = Vector2.MoveTowards(foxPos.position, doorPos.position, step);
+
+            if (foxPos.position.x == doorPos.position.x)
+            {
+                doorAnim.SetTrigger("closeDoor");
+                walkOut = false;
+            }
         }
         
     }
