@@ -21,20 +21,24 @@ public class ValidateClothes : MonoBehaviour
         dragScript = new DragAndDropClothing();
         walkOut = false;
         
+        // Set the doors position to be at the edge of the camera no matter what device
         doorPos.transform.parent.position = Camera.main.ScreenToWorldPoint(new Vector3((Camera.main.pixelWidth),0));
         Vector3 doorParent = doorPos.transform.parent.position;
+        // Set a little offset on the door to bring it back in frame
         doorPos.transform.parent.position = new Vector3(doorPos.position.x - 6.6f, -2.47f);
     }
 
     void Update()
     {
+        // If fox is walking out
         if (walkOut)
         {
             float step = speed * Time.deltaTime;
 
-            // move sprite towards the target location
+            // move fox towards the door location
             foxPos.position = Vector2.MoveTowards(foxPos.position, doorPos.position, step);
 
+            // If the box has reached the door, close the door
             if (foxPos.position.x == doorPos.position.x)
             {
                 doorAnim.SetTrigger("closeDoor");
@@ -48,7 +52,6 @@ public class ValidateClothes : MonoBehaviour
     public void checkClothing(){
         bool validClothing = true;
         string message = "";
-        //DragAndDropClothing[] allScripts = null;
         List<DragAndDropClothing> allScripts = new List<DragAndDropClothing>();
 
         // If the weather is set, meaning we know what weather it is
@@ -139,12 +142,17 @@ public class ValidateClothes : MonoBehaviour
 
     private void disableClothing(List<DragAndDropClothing> allScripts)
     {
+        // Disable touch when fox is going to walk out
         dragScript.setEnding();
+        // Start door opening animation
         doorAnim.SetTrigger("openDoor");
+        // Set rigidbody for clothing objects on character to static
+        // this will allow the clothes to follow the character when walking out
         foreach (var script in allScripts)
         {
             script.ridgidBody.bodyType = RigidbodyType2D.Static;
         }
+        // Start fox walking animation
         foxAnim.SetTrigger("walkOut");
         walkOut = true;
     }
