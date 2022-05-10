@@ -24,6 +24,10 @@ public class DragAndDropNote : MonoBehaviour
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
 
+    // Which parent to look for snap points in
+    [SerializeField] private GameObject helperLinesParent;
+    private GameObject[] helperLines;
+
     // Which instrument the note is
     [SerializeField] Instrument instrument;
 
@@ -43,7 +47,7 @@ public class DragAndDropNote : MonoBehaviour
         // Initialize array with snap points
         if (snapPointsParent != null)
         {
-            InitializeSnapPointsArray();
+            snapPoints = FillArrayFromParent(snapPointsParent);
         }
         
         ridgidBody = GetComponent<Rigidbody2D>();
@@ -229,18 +233,20 @@ public class DragAndDropNote : MonoBehaviour
     }
 
     // Initializes snap points array
-    private void InitializeSnapPointsArray()
+    private GameObject[] FillArrayFromParent(GameObject parent)
     {
         // Get number of snap points
-        int nrSnapPoints = snapPointsParent.transform.childCount;
-        snapPoints = new GameObject[nrSnapPoints];
+        int nrChildren = parent.transform.childCount;
+        GameObject[] children = new GameObject[nrChildren];
 
         // Add all snap points to array
-        for (int i = 0; i < nrSnapPoints; i++)
+        for (int i = 0; i < nrChildren; i++)
         {
-            GameObject child = snapPointsParent.transform.GetChild(i).gameObject;
-            snapPoints[i] = child;
+            GameObject child = parent.transform.GetChild(i).gameObject;
+            children[i] = child;
         }
+
+        return children;
     }
 
     // Changes audio clip source to match the current note the object is attached to 
@@ -284,14 +290,6 @@ public class DragAndDropNote : MonoBehaviour
     {
         lockedInPlace = false;
     }
-
-    // Sets the snap point parent object and initializes the array
-    public void SetSnapPointParent(GameObject parent)
-    {
-        snapPointsParent = parent;
-        InitializeSnapPointsArray();
-    }
-
     public void SnapToOriginalPosAndDelete()
     {
         // Sets position to the original position
@@ -300,5 +298,19 @@ public class DragAndDropNote : MonoBehaviour
 
         // Set the object to be deleted when it reaches the pool
         toBeDeleted = true;
+    }
+
+    // ------------- Setters ---------------
+
+    // Sets the snap point parent object and initializes the array
+    public void SetSnapPointParent(GameObject parent)
+    {
+        snapPointsParent = parent;
+        snapPoints = FillArrayFromParent(parent);
+    }
+    public void SetExtraLineParent(GameObject parent)
+    {
+        helperLinesParent = parent;
+        helperLines = FillArrayFromParent(parent);
     }
 }
