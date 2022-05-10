@@ -135,7 +135,7 @@ MonoBehaviour:
   snapPointsParent: {fileID: 0}
   instrument: 2
   instrumentClips:
-  - {fileID: 8300000, guid: b50d22654f7f8d248a638f834ae18406, type: 3}
+  - {fileID: 8300000, guid: 69bac50f6a8aa4c438a8b50924834d4d, type: 3}
   - {fileID: 8300000, guid: 1f4c63e9f5871054a809af41a581e46c, type: 3}
   - {fileID: 8300000, guid: 534b1220c30cf5542bd17de4765a4e4c, type: 3}
   - {fileID: 8300000, guid: 0b478de580ddda442932e7acea58fbf0, type: 3}
