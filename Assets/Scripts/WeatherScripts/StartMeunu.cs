@@ -5,7 +5,7 @@ using TMPro;
 
 public class StartMeunu : MonoBehaviour
 {
-
+    [SerializeField] private GameObject openStartMenuBtn;
     [SerializeField] private GameObject closeBtn;
 
     // Start is called before the first frame update
@@ -20,18 +20,24 @@ public class StartMeunu : MonoBehaviour
         
     }
 
-    public void OpenStartMenu(bool firstTime)
+    
+    // Set hideCloseButton to true if a game mode has not been selected
+    public void OpenStartMenu(bool hideCloseButton)
     {
         gameObject.SetActive(true);
-        if (!firstTime) {
-            closeBtn.SetActive(true);
+        openStartMenuBtn.SetActive(false); // Hide button for opening this start menu when start menu is opened
+
+        // Show close button if not true
+        if (!hideCloseButton) {
+            closeBtn.SetActive(true); 
         }
 
     }
 
     public void CloseStartMenu()
     {
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
+        openStartMenuBtn.SetActive(true);// Show button for opening this start menu when start menu is closed
 
     }
 }
