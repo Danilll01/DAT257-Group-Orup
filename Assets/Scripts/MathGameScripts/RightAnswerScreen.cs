@@ -24,7 +24,7 @@ public class RightAnswerScreen : MonoBehaviour
     }
 
     private IEnumerator GoBackTransition(Action goBackMethod) {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(timeUntillNewQuestion);
         Debug.Log("2");
         goBackMethod();
         isRunning = false;

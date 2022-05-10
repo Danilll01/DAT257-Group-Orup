@@ -51,7 +51,7 @@ public class TriggerScreenTransition : MonoBehaviour
                     rightAnswerCam.GetComponent<Camera>().enabled = true;
                     mainCam.enabled = false;
                     transitionScreen.GetComponents<AudioSource>()[0].Play(); // Play sound for correct answer
-                    // Make green
+                    mathAnswerGenerator.MakeCorrectAnswerGreen();
                     rightAnswerCam.GetComponent<RightAnswerScreen>().StartGoToNormalScreen(
                         () => {
                             Debug.Log("3");

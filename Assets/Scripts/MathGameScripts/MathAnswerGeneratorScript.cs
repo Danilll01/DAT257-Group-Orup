@@ -118,6 +118,16 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
         cardHolders[disableNumber].SetActive(false);
     }
 
+    public void MakeCorrectAnswerGreen() {
+        for (int i = 0; i < cardHolders.Length; i++) {
+            if (i == correctAnswerHolder - 1) {
+                cardHolders[i].GetComponent<Image>().color = new Color(100f / 255f, 1, 100f / 255f);
+            } else {
+                cardHolders[i].SetActive(false);
+            }
+        }
+    }
+
     public void AnswerPressedWrong(int answerNumber) {
         // Make the selected card red to show that it is wrong and dissable button
         cardHolders[answerNumber - 1].GetComponent<Image>().color = new Color(1, 40f / 255f, 0);
