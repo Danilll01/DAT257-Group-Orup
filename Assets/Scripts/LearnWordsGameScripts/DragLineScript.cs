@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragLineScript : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class DragLineScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If there were any touches on the screen
+        // If there were any touches on the screen and
         if (Input.touchCount > 0) {
             Touch touch = Input.GetTouch(0);
 
@@ -32,7 +33,7 @@ public class DragLineScript : MonoBehaviour
                 // At the moment the screen was touched, look if the touch is on the object.
                 // If the touch was on the object, set moveAllowed to true
                 case TouchPhase.Began:
-                    if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos)) {
+                    if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos) && startBox.GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
                         moveAllowed = true;
 
                         LineRenderer line = lineOwner.GetAvalibleLine(touchPos);
@@ -47,6 +48,7 @@ public class DragLineScript : MonoBehaviour
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed) {
+                        lineToBeMoved.SetPosition(0, (Vector2)Camera.main.ScreenToWorldPoint(startBox.transform.position));
                         lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
                     break;
