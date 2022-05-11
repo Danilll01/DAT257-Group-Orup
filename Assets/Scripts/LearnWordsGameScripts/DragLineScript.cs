@@ -58,7 +58,7 @@ public class DragLineScript : MonoBehaviour
                     // Only move object if it should be moved
                     if (moveAllowed) {
                         for (int i = 0; i < dragToColliders.Length; i++) {
-                            if (dragToColliders[i] == Physics2D.OverlapPoint(touchPos)) {
+                            if (dragToColliders[i] == Physics2D.OverlapPoint(touchPos) && matchingObjects[i].GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
 
                                 if (isImage) {
                                     lineOwner.makeGuess(startBox, matchingObjects[i]);
