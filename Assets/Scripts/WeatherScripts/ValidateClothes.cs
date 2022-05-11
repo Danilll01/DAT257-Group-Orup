@@ -20,7 +20,7 @@ public class ValidateClothes : MonoBehaviour
         weatherSet = false;
         dragScript = new DragAndDropClothing();
         walkOut = false;
-        
+
         // Set the doors position to be at the edge of the camera no matter what device
         doorPos.transform.parent.position = Camera.main.ScreenToWorldPoint(new Vector3((Camera.main.pixelWidth),0));
         Vector3 doorParent = doorPos.transform.parent.position;
@@ -45,7 +45,7 @@ public class ValidateClothes : MonoBehaviour
                 walkOut = false;
             }
         }
-        
+
     }
 
     // Check if the clothes on the snappoints are valid with the current weather
@@ -62,7 +62,7 @@ public class ValidateClothes : MonoBehaviour
                     // Get the DragAndDrop scripts on the clothing object
                     DragAndDropClothing[] scripts = snapPoint.GetComponentsInChildren<DragAndDropClothing>();
                     allScripts.AddRange(scripts);
-                    
+
                     // If the clothings weather does not match current weather
                     // send to script to remove it from character
                     foreach (DragAndDropClothing script in scripts)
@@ -75,7 +75,7 @@ public class ValidateClothes : MonoBehaviour
                             validClothing = false;
                             message = "Some clothing does not match the weather";
                         }
-   
+
                     }
                      // If it is not sunny, we need a jacket
                     if (weather != WeatherController.WeatherTypes.Sun && snapPoint.name == "Chest" && snapPoint.transform.childCount < 2)
@@ -88,7 +88,7 @@ public class ValidateClothes : MonoBehaviour
                 // Check what snapPoints need clothing depending on weather
                 else
                 {
-                    
+
                     string name = snapPoint.name;
 
                     // These points always need one clothing item on them
@@ -120,7 +120,7 @@ public class ValidateClothes : MonoBehaviour
             if(validClothing){
                 Debug.Log("Valid");
                 disableClothing(allScripts);
-                
+
             }
             else{
                 Debug.Log("Invalid: " + message);
@@ -130,7 +130,7 @@ public class ValidateClothes : MonoBehaviour
             Debug.Log("Weather not set");
         }
 
-        
+
     }
 
 
@@ -162,7 +162,7 @@ public class ValidateClothes : MonoBehaviour
 
         foreach (GameObject snapPoint in snapPoints)
         {
-            
+
                 // Gets all scripts of notes
             DragAndDropClothing[] clothes = snapPoint.transform.GetComponentsInChildren<DragAndDropClothing>();
 
@@ -173,7 +173,7 @@ public class ValidateClothes : MonoBehaviour
                 clothing.removeFromSnapPoint(false);
             }
         }
-        
+
     }
 
 

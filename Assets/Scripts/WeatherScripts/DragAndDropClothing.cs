@@ -34,12 +34,12 @@ public class DragAndDropClothing : MonoBehaviour {
 
     [System.Flags] public enum clothing : int{
         None   = 0x00,
-        jacket = 0x01, 
-        shirt  = 0x02, 
-        pants  = 0x04, 
-        hat    = 0x08, 
-        shoes  = 0x10, 
-        scarf  = 0x12, 
+        jacket = 0x01,
+        shirt  = 0x02,
+        pants  = 0x04,
+        hat    = 0x08,
+        shoes  = 0x10,
+        scarf  = 0x12,
         gloves = 0x14
     };
 
@@ -80,13 +80,13 @@ public class DragAndDropClothing : MonoBehaviour {
         originalSprite = spriteRen.sprite;
         originSortingOrder = spriteRen.sortingOrder;
 
-        // Dissables collision between clothes objects 
+        // Dissables collision between clothes objects
         Physics2D.IgnoreLayerCollision(6, 6); // Clothes needs to be on layer 6
 
     }
 
-   
- 
+
+
     // Update is called once per frame
     void Update () {
 
@@ -106,7 +106,7 @@ public class DragAndDropClothing : MonoBehaviour {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mouseMovement(mousePosition);
             }
-            
+
         }
 
         // Move the object towards target if movement is allowed
@@ -165,9 +165,9 @@ public class DragAndDropClothing : MonoBehaviour {
             case TouchPhase.Moved:
                 if (moveAllowed)
                 {
-                    
+
                     transform.position = (new Vector3(touchPos.x, touchPos.y, 0));
-                    
+
                 }
                 break;
 
@@ -184,7 +184,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         }
     }
- 
+
 
     // Draging code for mouse input
     private void mouseMovement(Vector2 mousePosition)
@@ -228,7 +228,7 @@ public class DragAndDropClothing : MonoBehaviour {
         if (mouseMoveAllowed)
         {
             transform.position = mousePosition;
-            
+
             // When the mouse button is let go, try to snap to point
             if (Input.GetMouseButtonUp(0))
             {
@@ -257,10 +257,10 @@ public class DragAndDropClothing : MonoBehaviour {
 
     // Method for snapping to object to a point close to it
     private void snapToPoint(Vector2 position){
-        
+
         bool snapped = false;
         string neededMatch = "";
-        
+
 
         // Start values for shortest snap point
         GameObject shortestSnapPoint = null;
@@ -289,7 +289,7 @@ public class DragAndDropClothing : MonoBehaviour {
             default:
                 Debug.Log("Not a valid clothing");
                 break;
-        
+
         }
 
         // Get the snapPoint with the shortest distance from clothing
@@ -356,7 +356,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
             }
         }
-        
+
 
         // If we did not snap to anything, return the object to the original position
         if(!snapped){
@@ -396,7 +396,7 @@ public class DragAndDropClothing : MonoBehaviour {
         spriteRen.sprite = spriteToSwitchTo;
         targetPosition = pointToSnapToOnSwitch.transform.position;
         transform.SetParent(pointToSnapToOnSwitch.transform);
-        
+
 
         // Change the colliders to new offsets and sizes
         // values are specific for gloves
@@ -460,7 +460,7 @@ public class DragAndDropClothing : MonoBehaviour {
     // Remove clothing if of the same type
     private bool removeClothingType(GameObject shortestSnapPoint, string neededMatch)
     {
-       bool switching = false;   
+       bool switching = false;
        // If the snapPoint has a clothing of same type, remove it
        DragAndDropClothing[] scripts = shortestSnapPoint.GetComponentsInChildren<DragAndDropClothing>();
        foreach (DragAndDropClothing script in scripts){
@@ -472,7 +472,7 @@ public class DragAndDropClothing : MonoBehaviour {
         }
 
         return switching;
-       
+
     }
 
     // Adds force to the player ridgidbody to move towards the target point
