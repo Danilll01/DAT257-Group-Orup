@@ -9,6 +9,7 @@ public class ThermometerControl : MonoBehaviour{
 
     [SerializeField] private TextMeshProUGUI temperatureText;
     [SerializeField] private Image TempBar;
+    [SerializeField] private Image termometer;
 
     private float updateTemp;
     private float maxTemp;
@@ -17,8 +18,10 @@ public class ThermometerControl : MonoBehaviour{
 
     // Start is called before the first frame update and sets max/min temp
     void Start(){
-        maxTemp = 40;
+        maxTemp = 100;
         minTemp = -20;
+        TempBar.color = Color.red;
+        termometer.color = Color.red;
     }
 
 
@@ -27,5 +30,21 @@ public class ThermometerControl : MonoBehaviour{
         updateTemp = temp;
         temperatureText.text = (int)updateTemp + " *C;";
         TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
+
+        if (temp < 0)
+        {
+            updateColor(Color.blue);
+        }
+        else
+        {
+            updateColor(Color.red);
+        }
+    }
+
+    private void updateColor(Color color)
+    {
+        TempBar.color = color;
+        termometer.color = color;
+
     }
 }
