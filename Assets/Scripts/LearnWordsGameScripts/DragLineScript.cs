@@ -38,7 +38,7 @@ public class DragLineScript : MonoBehaviour
                         LineRenderer line = lineOwner.GetAvalibleLine(touchPos);
                         lineToBeMoved = line;
 
-                        lineToBeMoved.SetPosition(0, new Vector3(touchPos.x, touchPos.y, 0));
+                        lineToBeMoved.SetPosition(0, (Vector2) Camera.main.ScreenToWorldPoint(startBox.transform.position));
                         lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
                     break;

@@ -185,10 +185,10 @@ public class LearnWordsGameHandler : MonoBehaviour
     }
 
     // Resets wrong answers later
-    private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUndone) {
+    private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUnDone) {
         yield return new WaitForSeconds(timeUntillReset); // Wait the time
         
-        foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUndone) {
+        foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUnDone) {
 
             // If some of the key value pair is red and they still hold the same connection in dictionary
             if (fromTo.Value == selectedAnswers[fromTo.Key]) {
