@@ -93,7 +93,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     }
 
     // Redraw the lines based on current selected answers information
-    private void reDrawLines() {
+    public void reDrawLines() {
         int i = 0;
 
         // Draw lines for the selected answers

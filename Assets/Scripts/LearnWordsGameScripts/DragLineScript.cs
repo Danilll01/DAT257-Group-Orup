@@ -47,9 +47,7 @@ public class DragLineScript : MonoBehaviour
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed) {
-                        //transform.position = new Vector3(touchPos.x, touchPos.y);
                         lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
-
                     }
                     break;
 
@@ -65,9 +63,13 @@ public class DragLineScript : MonoBehaviour
                                 } else {
                                     lineOwner.makeGuess(matchingObjects[i], startBox);
                                 }
-                                
+
+                                break;
                             }
+                            lineOwner.reDrawLines();
                         }
+                        
+
                     }
                     moveAllowed = false;
                     break;

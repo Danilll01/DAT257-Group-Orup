@@ -3732,7 +3732,7 @@ MonoBehaviour:
   - T t
   - V v
   - "\xC4 \xE4"
-  checkAnswerDirectly: 0
+  checkAnswerDirectly: 1
   timeUntillReset: 1
 --- !u!23 &1388211854
 MeshRenderer:
