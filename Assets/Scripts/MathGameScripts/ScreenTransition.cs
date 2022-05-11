@@ -48,11 +48,8 @@ public class ScreenTransition : MonoBehaviour
         transitionScreen.alpha = 1;
 
         // Wait on black screen
-        timer = 0;
-        while (timer <= waitTime) {
-            timer += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(waitTime);
+
 
         // This is the given method implemented with lambda that runs here
         inBetweenTransition();
