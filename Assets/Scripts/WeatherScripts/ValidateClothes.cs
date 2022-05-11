@@ -12,13 +12,14 @@ public class ValidateClothes : MonoBehaviour
     [SerializeField] private Transform foxPos;
     private bool weatherSet;
 
-    private DragAndDropClothing dragScript;
+    [SerializeField] private DragAndDropClothing dragScript;
+    [SerializeField] private speechBubble bubbleScript;
     private bool walkOut;
     [SerializeField] private float speed = 10f;
 
+
     void Start(){
         weatherSet = false;
-        dragScript = new DragAndDropClothing();
         walkOut = false;
 
         // Set the doors position to be at the edge of the camera no matter what device
@@ -124,6 +125,8 @@ public class ValidateClothes : MonoBehaviour
             }
             else{
                 Debug.Log("Invalid: " + message);
+                // Activate speech bubble
+                bubbleScript.showBubble();
             }
         }
         else{
