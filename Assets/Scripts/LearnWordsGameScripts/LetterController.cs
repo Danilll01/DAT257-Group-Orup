@@ -22,19 +22,20 @@ public class LetterController : MonoBehaviour
 
     // When a letter is clicked this method is called. The parameter is the clicked object
     public void LetterClicked(GameObject letterObject) {
+        if (letterObject.GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
+            // Make old card normal
+            if (selectedLetter != null) {
+                selectedLetter.GetComponent<Image>().color = new Color(1, 1, 1);
+            }
 
-        // Make old card normal
-        if (selectedLetter != null) {
-            selectedLetter.GetComponent<Image>().color = new Color(1, 1, 1);
-        }
-        
 
-        // If it's the same we have, unselect it
-        if (letterObject.Equals(selectedLetter)) {
-            selectedLetter = null;
-        } else {
-            selectedLetter = letterObject;
-            selectedLetter.GetComponent<Image>().color = new Color(1, 1, 0); // Makes card yellow
+            // If it's the same we have, unselect it
+            if (letterObject.Equals(selectedLetter)) {
+                selectedLetter = null;
+            } else {
+                selectedLetter = letterObject;
+                selectedLetter.GetComponent<Image>().color = new Color(1, 1, 0); // Makes card yellow
+            }
         }
     }
 
