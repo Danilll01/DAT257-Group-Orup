@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class StartMeunu : MonoBehaviour
 {
     [SerializeField] private GameObject openStartMenuBtn;
     [SerializeField] private GameObject closeBtn;
+    [SerializeField] private GameObject randomBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,9 @@ public class StartMeunu : MonoBehaviour
     public void CloseStartMenu()
     {
         gameObject.SetActive(false);
-        openStartMenuBtn.SetActive(true);// Show button for opening this start menu when start menu is closed
+        openStartMenuBtn.SetActive(true); // Show button that opens up this start menu again
 
     }
+
+   
 }

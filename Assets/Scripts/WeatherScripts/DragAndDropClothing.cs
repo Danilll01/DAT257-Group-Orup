@@ -29,7 +29,7 @@ public class DragAndDropClothing : MonoBehaviour {
     [SerializeField] private GameObject pointToSnapToOnSwitch;
 
     [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
-    private closetInventory inventoryScript;
+    public closetInventory inventoryScript;
     private static bool ending;
 
     [System.Flags] public enum clothing : int{
@@ -184,6 +184,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         }
     }
+ 
 
     // Draging code for mouse input
     private void mouseMovement(Vector2 mousePosition)

@@ -157,6 +157,24 @@ public class ValidateClothes : MonoBehaviour
         walkOut = true;
     }
 
+    public void resetAllClothes()
+    {
+
+        foreach (GameObject snapPoint in snapPoints)
+        {
+            
+                // Gets all scripts of notes
+            DragAndDropClothing[] clothes = snapPoint.transform.GetComponentsInChildren<DragAndDropClothing>();
+
+                // Tell all notes to unsnap and delete itself
+            foreach (DragAndDropClothing clothing in clothes)
+            {
+                clothing.inventoryScript.AddClothingToArray(clothing.gameObject, false);
+                clothing.removeFromSnapPoint(false);
+            }
+        }
+        
+    }
 
 
 

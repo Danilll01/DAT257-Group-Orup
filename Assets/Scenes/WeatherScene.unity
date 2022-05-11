@@ -727,6 +727,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
+  inventoryScript: {fileID: 0}
   chosenClothing: 4
 --- !u!222 &161236370
 CanvasRenderer:
@@ -1362,6 +1363,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 21300000, guid: 5b0ad00edfc4c40049c4eff820ce682e, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 20
 --- !u!222 &233065138
 CanvasRenderer:
@@ -2026,6 +2028,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &291625006
 CanvasRenderer:
@@ -2761,6 +2764,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
+  inventoryScript: {fileID: 0}
   chosenClothing: 16
 --- !u!222 &389553032
 CanvasRenderer:
@@ -3199,6 +3203,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
+  inventoryScript: {fileID: 0}
   chosenClothing: 1
 --- !u!222 &405720736
 CanvasRenderer:
@@ -3463,6 +3468,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 12
+  inventoryScript: {fileID: 0}
   chosenClothing: 1
 --- !u!222 &406368949
 CanvasRenderer:
@@ -3952,6 +3958,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 18
 --- !u!222 &469045955
 CanvasRenderer:
@@ -4451,6 +4458,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 21300000, guid: 2f20c1ee8407e4f14a7e70489e18f28d, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 4
+  inventoryScript: {fileID: 0}
   chosenClothing: 20
 --- !u!222 &529361866
 CanvasRenderer:
@@ -4811,6 +4819,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 7
+  inventoryScript: {fileID: 0}
   chosenClothing: 8
 --- !u!222 &536452627
 CanvasRenderer:
@@ -4978,6 +4987,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
+  inventoryScript: {fileID: 0}
   chosenClothing: 4
 --- !u!222 &582446085
 CanvasRenderer:
@@ -6086,6 +6096,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &779551273
 CanvasRenderer:
@@ -6428,7 +6439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &815841911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7079,6 +7090,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
+  inventoryScript: {fileID: 0}
   chosenClothing: 4
 --- !u!222 &886206614
 CanvasRenderer:
@@ -7832,6 +7844,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
+  inventoryScript: {fileID: 0}
   chosenClothing: 8
 --- !u!222 &941320069
 CanvasRenderer:
@@ -8371,6 +8384,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &1013088293
 CanvasRenderer:
@@ -9248,6 +9262,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
+  inventoryScript: {fileID: 0}
   chosenClothing: 16
 --- !u!222 &1142021700
 CanvasRenderer:
@@ -9550,6 +9565,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 1
 --- !u!222 &1151940280
 CanvasRenderer:
@@ -9860,6 +9876,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 16
 --- !u!222 &1158460216
 CanvasRenderer:
@@ -10101,8 +10118,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 189363015}
+        m_TargetAssemblyTypeName: ValidateClothes, WeatherScripts
+        m_MethodName: resetAllClothes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 636430304}
-        m_TargetAssemblyTypeName: WeatherController, Assembly-CSharp
+        m_TargetAssemblyTypeName: WeatherController, WeatherScripts
         m_MethodName: OnRandomClick
         m_Mode: 1
         m_Arguments:
@@ -11285,6 +11314,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &1482867723
 CanvasRenderer:
@@ -11818,6 +11848,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &1524723534
 CanvasRenderer:
@@ -12056,6 +12087,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 4
 --- !u!222 &1533443604
 CanvasRenderer:
@@ -12594,6 +12626,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 8
 --- !u!222 &1555384647
 CanvasRenderer:
@@ -12835,8 +12868,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 189363015}
+        m_TargetAssemblyTypeName: ValidateClothes, WeatherScripts
+        m_MethodName: resetAllClothes
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 636430304}
-        m_TargetAssemblyTypeName: WeatherController, Assembly-CSharp
+        m_TargetAssemblyTypeName: WeatherController, WeatherScripts
         m_MethodName: OnTodayClick
         m_Mode: 1
         m_Arguments:
@@ -13369,6 +13414,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
+  inventoryScript: {fileID: 0}
   chosenClothing: 8
 --- !u!222 &1616326594
 CanvasRenderer:
@@ -14226,6 +14272,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 3
+  inventoryScript: {fileID: 0}
   chosenClothing: 16
 --- !u!222 &1753605710
 CanvasRenderer:
@@ -14963,6 +15010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openStartMenuBtn: {fileID: 1989570180}
   closeBtn: {fileID: 815841910}
+  randomBtn: {fileID: 1173285494}
 --- !u!1 &1874115794
 GameObject:
   m_ObjectHideFlags: 0
@@ -15372,6 +15420,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
+  inventoryScript: {fileID: 0}
   chosenClothing: 1
 --- !u!222 &1880700056
 CanvasRenderer:
@@ -15636,6 +15685,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
+  inventoryScript: {fileID: 0}
   chosenClothing: 18
 --- !u!222 &1881085873
 CanvasRenderer:
@@ -15996,6 +16046,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &1904257363
 CanvasRenderer:
@@ -16888,6 +16939,7 @@ MonoBehaviour:
   spriteToSwitchTo: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
+  inventoryScript: {fileID: 0}
   chosenClothing: 2
 --- !u!222 &2090973211
 CanvasRenderer:
