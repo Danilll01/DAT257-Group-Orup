@@ -112,8 +112,10 @@ public class LearnWordsGameHandler : MonoBehaviour
         Vector3 standartPos = Camera.main.ScreenToWorldPoint(Vector3.left);
         for (int j = i; j < lines.Count; j++) {
             LineRenderer line = lines[j].GetComponent<LineRenderer>();
-            line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
-            line.SetPosition(1, new Vector3(standartPos.x, standartPos.y, 0));
+            if (line.name == "Line") {
+                line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
+                line.SetPosition(1, new Vector3(standartPos.x, standartPos.y, 0));
+            }
         }
     }
 
@@ -191,7 +193,7 @@ public class LearnWordsGameHandler : MonoBehaviour
         foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUnDone) {
 
             // If some of the key value pair is red and they still hold the same connection in dictionary
-            if (fromTo.Value == selectedAnswers[fromTo.Key]) {
+            if (selectedAnswers.ContainsKey(fromTo.Key) && fromTo.Value == selectedAnswers[fromTo.Key]) {
                 selectedAnswers.Remove(fromTo.Key);
             }
 

@@ -10,9 +10,9 @@ public class DragLineScript : MonoBehaviour
     private bool mouseMoveAllowed = false;
     LineRenderer lineToBeMoved;
     [SerializeField] private LearnWordsGameHandler lineOwner;
-    [SerializeField] private BoxCollider2D[] dragToColliders;
-    [SerializeField] private GameObject[] matchingObjects;
-    [SerializeField] private GameObject startBox;
+    [SerializeField] private BoxCollider2D[] dragToColliders; // Colliders to drag to
+    [SerializeField] private GameObject[] matchingObjects;    // The matching canvas object to the colliders
+    [SerializeField] private GameObject startBox;             // Starting canvas button 
     [SerializeField] private bool isImage = false;
 
     // Start is called before the first frame update
@@ -36,9 +36,12 @@ public class DragLineScript : MonoBehaviour
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos) && startBox.GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
                         moveAllowed = true;
 
+                        // Gets line from main script
                         LineRenderer line = lineOwner.GetAvalibleLine(touchPos);
                         lineToBeMoved = line;
 
+                        // Sets the startposition and sets the name to not be removed if lines are redrawn
+                        lineToBeMoved.name = "DragLine";
                         lineToBeMoved.SetPosition(0, (Vector2) Camera.main.ScreenToWorldPoint(startBox.transform.position));
                         lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
@@ -48,7 +51,7 @@ public class DragLineScript : MonoBehaviour
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed) {
-                        lineToBeMoved.SetPosition(0, (Vector2)Camera.main.ScreenToWorldPoint(startBox.transform.position));
+                        // Changes end position of line
                         lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
                     break;
@@ -57,9 +60,14 @@ public class DragLineScript : MonoBehaviour
                 case TouchPhase.Ended:
                     // Only move object if it should be moved
                     if (moveAllowed) {
+
+                        // Change back name
+                        lineToBeMoved.name = "Line";
                         for (int i = 0; i < dragToColliders.Length; i++) {
+                            // If it collides with a collider that is not green
                             if (dragToColliders[i] == Physics2D.OverlapPoint(touchPos) && matchingObjects[i].GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
 
+                                // To make sure the line sets up the dictionary right
                                 if (isImage) {
                                     lineOwner.makeGuess(startBox, matchingObjects[i]);
                                 } else {
@@ -68,6 +76,7 @@ public class DragLineScript : MonoBehaviour
 
                                 break;
                             }
+                            // If there was no match, redraw all lines and reset
                             lineOwner.reDrawLines();
                         }
                         
