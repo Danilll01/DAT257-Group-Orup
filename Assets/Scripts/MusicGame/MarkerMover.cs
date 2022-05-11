@@ -41,7 +41,6 @@ public class MarkerMover : MonoBehaviour
 
             // Reset player sprite position
             playerSpritePos.localPosition = defaultSpritePos;
-            
         }
     }
 
@@ -55,12 +54,22 @@ public class MarkerMover : MonoBehaviour
     // Teleports the marker/player to the first element in the jump point array
     public void ResetPlayer()
     {
+        // Reset marker position
         SetNewDestination(0);
-        
         TeleportToDestination(0);
-        
+
+        // Call reset method when the ai has reached the destination
+        playerNavigateScript.CallMethodOnDestinationReached(ResetPlayerWhenTargetReached);
+    }
+
+    private void ResetPlayerWhenTargetReached()
+    {
         // Set sprite to correct position
         playerSpritePos.transform.localPosition = defaultSpritePos;
+
+        // Flip sprite to face right instead of left when the marker resets
+        Vector3 spriteScale = playerSpritePos.localScale;
+        playerSpritePos.localScale = new(Mathf.Abs(spriteScale.x), spriteScale.y, spriteScale.z);
     }
 
     // Changes the time between jumps on all jump nodes
