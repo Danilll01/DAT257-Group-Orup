@@ -15,6 +15,8 @@ public class ThermometerControl : MonoBehaviour{
     private float maxTemp;
     private float minTemp;
 
+    private Color blueColor;
+
 
     // Start is called before the first frame update and sets max/min temp
     void Start(){
@@ -22,6 +24,8 @@ public class ThermometerControl : MonoBehaviour{
         minTemp = -20;
         TempBar.color = Color.red;
         termometer.color = Color.red;
+        // RGB values for a light blue color
+        blueColor = new Color(45f / 255f, 146f / 255f, 255f / 255f);
     }
 
 
@@ -31,9 +35,10 @@ public class ThermometerControl : MonoBehaviour{
         temperatureText.text = (int)updateTemp + " *C;";
         TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
 
+        // Set the color of the termometer depending on temperature
         if (temp < 0)
         {
-            updateColor(Color.blue);
+            updateColor(blueColor);
         }
         else
         {
@@ -41,6 +46,7 @@ public class ThermometerControl : MonoBehaviour{
         }
     }
 
+    // Update to given color
     private void updateColor(Color color)
     {
         TempBar.color = color;
