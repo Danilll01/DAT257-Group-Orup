@@ -8,6 +8,8 @@ public class InstrumentPool : MonoBehaviour
 
     [SerializeField] private GameObject snapPointsParent;
 
+    [SerializeField] private GameObject extraLinesParent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class InstrumentPool : MonoBehaviour
         {
             GameObject obj = Instantiate(prefabObject, transform.position, Quaternion.identity, transform);
             obj.GetComponent<DragAndDropNote>().SetSnapPointParent(snapPointsParent);
+            obj.GetComponent<DragAndDropNote>().SetExtraLineParent(extraLinesParent);
         }
     }
 }

@@ -15,7 +15,7 @@ public class LetterController : MonoBehaviour
     void Start() {}
 
     // Update is called once per frame
-    void Update() { }
+    void Update() {}
 
     // Returns the amount of cards that exist
     public int getCardAmount() { return cards.Length; }
@@ -23,9 +23,9 @@ public class LetterController : MonoBehaviour
     // When a letter is clicked this method is called. The parameter is the clicked object
     public void LetterClicked(GameObject letterObject) {
 
-        // Make old card blue
+        // Make old card normal
         if (selectedLetter != null) {
-            selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+            selectedLetter.GetComponent<Image>().color = new Color(1, 1, 1);
         }
         
 
@@ -34,7 +34,7 @@ public class LetterController : MonoBehaviour
             selectedLetter = null;
         } else {
             selectedLetter = letterObject;
-            selectedLetter.GetComponent<Image>().color = new Color(0, 1, 100f / 255f);
+            selectedLetter.GetComponent<Image>().color = new Color(1, 1, 0); // Makes card yellow
         }
     }
 
@@ -48,6 +48,8 @@ public class LetterController : MonoBehaviour
         }
         for (int i = 0; i < cards.Length; i++)
         {
+            cards[i].GetComponent<Image>().color = new Color(1, 1, 1); // Make normal color
+
             int index = UnityEngine.Random.Range(0, tempCards.Count); // Ranomize a index in the lists
             tempCards[index].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item2;  // Set matching letter
             tempCards.RemoveAt(index); // Remove from temp list to randomize on remaining cards
@@ -55,19 +57,13 @@ public class LetterController : MonoBehaviour
         }
     }
 
-    // Returns the selected card info to the main game controller
-    public string getSelectedLetterCardInfo() {
-        return selectedLetter != null ? selectedLetter.GetComponentInChildren<TextMeshProUGUI>().text : "NULL_LETTER_OBJECT" ;
-    }
-
-    public Transform getSelectedLetterTransform()
-    {
-        return selectedLetter.transform;
+    // Returns the selected card to the main game controller
+    public GameObject getSelectedLetterCardInfo() {
+        return selectedLetter; 
     }
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        selectedLetter.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
         selectedLetter = null;
     }
 }

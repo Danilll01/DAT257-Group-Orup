@@ -14,13 +14,13 @@ public class DragAndDropClothing : MonoBehaviour {
     private Transform originParent;
 
     private Vector3 lastPosition;
-    private Rigidbody2D ridgidBody;
+    public Rigidbody2D ridgidBody;
     private SpriteRenderer spriteRen;
     private int originSortingOrder;
 
     [SerializeField] private GameObject snapPointsParent;
     private GameObject[] snapPoints;
-    private BoxCollider2D[] colliders;
+    public BoxCollider2D[] colliders;
     private Vector2 originalColliderOffset;
     private Vector2 originalColliderSize;
 
@@ -28,11 +28,22 @@ public class DragAndDropClothing : MonoBehaviour {
     private Sprite originalSprite;
     [SerializeField] private GameObject pointToSnapToOnSwitch;
 
-    public WeatherController.WeatherTypes chosenWeather;
+    [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
     private closetInventory inventoryScript;
+    private static bool ending;
 
-    public enum clothing{jacket, shirt, pants, hat, shoes, scarf, gloves};
-    public clothing chosenClothing;
+    [System.Flags] public enum clothing : int{
+        None   = 0x00,
+        jacket = 0x01, 
+        shirt  = 0x02, 
+        pants  = 0x04, 
+        hat    = 0x08, 
+        shoes  = 0x10, 
+        scarf  = 0x12, 
+        gloves = 0x14
+    };
+
+    [EnumFlags] public clothing chosenClothing;
 
     static bool beingDragged;
 
@@ -45,6 +56,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
 
         beingDragged = false;
+        ending = false;
 
 
         // Set up the array of snapPoints
@@ -80,7 +92,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // If there were any touches on the screen
         // Send to touchMovement function
-        if(Input.touchCount > 0){
+        if(Input.touchCount > 0 && !ending){
             Touch touch = Input.GetTouch(0);
             touchMovement(touch);
 
@@ -89,8 +101,12 @@ public class DragAndDropClothing : MonoBehaviour {
         // For mouse controls
         else{
             // Get the mouse position
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseMovement(mousePosition);
+            if (!ending)
+            {
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mouseMovement(mousePosition);
+            }
+            
         }
 
         // Move the object towards target if movement is allowed
@@ -247,11 +263,11 @@ public class DragAndDropClothing : MonoBehaviour {
 
         // Start values for shortest snap point
         GameObject shortestSnapPoint = null;
-        
+
 
         // Get what body part this clothing goes on
         switch (chosenClothing){
-            case clothing.jacket: case clothing.shirt:
+            case (clothing.jacket | clothing.shirt): case clothing.shirt: case clothing.jacket:
                 neededMatch = "Chest";
                 break;
             case clothing.pants:
@@ -464,6 +480,12 @@ public class DragAndDropClothing : MonoBehaviour {
             Vector2 forceVector = (targetPosition - transform.position) * 15 * (Time.deltaTime * 1000);
             ridgidBody.AddForce(forceVector);
         }
+    }
+
+    // Set the variable used for disabling touch and mouse drag
+    public void setEnding()
+    {
+        ending = true;
     }
 
 }

@@ -7,19 +7,15 @@ using System;
 
 public class ImageController : MonoBehaviour
 {
+
     private GameObject selectedImgCard = null;
     [SerializeField] private GameObject[] cards;
 
-
     // Start is called before the first frame update
-    void Start() {
-
-    }
+    void Start() {}
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update() {}
 
 
     // Returns the amount of cards that exist
@@ -29,7 +25,7 @@ public class ImageController : MonoBehaviour
     public void placeInformationInCard(List<Tuple<Sprite, string>> cardInfoList) {
 
         for (int i = 0; i < cards.Length; i++) {
-            cards[i].GetComponent<Image>().color = new Color(0, 166f / 255f, 1); // Make blue
+            cards[i].GetComponent<Image>().color = new Color(1, 1, 1); // Make normal color
 
             cards[i].transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardInfoList[i].Item1; // Set new image
             cards[i].GetComponentInChildren<TextMeshProUGUI>().text = cardInfoList[i].Item1.name; // Set text to word of image
@@ -43,11 +39,11 @@ public class ImageController : MonoBehaviour
     public void ImageClicked(GameObject imageObject) {
 
         // Only select and do things if it's not already matched
-        if (imageObject.GetComponent<Image>().color != new Color(1, 180f / 255f, 0)) {
+        if (imageObject.GetComponent<Image>().color != new Color(100f / 255f, 1, 100f / 255f)) {
 
-            // Make old card blue
+            // Make old card normal
             if (selectedImgCard != null) {
-                selectedImgCard.GetComponent<Image>().color = new Color(0, 166f / 255f, 1);
+                selectedImgCard.GetComponent<Image>().color = new Color(1, 1, 1);
             }
 
 
@@ -56,24 +52,18 @@ public class ImageController : MonoBehaviour
                 selectedImgCard = null;
             } else {
                 selectedImgCard = imageObject;
-                selectedImgCard.GetComponent<Image>().color = new Color(0, 1, 100f / 255f);
+                selectedImgCard.GetComponent<Image>().color = new Color(1, 1, 0); // Makes card yellow
             }
         }
     }
 
-    // Returns the selected card info to the main game controller
-    public string getSelectedImgCardInfo() {
-        return selectedImgCard != null ? selectedImgCard.GetComponentInChildren<Text>().text : "NULL_IMAGE_OBJECT" ;
-    }
-
-    public Transform getSelectedImgTransform()
-    {
-        return selectedImgCard.transform;
+    // Returns the selected card to the main game controller
+    public GameObject getSelectedImgCardInfo() {
+        return selectedImgCard; 
     }
 
     // Make sure the selected card now have the right color
     public void haveMatched() {
-        selectedImgCard.GetComponent<Image>().color = new Color(1, 180f / 255f, 0); // Makes card orange
         selectedImgCard = null;
     }
 }
