@@ -75,13 +75,16 @@ public class PlayMusic : MonoBehaviour
             // Cancel the previous run of coroutines
             StopAllCoroutines();
 
-            // Resets marker position
+            // Resets marker
             markerMoverScript.ResetPlayer();
 
             // Sets all the variables to stop playing
             PlayOrStopSetVars(false);
         } else
         {
+            // Resets marker
+            markerMoverScript.ResetPlayer();
+
             // Get note data
             List<GameObject>[] noteSequence = ParseNoteData();
 
@@ -94,13 +97,17 @@ public class PlayMusic : MonoBehaviour
             // Sets all the variables to start playing
             PlayOrStopSetVars(true);
         }
-
-        
     }
 
     // Waits for a specified amount of time before playing the list of notes (the beat)
     private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
+        // Jump to the first node
+        markerMoverScript.SetNewDestination(2);
+
+        // Wait for the marker to reach the first playable node
+        yield return new WaitForSeconds(time);
+
         do {
             for (int i = 0; i < notes.Length; i++) {
                 int markerPos = i + 1;
@@ -108,11 +115,13 @@ public class PlayMusic : MonoBehaviour
                 // Sets the location to the next note to be played
                 markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
        
+                // If current beat is the second last position decide to loop or not
                 if (i >= notes.Length - 1)
                 {
                     markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
                 }
 
+                // Teleport the marker to the current note (if the jump hasn't finished)
                 markerMoverScript.TeleportToDestination(markerPos);
 
                 // Play all notes in a beat
@@ -123,10 +132,11 @@ public class PlayMusic : MonoBehaviour
             }
         } while (isLooping);
 
+        // Resets marker
+        markerMoverScript.ResetPlayer();
 
         // Stops music playing
         PlayOrStopSetVars(false);
-        
     }
 
     // Play all notes in a beat and teleports location to supplied  
