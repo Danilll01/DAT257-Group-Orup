@@ -9,6 +9,10 @@ public class DragLineScript : MonoBehaviour
     private bool mouseMoveAllowed = false;
     LineRenderer lineToBeMoved;
     [SerializeField] private LearnWordsGameHandler lineOwner;
+    [SerializeField] private BoxCollider2D[] dragToColliders;
+    [SerializeField] private GameObject[] matchingObjects;
+    [SerializeField] private GameObject startBox;
+    [SerializeField] private bool isImage = false;
 
     // Start is called before the first frame update
     void Start() {}
@@ -53,7 +57,17 @@ public class DragLineScript : MonoBehaviour
                 case TouchPhase.Ended:
                     // Only move object if it should be moved
                     if (moveAllowed) {
-                        lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
+                        for (int i = 0; i < dragToColliders.Length; i++) {
+                            if (dragToColliders[i] == Physics2D.OverlapPoint(touchPos)) {
+
+                                if (isImage) {
+                                    lineOwner.makeGuess(startBox, matchingObjects[i]);
+                                } else {
+                                    lineOwner.makeGuess(matchingObjects[i], startBox);
+                                }
+                                
+                            }
+                        }
                     }
                     moveAllowed = false;
                     break;

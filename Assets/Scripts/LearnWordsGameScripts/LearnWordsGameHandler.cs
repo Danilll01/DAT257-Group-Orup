@@ -124,6 +124,10 @@ public class LearnWordsGameHandler : MonoBehaviour
         GameObject imgCard = imgController.getSelectedImgCardInfo();
         GameObject letterCard = letterController.getSelectedLetterCardInfo();
 
+        makeGuess(imgCard, letterCard);
+    }
+
+    public void makeGuess(GameObject imgCard, GameObject letterCard) {
         // If two are selected add them to the dictionary (This also allows the player to remap answers)
         if (imgCard != null && letterCard != null) {
             selectedAnswers[imgCard] = letterCard;

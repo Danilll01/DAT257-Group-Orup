@@ -516,6 +516,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1147140402}
+  - {fileID: 383966516}
+  - {fileID: 1586396405}
+  - {fileID: 1159542167}
+  matchingObjects:
+  - {fileID: 357869230}
+  - {fileID: 212323601}
+  - {fileID: 1808425219}
+  - {fileID: 2058572401}
+  startBox: {fileID: 1667583366}
+  isImage: 0
 --- !u!1 &150269513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1275,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1315144094}
+  - {fileID: 1339096719}
+  - {fileID: 977545615}
+  - {fileID: 133267614}
+  matchingObjects:
+  - {fileID: 1698672234}
+  - {fileID: 412297122}
+  - {fileID: 423653472}
+  - {fileID: 1667583366}
+  startBox: {fileID: 212323601}
+  isImage: 1
 --- !u!1 &412297122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,6 +2422,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1147140402}
+  - {fileID: 383966516}
+  - {fileID: 1586396405}
+  - {fileID: 1159542167}
+  matchingObjects:
+  - {fileID: 357869230}
+  - {fileID: 212323601}
+  - {fileID: 1808425219}
+  - {fileID: 2058572401}
+  startBox: {fileID: 423653472}
+  isImage: 0
 --- !u!1 &1044152661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2756,6 +2795,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1315144094}
+  - {fileID: 1339096719}
+  - {fileID: 977545615}
+  - {fileID: 133267614}
+  matchingObjects:
+  - {fileID: 1698672234}
+  - {fileID: 412297122}
+  - {fileID: 423653472}
+  - {fileID: 1667583366}
+  startBox: {fileID: 357869230}
+  isImage: 1
 --- !u!1 &1159542164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,6 +2932,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1315144094}
+  - {fileID: 1339096719}
+  - {fileID: 977545615}
+  - {fileID: 133267614}
+  matchingObjects:
+  - {fileID: 1698672234}
+  - {fileID: 412297122}
+  - {fileID: 423653472}
+  - {fileID: 1667583366}
+  startBox: {fileID: 2058572401}
+  isImage: 1
 --- !u!1 &1249134883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3157,6 +3222,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1147140402}
+  - {fileID: 383966516}
+  - {fileID: 1586396405}
+  - {fileID: 1159542167}
+  matchingObjects:
+  - {fileID: 357869230}
+  - {fileID: 212323601}
+  - {fileID: 1808425219}
+  - {fileID: 2058572401}
+  startBox: {fileID: 1698672234}
+  isImage: 0
 --- !u!1 &1339096716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3359,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1147140402}
+  - {fileID: 383966516}
+  - {fileID: 1586396405}
+  - {fileID: 1159542167}
+  matchingObjects:
+  - {fileID: 357869230}
+  - {fileID: 212323601}
+  - {fileID: 1808425219}
+  - {fileID: 2058572401}
+  startBox: {fileID: 412297122}
+  isImage: 0
 --- !u!1 &1342181019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,6 +3900,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOwner: {fileID: 1388211853}
+  dragToColliders:
+  - {fileID: 1315144094}
+  - {fileID: 1339096719}
+  - {fileID: 977545615}
+  - {fileID: 133267614}
+  matchingObjects:
+  - {fileID: 1698672234}
+  - {fileID: 412297122}
+  - {fileID: 423653472}
+  - {fileID: 1667583366}
+  startBox: {fileID: 1808425219}
+  isImage: 1
 --- !u!1 &1667583366
 GameObject:
   m_ObjectHideFlags: 0
