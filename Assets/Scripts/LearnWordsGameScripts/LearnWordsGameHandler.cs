@@ -181,7 +181,7 @@ public class LearnWordsGameHandler : MonoBehaviour
             generateNewCards();
         } else {
             StartCoroutine(makeNormalCardAgain(remove));
-            reDrawLines();
+            //reDrawLines();
         }
 
     }
