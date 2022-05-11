@@ -49,7 +49,7 @@ public class PlayMusic : MonoBehaviour
         playButtonText.text = "Play";
 
         // Sync time between beats to time between jumps
-        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.01f);
+        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.03f);
     }
 
     // Initializes snap points array
@@ -103,12 +103,17 @@ public class PlayMusic : MonoBehaviour
     {
         do {
             for (int i = 0; i < notes.Length; i++) {
+                int markerPos = i + 1;
 
                 // Sets the location to the next note to be played
-                markerMoverScript.SetNewDestination((i + 1) % (notes.Length));
+                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
+       
+                if (i >= notes.Length - 1)
+                {
+                    markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
+                }
 
-                // Teleport the marker to the current note (if the jump hasn't finished)
-                markerMoverScript.TeleportToDestination(i);
+                markerMoverScript.TeleportToDestination(markerPos);
 
                 // Play all notes in a beat
                 PlayNotes(notes[i]);
