@@ -207,4 +207,28 @@ public class LearnWordsGameHandler : MonoBehaviour
         }
     }
 
+    public LineRenderer GetAvalibleLine(Vector3 nearPos) {
+        LineRenderer minDistanceLine = null;
+        float minDistance = float.MaxValue;
+        Vector3 comparePos = Camera.main.ScreenToWorldPoint(Vector3.left);
+
+        foreach (GameObject line in lines) {
+
+            LineRenderer renderer = line.GetComponent<LineRenderer>();
+            Vector3[] pos = new Vector3[2];
+            renderer.GetPositions(pos);
+
+            if (pos[0].x == comparePos.x && pos[1].x == comparePos.x) {
+                return renderer;
+            }
+
+            float tempDistance1 = Vector2.Distance(pos[0], nearPos);
+            float tempDistance2 = Vector2.Distance(pos[1], nearPos);
+            if (tempDistance1 < minDistance || tempDistance2 < minDistance) {
+                minDistanceLine = renderer;
+                minDistance = (tempDistance1 < tempDistance2 ? tempDistance1 : tempDistance2);
+            }  
+        }
+        return minDistanceLine;
+    }
 }

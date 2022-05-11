@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 133267612}
   - component: {fileID: 133267613}
   - component: {fileID: 133267614}
+  - component: {fileID: 133267615}
   m_Layer: 0
   m_Name: CharCollider4
   m_TagString: Untagged
@@ -503,6 +504,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &133267615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133267611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &150269513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1149,7 @@ GameObject:
   - component: {fileID: 383966514}
   - component: {fileID: 383966515}
   - component: {fileID: 383966516}
+  - component: {fileID: 383966517}
   m_Layer: 0
   m_Name: Image2Collider
   m_TagString: Untagged
@@ -1236,6 +1250,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &383966517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383966513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &412297122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2283,7 @@ GameObject:
   - component: {fileID: 977545613}
   - component: {fileID: 977545614}
   - component: {fileID: 977545615}
+  - component: {fileID: 977545616}
   m_Layer: 0
   m_Name: CharCollider3
   m_TagString: Untagged
@@ -2357,6 +2384,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &977545616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977545612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1044152661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,6 +2643,7 @@ GameObject:
   - component: {fileID: 1147140400}
   - component: {fileID: 1147140401}
   - component: {fileID: 1147140402}
+  - component: {fileID: 1147140403}
   m_Layer: 0
   m_Name: Image1Collider
   m_TagString: Untagged
@@ -2704,6 +2744,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1147140403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147140399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159542164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,6 +2767,7 @@ GameObject:
   - component: {fileID: 1159542165}
   - component: {fileID: 1159542166}
   - component: {fileID: 1159542167}
+  - component: {fileID: 1159542168}
   m_Layer: 0
   m_Name: Image4Collider
   m_TagString: Untagged
@@ -2815,6 +2868,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1159542168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159542164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1249134883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,6 +3044,7 @@ GameObject:
   - component: {fileID: 1315144092}
   - component: {fileID: 1315144093}
   - component: {fileID: 1315144094}
+  - component: {fileID: 1315144095}
   m_Layer: 0
   m_Name: CharCollider1
   m_TagString: Untagged
@@ -3079,6 +3145,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1315144095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315144091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1339096716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,6 +3168,7 @@ GameObject:
   - component: {fileID: 1339096717}
   - component: {fileID: 1339096718}
   - component: {fileID: 1339096719}
+  - component: {fileID: 1339096720}
   m_Layer: 0
   m_Name: CharCollider2
   m_TagString: Untagged
@@ -3190,6 +3269,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1339096720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339096716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1342181019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3605,6 +3696,7 @@ GameObject:
   - component: {fileID: 1586396403}
   - component: {fileID: 1586396404}
   - component: {fileID: 1586396405}
+  - component: {fileID: 1586396406}
   m_Layer: 0
   m_Name: Image3Collider
   m_TagString: Untagged
@@ -3705,6 +3797,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1586396406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586396402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00ff87508da1ab2439bb2e2bd465ba3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1667583366
 GameObject:
   m_ObjectHideFlags: 0

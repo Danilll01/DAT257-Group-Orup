@@ -7,6 +7,8 @@ public class DragLineScript : MonoBehaviour
 
     private bool moveAllowed = false;
     private bool mouseMoveAllowed = false;
+    LineRenderer lineToBeMoved;
+    [SerializeField] private LearnWordsGameHandler lineOwner;
 
     // Start is called before the first frame update
     void Start() {}
@@ -20,7 +22,7 @@ public class DragLineScript : MonoBehaviour
 
             // Get the position of the touch
             Vector3 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-
+            
 
             switch (touch.phase) {
                 // At the moment the screen was touched, look if the touch is on the object.
@@ -28,7 +30,12 @@ public class DragLineScript : MonoBehaviour
                 case TouchPhase.Began:
                     if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos)) {
                         moveAllowed = true;
-                        
+
+                        LineRenderer line = lineOwner.GetAvalibleLine(touchPos);
+                        lineToBeMoved = line;
+
+                        lineToBeMoved.SetPosition(0, new Vector3(touchPos.x, touchPos.y, 0));
+                        lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
                     break;
 
@@ -36,7 +43,9 @@ public class DragLineScript : MonoBehaviour
                 // to the touchs position
                 case TouchPhase.Moved:
                     if (moveAllowed) {
-                        transform.position = new Vector3(touchPos.x, touchPos.y);
+                        //transform.position = new Vector3(touchPos.x, touchPos.y);
+                        lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
+
                     }
                     break;
 
@@ -44,7 +53,7 @@ public class DragLineScript : MonoBehaviour
                 case TouchPhase.Ended:
                     // Only move object if it should be moved
                     if (moveAllowed) {
-                        
+                        lineToBeMoved.SetPosition(1, new Vector3(touchPos.x, touchPos.y, 0));
                     }
                     moveAllowed = false;
                     break;
