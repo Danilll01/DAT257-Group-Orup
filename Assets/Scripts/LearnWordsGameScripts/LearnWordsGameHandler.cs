@@ -93,7 +93,7 @@ public class LearnWordsGameHandler : MonoBehaviour
     }
 
     // Redraw the lines based on current selected answers information
-    private void reDrawLines() {
+    public void reDrawLines() {
         int i = 0;
 
         // Draw lines for the selected answers
@@ -112,8 +112,10 @@ public class LearnWordsGameHandler : MonoBehaviour
         Vector3 standartPos = Camera.main.ScreenToWorldPoint(Vector3.left);
         for (int j = i; j < lines.Count; j++) {
             LineRenderer line = lines[j].GetComponent<LineRenderer>();
-            line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
-            line.SetPosition(1, new Vector3(standartPos.x, standartPos.y, 0));
+            if (line.name == "Line") {
+                line.SetPosition(0, new Vector3(standartPos.x, standartPos.y, 0));
+                line.SetPosition(1, new Vector3(standartPos.x, standartPos.y, 0));
+            }
         }
     }
 
@@ -124,6 +126,10 @@ public class LearnWordsGameHandler : MonoBehaviour
         GameObject imgCard = imgController.getSelectedImgCardInfo();
         GameObject letterCard = letterController.getSelectedLetterCardInfo();
 
+        makeGuess(imgCard, letterCard);
+    }
+
+    public void makeGuess(GameObject imgCard, GameObject letterCard) {
         // If two are selected add them to the dictionary (This also allows the player to remap answers)
         if (imgCard != null && letterCard != null) {
             selectedAnswers[imgCard] = letterCard;
@@ -175,19 +181,19 @@ public class LearnWordsGameHandler : MonoBehaviour
             generateNewCards();
         } else {
             StartCoroutine(makeNormalCardAgain(remove));
-            reDrawLines();
+            //reDrawLines();
         }
 
     }
 
     // Resets wrong answers later
-    private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUndone) {
+    private IEnumerator makeNormalCardAgain(Dictionary<GameObject, GameObject> tobeUnDone) {
         yield return new WaitForSeconds(timeUntillReset); // Wait the time
         
-        foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUndone) {
+        foreach (KeyValuePair<GameObject, GameObject> fromTo in tobeUnDone) {
 
             // If some of the key value pair is red and they still hold the same connection in dictionary
-            if (fromTo.Value == selectedAnswers[fromTo.Key]) {
+            if (selectedAnswers.ContainsKey(fromTo.Key) && fromTo.Value == selectedAnswers[fromTo.Key]) {
                 selectedAnswers.Remove(fromTo.Key);
             }
 
@@ -207,4 +213,28 @@ public class LearnWordsGameHandler : MonoBehaviour
         }
     }
 
+    public LineRenderer GetAvalibleLine(Vector3 nearPos) {
+        LineRenderer minDistanceLine = null;
+        float minDistance = float.MaxValue;
+        Vector3 comparePos = Camera.main.ScreenToWorldPoint(Vector3.left);
+
+        foreach (GameObject line in lines) {
+
+            LineRenderer renderer = line.GetComponent<LineRenderer>();
+            Vector3[] pos = new Vector3[2];
+            renderer.GetPositions(pos);
+
+            if (pos[0].x == comparePos.x && pos[1].x == comparePos.x) {
+                return renderer;
+            }
+
+            float tempDistance1 = Vector2.Distance(pos[0], nearPos);
+            float tempDistance2 = Vector2.Distance(pos[1], nearPos);
+            if (tempDistance1 < minDistance || tempDistance2 < minDistance) {
+                minDistanceLine = renderer;
+                minDistance = (tempDistance1 < tempDistance2 ? tempDistance1 : tempDistance2);
+            }  
+        }
+        return minDistanceLine;
+    }
 }

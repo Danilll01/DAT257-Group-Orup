@@ -137,6 +137,28 @@ namespace Pathfinding {
 			isWaitingOnPortalReached = false;
 		}
 
+		// Calls a provided method when the ai reaches it's destination
+		public void CallMethodOnDestinationReached(Action method)
+        {
+			// Stops all coroutines (to reset them) if a new call comes in
+			StopAllCoroutines();
+
+			StartCoroutine(CallMethodWhenDestinationReached(method));
+		}
+
+		private IEnumerator CallMethodWhenDestinationReached(Action method)
+		{
+			// Wait untill the ai has reached the destination
+			while (!ai.reachedDestination)
+			{
+				yield return null;
+			}
+
+			// Delay the method to ensure the ai has reached the destination
+			yield return new WaitForSeconds(0.1f);
+			
+			method();
+		}
 	}
 }
 
