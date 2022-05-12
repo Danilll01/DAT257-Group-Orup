@@ -77,8 +77,8 @@ public class LearnWordsGameHandler : MonoBehaviour
         LineRenderer lineRenderer = new LineRenderer();
         GameObject line = new GameObject("Line");
         lineRenderer = line.AddComponent<LineRenderer>();
-        lineRenderer.startColor = Color.black;
-        lineRenderer.endColor = Color.black;
+        lineRenderer.startColor = new Color(40f/255f, 0, 0);
+        lineRenderer.endColor = new Color(40f / 255f, 0, 0);
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 2;
