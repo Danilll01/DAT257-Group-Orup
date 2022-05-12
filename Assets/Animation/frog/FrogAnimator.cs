@@ -7,12 +7,14 @@ public class FrogAnimator : MonoBehaviour
 
     private float timer = 0f;
     private Animator frogAnimator;
+    private AudioSource frogCroak;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = Random.Range(5, 15);
         frogAnimator = GetComponent<Animator>();
+        frogCroak = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class FrogAnimator : MonoBehaviour
 
         if (timer < 0) {
             frogAnimator.SetTrigger("FrogBlow");
+            frogCroak.Play();
             timer = Random.Range(5, 15);
         }
     }
