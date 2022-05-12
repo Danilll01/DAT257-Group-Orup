@@ -24,8 +24,12 @@ public class FrogAnimator : MonoBehaviour
 
         if (timer < 0) {
             frogAnimator.SetTrigger("FrogBlow");
-            frogCroak.Play();
             timer = Random.Range(5, 15);
         }
+    }
+
+    public void playCroakSound()
+    {
+        frogCroak.Play();
     }
 }
