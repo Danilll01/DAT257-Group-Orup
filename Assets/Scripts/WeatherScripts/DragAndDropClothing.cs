@@ -484,9 +484,9 @@ public class DragAndDropClothing : MonoBehaviour {
     }
 
     // Set the variable used for disabling touch and mouse drag
-    public void setEnding()
+    public void setEnding(bool shouldEnd)
     {
-        ending = true;
+        ending = shouldEnd;
     }
 
 }
