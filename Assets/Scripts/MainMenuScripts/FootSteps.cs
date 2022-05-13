@@ -3,11 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FootSteps : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] groundClips;
-    [SerializeField] private AudioClip[] metalClips;
-    [SerializeField] private AudioClip[] mudClips;
-    [SerializeField] private AudioClip[] grassClips;
-    [SerializeField] private AudioClip[] gravelClips;
+    [SerializeField] private AudioClip[] soundClips;
+    [SerializeField] private double timeUntillStop = 0.2;
 
     private AudioSource audioSource;
 
@@ -19,36 +16,23 @@ public class FootSteps : MonoBehaviour
     //Step is an event from the Animation itself, everytime the animation fires "Step" , a Clip gets played
     public void Step()
     {
-        AudioClip clip = GetRandomClip();
-        audioSource.PlayOneShot(clip);
-    }
-
-    private AudioClip GetRandomClip()
-    {
-        int terrainTextureIndex = 1;
-        switch (terrainTextureIndex)
-        {
-            case 0:
-                return GetClipFromArray(groundClips);
-            case 1:
-                return GetClipFromArray(groundClips);
-            case 2:
-                return GetClipFromArray(metalClips);
-            case 3:
-                return GetClipFromArray(mudClips);
-            case 4:
-                return GetClipFromArray(grassClips);
-            case 5:
-            case 6:
-                return GetClipFromArray(gravelClips);
-            default:
-                return GetClipFromArray(groundClips);
-
-        }
+        Debug.Log("HEJ");
+        AudioClip clip = GetClipFromArray(soundClips);
+        audioSource.clip = clip;
+        audioSource.Play();
+        audioSource.SetScheduledEndTime(AudioSettings.dspTime + (timeUntillStop));
+        //audioSource.PlayOneShot(clip);
     }
 
     private AudioClip GetClipFromArray(AudioClip[] clips)
     {
         return clips.Length > 0 ? clips[Random.Range(0, clips.Length)] : null;
+    }
+
+    void Update() {
+        //if (audioSource.time > 0.05f) {
+        //    Debug.Log("NU");
+        //    audioSource.Stop();
+        //}
     }
 }
