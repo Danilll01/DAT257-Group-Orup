@@ -13,7 +13,7 @@ public class FlipCard : MonoBehaviour
         currentDegrees = transform.eulerAngles;
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         // If card should rotate
         if (currentDegrees != targetDegrees)
