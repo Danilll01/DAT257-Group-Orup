@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FootSteps : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] soundClips;
+    [SerializeField] private AudioClip[] walkClips;
+    [SerializeField] private AudioClip[] jumpClips;
     [SerializeField] private double timeUntillStop = 0.2;
 
     private AudioSource audioSource;
@@ -17,22 +18,25 @@ public class FootSteps : MonoBehaviour
     public void Step()
     {
         Debug.Log("HEJ");
-        AudioClip clip = GetClipFromArray(soundClips);
-        audioSource.clip = clip;
-        audioSource.Play();
-        audioSource.SetScheduledEndTime(AudioSettings.dspTime + (timeUntillStop));
-        //audioSource.PlayOneShot(clip);
+        AudioClip clip = GetClipFromArray(walkClips);
+        //audioSource.clip = clip;
+        //audioSource.Play();
+        //audioSource.SetScheduledEndTime(AudioSettings.dspTime + (timeUntillStop));
+        audioSource.PlayOneShot(clip);
+    }
+
+    public void Jump() {
+        Debug.Log("Då");
+        audioSource.Stop();
+        AudioClip clip = GetClipFromArray(walkClips);
+        //audioSource.clip = clip;
+        //audioSource.Play();
+        //audioSource.SetScheduledEndTime(AudioSettings.dspTime + (timeUntillStop));
+        audioSource.PlayOneShot(clip);
     }
 
     private AudioClip GetClipFromArray(AudioClip[] clips)
     {
         return clips.Length > 0 ? clips[Random.Range(0, clips.Length)] : null;
-    }
-
-    void Update() {
-        //if (audioSource.time > 0.05f) {
-        //    Debug.Log("NU");
-        //    audioSource.Stop();
-        //}
     }
 }
