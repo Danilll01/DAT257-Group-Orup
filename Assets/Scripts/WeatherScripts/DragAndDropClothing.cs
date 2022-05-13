@@ -126,12 +126,11 @@ public class DragAndDropClothing : MonoBehaviour {
             // If the touch was on the object, set moveAllowed to true
             case TouchPhase.Began:
 
-                             // Depending on how many colliders we have (max 2) we need to check input for both
+                // Depending on how many colliders we have (max 2) we need to check input for both
                 if (colliders.Length > 1)
                 {
                     if ((colliders[0] == Physics2D.OverlapPoint(touchPos) || colliders[1] == Physics2D.OverlapPoint(touchPos)) && !beingDragged)
                     {
-                        GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
                         spriteRen.sortingOrder += 10;
                         changeBackSprite();
@@ -147,7 +146,6 @@ public class DragAndDropClothing : MonoBehaviour {
                 {
                     if ((colliders[0] == Physics2D.OverlapPoint(touchPos)) && !beingDragged)
                     {
-                        GetComponent<AudioSource>().time = 0.6f;
                         GetComponent<AudioSource>().Play();
                         spriteRen.sortingOrder += 10;
                         moveAllowed = true;
