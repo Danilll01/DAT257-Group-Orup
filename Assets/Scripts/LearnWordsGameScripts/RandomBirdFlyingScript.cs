@@ -23,7 +23,7 @@ public class RandomBirdFlyingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // Decrement timer and call method when it is needed
         timer -= Time.deltaTime;
 
         if (timer < 0) {
@@ -31,10 +31,12 @@ public class RandomBirdFlyingScript : MonoBehaviour
             timer = Random.Range(0.5f, 2);
         }
 
+        // Always try to move towards the target position
         addForceToRidgidbody();
         
     }
 
+    // Gets a random point within a circle from the startingLocation with the flyingRadius
     private Vector2 getRandomPoint() {
         Vector3 randomDirection = Random.insideUnitSphere * flyingRadius;
         randomDirection += startingLocation;
