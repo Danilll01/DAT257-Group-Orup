@@ -9,6 +9,7 @@ public class LearnWordsGameHandler : MonoBehaviour
 
     [SerializeField] private ImageController imgController;
     [SerializeField] private LetterController letterController;
+    [SerializeField] private GameObject winSoundAnimation;
 
     // The images and matching words must be in the same order. Otherwise it will not work correctly
     [SerializeField] private List<Sprite> images;
@@ -21,12 +22,14 @@ public class LearnWordsGameHandler : MonoBehaviour
     private int randomCardAmount;
     //private int rightAnswerCounter = 0;
     private Dictionary<GameObject, GameObject> selectedAnswers = new Dictionary<GameObject, GameObject>();
+    private AudioSource plopSound;
 
     // Start is called before the first frame update
     void Start()
     {
         randomCardAmount = imgController.getCardAmount(); // The amount of cards to randomize sprites and words to 
         lines = new List<GameObject>();
+        plopSound = GetComponent<AudioSource>();
         generateNewCards();
         
     }
@@ -77,8 +80,8 @@ public class LearnWordsGameHandler : MonoBehaviour
         LineRenderer lineRenderer = new LineRenderer();
         GameObject line = new GameObject("Line");
         lineRenderer = line.AddComponent<LineRenderer>();
-        lineRenderer.startColor = Color.black;
-        lineRenderer.endColor = Color.black;
+        lineRenderer.startColor = new Color(40f/255f, 0, 0);
+        lineRenderer.endColor = new Color(40f / 255f, 0, 0);
         lineRenderer.startWidth = 0.1f;
         lineRenderer.endWidth = 0.1f;
         lineRenderer.positionCount = 2;
@@ -143,6 +146,8 @@ public class LearnWordsGameHandler : MonoBehaviour
             imgController.haveMatched();
             letterController.haveMatched();
 
+            plopSound.Play(); // Play plop sound
+
             // Toggle to switch between if the answers should be checked directly / later
             if (checkAnswerDirectly) {
                 CheckIfCorrect();
@@ -178,12 +183,21 @@ public class LearnWordsGameHandler : MonoBehaviour
 
         // Generates new cards / re-draws lines if there where some wrong answers
         if (totalRight == randomCardAmount) {
-            generateNewCards();
+            StartCoroutine(displayWinningState());
         } else {
             StartCoroutine(makeNormalCardAgain(remove));
-            //reDrawLines();
         }
 
+    }
+
+    // Waits for 1 sekond before generating new cards
+    private IEnumerator displayWinningState() {
+        winSoundAnimation.SetActive(true); // This will play a sound
+
+        yield return new WaitForSeconds(1.8f); // Wait the time
+
+        winSoundAnimation.SetActive(false);
+        generateNewCards();
     }
 
     // Resets wrong answers later
