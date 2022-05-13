@@ -14,13 +14,19 @@ public class ValidateClothes : MonoBehaviour
 
     [SerializeField] private DragAndDropClothing dragScript;
     [SerializeField] private speechBubble bubbleScript;
+    [SerializeField] private GameObject endMenu;
     private bool walkOut;
     [SerializeField] private float speed = 10f;
+
+    //[SerializeField] private GameObject fox;
+    private Vector3 foxOriginPos;
 
 
     void Start(){
         weatherSet = false;
         walkOut = false;
+
+        foxOriginPos = foxPos.transform.position;
 
         // Set the doors position to be at the edge of the camera no matter what device
         doorPos.transform.parent.position = Camera.main.ScreenToWorldPoint(new Vector3((Camera.main.pixelWidth),0));
@@ -40,9 +46,16 @@ public class ValidateClothes : MonoBehaviour
             foxPos.position = Vector2.MoveTowards(foxPos.position, doorPos.position, step);
 
             // If the box has reached the door, close the door
-            if (foxPos.position.x == doorPos.position.x)
+            if (Vector2.Distance(foxPos.position, doorPos.position) < 5f)
             {
                 doorAnim.SetTrigger("closeDoor");
+                foxAnim.SetTrigger("stopWalking");
+                
+            }
+
+            if (foxPos.position.x == doorPos.position.x)
+            {
+                endMenu.SetActive(true);
                 walkOut = false;
             }
         }
@@ -146,7 +159,7 @@ public class ValidateClothes : MonoBehaviour
     private void disableClothing(List<DragAndDropClothing> allScripts)
     {
         // Disable touch when fox is going to walk out
-        dragScript.setEnding();
+        dragScript.setEnding(true);
         // Start door opening animation
         doorAnim.SetTrigger("openDoor");
         // Set rigidbody for clothing objects on character to static
@@ -162,18 +175,24 @@ public class ValidateClothes : MonoBehaviour
 
     public void resetAllClothes()
     {
-
+        // Reset transform and position of fox
+        foxPos.transform.position = foxOriginPos;
+        foxPos.rotation = Quaternion.identity;
         foreach (GameObject snapPoint in snapPoints)
         {
 
                 // Gets all scripts of notes
             DragAndDropClothing[] clothes = snapPoint.transform.GetComponentsInChildren<DragAndDropClothing>();
+            
 
                 // Tell all notes to unsnap and delete itself
             foreach (DragAndDropClothing clothing in clothes)
             {
+                clothing.setEnding(false);
+                clothing.ridgidBody.bodyType = RigidbodyType2D.Dynamic;
                 clothing.inventoryScript.AddClothingToArray(clothing.gameObject, false);
                 clothing.removeFromSnapPoint(false);
+                
             }
         }
 
