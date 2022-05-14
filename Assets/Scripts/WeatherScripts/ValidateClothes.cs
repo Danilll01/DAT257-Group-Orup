@@ -181,6 +181,12 @@ public class ValidateClothes : MonoBehaviour
         // Reset transform and position of fox
         foxPos.transform.position = foxOriginPos;
         foxPos.rotation = Quaternion.identity;
+
+        // Reset the fox walk out  and door animation
+        foxAnim.ResetTrigger("stopWalking");
+        doorAnim.ResetTrigger("closeDoor");
+
+
         foreach (GameObject snapPoint in snapPoints)
         {
 
