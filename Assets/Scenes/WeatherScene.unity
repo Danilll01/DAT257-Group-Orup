@@ -1475,6 +1475,7 @@ MonoBehaviour:
   dragScript: {fileID: 1151940279}
   bubbleScript: {fileID: 321803080}
   endMenu: {fileID: 153989794}
+  startMenuButton: {fileID: 1989570180}
   speed: 5
 --- !u!4 &189363016
 Transform:
@@ -2829,7 +2830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speechText: {fileID: 148074402}
-  delay: 0.08
+  delay: 0.06
   message: "Ojd\xE5 det blev nog lite tokigt. F\xF6rs\xF6k igen!"
   speech: {fileID: 321803083}
   validateButton: {fileID: 1790473615}
