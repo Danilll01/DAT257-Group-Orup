@@ -280,7 +280,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,6 +288,48 @@ TextureImporter:
       bones: []
       spriteID: dff4a2a9bed74a746b606148462b2e9f
       internalID: -1941006872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FrontArrowWooden
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1087
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d75b2b3bcab0bb47b1ce7abc52d9108
+      internalID: 1297301938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackArrowWooden
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 1087
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ce7393b916ee94a9e8226358107888
+      internalID: -1907079465
       vertices: []
       indices: 
       edges: []
@@ -304,9 +346,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Wooden Pixel Art GUI 32x32_0: -569827614
+      FrontArrowWooden: 1297301938
       WoodHomeButtonDown: -908023036
       Wooden Pixel Art GUI 32x32_1: -1720644012
       WoodHomeButtonUp: 810364438
+      BackArrowWooden: -1907079465
       DarkPanel: -741674603
       Wooden Pixel Art GUI 32x32_2: -1941006872
       WoodenPanel: 143430562

@@ -95,7 +95,7 @@ public class WeatherController : MonoBehaviour
         WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(1,values.Length));
 
         // Sets weather to the randomly generated weather
-        SetWeather(randomWeather, WindSpeed.None);
+        SetWeather(randomWeather, WindSpeed.None, false, 0);
 
     }
 
@@ -110,20 +110,20 @@ public class WeatherController : MonoBehaviour
         else{
             switch (weather){
             case "Clear":
-                SetWeather(WeatherTypes.Sun, WindSpeed.None);
+                SetWeather(WeatherTypes.Sun, WindSpeed.None, true, temp);
                 break;
             case "Rain": case "ThunderStorm": case "Drizzle":
-                SetWeather(WeatherTypes.Rain, WindSpeed.None);
+                SetWeather(WeatherTypes.Rain, WindSpeed.None, true, temp);
                 break;
             case "Snow":
-                SetWeather(WeatherTypes.Snow, WindSpeed.None);
+                SetWeather(WeatherTypes.Snow, WindSpeed.None, true, temp);
                 break;
             case "Clouds":
-                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None, true, temp);
                 break;
             
             default:
-                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None, true, temp);
                 break;
             }
 
@@ -135,7 +135,7 @@ public class WeatherController : MonoBehaviour
     }
     
     // Switches to the correct weather object based on inputted weather.
-    private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
+    private void SetWeather(WeatherTypes weather, WindSpeed windSpeed, bool useAPITemp, float apiTemp)
     {
         float randTemp = 0;
         HideAllWeather();
@@ -163,6 +163,15 @@ public class WeatherController : MonoBehaviour
             default:
                 Debug.Log("No work");
                 break;
+        }
+
+        if (useAPITemp)
+        {
+            thermometerControl.setTemp(apiTemp);
+        }
+        else
+        {
+            thermometerControl.setTemp(randTemp);
         }
         
         thermometerControl.setTemp(randTemp);
