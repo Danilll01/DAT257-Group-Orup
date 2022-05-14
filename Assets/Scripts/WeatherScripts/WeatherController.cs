@@ -10,7 +10,6 @@ public class WeatherController : MonoBehaviour
 
     // textfield showing current game mode
     [SerializeField] private TextMeshProUGUI gameMode;
-    [SerializeField] private TextMeshProUGUI temporaryTempText;
 
     // Different "scenes" for different weather
     [SerializeField] private GameObject sunnyObject;
@@ -27,6 +26,8 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private ThermometerControl thermometerControl;
 
     [SerializeField] private ValidateClothes validateClothes;
+
+    [SerializeField] private bool showDebugComponents = false;
 
     // A type for different weather types
     // "Any" is used for clothing that work in any weather
@@ -48,6 +49,12 @@ public class WeatherController : MonoBehaviour
     {
         // Hide all weather objects when starting the game
         HideAllWeather();
+        if (showDebugComponents)
+        {
+            gameMode.gameObject.SetActive(true);
+            currentTemperatureText.gameObject.SetActive(true);
+            currentWeatherText.gameObject.SetActive(true);
+        }
 
     }
 
@@ -139,22 +146,18 @@ public class WeatherController : MonoBehaviour
 
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 25°";
                 randTemp = 25;
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 15°";
                 randTemp = 15;
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 7°";
                 randTemp = 7;
                 break;
             case WeatherTypes.Snow:
                 snowyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: -5°";
                 randTemp = -5;
                 break;
             default:
