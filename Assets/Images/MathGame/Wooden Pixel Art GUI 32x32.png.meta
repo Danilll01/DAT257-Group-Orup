@@ -280,7 +280,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,6 +288,27 @@ TextureImporter:
       bones: []
       spriteID: dff4a2a9bed74a746b606148462b2e9f
       internalID: -1941006872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoundButton
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 512
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fb2fceaa6389214e8d490972d3a091d
+      internalID: 1184410378
       vertices: []
       indices: 
       edges: []
@@ -308,6 +329,7 @@ TextureImporter:
       Wooden Pixel Art GUI 32x32_1: -1720644012
       WoodHomeButtonUp: 810364438
       DarkPanel: -741674603
+      SoundButton: 1184410378
       Wooden Pixel Art GUI 32x32_2: -1941006872
       WoodenPanel: 143430562
       RedoButton: -1045857845
