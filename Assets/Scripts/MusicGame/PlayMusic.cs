@@ -74,14 +74,8 @@ public class PlayMusic : MonoBehaviour
             // Cancel the previous run of coroutines
             StopAllCoroutines();
 
-            // Resets marker
-            markerMoverScript.ResetPlayer();
-
-            // Sets all the variables to stop playing
-            PlayOrStopSetVars(false);
-
-            // Reset play button to original state
-            playToggle.isOn = false;
+            // Resets music player
+            ResetMusicPlayer();
         } else
         {
             // Resets marker
@@ -134,14 +128,8 @@ public class PlayMusic : MonoBehaviour
             }
         } while (isLooping);
 
-        // Resets marker
-        markerMoverScript.ResetPlayer();
-
-        // Stops music playing
-        PlayOrStopSetVars(false);
-
-        // Reset play button to original state
-        playToggle.isOn = false;
+        // Resets music player
+        ResetMusicPlayer();
     }
 
     // Play all notes in a beat and teleports location to supplied  
@@ -264,6 +252,18 @@ public class PlayMusic : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ResetMusicPlayer()
+    {
+        // Resets marker
+        markerMoverScript.ResetPlayer();
+
+        // Sets all the variables to stop playing
+        PlayOrStopSetVars(false);
+
+        // Reset play button to original state
+        playToggle.isOn = false;
     }
 
     public void ToggleLooping()
