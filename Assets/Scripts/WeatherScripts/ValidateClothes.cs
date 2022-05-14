@@ -32,7 +32,7 @@ public class ValidateClothes : MonoBehaviour
         doorPos.transform.parent.position = Camera.main.ScreenToWorldPoint(new Vector3((Camera.main.pixelWidth),0));
         Vector3 doorParent = doorPos.transform.parent.position;
         // Set a little offset on the door to bring it back in frame
-        doorPos.transform.parent.position = new Vector3(doorPos.position.x - 8f,doorPos.position.y+12.29f);
+        doorPos.transform.parent.position = new Vector3(doorPos.position.x - 8f,doorPos.position.y + 12.563f);
     }
 
     void Update()
