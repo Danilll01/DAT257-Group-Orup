@@ -296,10 +296,10 @@ TextureImporter:
       name: FrontArrowWooden
       rect:
         serializedVersion: 2
-        x: 320
-        y: 1087
-        width: 32
-        height: 33
+        x: 321
+        y: 1088
+        width: 30
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -317,10 +317,10 @@ TextureImporter:
       name: BackArrowWooden
       rect:
         serializedVersion: 2
-        x: 287
-        y: 1087
-        width: 33
-        height: 33
+        x: 289
+        y: 1088
+        width: 30
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
