@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class MainSoundPlayer : MonoBehaviour
 {
-
+    [SerializeField] private AudioClip description;
     [SerializeField] private AudioClip[] numbers;
     [SerializeField] private AudioClip plus;
     [SerializeField] private AudioClip minus;
@@ -54,6 +54,15 @@ public class MainSoundPlayer : MonoBehaviour
 
     }
 
+    // Will start the coroutine to play the game description
+    public void playGameDescription() {
+        if (!isPlaying) {
+            isPlaying = true;
+            StartCoroutine(playDescription());
+        }
+
+    }
+
     // Plays the exercise sound with the current information
     private IEnumerator playExercise() {
         audioSource.PlayOneShot(numbers[mathNumbers[0]]);
@@ -82,6 +91,13 @@ public class MainSoundPlayer : MonoBehaviour
     private IEnumerator playAnswer(int cardNumber) {
         audioSource.PlayOneShot(numbers[mathAnswers[cardNumber]]);
 
+        yield return new WaitForSeconds(equals.length);
+        isPlaying = false;
+    }
+
+    // Playes the game description sound
+    private IEnumerator playDescription() {
+        audioSource.PlayOneShot(description);
 
         yield return new WaitForSeconds(equals.length);
         isPlaying = false;
