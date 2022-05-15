@@ -12,6 +12,7 @@ public class MainSoundPlayer : MonoBehaviour
     [SerializeField] private AudioClip equals;
     private int[] mathNumbers;
     private string mathOperator;
+    private Dictionary<int, int> mathAnswers = new Dictionary<int,int>();
 
     private bool isPlaying = false;
 
@@ -29,12 +30,24 @@ public class MainSoundPlayer : MonoBehaviour
         mathOperator = mathOp;
     }
 
+    public void fillFromNewAnswer(int cardNumber, int answer) {
+        mathAnswers[cardNumber] = answer;
+    }
+
     public void playExerciseSound() {
         if (!isPlaying) {
             isPlaying = true;
             StartCoroutine(playExercise());
         }
         
+    }
+
+    public void playAnswerSound(int cardNumber) {
+        if (!isPlaying) {
+            isPlaying = true;
+            StartCoroutine(playAnswer(cardNumber));
+        }
+
     }
 
     private IEnumerator playExercise() {
@@ -57,5 +70,13 @@ public class MainSoundPlayer : MonoBehaviour
             "-" => minus,
             _ => null,
         };
+    }
+
+    private IEnumerator playAnswer(int cardNumber) {
+        audioSource.PlayOneShot(numbers[mathAnswers[cardNumber]]);
+
+
+        yield return new WaitForSeconds(equals.length);
+        isPlaying = false;
     }
 }
