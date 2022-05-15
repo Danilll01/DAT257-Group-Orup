@@ -28,7 +28,7 @@ public class FootSteps : MonoBehaviour
     public void Jump() {
         Debug.Log("Då");
         audioSource.Stop();
-        AudioClip clip = GetClipFromArray(walkClips);
+        AudioClip clip = GetClipFromArray(jumpClips);
         //audioSource.clip = clip;
         //audioSource.Play();
         //audioSource.SetScheduledEndTime(AudioSettings.dspTime + (timeUntillStop));
