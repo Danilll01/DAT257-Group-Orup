@@ -112,21 +112,30 @@ public class PlayMusic : MonoBehaviour
 
         do {
             bool wantToExit = false;
+            int markerPosOffset = 1;
 
             for (int i = 0; i < notes.Length; i++) {
-                int markerPos = i + 1;
+                int markerPos = i + markerPosOffset;
 
                 // Sets the location to the next note to be played
-                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
+                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length + markerPosOffset));
        
-                if (!lastRowContainNotes && ( i == (notes.Length/2) - 1 || i == notes.Length/2 ))
+                if (i == (notes.Length / 2) - 1 || i == (notes.Length / 2))
                 {
-                    markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
-                    wantToExit = true;
-                }
+                    if (!lastRowContainNotes)
+                    {
+                        markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
+                        wantToExit = true;
+                        
+                    } else
+                    {
+                        markerMoverScript.SetNewDestination(markerPos + 3);
+                    }
+                    markerPosOffset = 3;
+                } 
 
                 // If current beat is the second last position decide to loop or not
-                if (i >= notes.Length - 1)
+                if (markerPos >= notes.Length - 1)
                 {
                     markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
                 }
@@ -137,14 +146,8 @@ public class PlayMusic : MonoBehaviour
                 // Play all notes in a beat
                 PlayNotes(notes[i]);
 
-                if (lastRowContainNotes && !(i == (notes.Length / 2) - 2 || i == (notes.Length / 2) - 1))
-                {
-                    
-                    yield return new WaitForSeconds(time);
-                } else
-                {
-                    Debug.Log("Skipping time");
-                }
+                yield return new WaitForSeconds(time);
+                
 
                 if (wantToExit) break;
             }
