@@ -239,7 +239,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 3, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -322,7 +322,7 @@ TextureImporter:
         width: 33
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -330,6 +330,27 @@ TextureImporter:
       bones: []
       spriteID: 74ce7393b916ee94a9e8226358107888
       internalID: -1907079465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenBarWithoutShadow
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 127
+        width: 92
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49c78a4c81710084595b8f8f677aeb29
+      internalID: 1664334547
       vertices: []
       indices: 
       edges: []
@@ -354,6 +375,7 @@ TextureImporter:
       DarkPanel: -741674603
       Wooden Pixel Art GUI 32x32_2: -1941006872
       WoodenPanel: 143430562
+      WoodenBarWithoutShadow: 1664334547
       RedoButton: -1045857845
       WoodenBar: -1356601191
   spritePackingTag: 
