@@ -1475,6 +1475,7 @@ MonoBehaviour:
   dragScript: {fileID: 1151940279}
   bubbleScript: {fileID: 321803080}
   endMenu: {fileID: 153989794}
+  startMenuButton: {fileID: 1989570180}
   speed: 5
 --- !u!4 &189363016
 Transform:
@@ -2916,7 +2917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speechText: {fileID: 148074402}
-  delay: 0.08
+  delay: 0.06
   message: "Ojd\xE5 det blev nog lite tokigt. F\xF6rs\xF6k igen!"
   speech: {fileID: 321803083}
   validateButton: {fileID: 1790473615}
@@ -19072,6 +19073,30 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 815841910}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1989570180}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 153989794}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
