@@ -23,10 +23,6 @@ public class PlayMusic : MonoBehaviour
 
     private GameObject[] snapPoints;
 
-    // To be implemented later when we want to reset marker after all notes are played
-    private int totalNrNotes;
-    private int playedNotes = 0;
-
     // Is the song playing
     private bool isPlaying = false;
 
@@ -100,10 +96,6 @@ public class PlayMusic : MonoBehaviour
     {
         bool lastRowContainNotes = ArrayContainNotes(notes, notes.Length/2);
 
-        
-
-        Debug.Log("Exit early: " + lastRowContainNotes);
-
         // Jump to the first node
         markerMoverScript.SetNewDestination(2);
 
@@ -120,7 +112,7 @@ public class PlayMusic : MonoBehaviour
                 // Sets the location to the next note to be played
                 markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length + markerPosOffset));
        
-                if (i == (notes.Length / 2) - 1 || i == (notes.Length / 2))
+                if (i == (notes.Length / 2) - 1)
                 {
                     if (!lastRowContainNotes)
                     {
@@ -129,13 +121,14 @@ public class PlayMusic : MonoBehaviour
                         
                     } else
                     {
-                        markerMoverScript.SetNewDestination(markerPos + 3);
+                        markerPosOffset = 3;
+                        markerMoverScript.SetNewDestination(markerPos + markerPosOffset);
                     }
-                    markerPosOffset = 3;
+                    
                 } 
 
                 // If current beat is the second last position decide to loop or not
-                if (markerPos >= notes.Length - 1)
+                if (i >= notes.Length - 1)
                 {
                     markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
                 }
@@ -147,7 +140,6 @@ public class PlayMusic : MonoBehaviour
                 PlayNotes(notes[i]);
 
                 yield return new WaitForSeconds(time);
-                
 
                 if (wantToExit) break;
             }
