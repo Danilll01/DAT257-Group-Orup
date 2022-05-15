@@ -239,7 +239,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 3, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -293,22 +293,64 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RoundBackground
+      name: FrontArrowWooden
       rect:
         serializedVersion: 2
-        x: 385
-        y: 32
+        x: 321
+        y: 1088
         width: 30
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 031ad748cd5bc3941842b390cff7eafd
-      internalID: -362815131
+      spriteID: 6d75b2b3bcab0bb47b1ce7abc52d9108
+      internalID: 1297301938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BackArrowWooden
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1088
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ce7393b916ee94a9e8226358107888
+      internalID: -1907079465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WoodenBarWithoutShadow
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 127
+        width: 92
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 1, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49c78a4c81710084595b8f8f677aeb29
+      internalID: 1664334547
       vertices: []
       indices: 
       edges: []
@@ -325,13 +367,15 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Wooden Pixel Art GUI 32x32_0: -569827614
+      FrontArrowWooden: 1297301938
       WoodHomeButtonDown: -908023036
       Wooden Pixel Art GUI 32x32_1: -1720644012
-      RoundBackground: -362815131
       WoodHomeButtonUp: 810364438
+      BackArrowWooden: -1907079465
       DarkPanel: -741674603
       Wooden Pixel Art GUI 32x32_2: -1941006872
       WoodenPanel: 143430562
+      WoodenBarWithoutShadow: 1664334547
       RedoButton: -1045857845
       WoodenBar: -1356601191
   spritePackingTag: 
