@@ -231,6 +231,15 @@ public class PlayMusic : MonoBehaviour
         }
     }
 
+    private bool ArrayContainNotes(List<GameObject>[] notes, int startIndex)
+    {
+        for (int i = startIndex; i < notes.Length; i++)
+        {
+            if (notes[i].Count > 0) return true;
+        }
+        return false;
+    }
+
     // Deletes all placed notes 
     public void DeleteAllNotes()
     {
