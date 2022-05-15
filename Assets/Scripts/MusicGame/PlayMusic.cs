@@ -98,6 +98,12 @@ public class PlayMusic : MonoBehaviour
     // Waits for a specified amount of time before playing the list of notes (the beat)
     private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
+        bool lastRowContainNotes = ArrayContainNotes(notes, notes.Length/2);
+
+        
+
+        Debug.Log("Exit early: " + lastRowContainNotes);
+
         // Jump to the first node
         markerMoverScript.SetNewDestination(2);
 
@@ -105,12 +111,20 @@ public class PlayMusic : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         do {
+            bool wantToExit = false;
+
             for (int i = 0; i < notes.Length; i++) {
                 int markerPos = i + 1;
 
                 // Sets the location to the next note to be played
                 markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
        
+                if (!lastRowContainNotes && ( i == (notes.Length/2) - 1 || i == notes.Length/2 ))
+                {
+                    markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
+                    wantToExit = true;
+                }
+
                 // If current beat is the second last position decide to loop or not
                 if (i >= notes.Length - 1)
                 {
@@ -123,8 +137,16 @@ public class PlayMusic : MonoBehaviour
                 // Play all notes in a beat
                 PlayNotes(notes[i]);
 
-                yield return new WaitForSeconds(time);
+                if (lastRowContainNotes && !(i == (notes.Length / 2) - 2 || i == (notes.Length / 2) - 1))
+                {
+                    
+                    yield return new WaitForSeconds(time);
+                } else
+                {
+                    Debug.Log("Skipping time");
+                }
 
+                if (wantToExit) break;
             }
         } while (isLooping);
 
