@@ -15,6 +15,8 @@ public class ValidateClothes : MonoBehaviour
     [SerializeField] private DragAndDropClothing dragScript;
     [SerializeField] private speechBubble bubbleScript;
     [SerializeField] private GameObject endMenu;
+    [SerializeField] private GameObject startMenuButton;
+
     private bool walkOut;
     [SerializeField] private float speed = 10f;
 
@@ -41,6 +43,7 @@ public class ValidateClothes : MonoBehaviour
         if (walkOut)
         {
             float step = speed * Time.deltaTime;
+            startMenuButton.SetActive(false);
 
             // move fox towards the door location
             foxPos.position = Vector2.MoveTowards(foxPos.position, doorPos.position, step);
@@ -178,6 +181,12 @@ public class ValidateClothes : MonoBehaviour
         // Reset transform and position of fox
         foxPos.transform.position = foxOriginPos;
         foxPos.rotation = Quaternion.identity;
+
+        // Reset the fox walk out  and door animation
+        foxAnim.ResetTrigger("stopWalking");
+        doorAnim.ResetTrigger("closeDoor");
+
+
         foreach (GameObject snapPoint in snapPoints)
         {
 

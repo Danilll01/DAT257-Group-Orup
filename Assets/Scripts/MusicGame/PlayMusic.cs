@@ -17,10 +17,9 @@ public class PlayMusic : MonoBehaviour
 
     [SerializeField] private float secondsBetweenBeats = 1;
 
-    // Play button text
-    [SerializeField] private TextMeshProUGUI playButtonText;
-
     [SerializeField] private Button restartButton;
+
+    [SerializeField] private Toggle playToggle;
 
     private GameObject[] snapPoints;
 
@@ -45,9 +44,6 @@ public class PlayMusic : MonoBehaviour
         // Get marker mover script
         markerMoverScript = GetComponent<MarkerMover>();
 
-        // Update button text
-        playButtonText.text = "Play";
-
         // Sync time between beats to time between jumps
         markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.03f);
     }
@@ -70,16 +66,16 @@ public class PlayMusic : MonoBehaviour
     // Starts to play music
     public void PlayMusicLoop()
     {
+        // Prevents unwanted call when isOn is manually changed when the music stops
+        if (!playToggle.isOn && !isPlaying) return;
+
         if (isPlaying)
         {
             // Cancel the previous run of coroutines
             StopAllCoroutines();
 
-            // Resets marker
-            markerMoverScript.ResetPlayer();
-
-            // Sets all the variables to stop playing
-            PlayOrStopSetVars(false);
+            // Resets music player
+            ResetMusicPlayer();
         } else
         {
             // Resets marker
@@ -132,11 +128,8 @@ public class PlayMusic : MonoBehaviour
             }
         } while (isLooping);
 
-        // Resets marker
-        markerMoverScript.ResetPlayer();
-
-        // Stops music playing
-        PlayOrStopSetVars(false);
+        // Resets music player
+        ResetMusicPlayer();
     }
 
     // Play all notes in a beat and teleports location to supplied  
@@ -206,8 +199,6 @@ public class PlayMusic : MonoBehaviour
     // Sets button text, isPlaying and locks/unlocks all nodes based if the loop should play or stop
     private void PlayOrStopSetVars(bool play)
     {
-        // Update button text and isPlaying
-        playButtonText.text = play ? "Stop" : "Play";
         isPlaying = play;
 
         // Lock all notes
@@ -261,6 +252,18 @@ public class PlayMusic : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ResetMusicPlayer()
+    {
+        // Resets marker
+        markerMoverScript.ResetPlayer();
+
+        // Sets all the variables to stop playing
+        PlayOrStopSetVars(false);
+
+        // Reset play button to original state
+        playToggle.isOn = false;
     }
 
     public void ToggleLooping()
