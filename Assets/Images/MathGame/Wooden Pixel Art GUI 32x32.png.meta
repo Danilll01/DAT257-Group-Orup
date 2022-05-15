@@ -280,7 +280,7 @@ TextureImporter:
         width: 28
         height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,6 +288,27 @@ TextureImporter:
       bones: []
       spriteID: dff4a2a9bed74a746b606148462b2e9f
       internalID: -1941006872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundBackground
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 32
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031ad748cd5bc3941842b390cff7eafd
+      internalID: -362815131
       vertices: []
       indices: 
       edges: []
@@ -306,6 +327,7 @@ TextureImporter:
       Wooden Pixel Art GUI 32x32_0: -569827614
       WoodHomeButtonDown: -908023036
       Wooden Pixel Art GUI 32x32_1: -1720644012
+      RoundBackground: -362815131
       WoodHomeButtonUp: 810364438
       DarkPanel: -741674603
       Wooden Pixel Art GUI 32x32_2: -1941006872
