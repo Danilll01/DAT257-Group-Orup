@@ -14,7 +14,7 @@ jobs:
       - name: run number with offset
         env:
           NUM: ${{ github.run_number }}
-        run: echo "GITHUB_RUN_NUMBER_WITH_OFFSET=$(($NUM - 88))" >> $GITHUB_ENV
+        run: echo "GITHUB_RUN_NUMBER_WITH_OFFSET=$(($NUM - 119))" >> $GITHUB_ENV
       - run: echo $GITHUB_RUN_NUMBER_WITH_OFFSET
     
       - name: Get files
@@ -28,7 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
-          release_name: Release V4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
+          release_name: Release V5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
           
       - name: Zipping win
         uses: montudor/action-zip@v1
@@ -56,7 +56,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/StandaloneWindows64.zip
-          asset_name: Win64-v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
+          asset_name: Win64-v5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
           asset_content_type: application/zip
       - name: Upload asset iOS
         id: upload-release-asset-iOS 
@@ -66,7 +66,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/iOS.zip
-          asset_name: iOS-v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
+          asset_name: iOS-v5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
           asset_content_type: application/zip
       - name: Upload asset Android
         id: upload-release-asset-android 
@@ -76,7 +76,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/Android.zip
-          asset_name: Android-v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
+          asset_name: Android-v5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
           asset_content_type: application/zip
       - name: Upload asset macOS
         id: upload-release-asset-macOS
@@ -86,7 +86,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: build/StandaloneOSX.zip
-          asset_name: macOS-v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
+          asset_name: macOS-v5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}.zip
           asset_content_type: application/zip
 
   buildForAllSupportedPlatforms:
