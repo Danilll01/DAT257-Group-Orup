@@ -22,6 +22,7 @@ namespace Pathfinding {
 		private bool canClick = true;
 		private bool isActive = false;
 		private Vector3 standardScale;
+		[SerializeField] private bool canClickToSetPosition = false;
 		[SerializeField] private Vector2 minMaxXpos;
 		[SerializeField] private Vector2 minMaxYpos;
 		[SerializeField] private Transform playerSprite;
@@ -51,7 +52,7 @@ namespace Pathfinding {
 		/// <summary>Updates the AI's destination every frame</summary>
 		void Update() {
 
-			if (Input.GetMouseButtonDown(0) && canClick) { 
+			if (canClickToSetPosition && Input.GetMouseButtonDown(0) && canClick) { 
 				target.position = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 				// Clamps the target position to be inside the range where the player can move
@@ -144,11 +145,7 @@ namespace Pathfinding {
 			}
 
 			// Small delay before the new exercice is shown
-			float timer = 0;
-            while (timer < 0.2f) {
-				timer += Time.deltaTime;
-				yield return null;
-			}
+			yield return new WaitForSeconds(0.3f);
 
 			callToMethod();
 

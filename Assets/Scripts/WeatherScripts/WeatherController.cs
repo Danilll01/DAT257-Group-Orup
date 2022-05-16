@@ -10,7 +10,6 @@ public class WeatherController : MonoBehaviour
 
     // textfield showing current game mode
     [SerializeField] private TextMeshProUGUI gameMode;
-    [SerializeField] private TextMeshProUGUI temporaryTempText;
 
     // Different "scenes" for different weather
     [SerializeField] private GameObject sunnyObject;
@@ -28,9 +27,19 @@ public class WeatherController : MonoBehaviour
 
     [SerializeField] private ValidateClothes validateClothes;
 
+    [SerializeField] private bool showDebugComponents = false;
+
     // A type for different weather types
     // "Any" is used for clothing that work in any weather
-    public enum WeatherTypes {Sun, Cloud, Rain, Snow, Any};
+
+    [System.Flags]
+    public enum WeatherTypes : int {
+        None    = 0x00,
+        Sun     = 0x01, 
+        Cloud   = 0x02, 
+        Rain    = 0x04, 
+        Snow    = 0x08
+    };
 
     // An enum for wind speed. (Not used now)
     private enum WindSpeed {None, Slow, Fast};
@@ -40,6 +49,12 @@ public class WeatherController : MonoBehaviour
     {
         // Hide all weather objects when starting the game
         HideAllWeather();
+        if (showDebugComponents)
+        {
+            gameMode.gameObject.SetActive(true);
+            currentTemperatureText.gameObject.SetActive(true);
+            currentWeatherText.gameObject.SetActive(true);
+        }
 
     }
 
@@ -77,10 +92,10 @@ public class WeatherController : MonoBehaviour
         // Generates a random weather type
         System.Random random = new System.Random();
         Array values = Enum.GetValues(typeof(WeatherTypes));
-        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(values.Length - 1));
+        WeatherTypes randomWeather = (WeatherTypes)values.GetValue(random.Next(1,values.Length));
 
         // Sets weather to the randomly generated weather
-        SetWeather(randomWeather, WindSpeed.None);
+        SetWeather(randomWeather, WindSpeed.None, false, 0);
 
     }
 
@@ -95,20 +110,20 @@ public class WeatherController : MonoBehaviour
         else{
             switch (weather){
             case "Clear":
-                SetWeather(WeatherTypes.Sun, WindSpeed.None);
+                SetWeather(WeatherTypes.Sun, WindSpeed.None, true, temp);
                 break;
             case "Rain": case "ThunderStorm": case "Drizzle":
-                SetWeather(WeatherTypes.Rain, WindSpeed.None);
+                SetWeather(WeatherTypes.Rain, WindSpeed.None, true, temp);
                 break;
             case "Snow":
-                SetWeather(WeatherTypes.Snow, WindSpeed.None);
+                SetWeather(WeatherTypes.Snow, WindSpeed.None, true, temp);
                 break;
             case "Clouds":
-                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None, true, temp);
                 break;
             
             default:
-                SetWeather(WeatherTypes.Cloud, WindSpeed.None);
+                SetWeather(WeatherTypes.Cloud, WindSpeed.None, true, temp);
                 break;
             }
 
@@ -120,7 +135,7 @@ public class WeatherController : MonoBehaviour
     }
     
     // Switches to the correct weather object based on inputted weather.
-    private void SetWeather(WeatherTypes weather, WindSpeed windSpeed)
+    private void SetWeather(WeatherTypes weather, WindSpeed windSpeed, bool useAPITemp, float apiTemp)
     {
         float randTemp = 0;
         HideAllWeather();
@@ -131,27 +146,32 @@ public class WeatherController : MonoBehaviour
 
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 25°";
                 randTemp = 25;
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 15°";
                 randTemp = 15;
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: 7°";
                 randTemp = 7;
                 break;
             case WeatherTypes.Snow:
                 snowyObject.SetActive(true);
-                temporaryTempText.text = "Temperature: -5°";
                 randTemp = -5;
                 break;
             default:
                 Debug.Log("No work");
                 break;
+        }
+
+        if (useAPITemp)
+        {
+            thermometerControl.setTemp(apiTemp);
+        }
+        else
+        {
+            thermometerControl.setTemp(randTemp);
         }
         
         thermometerControl.setTemp(randTemp);

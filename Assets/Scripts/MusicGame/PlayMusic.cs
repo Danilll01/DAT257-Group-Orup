@@ -17,10 +17,9 @@ public class PlayMusic : MonoBehaviour
 
     [SerializeField] private float secondsBetweenBeats = 1;
 
-    // Play button text
-    [SerializeField] private TextMeshProUGUI playButtonText;
-
     [SerializeField] private Button restartButton;
+
+    [SerializeField] private Toggle playToggle;
 
     private GameObject[] snapPoints;
 
@@ -45,11 +44,8 @@ public class PlayMusic : MonoBehaviour
         // Get marker mover script
         markerMoverScript = GetComponent<MarkerMover>();
 
-        // Update button text
-        playButtonText.text = "Play";
-
         // Sync time between beats to time between jumps
-        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.01f);
+        markerMoverScript.ChangeJumpTime(secondsBetweenBeats - 0.03f);
     }
 
     // Initializes snap points array
@@ -70,18 +66,21 @@ public class PlayMusic : MonoBehaviour
     // Starts to play music
     public void PlayMusicLoop()
     {
+        // Prevents unwanted call when isOn is manually changed when the music stops
+        if (!playToggle.isOn && !isPlaying) return;
+
         if (isPlaying)
         {
             // Cancel the previous run of coroutines
             StopAllCoroutines();
 
-            // Resets marker position
-            markerMoverScript.ResetPlayer();
-
-            // Sets all the variables to stop playing
-            PlayOrStopSetVars(false);
+            // Resets music player
+            ResetMusicPlayer();
         } else
         {
+            // Resets marker
+            markerMoverScript.ResetPlayer();
+
             // Get note data
             List<GameObject>[] noteSequence = ParseNoteData();
 
@@ -94,38 +93,43 @@ public class PlayMusic : MonoBehaviour
             // Sets all the variables to start playing
             PlayOrStopSetVars(true);
         }
-
-        
     }
 
     // Waits for a specified amount of time before playing the list of notes (the beat)
     private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
-        for (int i = 0; i < notes.Length-1; i++)
-        {
-            yield return new WaitForSeconds(time);
-            
-            // Sets the location to the next note to be played
-            markerMoverScript.SetNewDestination((i+1) % (notes.Length - 1));
+        // Jump to the first node
+        markerMoverScript.SetNewDestination(2);
 
-            // Teleport the marker to the current note (if the jump hasn't finished)
-            markerMoverScript.TeleportToDestination(i);
+        // Wait for the marker to reach the first playable node
+        yield return new WaitForSeconds(time);
 
-            // Play all notes in a beat
-            PlayNotes(notes[i]);
-        }
-        
+        do {
+            for (int i = 0; i < notes.Length; i++) {
+                int markerPos = i + 1;
 
-        if (isLooping)
-        {
-            yield return new WaitForSeconds(1);
-            StartCoroutine(PlayNoteAfterTime(time, notes));
-        } else
-        {
-            // Stops music playing
-            PlayOrStopSetVars(false);
-        }
-        
+                // Sets the location to the next note to be played
+                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
+       
+                // If current beat is the second last position decide to loop or not
+                if (i >= notes.Length - 1)
+                {
+                    markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
+                }
+
+                // Teleport the marker to the current note (if the jump hasn't finished)
+                markerMoverScript.TeleportToDestination(markerPos);
+
+                // Play all notes in a beat
+                PlayNotes(notes[i]);
+
+                yield return new WaitForSeconds(time);
+
+            }
+        } while (isLooping);
+
+        // Resets music player
+        ResetMusicPlayer();
     }
 
     // Play all notes in a beat and teleports location to supplied  
@@ -195,8 +199,6 @@ public class PlayMusic : MonoBehaviour
     // Sets button text, isPlaying and locks/unlocks all nodes based if the loop should play or stop
     private void PlayOrStopSetVars(bool play)
     {
-        // Update button text and isPlaying
-        playButtonText.text = play ? "Stop" : "Play";
         isPlaying = play;
 
         // Lock all notes
@@ -250,6 +252,18 @@ public class PlayMusic : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ResetMusicPlayer()
+    {
+        // Resets marker
+        markerMoverScript.ResetPlayer();
+
+        // Sets all the variables to stop playing
+        PlayOrStopSetVars(false);
+
+        // Reset play button to original state
+        playToggle.isOn = false;
     }
 
     public void ToggleLooping()

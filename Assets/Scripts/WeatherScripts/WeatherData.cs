@@ -17,13 +17,11 @@ public class WeatherData : MonoBehaviour {
 	private float longitude;
 	private bool locationInitialized;
 
-	[SerializeField]
-	private GPSLocation getLocation;
-
-	// Called when GPSLocation has found users location
-	public void Begin() {
-		latitude = getLocation.latitudeValue;
-		longitude = getLocation.longitudeValue;
+	// Fetches location data
+	void Start () {
+		latitude = GPSLocation.getLatitudeValue(); // will be gothenburg if service did not connect 
+		longitude = GPSLocation.getLongitudeValue();
+		Debug.Log("Weather data at: Latitude: " + latitude + " longitude: " + longitude);
 		locationInitialized = true;
 		timer = 0;
 	}

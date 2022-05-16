@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace Pathfinding {
 	/// <summary>
@@ -19,9 +20,11 @@ namespace Pathfinding {
 		public Transform target;
 		public IAstarAI ai;
 
+		[SerializeField] private bool canClickToSetPosition = false;
 		[SerializeField] private JumpNodeScript[] jumpNodes;
 		[SerializeField] private PlayerAnimatorController playerAnimator;
 		private Vector3 spritePos;
+		private bool isWaitingOnPortalReached = false;
 
 		void OnEnable() {
 			ai = GetComponent<IAstarAI>();
@@ -44,7 +47,7 @@ namespace Pathfinding {
 		void Update() {
 
 			// Sets target after mouse click
-			if (Input.GetMouseButtonDown(0)) {
+			if (canClickToSetPosition && Input.GetMouseButtonDown(0)) {
 				target.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 				if (target != null && ai != null) ai.destination = target.position;
 			}
@@ -95,6 +98,66 @@ namespace Pathfinding {
 		public void setNewPath(Vector2 newPosVector) {
 			target.position = newPosVector;
 			if (target != null && ai != null) ai.destination = target.position;
+		}
+
+
+		// Sets new position to go to and wait for end of destination to do the given Action (Often swich scenes)
+		public void MoveTowardsPortal(Vector2 newPosVector, Action callToMethod) {
+
+			target.position = newPosVector;
+			if (target != null && ai != null) {
+				ai.destination = target.position;
+
+				// Stops all coroutines (to reset them) if a new call comes in
+                if (isWaitingOnPortalReached) {
+					StopAllCoroutines();
+                }
+
+				// Starts waiting for when agent have reached it's destination
+				isWaitingOnPortalReached = true;
+				StartCoroutine(waitUntillPortalReached(callToMethod));
+			}
+		}
+
+		// Calls the scene switcher method when the destination of the path is reached
+		private IEnumerator waitUntillPortalReached(Action callToMethod) {
+
+			// Wait untill the ai has reached portal
+			while (!ai.reachedDestination) {
+				yield return null;
+			}
+
+			playerAnimator.EnterPortal();
+
+			// Small delay before switching
+			yield return new WaitForSeconds(0.3f);
+
+			callToMethod();
+
+			isWaitingOnPortalReached = false;
+		}
+
+		// Calls a provided method when the ai reaches it's destination
+		public void CallMethodOnDestinationReached(Action method)
+        {
+			// Stops all coroutines (to reset them) if a new call comes in
+			StopAllCoroutines();
+
+			StartCoroutine(CallMethodWhenDestinationReached(method));
+		}
+
+		private IEnumerator CallMethodWhenDestinationReached(Action method)
+		{
+			// Wait untill the ai has reached the destination
+			while (!ai.reachedDestination)
+			{
+				yield return null;
+			}
+
+			// Delay the method to ensure the ai has reached the destination
+			yield return new WaitForSeconds(0.1f);
+			
+			method();
 		}
 	}
 }
