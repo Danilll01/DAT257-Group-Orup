@@ -23,10 +23,6 @@ public class PlayMusic : MonoBehaviour
 
     private GameObject[] snapPoints;
 
-    // To be implemented later when we want to reset marker after all notes are played
-    private int totalNrNotes;
-    private int playedNotes = 0;
-
     // Is the song playing
     private bool isPlaying = false;
 
@@ -98,6 +94,8 @@ public class PlayMusic : MonoBehaviour
     // Waits for a specified amount of time before playing the list of notes (the beat)
     private IEnumerator PlayNoteAfterTime(float time, List<GameObject>[] notes)
     {
+        bool lastRowContainNotes = ArrayContainNotes(notes, notes.Length/2);
+
         // Jump to the first node
         markerMoverScript.SetNewDestination(2);
 
@@ -105,12 +103,36 @@ public class PlayMusic : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         do {
+            // Offset used to get the correct jump node. (Some beats has multiple jump nodes)
+            int markerPosOffset = 1;
+
             for (int i = 0; i < notes.Length; i++) {
-                int markerPos = i + 1;
+                // Flag used to exit for loop when early exiting
+                bool wantToExit = false;
+
+                int markerPos = i + markerPosOffset;
 
                 // Sets the location to the next note to be played
-                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length));
+                markerMoverScript.SetNewDestination((markerPos + 1) % (notes.Length + markerPosOffset));
        
+                // If current beat is the second last beat on the first row
+                if (i == (notes.Length / 2) - 1)
+                {
+                    // If the last row is empty jump to the beginning or the loop location
+                    if (!lastRowContainNotes)
+                    {
+                        markerMoverScript.SetNewDestination(isLooping ? 1 : 0);
+
+                        // Set flag to break for loop before next execution
+                        wantToExit = true;
+                    } else
+                    {
+                        // Increase offset to account for duplicate jump nodes on the same position
+                        markerPosOffset = 3;
+                        markerMoverScript.SetNewDestination(markerPos + markerPosOffset);
+                    }
+                } 
+
                 // If current beat is the second last position decide to loop or not
                 if (i >= notes.Length - 1)
                 {
@@ -125,6 +147,8 @@ public class PlayMusic : MonoBehaviour
 
                 yield return new WaitForSeconds(time);
 
+                // Break for loop if the second row of notes is empty
+                if (wantToExit) break;
             }
         } while (isLooping);
 
@@ -144,9 +168,6 @@ public class PlayMusic : MonoBehaviour
 
             // Play the sound of the note
             note.GetComponentInChildren<AudioSource>().Play();
-
-            // Increment counter
-            playedNotes++;
         }
     }
 
@@ -178,9 +199,6 @@ public class PlayMusic : MonoBehaviour
             
             // Add the snap point to the current beat in the note sequence
             noteSequence[4*(currBarPos - 1) + (currNotePos - 1)].Add(snapPoint);
-
-            // Increment max number of notes
-            totalNrNotes++;
         }
         return noteSequence;
     }
@@ -229,6 +247,17 @@ public class PlayMusic : MonoBehaviour
                 note.LockNode();
             }
         }
+    }
+
+    // If the lists inside of the array is empty from start index to the end return false otherwise return true
+    private bool ArrayContainNotes(List<GameObject>[] notes, int startIndex)
+    {
+        for (int i = startIndex; i < notes.Length; i++)
+        {
+            // If we found a list with 1 or more items return true
+            if (notes[i].Count > 0) return true;
+        }
+        return false;
     }
 
     // Deletes all placed notes 
