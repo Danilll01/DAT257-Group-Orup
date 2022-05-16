@@ -3871,7 +3871,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2037152811}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4135,12 +4135,12 @@ RectTransform:
   m_LocalScale: {x: 1.3751227, y: 1.3751227, z: 0.99682593}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2037152811}
-  m_RootOrder: 1
+  m_Father: {fileID: 1210151435}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.76, y: 2.8}
+  m_AnchoredPosition: {x: -6.53, y: 2.44}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &406368946
@@ -4209,7 +4209,7 @@ MonoBehaviour:
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 12
   inventoryScript: {fileID: 0}
-  chosenClothing: 1
+  chosenClothing: 2
 --- !u!222 &406368949
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11391,6 +11391,7 @@ Transform:
   - {fileID: 779551268}
   - {fileID: 2090973206}
   - {fileID: 1013088288}
+  - {fileID: 406368945}
   - {fileID: 1904257358}
   m_Father: {fileID: 810682327}
   m_RootOrder: 1
@@ -16101,7 +16102,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2037152811}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -16631,7 +16632,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1210151435}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17682,7 +17683,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1151940283}
-  - {fileID: 406368945}
   - {fileID: 405720732}
   - {fileID: 1880700052}
   m_Father: {fileID: 810682327}
