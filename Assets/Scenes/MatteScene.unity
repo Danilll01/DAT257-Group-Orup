@@ -104817,6 +104817,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeUntillNewQuestion: 4
+  soundPlayer: {fileID: 2027823347}
+  audioButtons:
+  - {fileID: 304070044}
+  - {fileID: 1462737962}
+  - {fileID: 1605815687}
+  - {fileID: 1359213329}
+  - {fileID: 1435981551}
 --- !u!1 &1617755712
 GameObject:
   m_ObjectHideFlags: 0

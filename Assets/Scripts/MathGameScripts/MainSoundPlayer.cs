@@ -60,7 +60,11 @@ public class MainSoundPlayer : MonoBehaviour
             isPlaying = true;
             StartCoroutine(playDescription());
         }
+    }
 
+    // Will start the coroutine to play the game description
+    public void playWholeExercise(int cardNumber) {
+        StartCoroutine(playFinal(cardNumber));
     }
 
     // Plays the exercise sound with the current information
@@ -101,5 +105,16 @@ public class MainSoundPlayer : MonoBehaviour
 
         yield return new WaitForSeconds(equals.length);
         isPlaying = false;
+    }
+
+    // Playes the whole exercice sound
+    private IEnumerator playFinal(int cardNumber) {
+        playExerciseSound();
+
+        while (isPlaying) {
+            yield return null;
+        }
+
+        playAnswerSound(cardNumber);
     }
 }
