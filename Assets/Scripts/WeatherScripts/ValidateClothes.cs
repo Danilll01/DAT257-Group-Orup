@@ -136,13 +136,15 @@ public class ValidateClothes : MonoBehaviour
             // If one clothing was not valid
             if(validClothing){
                 Debug.Log("Valid");
-                disableClothing(allScripts);
+                StartCoroutine(disableClothings(allScripts));
+                //disableClothing(allScripts);
+                bubbleScript.showBubble("Härligt, nu kan jag gå ut och leka! ", 1);
 
             }
             else{
                 Debug.Log("Invalid: " + message);
                 // Activate speech bubble
-                bubbleScript.showBubble();
+                bubbleScript.showBubble("Ojdå det blev nog lite tokigt.Försök igen!", 0);
             }
         }
         else{
@@ -159,6 +161,27 @@ public class ValidateClothes : MonoBehaviour
         weatherSet = true;
     }
 
+    IEnumerator disableClothings(List<DragAndDropClothing> allScripts)
+    {
+        // Disable touch when fox is going to walk out
+        dragScript.setEnding(true);
+
+        yield return new WaitForSeconds(2.5f);
+
+        // Start door opening animation
+        doorAnim.SetTrigger("openDoor");
+        // Set rigidbody for clothing objects on character to static
+        // this will allow the clothes to follow the character when walking out
+        foreach (var script in allScripts)
+        {
+            script.ridgidBody.bodyType = RigidbodyType2D.Static;
+        }
+        // Start fox walking animation
+
+        foxAnim.SetTrigger("walkOut");
+        walkOut = true;
+    }
+
     private void disableClothing(List<DragAndDropClothing> allScripts)
     {
         // Disable touch when fox is going to walk out
@@ -172,6 +195,7 @@ public class ValidateClothes : MonoBehaviour
             script.ridgidBody.bodyType = RigidbodyType2D.Static;
         }
         // Start fox walking animation
+        
         foxAnim.SetTrigger("walkOut");
         walkOut = true;
     }
