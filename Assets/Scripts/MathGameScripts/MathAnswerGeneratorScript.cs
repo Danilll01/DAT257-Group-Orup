@@ -7,8 +7,6 @@ using TMPro;
 public class MathAnswerGeneratorScript : MonoBehaviour {
     [SerializeField] private MathQuestionGenerator questionGenerator;
     [SerializeField] private CanvasGroup canvas;
-    [SerializeField] private MainSoundPlayer soundPlayer;
-
     [SerializeField] private TextMeshProUGUI[] answerTxts;
 
     [SerializeField] private GameObject[] cardHolders;
@@ -68,12 +66,11 @@ public class MathAnswerGeneratorScript : MonoBehaviour {
         int answerCounter = 0; // Help count what answer to set
 
         for (int i = 0; i < cardHolders.Length; i++) {
-            if (cardHolders[i].activeSelf && answerCounter < cardHolders.Length - 1) { // Skips the inactive card
+            if (cardHolders[i].activeSelf && answerCounter < 3) { // Skips the inactive card
                 int currentWriting = answers[answerCounter];
                 answerTxts[i].text = "= " + currentWriting;
 
                 fillImageCard[i].GetComponent<FillCardImages>().FillCard(currentWriting, fruitImage);
-                soundPlayer.fillFromNewAnswer(i + 1, currentWriting); // Makes the sound player have the correct information for this card
                 
                 answerCounter++;
 

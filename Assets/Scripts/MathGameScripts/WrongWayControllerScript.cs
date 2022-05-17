@@ -91,9 +91,6 @@ public class WrongWayControllerScript : MonoBehaviour {
             yield return null;
         }
 
-        // Stops animation from playing
-        playerAnimator.UpdatePlayerAnimation(Vector2.zero);
-
         // Resets itself
         haveStartedAnimation = false;
     }

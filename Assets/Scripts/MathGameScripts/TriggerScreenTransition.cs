@@ -53,17 +53,13 @@ public class TriggerScreenTransition : MonoBehaviour
                     // Swtich to the right camera
                     rightAnswerCam.GetComponent<Camera>().enabled = true;
                     mainCam.enabled = false;
-
+                    
                     // Play right sound and make the canvas ready to show the right answer
-                    AudioSource winSound = transitionScreen.GetComponents<AudioSource>()[0];
-                    winSound.Play(); 
+                    transitionScreen.GetComponents<AudioSource>()[0].Play(); 
                     mathAnswerGenerator.MakeCorrectAnswerGreen();
 
-                    // Make audioButtons be removed
-                    rightAnswerCam.GetComponent<RightAnswerScreen>().disableAudioButtons();
-
                     // Call method to beging counting to move away from the black right answer screen
-                    rightAnswerCam.GetComponent<RightAnswerScreen>().StartGoToNormalScreen(winSound.clip.length, whatCollider,
+                    rightAnswerCam.GetComponent<RightAnswerScreen>().StartGoToNormalScreen(
                         () => {
                             // Method to call when it should go back to the main math screen
                             switchFromRightScreen();
@@ -95,9 +91,7 @@ public class TriggerScreenTransition : MonoBehaviour
                 // Switch camera back to the main math screen
                 mainCam.enabled = true;
                 rightAnswerCam.GetComponent<Camera>().enabled = false;
-
-                // Make audioButtons be activated again
-                rightAnswerCam.GetComponent<RightAnswerScreen>().activateAudioButtons();
+                
 
                 // Method to generate new exercise is called when player stopps after a teleportation 
                 pathSetter.CallGenerateNewAnswers(
