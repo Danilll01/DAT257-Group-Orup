@@ -17,6 +17,11 @@ public class WeatherController : MonoBehaviour
     [SerializeField] private GameObject rainyObject;
     [SerializeField] private GameObject snowyObject;
 
+    [SerializeField] private AudioSource sunnySound;
+    [SerializeField] private AudioSource cloudySound;
+    [SerializeField] private AudioSource rainySound;
+    [SerializeField] private AudioSource snowySound;
+
     [SerializeField] private Text currentWeatherText;
 
 	[SerializeField] private Text currentTemperatureText;
@@ -139,6 +144,7 @@ public class WeatherController : MonoBehaviour
     {
         float randTemp = 0;
         HideAllWeather();
+        StopAllSounds();
 
         // Displays the diffenent weather objects in a mutual exclusive way
         switch (weather) 
@@ -146,18 +152,22 @@ public class WeatherController : MonoBehaviour
 
             case WeatherTypes.Sun:
                 sunnyObject.SetActive(true);
+                sunnySound.Play();
                 randTemp = 25;
                 break;
             case WeatherTypes.Cloud:
                 cloudyObject.SetActive(true);
+                cloudySound.Play();
                 randTemp = 15;
                 break;
             case WeatherTypes.Rain:
                 rainyObject.SetActive(true);
+                rainySound.Play();
                 randTemp = 7;
                 break;
             case WeatherTypes.Snow:
                 snowyObject.SetActive(true);
+                snowySound.Play();
                 randTemp = -5;
                 break;
             default:
@@ -185,5 +195,14 @@ public class WeatherController : MonoBehaviour
         cloudyObject.SetActive(false);
         rainyObject.SetActive(false);
         snowyObject.SetActive(false);
+    }
+
+    //Stops all sounds
+    private void StopAllSounds()
+    {
+        sunnySound.Stop();
+        cloudySound.Stop();
+        rainySound.Stop();
+        snowySound.Stop();
     }
 }
