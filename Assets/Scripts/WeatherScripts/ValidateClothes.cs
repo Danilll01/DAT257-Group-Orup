@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ValidateClothes : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class ValidateClothes : MonoBehaviour
     [SerializeField] private speechBubble bubbleScript;
     [SerializeField] private GameObject endMenu;
     [SerializeField] private GameObject startMenuButton;
+
+    [SerializeField] private Button[] buttonsToDeactivate;
 
     private bool walkOut;
     [SerializeField] private float speed = 10f;
@@ -136,13 +139,14 @@ public class ValidateClothes : MonoBehaviour
             // If one clothing was not valid
             if(validClothing){
                 Debug.Log("Valid");
-                disableClothing(allScripts);
+                StartCoroutine(disableClothings(allScripts));
+                bubbleScript.showBubble("Härligt, nu kan jag gå ut och leka! ", 1);
 
             }
             else{
                 Debug.Log("Invalid: " + message);
                 // Activate speech bubble
-                bubbleScript.showBubble();
+                bubbleScript.showBubble("Ojdå det blev nog lite tokigt.Försök igen!", 0);
             }
         }
         else{
@@ -159,10 +163,19 @@ public class ValidateClothes : MonoBehaviour
         weatherSet = true;
     }
 
-    private void disableClothing(List<DragAndDropClothing> allScripts)
+    IEnumerator disableClothings(List<DragAndDropClothing> allScripts)
     {
         // Disable touch when fox is going to walk out
         dragScript.setEnding(true);
+
+        // Set the UI buttons to not be interactable
+        foreach (Button button in buttonsToDeactivate)
+        {
+            button.interactable = false;
+        }
+
+        yield return new WaitForSeconds(2.5f);
+
         // Start door opening animation
         doorAnim.SetTrigger("openDoor");
         // Set rigidbody for clothing objects on character to static
@@ -171,6 +184,9 @@ public class ValidateClothes : MonoBehaviour
         {
             script.ridgidBody.bodyType = RigidbodyType2D.Static;
         }
+
+        
+
         // Start fox walking animation
         foxAnim.SetTrigger("walkOut");
         walkOut = true;
@@ -203,6 +219,12 @@ public class ValidateClothes : MonoBehaviour
                 clothing.removeFromSnapPoint(false);
                 
             }
+        }
+
+        // Set the UI buttons interactable again
+        foreach (Button button in buttonsToDeactivate)
+        {
+            button.interactable = true;
         }
 
     }

@@ -8,25 +8,24 @@ public class speechBubble : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI speechText;
     [SerializeField] private float delay = 0.1f;
-    [SerializeField] private string message;
-    [SerializeField] private AudioSource speech;
+    [SerializeField] private AudioSource[] speeches;
     [SerializeField] private Button validateButton;
 
     // Show the speech bubble and activate text coróutine
     // Also deativate the validateButton temporarily
-    public void showBubble()
+    public void showBubble(string message, int speechIndex)
     {
         this.gameObject.SetActive(true);
         speechText.text = "";
         validateButton.interactable = false;
-        StartCoroutine(TypeText());
+        StartCoroutine(TypeText(message, speechIndex));
     }
 
     // Effect for writing out the text letter by letter
-    IEnumerator TypeText()
+    IEnumerator TypeText(string message, int speechIndex)
     {
         // Play the audio clip
-        speech.Play();
+        speeches[speechIndex].Play();
 
         foreach (char letter in message.ToCharArray())
         {
@@ -35,7 +34,7 @@ public class speechBubble : MonoBehaviour
         }
 
         // Wait for some seconds before hiding the speech bubble
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
         hideBubble();
     }
 
