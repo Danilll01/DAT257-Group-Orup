@@ -2011,6 +2011,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 822428680}
     m_Modifications:
+    - target: {fileID: 3458894375194443300, guid: 318872df4f3fdf646b2e17f5c88829e3, type: 3}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 650840289}
     - target: {fileID: 5512945090350060714, guid: 318872df4f3fdf646b2e17f5c88829e3, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
