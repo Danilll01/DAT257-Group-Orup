@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5512945090350060719}
   - component: {fileID: 5512945090350060716}
   - component: {fileID: 5512945090350060717}
+  - component: {fileID: 3458894375194443300}
   m_Layer: 0
-  m_Name: Questionmark
+  m_Name: QuestionmarkVoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,9 +115,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5512945090350060717}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 3458894375194443300}
+        m_TargetAssemblyTypeName: AudioCilpPriority, Assembly-CSharp
+        m_MethodName: PlayPrioritySound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -230,3 +231,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3458894375194443300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5512945090350060715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea53831843876784ba09bb66622482c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
+  deafenPercent: 0.6
