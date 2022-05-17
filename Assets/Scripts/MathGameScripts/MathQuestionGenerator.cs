@@ -13,7 +13,6 @@ public class MathQuestionGenerator : MonoBehaviour
     [SerializeField] private FillCardImages imageHolder1;
     [SerializeField] private FillCardImages imageHolder2;
     [SerializeField] private MathAnswerGeneratorScript answerGenerator;
-    [SerializeField] private MainSoundPlayer soundPlayer;
 
     private int x;
     private int y;
@@ -55,8 +54,6 @@ public class MathQuestionGenerator : MonoBehaviour
         else { // Otherwise show the result and call to generate 3 answers
             textInput.text = x + " " + op + " " + y + " = " + result;
             operatorText.text = op;
-
-            soundPlayer.fillFromNewExercise(new int[]{x, y}, op);
 
             // Place randomized sprites on card
             Sprite generatedSprite = fruits[Random.Range(0, fruits.Length)];
