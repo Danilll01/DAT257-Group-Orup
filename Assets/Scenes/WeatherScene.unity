@@ -1039,6 +1039,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
   inventoryScript: {fileID: 0}
@@ -1767,6 +1770,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 5b0ad00edfc4c40049c4eff820ce682e, type: 3}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -2607,6 +2613,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -3735,6 +3744,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
   inventoryScript: {fileID: 0}
@@ -4039,6 +4051,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
   inventoryScript: {fileID: 0}
@@ -4304,6 +4319,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 12
   inventoryScript: {fileID: 0}
@@ -4845,6 +4863,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -5295,6 +5316,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 69e48472ae31049ecb11a3cbef21b1f0, type: 3}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 4
   inventoryScript: {fileID: 0}
@@ -5656,6 +5680,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 7
   inventoryScript: {fileID: 0}
@@ -5824,6 +5851,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
   inventoryScript: {fileID: 0}
@@ -6807,6 +6837,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -7955,6 +7988,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
   inventoryScript: {fileID: 0}
@@ -8645,6 +8681,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
   inventoryScript: {fileID: 0}
@@ -9396,6 +9435,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -10348,6 +10390,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 4
   inventoryScript: {fileID: 0}
@@ -10653,6 +10698,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -10964,6 +11012,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -12252,6 +12303,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -12817,6 +12871,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -13056,6 +13113,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -13559,6 +13619,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 9f229a6631f7c4f7db7bb604ccdde655, type: 3}
+  foxSpriteRen: {fileID: 1719135548}
+  foxSpriteSunScreen: {fileID: 21300000, guid: 9583ef6b574464e9293a776ef6264407, type: 3}
+  foxSpriteOriginal: {fileID: 21300000, guid: 6bb3f82b82306497cb6b388269e71db5, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -13965,6 +14028,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -14752,6 +14818,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 1
   inventoryScript: {fileID: 0}
@@ -15338,6 +15407,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 3
   inventoryScript: {fileID: 0}
@@ -16608,6 +16680,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 2
   inventoryScript: {fileID: 0}
@@ -16873,6 +16948,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: 8
   inventoryScript: {fileID: 0}
@@ -17234,6 +17312,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}
@@ -18466,6 +18547,9 @@ MonoBehaviour:
   snapPointsParent: {fileID: 1199450797}
   colliders: []
   spriteToSwitchTo: {fileID: 0}
+  foxSpriteRen: {fileID: 0}
+  foxSpriteSunScreen: {fileID: 0}
+  foxSpriteOriginal: {fileID: 0}
   pointToSnapToOnSwitch: {fileID: 0}
   chosenWeather: -1
   inventoryScript: {fileID: 0}

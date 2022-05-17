@@ -25,6 +25,9 @@ public class DragAndDropClothing : MonoBehaviour {
     private Vector2 originalColliderSize;
 
     [SerializeField] private Sprite spriteToSwitchTo;
+    [SerializeField] private SpriteRenderer foxSpriteRen;
+    [SerializeField] private Sprite foxSpriteSunScreen;
+    [SerializeField] private Sprite foxSpriteOriginal;
     private Sprite originalSprite;
     [SerializeField] private GameObject pointToSnapToOnSwitch;
 
@@ -323,6 +326,12 @@ public class DragAndDropClothing : MonoBehaviour {
                 if (spriteToSwitchTo != null)
                 {
                     spriteChange();
+
+                    // If it was sunscreen, put it on by changing fox sprite
+                    if (this.gameObject.name == "SunScreen")
+                    {
+                        foxSpriteRen.sprite = foxSpriteSunScreen;
+                    }
                 }
                 else
                 {
@@ -382,6 +391,12 @@ public class DragAndDropClothing : MonoBehaviour {
         {
             colliders[1].offset = new Vector2(0, 0);
             colliders[1].size = new Vector2(0, 0);
+        }
+
+        // Take of the sunscreen if it was that object
+        if (this.gameObject.name == "SunScreen")
+        {
+            foxSpriteRen.sprite = foxSpriteOriginal;
         }
     }
 
