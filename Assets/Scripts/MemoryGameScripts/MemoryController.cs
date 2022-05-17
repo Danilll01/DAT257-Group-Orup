@@ -203,12 +203,11 @@ public class MemoryController : MonoBehaviour {
     }
 
     // Coroutine for deciding how long sounds should play
-    IEnumerator SoundStop(int index) {
-        if (btns[firstGuessIndex].image.sprite != bgImage || btns[secondGuessIndex].image.sprite != bgImage)
+    private void SoundStop(int index) {
+        if (!btns[index].GetComponent<AudioSource>().isPlaying && (btns[firstGuessIndex].image.sprite != bgImage || btns[secondGuessIndex].image.sprite != bgImage))
         {
             btns[index].GetComponent<AudioSource>().Play();
-            yield return new WaitForSeconds(2f);
-            btns[index].GetComponent<AudioSource>().Stop();
+
         }
     }
 
@@ -234,7 +233,7 @@ public class MemoryController : MonoBehaviour {
             cards[firstGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
             // Plays the audiofile of animal
-            StartCoroutine(SoundStop(firstGuessIndex));
+            SoundStop(firstGuessIndex);
         }
         // If secondguess is not firstguess
         else if (!secondGuess && (firstGuessIndex != int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name))) {
@@ -247,7 +246,7 @@ public class MemoryController : MonoBehaviour {
             // Flips card
             cards[secondGuessIndex].GetComponent<FlipCard>().FlipCardToAnimalState();
 
-            StartCoroutine(SoundStop(secondGuessIndex));
+            SoundStop(secondGuessIndex);
 
             // Counts up number of guesses made
             countGuesses++;
@@ -257,7 +256,9 @@ public class MemoryController : MonoBehaviour {
         }
         // If the firstGuess is the same as the the next, the just play sound
         else {
-            StartCoroutine(SoundStop(firstGuessIndex));
+            if (firstGuessIndex == int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name)) {
+                SoundStop(firstGuessIndex);
+            }
         }
     }
 
@@ -278,11 +279,6 @@ public class MemoryController : MonoBehaviour {
 
             DeactivateCard(firstGuessIndex);
             DeactivateCard(secondGuessIndex);
-
-            /*  Om korten ska försvinna efter man har valt rätt 
-            btns[firstGuessIndex].image.color = new Color(0,0,0,0);
-            btns[secondGuessIndex].image.color = new Color(0,0,0,0);
-            */
 
             // Checks if there are cards left to guess
             CheckIfTheGameIsFinished();
