@@ -7,6 +7,9 @@ public class playAudioPress : MonoBehaviour
 {
     [SerializeField ]private AudioClip[] audioClips;
     private AudioSource audioSource;
+    private bool isPlaying = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,15 +43,19 @@ public class playAudioPress : MonoBehaviour
         }
 
         // If we found a matching clip, play it
-        if (selectedClip != null)
+        if (selectedClip != null && !isPlaying)
         {
-            audioSource.PlayOneShot(selectedClip);
+            isPlaying = true;
+            StartCoroutine(playSoundClip(selectedClip));
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Play the sound
+    private IEnumerator playSoundClip(AudioClip clip)
     {
-        
+        audioSource.PlayOneShot(clip);
+
+        yield return new WaitForSeconds(clip.length);
+        isPlaying = false;
     }
 }
