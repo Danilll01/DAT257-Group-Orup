@@ -53,7 +53,7 @@ public class MathQuestionGenerator : MonoBehaviour
             randomizeProblem(); // Redo if under zero
         }
         else { // Otherwise show the result and call to generate 3 answers
-            textInput.text = x + " " + op + " " + y + " = " + result;
+            textInput.text = x + " " + op + " " + y + " = ";
             operatorText.text = op;
 
             soundPlayer.fillFromNewExercise(new int[]{x, y}, op);
