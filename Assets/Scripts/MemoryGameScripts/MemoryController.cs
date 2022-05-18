@@ -66,12 +66,6 @@ public class MemoryController : MonoBehaviour {
 
     // Runs at start. Loads all pictures and sounds
     void Awake() {
-        // If no sprites are provided use fallback method to load sprites
-        if (puzzles.Length == 0) puzzles = Resources.LoadAll<Sprite>("Sprites/Animals");
-
-        // If no sounds are provided use fallback method to load sounds
-        if (sounds.Length == 0) sounds = Resources.LoadAll<AudioClip>("Animal_sounds/Edited_Sounds");
-
         // Gets the AudioSource component and attaches to the pointer
         victorySound = GetComponent<AudioSource>();
     }
