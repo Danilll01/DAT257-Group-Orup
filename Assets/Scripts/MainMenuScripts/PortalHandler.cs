@@ -5,6 +5,7 @@ using Pathfinding;
 
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PortalHandler : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class PortalHandler : MonoBehaviour
     // The player object
     [SerializeField] private Navigate navigation;
 
+    [SerializeField] private Image[] names;
 
+    private int portalSelected = 0;
     private AudioSource audioSource;
 
 
@@ -37,6 +40,9 @@ public class PortalHandler : MonoBehaviour
                 SceneManager.LoadScene(portalId);
 
             });
+
+        updateColor(portalId);
+
 
     }
 
@@ -61,9 +67,14 @@ public class PortalHandler : MonoBehaviour
         return (sceneIndex - 1);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Make the color darker on the selected portals name image
+    // Bring back the color on the previous selected image
+    private void updateColor(int portalId)
     {
-        
+        Image imageOld = names[portalSelected].GetComponent<Image>();
+        imageOld.color = new Color(255 / 255f, 255 / 255f, 255 / 255f, 1f);
+        portalSelected = portalId - 1;
+        Image imageNew = names[portalSelected].GetComponent<Image>();
+        imageNew.color = new Color(200 / 255f, 200 / 255f, 200 / 255f, 1f);
     }
 }
