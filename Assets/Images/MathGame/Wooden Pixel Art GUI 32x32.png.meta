@@ -313,6 +313,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Backarrow
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62e6fedd23387fa4ba10e03e1e379e81
+      internalID: -735082054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForwardArrow
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 1088
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44ebfae37bcd44c41bcfa06276375c8d
+      internalID: -2066226247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -326,11 +368,13 @@ TextureImporter:
     nameFileIdTable:
       Wooden Pixel Art GUI 32x32_0: -569827614
       WoodHomeButtonDown: -908023036
+      Backarrow: -735082054
       Wooden Pixel Art GUI 32x32_1: -1720644012
       WoodHomeButtonUp: 810364438
       DarkPanel: -741674603
       SoundButton: 1184410378
       Wooden Pixel Art GUI 32x32_2: -1941006872
+      ForwardArrow: -2066226247
       WoodenPanel: 143430562
       RedoButton: -1045857845
       WoodenBar: -1356601191
