@@ -72,18 +72,6 @@ public class WeatherController : MonoBehaviour
         
     }
 
-    public void OnTomorrowClick()
-    {
-        gameMode.text = "Morgondagens väder";
-
-        string tomorrowWeather = weatherData.GetWeather(true);
-        float tomorrowTemp = weatherData.GetTemp(true);
-        thermometerControl.setTemp(tomorrowTemp);
-      
-        CheckWeather(tomorrowWeather,tomorrowTemp);
-
-        
-    }
 
     public void OnRandomClick()
     {
@@ -174,7 +162,6 @@ public class WeatherController : MonoBehaviour
             thermometerControl.setTemp(randTemp);
         }
         
-        thermometerControl.setTemp(randTemp);
         validateClothes.setWeather(weather);
     }
 
