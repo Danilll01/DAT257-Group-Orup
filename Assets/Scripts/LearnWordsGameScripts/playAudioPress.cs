@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class playAudioPress : MonoBehaviour
@@ -14,9 +13,14 @@ public class playAudioPress : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    // Function button will call with the corresponding tect field
     public void playAudioFromName(TextMeshProUGUI nameText)
     {
+        // Removes white space from front and end of text
         string name = nameText.text.Trim();
+
+        // If the name contains a space, it is a letter
+        // We only want the first letter so we split it
         if (name.Contains(" "))
         {
             string[] nameSections = name.Split(" ");
@@ -24,16 +28,18 @@ public class playAudioPress : MonoBehaviour
             
         }
 
+        // Look through all the audioClips to find one
+        // with a matching name
         AudioClip selectedClip = null;
         foreach (AudioClip clip in audioClips)
         {
             if (clip.name.Trim() == name)
             {
-                Debug.Log("matched");
                 selectedClip = clip;
             }
         }
 
+        // If we found a matching clip, play it
         if (selectedClip != null)
         {
             audioSource.PlayOneShot(selectedClip);
