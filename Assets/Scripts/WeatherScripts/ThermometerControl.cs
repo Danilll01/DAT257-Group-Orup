@@ -32,7 +32,7 @@ public class ThermometerControl : MonoBehaviour{
     //Used by WeatherController to update the active temperature
     public void setTemp(float temp){
         updateTemp = temp;
-        temperatureText.text = (int)updateTemp + "°C";
+        temperatureText.text = (int)updateTemp + "Â°C";
         TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
 
         // Set the color of the termometer depending on temperature
