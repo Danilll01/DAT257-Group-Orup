@@ -7026,7 +7026,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "25\xB0C"
+  m_text: 25 C
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d9e756a8fa307cc41b3dd829269bd6ff, type: 2}
   m_sharedMaterial: {fileID: -6974458234717734136, guid: d9e756a8fa307cc41b3dd829269bd6ff, type: 2}
