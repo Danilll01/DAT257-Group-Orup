@@ -43,19 +43,8 @@ public class playAudioPress : MonoBehaviour
         }
 
         // If we found a matching clip, play it
-        if (selectedClip != null && !isPlaying)
-        {
-            isPlaying = true;
-            StartCoroutine(playSoundClip(selectedClip));
+        if (selectedClip != null && !audioSource.isPlaying) {
+            audioSource.PlayOneShot(selectedClip);
         }
-    }
-
-    // Play the sound
-    private IEnumerator playSoundClip(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
-
-        yield return new WaitForSeconds(clip.length);
-        isPlaying = false;
     }
 }
