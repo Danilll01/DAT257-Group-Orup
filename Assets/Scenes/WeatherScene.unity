@@ -13620,7 +13620,7 @@ MonoBehaviour:
   colliders: []
   spriteToSwitchTo: {fileID: 21300000, guid: 9f229a6631f7c4f7db7bb604ccdde655, type: 3}
   foxSpriteRen: {fileID: 1719135548}
-  foxSpriteSunScreen: {fileID: 21300000, guid: 9583ef6b574464e9293a776ef6264407, type: 3}
+  foxSpriteSunScreen: {fileID: 21300000, guid: 26baf0e0237234fb1a4b5ac6f36cfaf2, type: 3}
   foxSpriteOriginal: {fileID: 21300000, guid: 6bb3f82b82306497cb6b388269e71db5, type: 3}
   pointToSnapToOnSwitch: {fileID: 1696580004}
   chosenWeather: 3
