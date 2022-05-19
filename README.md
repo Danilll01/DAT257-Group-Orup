@@ -1,5 +1,5 @@
 ## Project course
-Group project for the course DAT257 Agile software project management.
+Group project for the course DAT257 Agile software project management.  
 Group name: Orup
 
 ### Group members
@@ -19,7 +19,7 @@ agnesros        | Agnes Rosendahl
 
 ## The game
 The application we developed is called "Listiga Räven!".
-It is indended as a learning game for children in preschool.
+It is indended as a learning game for children in preschool.  
 The game consists of five minigames and a start menu, each game focuses on a different learning goal.
 
 ## Stakeholder
