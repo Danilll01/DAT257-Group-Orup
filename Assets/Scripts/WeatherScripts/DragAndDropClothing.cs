@@ -180,6 +180,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     moveAllowed = false;
                     spriteRen.sortingOrder = originSortingOrder;
                     beingDragged = false;
+
                 }
                 break;
 
@@ -304,6 +305,9 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 // Remove all the clothins of the same type on snapPoint
                 removeClothingType(pointToSnapToOnSwitch, neededMatch);
+                //Play sound for dressing
+                GameObject.FindWithTag("Snap").GetComponent<AudioSource>().Play();
+
             }
             else
             {
@@ -338,6 +342,7 @@ public class DragAndDropClothing : MonoBehaviour {
                     // Add on the new clothing
                     targetPosition = shortestSnapPoint.transform.position;
                     transform.SetParent(shortestSnapPoint.transform);
+                    GameObject.FindWithTag("Snap").GetComponent<AudioSource>().Play();
 
 
                     // Move jacket forward so it is in front of shirt

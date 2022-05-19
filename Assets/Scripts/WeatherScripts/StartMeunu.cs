@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class StartMeunu : MonoBehaviour
 {
     [SerializeField] private GameObject openStartMenuBtn;
     [SerializeField] private GameObject closeBtn;
     [SerializeField] private GameObject randomBtn;
-    [SerializeField] private Button transparentBackgroundButton;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 
     
     // Set hideCloseButton to true if a game mode has not been selected
@@ -21,11 +31,7 @@ public class StartMeunu : MonoBehaviour
 
         // Show close button if not true
         if (!hideCloseButton) {
-            closeBtn.SetActive(true);
-            transparentBackgroundButton.interactable = true;
-        } else
-        {
-            transparentBackgroundButton.interactable = false;
+            closeBtn.SetActive(true); 
         }
 
     }
@@ -36,4 +42,6 @@ public class StartMeunu : MonoBehaviour
         openStartMenuBtn.SetActive(true); // Show button that opens up this start menu again
 
     }
+
+   
 }

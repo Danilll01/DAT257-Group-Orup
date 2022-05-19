@@ -6,11 +6,11 @@ public class ClickOnPlayer : MonoBehaviour
 {
     [SerializeField] private AudioSource audioClip;
 
-    private CircleCollider2D collider;
+    private Collider2D collider;
     // Start is called before the first frame update
     void Start()
     {
-        collider = this.GetComponent<CircleCollider2D>();
+        collider = this.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
