@@ -219,8 +219,14 @@ public class DragAndDropNote : MonoBehaviour
 
         }
 
+        // True if you try to put down a pickedup note at the same location
+        bool shortestSnapPointIsCurrent = shortestSnapPoint.transform.Equals(transform.parent);
+
+        // True if there already is a note at the snappoint
+        bool alreadyNoteInShortestSnapPoint = shortestSnapPoint.transform.childCount <= 1;
+
         // If the object is close to the snapPoint and the snappoint is empty of notes, set the objects position to that point
-        if (shortestSnapPointDistance < 0.5f && !snapped && shortestSnapPoint.transform.childCount <= 1)
+        if (shortestSnapPointDistance < 0.5f && !snapped && (shortestSnapPointIsCurrent || alreadyNoteInShortestSnapPoint))
         {
             targetPosition = shortestSnapPoint.transform.position;
             transform.SetParent(shortestSnapPoint.transform);
