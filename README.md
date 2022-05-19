@@ -15,7 +15,11 @@ OscarAdamsson   | Oscar Adamsson
 agnesros        | Agnes Rosendahl
 
 
-## How to play
+## How to download the game
+Download the latest release. It will download as a zip file, choose the one 
+you need. For IOS you need XCode on a Mac to be able to install the app.
+For android or desktop you can simply install the application located in the
+zip file.
 
 ## The game
 The application we developed is called "Listiga Räven!".
