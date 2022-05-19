@@ -136,17 +136,16 @@ public class ValidateClothes : MonoBehaviour
 
             }
 
-            // If one clothing was not valid
+            // If one clothing was not valid 
             if(validClothing){
                 Debug.Log("Valid");
                 StartCoroutine(disableClothings(allScripts));
-                bubbleScript.showBubble("Härligt, nu kan jag gå ut och leka! ", 1);
-
+                bubbleScript.showBubble("HÃ¤rligt, nu kan jag gÃ¥ ut och leka! ", 1);
             }
             else{
                 Debug.Log("Invalid: " + message);
                 // Activate speech bubble
-                bubbleScript.showBubble("Ojdå det blev nog lite tokigt.Försök igen!", 0);
+                bubbleScript.showBubble("OjdÃ¥, det blev nog lite tokigt. FÃ¶rsÃ¶k igen!", 0);
             }
         }
         else{
