@@ -64,6 +64,9 @@ public class MemoryController : MonoBehaviour {
     // Pointer for Audio Source
     private AudioSource victorySound;
 
+    [SerializeField]
+    private VictoryJump playerWrapper;
+
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         // Gets the AudioSource component and attaches to the pointer
@@ -266,7 +269,9 @@ public class MemoryController : MonoBehaviour {
         if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex) {
 
             yield return new WaitForSeconds(0.25f);
-            rightAnswerSound.Play();    
+            rightAnswerSound.Play();
+            playerWrapper.Jump();
+
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
