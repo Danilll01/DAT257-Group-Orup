@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v4.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
+          tag_name: v5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
           release_name: Release V5.${{ env.GITHUB_RUN_NUMBER_WITH_OFFSET }}
           
       - name: Zipping win

@@ -10,6 +10,7 @@ public class speechBubble : MonoBehaviour
     [SerializeField] private float delay = 0.1f;
     [SerializeField] private AudioSource[] speeches;
     [SerializeField] private Button validateButton;
+    [SerializeField] private Button doorButton;
 
     // Show the speech bubble and activate text coróutine
     // Also deativate the validateButton temporarily
@@ -18,6 +19,7 @@ public class speechBubble : MonoBehaviour
         this.gameObject.SetActive(true);
         speechText.text = "";
         validateButton.interactable = false;
+        doorButton.interactable = false;
         StartCoroutine(TypeText(message, speechIndex));
     }
 
@@ -43,6 +45,7 @@ public class speechBubble : MonoBehaviour
     {
         speechText.text = "";
         validateButton.interactable = true;
+        doorButton.interactable = true;
         this.gameObject.SetActive(false);
     }
 
