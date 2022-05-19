@@ -21,6 +21,10 @@ public class PlayMusic : MonoBehaviour
 
     [SerializeField] private Toggle playToggle;
 
+    [SerializeField] private AudioSource[] backingDrums;
+
+    private int drumIndex = 0;
+
     private GameObject[] snapPoints;
 
     // Is the song playing
@@ -88,6 +92,7 @@ public class PlayMusic : MonoBehaviour
 
             // Sets all the variables to start playing
             PlayOrStopSetVars(true);
+            
         }
     }
 
@@ -144,6 +149,7 @@ public class PlayMusic : MonoBehaviour
 
                 // Play all notes in a beat
                 PlayNotes(notes[i]);
+                playNext();
 
                 yield return new WaitForSeconds(time);
 
@@ -299,4 +305,16 @@ public class PlayMusic : MonoBehaviour
     {
         isLooping = !isLooping;
     }
+
+    public void playNext()
+    {
+        backingDrums[drumIndex].Play();
+        if (drumIndex >= 3)
+        {
+            drumIndex = 0;
+        }
+        else
+            drumIndex += 1;
+    }
 }
+

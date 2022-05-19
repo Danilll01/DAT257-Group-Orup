@@ -64,6 +64,9 @@ public class MemoryController : MonoBehaviour {
     // Pointer for Audio Source
     private AudioSource victorySound;
 
+    [SerializeField]
+    private VictoryJump playerWrapper;
+
     // Runs at start. Loads all pictures and sounds
     void Awake() {
         // If no sprites are provided use fallback method to load sprites
@@ -272,7 +275,9 @@ public class MemoryController : MonoBehaviour {
         if (firstGuessPuzzle == secondGuessPuzzle && firstGuessIndex != secondGuessIndex) {
 
             yield return new WaitForSeconds(0.25f);
-            rightAnswerSound.Play();    
+            rightAnswerSound.Play();
+            playerWrapper.Jump();
+
             // Makes correct guesses uninteractable
             btns[firstGuessIndex].interactable = false;
             btns[secondGuessIndex].interactable = false;
