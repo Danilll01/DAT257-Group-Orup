@@ -100,4 +100,4 @@ Here the player will be able to create their own music! Drag down notes from the
 different lines. When notes are placed, press play and listen to the amazing music!
 The player can also choose to loop the music if they want to, letting them listen to their music over and over.  
   
-*Insert image*
+<img src = "https://user-images.githubusercontent.com/47697397/169516292-f6b1a7ee-6bb6-4cac-9778-85c94c9f40f2.png" width = "500" >
