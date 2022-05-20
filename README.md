@@ -95,7 +95,7 @@ Try and match all the cards to be able to get new words to learn!
 <img src = "https://user-images.githubusercontent.com/47697397/169469327-829041bb-e40e-4c1c-b11d-ab37392c338a.png" width = "500" >
 
 
-## Music game
+## Musik med räven
 Here the player will be able to create their own music! Drag down notes from the instruments at the top onto the
 different lines. When notes are placed, press play and listen to the amazing music!
 The player can also choose to loop the music if they want to, letting them listen to their music over and over.  
