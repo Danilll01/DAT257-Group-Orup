@@ -21,13 +21,14 @@ you need. For IOS you need XCode on a Mac to be able to install the app.
 For android or desktop you can simply install the application located in the
 zip file.
 
-## The game
+## "Listiga Räven!"
 The application we developed is called "Listiga Räven!".
 It is indended as a learning game for children in preschool.  
-The game consists of five minigames and a start menu, each game focuses on a different learning goal.
+The game consists of five minigames and a start menu, each game focuses on a different learning aspect.
 
 ## Stakeholder
-
+We developed the game with feedback from an upcoming preschool teacher.
+She helped out know what was important and what children that age can/shoudld learn.
 
 ## Start menu
 
