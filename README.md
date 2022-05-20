@@ -15,11 +15,18 @@ OscarAdamsson   | Oscar Adamsson
 agnesros        | Agnes Rosendahl
 
 
-## How to download the game
+## How to play the game
+
+### Option 1
 Download the latest release. It will download as a zip file, choose the one 
 you need. For IOS you need XCode on a Mac to be able to install the app.
 For android or desktop you can simply install the application located in the
 zip file.
+
+### Option 2
+Another options is to clone the repo or download the code as a zipfile and open it up in Unity.
+There you will be able to open the sceen "MainMenu" and play the game through
+the Unity editor.
 
 ## "Listiga Räven!"
 The application we developed is called "Listiga Räven!".
@@ -31,13 +38,23 @@ We developed the game with feedback from an upcoming preschool teacher.
 She helped out know what was important and what children that age can/shoudld learn.
 
 ## Start menu
+Here we will find different portals that lead to the different minigames. Simply press on one of the portals
+and the fox will make it's way over to it and enter. The player can come back to this scene at any time
+throughout the game
 <img src = "https://user-images.githubusercontent.com/47697397/169467972-a27c8004-3201-415a-9efc-e03666f10692.png" width = "500" >
 
-## Weather game
+## Kläder efter väder
+This game is all about putting clothes on that fits the weather outside. The player can choose between getting the
+realtime weather outside where they are located or play with a randomized weather.
+Put on clothes by dragging a clothing piece from the wardrobe onto the fox.
+Press "Klar" when done, and see if you put on correct clothing!.  
+  
 <img src = "https://user-images.githubusercontent.com/47697397/169469315-0b98f3a7-77de-44b9-bc00-1428b784b9a6.png" width = "500" >
 
 
-## Memory game
+## Djur-memory
+A simple memory game with an animal theme, find the matching pairs to complete the game.  
+  
 <img src = "https://user-images.githubusercontent.com/47697397/169469344-4e582248-49a8-4783-9c81-915f6c8d794a.png" width = "500" >
 
 
