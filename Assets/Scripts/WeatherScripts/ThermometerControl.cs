@@ -11,7 +11,7 @@ public class ThermometerControl : MonoBehaviour{
     [SerializeField] private Image TempBar;
     [SerializeField] private Image termometer;
 
-    private float updateTemp;
+    private int updateTemp;
     private float maxTemp;
     private float minTemp;
 
@@ -20,7 +20,7 @@ public class ThermometerControl : MonoBehaviour{
 
     // Start is called before the first frame update and sets max/min temp
     void Start(){
-        maxTemp = 100;
+        maxTemp = 50;
         minTemp = -20;
         TempBar.color = Color.red;
         termometer.color = Color.red;
@@ -31,8 +31,8 @@ public class ThermometerControl : MonoBehaviour{
 
     //Used by WeatherController to update the active temperature
     public void setTemp(float temp){
-        updateTemp = temp;
-        temperatureText.text = (int)updateTemp + "°C";
+        updateTemp = (int) temp;
+        temperatureText.text = updateTemp + " °C"; 
         TempBar.fillAmount = (updateTemp - minTemp) / (maxTemp - minTemp);
 
         // Set the color of the termometer depending on temperature
