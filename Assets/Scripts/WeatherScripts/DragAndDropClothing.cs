@@ -304,6 +304,7 @@ public class DragAndDropClothing : MonoBehaviour {
             {
                 // Remove all the clothins of the same type on snapPoint
                 removeClothingType(pointToSnapToOnSwitch, neededMatch);
+                snapPointsParent.GetComponent<AudioSource>().Play();
             }
             else
             {
@@ -338,6 +339,8 @@ public class DragAndDropClothing : MonoBehaviour {
                     // Add on the new clothing
                     targetPosition = shortestSnapPoint.transform.position;
                     transform.SetParent(shortestSnapPoint.transform);
+                    snapPointsParent.GetComponent<AudioSource>().Play();
+
 
 
                     // Move jacket forward so it is in front of shirt
