@@ -31,7 +31,7 @@ We developed the game with feedback from an upcoming preschool teacher.
 She helped out know what was important and what children that age can/shoudld learn.
 
 ## Start menu
-
+<img src = "https://user-images.githubusercontent.com/47697397/169467972-a27c8004-3201-415a-9efc-e03666f10692.png" width = "500" >
 
 ## Weather game
 
