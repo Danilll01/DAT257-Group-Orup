@@ -12,6 +12,10 @@ public class WinningSound : MonoBehaviour
 
     // Play the correct sound when the object is enabled
     void OnEnable() {
-        GetComponent<AudioSource>().Play();
+        AudioSource[] sources = GetComponents<AudioSource>();
+        foreach (AudioSource source in sources)
+        {
+            source.Play();
+        }
     }
 }
