@@ -29,7 +29,7 @@ social contract and lastly meating protocols.
 https://trello.com/b/I2fSkeNp/scrum-board
 
 ### Drive link
-Fixa en delningslänk som endast är läsbehörig
+https://drive.google.com/drive/folders/1dpSNzGto1WljSXqwUtIdRoNmntjMHsAU?usp=sharing
   
 ## How to play the game
 
