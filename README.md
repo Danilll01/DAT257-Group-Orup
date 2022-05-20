@@ -54,7 +54,7 @@ We developed the game with feedback from an upcoming preschool teacher.
 She helped us know what was important and what children that age can/should learn.
 The stakeholder consistently gave us good feedback on what to improve and what to change.  
 
-## Start menu
+## Main menu
 Here we will find different portals that lead to the different minigames. Simply press on one of the portals
 and the fox will make it's way over to it and enter. The player can come back to this scene at any time
 throughout the game.  
