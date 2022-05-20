@@ -14,7 +14,23 @@ OscarAdamsson   | Oscar Adamsson
 98erjuon        | Erik Juliusson
 agnesros        | Agnes Rosendahl
 
+## Filestructure
+Path                                    | Comment
+--------------------------------------- | -------------
+`/Dokument Agile Software`              | All documents associated with the project
+`/Assets`                               | Location for all assets in the game
 
+## Documents
+All the documents that go with this project is in the "Dokument Agile Software" folder.
+It contains individual reflections, team reflection, sprint review, sprint retrospective,
+social contract and lastly meating protocols.
+
+### Trello link
+https://trello.com/b/I2fSkeNp/scrum-board
+
+### Drive link
+Fixa en delningslänk som endast är läsbehörig
+  
 ## How to play the game
 
 ### Option 1
@@ -85,21 +101,3 @@ different lines. When notes are placed, press play and listen to the amazing mus
 The player can also choose to loop the music if they want to, letting them listen to their music over and over.  
   
 *Insert image*
-
-
-## Filestructure
-Path                                    | Comment
---------------------------------------- | -------------
-`/Dokument Agile Software`              | All documents associated with the project
-`/Assets`                               | Location for all assets in the game
-
-## Documents
-All the documents that go with this project is in the "Dokument Agile Software" folder.
-It contains individual reflections, team reflection, sprint review, sprint retrospective,
-social contract and lastly meating protocols.
-
-### Trello link
-https://trello.com/b/I2fSkeNp/scrum-board
-
-### Drive link
-Fixa en delningslänk som endast är läsbehörig
