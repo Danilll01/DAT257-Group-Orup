@@ -972,6 +972,7 @@ MonoBehaviour:
   openStartMenuBtn: {fileID: 1989570180}
   closeBtn: {fileID: 1247727143}
   randomBtn: {fileID: 1797663862}
+  randomClothingObjectScript: {fileID: 0}
   transparentBackgroundButton: {fileID: 1136316317}
 --- !u!1 &161236365
 GameObject:
@@ -18934,6 +18935,7 @@ MonoBehaviour:
   openStartMenuBtn: {fileID: 1989570180}
   closeBtn: {fileID: 815841910}
   randomBtn: {fileID: 1173285494}
+  randomClothingObjectScript: {fileID: 1151940279}
   transparentBackgroundButton: {fileID: 1136316317}
 --- !u!1 &1872011250
 GameObject:

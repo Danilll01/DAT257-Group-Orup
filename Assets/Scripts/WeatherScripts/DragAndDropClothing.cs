@@ -33,7 +33,7 @@ public class DragAndDropClothing : MonoBehaviour {
 
     [EnumFlags] public WeatherController.WeatherTypes chosenWeather;
     public closetInventory inventoryScript;
-    private static bool ending;
+    private static bool ending = true;
 
     [System.Flags] public enum clothing : int{
         None   = 0x00,
@@ -59,7 +59,6 @@ public class DragAndDropClothing : MonoBehaviour {
 
 
         beingDragged = false;
-        ending = false;
 
 
         // Set up the array of snapPoints
@@ -92,7 +91,6 @@ public class DragAndDropClothing : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
         // If there were any touches on the screen
         // Send to touchMovement function
         if(Input.touchCount > 0 && !ending){
